@@ -1,0 +1,50 @@
+$colorLinks: #c69b6b;
+$colorButtonBackground: white;
+$colorLineBottomLinks: #c69b6b;
+
+.gallery {
+  max-width: 1440px;
+  margin: 40px auto;
+  &__list-title {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+  &__title-element {
+    margin-right: 50px;
+  }
+  &__title-link {
+    position: relative;
+    background-color: $colorButtonBackground;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 0;
+    transition: all 0.4s;
+    &:hover {
+      cursor: pointer;
+      color: $colorLinks;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      height: 2px;
+      background-color: $colorLineBottomLinks;
+      width: 0;
+      transform: translateX(-50%);
+      transition: width 0.4s;
+      z-index: 1;
+    }
+    &_active {
+      color: $colorLinks;
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}

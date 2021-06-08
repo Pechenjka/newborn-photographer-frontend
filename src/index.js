@@ -6,9 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import rootReducer from "./redux/Provider/rootReducer";
+import rootReducer from "./redux/Reducers/rootReducer";
+import thunk from "redux-thunk";
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 

@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="header">
       <div className="header__container">
-        <img className="header__logo" src={photographer} alt="фотограф" />
+        <img className="header__logo" src={photographer} alt="лого фотографа" />
         <NavMenu />
       </div>
     </div>

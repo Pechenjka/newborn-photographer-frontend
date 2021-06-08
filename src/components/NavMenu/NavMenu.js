@@ -9,7 +9,11 @@ function NavMenu() {
         {links.map((item) => {
           return (
             <li className="navigation__container-link navigation__view-lists-links" key={item.path}>
-              <NavLink className="navigation__link" activeClassName="navigation__link_active" to={item.path}>
+              <NavLink
+                className={`navigation__link ${item.select && "navigation__link-arrow"}`}
+                activeClassName="navigation__link_active"
+                to={item.path}
+              >
                 {item.name}
               </NavLink>
               <div className="navigation__select-container navigation__view-lists-links_active">

@@ -9,9 +9,13 @@ function PopupWithImage() {
 
   return (
     <section className={`popup ${openImagePopup ? "popup__opened" : ""}`} onClick={() => dispatch(closeImagePopup())}>
-      <div className="popup__container" onClick={(event)=> event.stopPropagation()}>
-        <img className="popup__image" src={showImage} />
-        <button className="popup__closeBtn"  aria-label='закрытие модального окна' onClick={() => dispatch(closeImagePopup())} />
+      <div className="popup__container" onClick={(event) => event.stopPropagation()}>
+        <img className="popup__image" src={showImage} alt="фотография" />
+        <button
+          className="popup__closeBtn"
+          aria-label="закрытие модального окна"
+          onClick={() => dispatch(closeImagePopup())}
+        />
       </div>
     </section>
   );

@@ -8,22 +8,26 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
   height: 100vh;
   background-color: $colorBackgroundPopup;
   opacity: 0;
-  transition: opacity 0.6s;
+  transition: scale, opacity 0.6s;
+  transform: scale(0);
   z-index: -1;
   &__opened {
     opacity: 1;
     z-index: 5;
+    transform: scale(1);
   }
   &__container {
     position: absolute;
-    top: 15%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%, -48%);
   }
   &__image {
+    display: block;
     position: relative;
     max-width: 75vw;
     max-height: 75vh;
+    border-radius: 10px;
   }
   &__closeBtn {
     background: url("../../images/close_popup-icon.svg") no-repeat center transparent;

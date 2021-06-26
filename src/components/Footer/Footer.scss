@@ -1,0 +1,165 @@
+$colorBackground: black;
+$colorLinksHover: #c69b6b;
+$colorDemarcationLine: #79553d;
+$colorText: black;
+
+.footer {
+  //background-color: $colorBackground;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__contacts {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    &::after {
+      content: "";
+      border-right: solid 2px $colorDemarcationLine;
+      position: absolute;
+      top: 0;
+      right: 50%;
+      height: 100px;
+      transform: translateX(0);
+      opacity: 0;
+      transition: opacity 1s 0.5s;
+    }
+  }
+
+  &__myContacts {
+    margin: auto auto auto 0;
+    padding-left: 20px;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 1s;
+  }
+  &__myContacts-container {
+    list-style: none;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  &__myContacts-item-container {
+    display: flex;
+    margin: 0 0 10px;
+    width: 100%;
+    &:nth-of-type(3) {
+      margin-bottom: 0;
+    }
+  }
+  &__myContacts-icon {
+    width: 15px;
+    height: 15px;
+    margin: 0 15px 0 0;
+    &_place {
+      background: url("../../images/place-icon(black).svg") no-repeat center;
+      background-size: contain;
+    }
+    &_email {
+      background: url("../../images/email-icon(black).svg") no-repeat center;
+      background-size: contain;
+    }
+    &_phone {
+      background: url("../../images/phone-icon(black).svg") no-repeat center;
+      background-size: contain;
+    }
+  }
+  &__myContacts-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    color: $colorText;
+    &_copyright {
+      font-size: 10px;
+    }
+  }
+  &__myContacts-link {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    color: $colorText;
+    text-decoration: none;
+    transition: all 0.4s;
+    &:hover {
+      color: $colorLinksHover;
+    }
+  }
+
+  &__copyright-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    margin: 0;
+  }
+  &__poweredBy-text {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12px;
+  }
+
+  &__social-networks {
+    margin: 30px 0;
+    width: 100%;
+    overflow: hidden;
+  }
+  &__social-networks-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      margin-left: -50%;
+      left: -80px;
+      top: 50%;
+      border-bottom: 2px solid $colorDemarcationLine;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      margin-right: -50%;
+      right: -80px;
+      top: 50%;
+      border-bottom: 2px solid $colorDemarcationLine;
+    }
+  }
+
+  &__item-social-networks {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0 10px 0 0;
+    transition: all 0.4s;
+    &_whatsApp {
+      background: url("../../images/watsApp-icon(background-brown).svg") no-repeat center;
+      background-size: contain;
+    }
+    &_telegram {
+      background: url("../../images/telegram-icon(background-brown).svg") no-repeat center;
+      background-size: contain;
+    }
+    &_instagram {
+      background: url("../../images/instagram-icon(background-brown).svg") no-repeat center;
+      background-size: contain;
+    }
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.anim-items_active {
+  opacity: 1;
+  transform: translateX(0);
+  &::after {
+    opacity: 1;
+  }
+}

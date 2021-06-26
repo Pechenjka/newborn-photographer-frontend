@@ -1,0 +1,78 @@
+$colorLinksHover: #c69b6b;
+$colorBackground: rgb(255,252,236);
+$colorInvalid: red;
+$colorBtnHover: #79553d;
+
+.footer {
+  &__newsLetter {
+    position: relative;
+    margin: 11px 0 auto auto;
+    padding-right: 20px;
+    max-width: 250px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 1s;
+  }
+  &__newsLetter-text {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    margin: 0 0 10px 0;
+    text-align: left;
+  }
+  &__newsLetter-form {
+  }
+  &__newsLetter-form-fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  &__newsLetter-form-label {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    margin: 0 auto 10px 0;
+    text-align: left;
+
+  }
+  &__newsLetter-form-input {
+    width: 200px;
+    height: 25px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    padding: 0 0 0 10px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    border-right: none;
+    background-color: $colorBackground;
+    &_unValid {
+      color: $colorInvalid;
+    }
+  }
+  &__newsLetter-form-span {
+    text-align: left;
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    color: #898686;
+  }
+  &__newsLetter-form-button {
+    border-radius: 0 5px 5px 0;
+    width: 30px;
+    background-color: $colorLinksHover;
+    transition: all 0.4s;
+    &:hover {
+      cursor: pointer;
+      background-color:  $colorBtnHover;
+    }
+  }
+}
+

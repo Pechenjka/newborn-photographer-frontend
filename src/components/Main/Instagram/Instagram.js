@@ -1,9 +1,9 @@
 import "./Instagram.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import {memo, useEffect} from "react";
 import { handleGetInstagramUser } from "../../../redux/Actions/userAction";
 
-function Instagram() {
+const Instagram = memo(() =>{
   const dispatch = useDispatch();
   const instagramUser = useSelector((state) => state.user.instagramUser);
 
@@ -26,7 +26,6 @@ function Instagram() {
     }
   };
 
-  console.log(instagramUser);
   return (
     <div className="instagram anim-items">
       <p className="instagram__title">Подпишитесь на меня в Instagram</p>
@@ -48,6 +47,6 @@ function Instagram() {
       </ul>
     </div>
   );
-}
+})
 
 export default Instagram;

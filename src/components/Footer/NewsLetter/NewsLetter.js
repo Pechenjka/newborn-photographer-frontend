@@ -15,7 +15,7 @@ function NewsLetter() {
   };
 
   return (
-    <div className="footer__newsLetter anim-items">
+    <div className="footer__newsLetter">
       <form className="footer__newsLetter-form" onSubmit={handleSubmit}>
         <fieldset className="footer__newsLetter-form-fieldset">
           <label className="footer__newsLetter-form-label">

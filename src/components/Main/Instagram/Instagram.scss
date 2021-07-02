@@ -6,6 +6,7 @@ $colorTextOverlay: white;
 .instagram {
   max-width: 1440px;
   margin: 50px auto 0;
+  opacity: 0;
   &__title {
     font-size: 22px;
     font-weight: 700;
@@ -80,11 +81,8 @@ $colorTextOverlay: white;
   }
 }
 
-.anim-items {
-  opacity: 0;
-  transition: opacity 2s;
-
-  &_active {
-    opacity: 1;
-  }
+.instagram.anim-items_active {
+  opacity: 1;
+  transition: opacity 1s;
 }
+

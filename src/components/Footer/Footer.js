@@ -4,10 +4,9 @@ import NewsLetter from "./NewsLetter/NewsLetter";
 function Footer() {
   return (
     <footer className="footer">
-      {/*<a name='footer'></a>*/}
       <div className="footer__contacts anim-items">
         <NewsLetter />
-        <div className="footer__myContacts anim-items">
+        <div className="footer__myContacts">
           <ul className="footer__myContacts-container">
             <li className="footer__myContacts-item-container">
               <span className="footer__myContacts-icon footer__myContacts-icon_place" />
@@ -36,7 +35,7 @@ function Footer() {
           </ul>
         </div>
       </div>
-      <div className="footer__social-networks">
+      <div className="footer__social-networks anim-items">
         <div className="footer__social-networks-container">
           <a
             className="footer__item-social-networks footer__item-social-networks_whatsApp"

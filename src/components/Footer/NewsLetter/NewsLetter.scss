@@ -20,8 +20,6 @@ $colorBtnHover: #79553d;
     margin: 0 0 10px 0;
     text-align: left;
   }
-  &__newsLetter-form {
-  }
   &__newsLetter-form-fieldset {
     display: flex;
     flex-wrap: wrap;
@@ -39,7 +37,6 @@ $colorBtnHover: #79553d;
     font-weight: 400;
     margin: 0 auto 10px 0;
     text-align: left;
-
   }
   &__newsLetter-form-input {
     width: 200px;
@@ -74,5 +71,10 @@ $colorBtnHover: #79553d;
       background-color:  $colorBtnHover;
     }
   }
+}
+
+.footer__contacts.anim-items_active .footer__newsLetter {
+  opacity: 1;
+  transform: translateX(0);
 }
 

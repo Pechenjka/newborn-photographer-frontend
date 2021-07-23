@@ -1,0 +1,92 @@
+$colorLinksHover: #c2ac95ff;
+$colorText: #79553d;
+$colorNotValidData: #ff9696;
+
+.contactMeForm {
+  max-width: 450px;
+  margin: 50px auto 100px;
+  &__title {
+    font-size: 25px;
+    font-weight: 500;
+    color: $colorText;
+  }
+  &__form {
+    width: 100%;
+  }
+  &__button {
+    margin-top: 50px;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #e4c8a6;
+    cursor: pointer;
+    transition: all 0.4s;
+    border: none;
+    box-shadow: 0 1px 6px 0 black;
+    &:hover {
+      opacity: 0.8;
+    }
+    &_disabled {
+      background-color: rgba(201, 193, 193, 0.51);
+      box-shadow: none;
+      cursor: default;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.form {
+  &__fieldset {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none;
+  }
+  &__label {
+    align-self: flex-start;
+    margin: 30px 0 5px;
+    color: $colorText;
+    &_required {
+      &::after {
+        content: "*";
+        color: $colorNotValidData;
+      }
+      &_true {
+        &::after {
+          content: "*";
+          color: $colorText;
+        }
+      }
+    }
+  }
+  &__input {
+    width: 100%;
+    border-radius: 5px;
+    height: 30px;
+    padding: 5px;
+    border: none;
+    box-shadow: 0 1px 6px 0 black;
+  }
+  &__textarea {
+    height: 150px;
+    width: 450px;
+    padding: 5px;
+    border-radius: 5px;
+    resize: none;
+    border: none;
+    box-shadow: 0 1px 6px 0 black;
+  }
+  &__span {
+    font-size: 12px;
+    font-weight: 400;
+    color: red;
+    margin-top: 5px;
+    align-self: flex-start;
+    text-align: left;
+  }
+}

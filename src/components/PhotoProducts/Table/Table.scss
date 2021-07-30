@@ -1,0 +1,50 @@
+$colorHeaderBackground: #89868666;
+$colorRowBackground: #89868623;
+
+.table {
+  width: 100%;
+  margin-top: 30px;
+  border: none;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+
+  &__header-container {
+    background-color: $colorHeaderBackground;
+    border: none;
+  }
+  &__header {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    &:last-of-type {
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    &:first-of-type {
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+  }
+  &__row-container {
+    width: 100%;
+    &:nth-child(2n) {
+      background-color: $colorRowBackground;
+    }
+  }
+  &__row {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 400;
+
+    &:last-of-type {
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    &:first-of-type {
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+  }
+}

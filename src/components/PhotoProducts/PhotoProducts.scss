@@ -1,0 +1,48 @@
+$colorBackground: #89868626;
+
+.photoProducts {
+  margin: 0 auto;
+  &__image {
+    width: 100%;
+    border-radius: 5px;
+  }
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  &__item {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  &__item-tablets {
+    margin: 30px auto;
+  }
+
+  &__background {
+    padding: 30px 0;
+    width: 100%;
+    background-color: $colorBackground;
+  }
+  &__photoBox-description {
+    margin-top: 15px;
+  }
+}
+.books-accessories {
+  max-width: 650px;
+  margin: 0 auto 30px;
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 30px 0;
+  }
+  &__container {
+    max-width: 100%;
+    padding-left: 20px;
+  }
+  &__item {
+    text-align: left;
+    font-size: 15px;
+    line-height: 24px;
+  }
+}

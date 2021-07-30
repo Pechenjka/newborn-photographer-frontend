@@ -5,6 +5,7 @@ $colorLineBottomLinks: #c69b6b;
 .gallery {
   max-width: 1440px;
   margin: 40px auto;
+  padding: 0 40px;
   &__list-title {
     display: flex;
     list-style: none;
@@ -18,10 +19,10 @@ $colorLineBottomLinks: #c69b6b;
   }
   &__title-link {
     position: relative;
-    background-color: $colorButtonBackground;
+    background-color: transparent;
     border: none;
     outline: none;
-    font-size: 18px;
+    font-size: 20px;
     padding: 0;
     transition: all 0.4s;
     &:hover {
@@ -48,3 +49,5 @@ $colorLineBottomLinks: #c69b6b;
     }
   }
 }
+
+

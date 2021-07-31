@@ -69,9 +69,9 @@ function PhotoProducts({ timerRef }) {
         <div className="books-accessories">
           <h3 className="books-accessories__title">Дополнительные возможности</h3>
           <ul className="books-accessories__container">
-            {booksAccessories.map((item) => {
+            {booksAccessories.map((item,index) => {
               return (
-                <li>
+                <li key={index}>
                   <p className="books-accessories__item">{item}</p>
                 </li>
               );

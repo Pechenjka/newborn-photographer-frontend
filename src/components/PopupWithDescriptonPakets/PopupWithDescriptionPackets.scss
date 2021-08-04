@@ -1,0 +1,111 @@
+$colorBackgroundPopup: rgba(0, 0, 0, 0.8);
+$transitionHover: all 0.4s;
+$backgroundColorContainer: white;
+$colorBoxShadowImage: black;
+$colorBoxShadowButton: #666363;
+$colorTextPrice:#ff9696;
+$backgroundColorButton:#ff9696;
+$colorTextTitle: #c69b6b;
+$colorText: #c69b6b;
+$colorTextButton: white;
+
+
+.popup-prices {
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    grid-template-columns: max-content 600px;
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    margin: auto;
+    border-radius: 10px;
+    background-color: $backgroundColorContainer;
+  }
+
+  &__price {
+    font-size: 20px;
+    font-weight: 400;
+    color: $colorTextPrice;
+    grid-row: 3/-1;
+    grid-column: 1/2;
+    align-self: center;
+  }
+  &__closeButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background: url("../../images/close_popup-packet-icon.svg") no-repeat center;
+    transition: $transitionHover;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+
+  &__image {
+    display: block;
+    //max-width: 100%;
+    height: 100%;
+    grid-column: 1/2;
+    grid-row: 1/-1;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px 0 $colorBoxShadowImage;
+    align-self: center;
+    object-fit: cover;
+  }
+
+  &__description {
+    margin-right: 50px;
+    margin-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px minmax(550px, min-content) 100px;
+  }
+
+  &__title {
+    font-size: 30px;
+    margin: 30px auto 30px 20px;
+    font-weight: 500;
+    color: $colorTextTitle;
+    grid-row: 1/2;
+    grid-column: 1/-1;
+  }
+
+  &__paragraphs-container {
+    grid-row: 2/3;
+    grid-column: 1/-1;
+    text-align: left;
+  }
+
+  &__list-paragraph {
+    font-size: 14px;
+    color: $colorText;
+    margin-top: 10px;
+  }
+
+  &__button {
+    width: 200px;
+    height: 40px;
+    background-color: $backgroundColorButton;
+    color: $colorTextButton;
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    box-shadow: 0 1px 6px 0 $colorBoxShadowButton;
+    transition: $transitionHover;
+    grid-row: 3/-1;
+    grid-column: 2/3;
+    align-self: center;
+    justify-self: center;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+}

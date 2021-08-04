@@ -1,0 +1,32 @@
+.socialLinks {
+  margin: 20px 0 20px;
+  width: 100%;
+  overflow: hidden;
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item-social-networks {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0 10px 0 0;
+    transition: all 0.4s;
+    &_whatsApp {
+      background: url("../../images/watsApp-icon(background-brown).svg") no-repeat center;
+      background-size: contain;
+    }
+    &_telegram {
+      background: url("../../images/telegram-icon(background-brown).svg") no-repeat center;
+      background-size: contain;
+    }
+    &_instagram {
+      background: url("../../images/instagram-icon(background-brown).svg") no-repeat center;
+      background-size: contain;
+    }
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}

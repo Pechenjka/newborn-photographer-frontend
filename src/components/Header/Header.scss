@@ -1,12 +1,19 @@
 $colorBackground: rgba(0, 0, 0, 0.4);
+$colorBackgroundScroll: rgba(0, 0, 0, 0.8);
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 70px;
   margin: 0 auto;
   background-color: $colorBackground;
-  z-index: 1;
+  z-index: 20;
+  transition: all 1s;
+  &__changeColor {
+    background-color: $colorBackgroundScroll;
+  }
   &__logo {
     max-width: 200px;
     object-fit: contain;
@@ -20,5 +27,6 @@ $colorBackground: rgba(0, 0, 0, 0.4);
     display: flex;
     max-width: 1440px;
     margin: 0 auto;
+    height: 100%;
   }
 }

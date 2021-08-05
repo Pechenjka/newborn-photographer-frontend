@@ -1,13 +1,22 @@
 import "./Main.scss";
-import MainPhoto from "../../images/DSC_449312w (1).jpg";
-import Gallery from "../Gallery/Gallery";
+import { Fragment } from "react";
+import PhotoGalleryOfTheMainPage from "./PhotoGalleryOfTheMainPage/PhotoGalleryOfTheMainPage";
+import PhotosSlideShow from "./PhotosSlideShow/PhotosSlideShow";
+import Instagram from "../Instagram/Instagram";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 
-function Main() {
+function Main({ timerRef }) {
   return (
-    <div className="main">
-      <img className="main__photo" src={MainPhoto} alt="слайд-шоу" />
-      <Gallery />
-    </div>
+    <Fragment>
+      <Header timerRef={timerRef} />
+      <main className="main">
+        <PhotosSlideShow timerRef={timerRef} />
+        <PhotoGalleryOfTheMainPage />
+        <Instagram />
+      </main>
+      <Footer />
+    </Fragment>
   );
 }
 

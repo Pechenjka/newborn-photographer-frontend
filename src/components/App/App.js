@@ -1,42 +1,87 @@
 import "./App.scss";
-import { Switch, Route } from "react-router-dom";
-import Header from "../Header/Header";
+import { Switch, Route, useLocation } from "react-router-dom";
 import Main from "../Main/Main";
-import { useEffect } from "react";
-import { handleGetPhotos, handleGetSlideShow } from "../../redux/Actions/photosActions";
-import { useDispatch } from "react-redux";
+import { useEffect, useRef } from "react";
+import { handleGetPhotos } from "../../redux/Actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
-import Footer from "../Footer/Footer";
-import { changeColorPage } from "../ChangeColorPage/ChangeColorPage";
 import { animatedItems } from "../AnimatedItems/AnimatedItems";
+import AboutMe from "../AboutMe/AboutMe";
+import Contacts from "../Contacts/Contacts";
+import NotFound from "../NotFound/NotFound";
+import PhotoGallery from "../PhotoGallery/PhotoGallery";
+import Prices from "../Prices/Prices";
+import PopupWithDescriptionPacket from "../PopupWithDescriptonPakets/PopupWithDescriptionPackets";
+import PopupOrderPhotoSession from "../PopupOrderPhotoSession/PopupOrderPhotoSession";
+import PopupConfirmationGetMessageFromTheUser from "../PopupConfirmationGetMessageFromTheUser/PopupConfirmationGetMessageFromTheUser";
+import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFromTheUser/PopupConfirmationGetOrderFromTheUser";
+import PhotoProducts from "../PhotoProducts/PhotoProducts";
 
 function App() {
+  const timerRef = useRef(null);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const typesPhotos = useSelector((state) => state.photos.typesPhotos);
 
   useEffect(() => {
-    dispatch(handleGetPhotos());
-    dispatch(handleGetSlideShow());
-  }, [dispatch]);
+    dispatch(handleGetPhotos(typesPhotos, pathname));
+  }, [dispatch, typesPhotos, pathname]);
 
   useEffect(() => {
-    animatedItems();
-  }, []);
-
-  window.localStorage.removeItem("getPhotos");
-
-  window.addEventListener("scroll", changeColorPage);
-
+    if (pathname) animatedItems();
+  }, [pathname]);
 
   return (
     <div className="page">
-      <Header />
       <Switch>
-        <Route path="/">
-          <Main />
+        <Route exact path="/">
+          <Main timerRef={timerRef} />
+        </Route>
+        <Route exact path="/aboutMe">
+          <AboutMe timerRef={timerRef} />
+        </Route>
+        <Route
+          exact
+          path={[
+            "/photoGallery/newborn",
+            "/photoGallery/pregnancy",
+            "/photoGallery/baby",
+            "/photoGallery/family",
+            "/photoGallery/woman",
+            "/photoGallery/discharge",
+            "/photoGallery/christening",
+          ]}
+        >
+          <PhotoGallery timerRef={timerRef} />
+        </Route>
+        <Route exact path="/contacts">
+          <Contacts timerRef={timerRef} />
+        </Route>
+        <Route
+          exact
+          path={[
+            "/prices/newborn",
+            "/prices/pregnancy",
+            "/prices/baby",
+            "/prices/family",
+            "/prices/woman",
+            "/prices/discharge-christening",
+          ]}
+        >
+          <Prices timerRef={timerRef} />
+        </Route>
+        <Route exact path="/photo-products">
+          <PhotoProducts timerRef={timerRef} />
+        </Route>
+        <Route path="*">
+          <NotFound />
         </Route>
       </Switch>
-      <Footer />
       <PopupWithImage />
+      <PopupWithDescriptionPacket />
+      <PopupOrderPhotoSession />
+      <PopupConfirmationGetMessageFromTheUser />
+      <PopupConfirmationGetOrderFromTheUser />
     </div>
   );
 }

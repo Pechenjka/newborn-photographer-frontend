@@ -6,7 +6,7 @@ $colorSelectContainer: #ffffff;
 $boxShadowSelectContainer: rgba(0, 0, 0, 0.2);
 
 .navigation {
-  margin: 10px 50px 0 auto;
+  margin: 21px 50px auto auto;
   max-width: 100%;
   &__list_links {
     display: flex;
@@ -18,7 +18,7 @@ $boxShadowSelectContainer: rgba(0, 0, 0, 0.2);
     position: relative;
     min-width: max-content;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     margin-left: 30px;
     &:nth-of-type(1) {
@@ -41,6 +41,7 @@ $boxShadowSelectContainer: rgba(0, 0, 0, 0.2);
     text-decoration: none;
     transition: all 0.4s;
     border-bottom: 10px solid transparent;
+    margin-top: 5px;
     &:hover {
       color: $colorLinksHover;
     }
@@ -62,6 +63,7 @@ $boxShadowSelectContainer: rgba(0, 0, 0, 0.2);
       }
     }
   }
+
   &__view-lists-links {
     position: relative;
     &:hover &_active {
@@ -87,6 +89,7 @@ $boxShadowSelectContainer: rgba(0, 0, 0, 0.2);
       opacity: 1;
     }
     &:hover {
+      cursor: default;
       &::before {
         background: url("../../images/arrow-icon-hover.svg") no-repeat center;
         color: $colorLinksHover;
@@ -110,13 +113,39 @@ $boxShadowSelectContainer: rgba(0, 0, 0, 0.2);
     z-index: -2;
   }
   &__select-link {
+    position: relative;
     text-decoration: none;
+    width: fit-content;
     margin: 10px 0 10px 10px;
     color: $colorLinksSelector;
     transition: 0.8s transform;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      height: 2px;
+      background-color: $colorLinksActive;
+      width: 0;
+      transform: translateX(-50%);
+      transition: width 0.4s;
+      z-index: 5;
+    }
+    &_active {
+      &::after {
+        width: 100%;
+      }
+    }
+    &:first-of-type {
+      max-width: min-content;
+    }
+    &:last-of-type {
+      max-width: max-content;
+    }
     &:hover {
       color: $colorLinksHover;
       transform: translateX(5px);
     }
   }
 }
+

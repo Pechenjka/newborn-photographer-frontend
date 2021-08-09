@@ -1,44 +1,33 @@
 $colorLinksHover: #c69b6b;
-$colorBackground: rgb(255,252,236);
+$colorBackground: rgb(255, 252, 236);
 $colorInvalid: red;
-$colorBtnHover: #79553d;
+$colorExample: #898686;
+$colorBorder: #79553d;
 
-.footer {
-  &__newsLetter {
-    position: relative;
-    margin: 11px 0 auto auto;
-    padding-right: 20px;
-    max-width: 250px;
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: all 1s;
+.newsLetter {
+  margin: auto 70px auto auto;
+  max-width: 230px;
+  transition: all 1s;
+  &__form {
+    width: fit-content;
   }
-  &__newsLetter-text {
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 400;
-    margin: 0 0 10px 0;
-    text-align: left;
-  }
-  &__newsLetter-form-fieldset {
+  &__form-fieldset {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin: 0;
     padding: 0;
     border: none;
   }
-  &__newsLetter-form-label {
+  &__form-label {
     position: relative;
     display: inline-block;
-    width: 100%;
     font-size: 14px;
     line-height: 16px;
     font-weight: 400;
-    margin: 0 auto 10px 0;
+    margin-bottom: 10px;
     text-align: left;
   }
-  &__newsLetter-form-input {
+  &__form-input {
     width: 200px;
     height: 25px;
     font-size: 14px;
@@ -46,35 +35,102 @@ $colorBtnHover: #79553d;
     font-weight: 400;
     padding: 0 0 0 10px;
     border-radius: 5px 0 0 5px;
+    border: 2px solid $colorBorder;
     outline: none;
     border-right: none;
     background-color: $colorBackground;
-    &_unValid {
-      color: $colorInvalid;
+    &::-webkit-input-placeholder {
+      font-size: 12px;
+    }
+    &::-moz-placeholder {
+      font-size: 12px;
+    }
+    &:-moz-placeholder {
+      font-size: 12px;
+    }
+    &:-ms-input-placeholder {
+      font-size: 12px;
     }
   }
-  &__newsLetter-form-span {
+  &__form-span {
     text-align: left;
     margin-top: 5px;
     font-size: 10px;
     font-weight: 400;
     line-height: 13px;
-    color: #898686;
+    color: $colorExample;
+    &_notValid {
+      color: $colorInvalid;
+    }
   }
-  &__newsLetter-form-button {
+  &__form-button {
     border-radius: 0 5px 5px 0;
+    border: 2px solid $colorBorder;
     width: 30px;
     background-color: $colorLinksHover;
     transition: all 0.4s;
     &:hover {
       cursor: pointer;
-      background-color:  $colorBtnHover;
+      opacity: 0.8;
+    }
+    &_disabled {
+      &:hover {
+        cursor: default;
+        opacity: 1;
+      }
     }
   }
 }
 
-.footer__contacts.anim-items_active .footer__newsLetter {
-  opacity: 1;
-  transform: translateX(0);
+@media screen and (max-width: 1170px) {
+  .newsLetter {
+    margin: auto;
+  }
 }
 
+@media screen and (max-width: 850px) {
+  .newsLetter {
+    margin: auto 30px;
+    &__form {
+      max-width: max-content;
+    }
+    &__form-fieldset {
+    }
+    &__form-label {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    &__form-input {
+      width: calc(100% - 30px);
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .newsLetter {
+    margin: auto 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .newsLetter {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .newsLetter {
+    margin: 0 auto 15px;
+    max-width: calc(100% - 70px);
+    &__form-input {
+      width: calc(100% - 50px);
+      height: 30px;
+    }
+    &__form-button {
+      border-radius: 0 5px 5px 0;
+      width: 50px;
+    }
+  }
+}

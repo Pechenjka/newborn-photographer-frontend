@@ -14,28 +14,34 @@ function NewsLetter() {
     resetForm();
   };
 
+  console.log(values.name)
+
   return (
-    <div className="footer__newsLetter">
-      <form className="footer__newsLetter-form" onSubmit={handleSubmit}>
-        <fieldset className="footer__newsLetter-form-fieldset">
-          <label className="footer__newsLetter-form-label">
+    <div className="newsLetter">
+      <form className="newsLetter__form" onSubmit={handleSubmit}>
+        <fieldset className="newsLetter__form-fieldset">
+          <label className="newsLetter__form-label">
             Интересна информация <br />
             об акциях и проектах?
           </label>
           <input
-            className={`footer__newsLetter-form-input ${!isValid ? "footer__newsLetter-form-input_unValid" : ""}`}
+            className="newsLetter__form-input"
             type="email"
             name="email"
             id="email"
             placeholder="Email"
             value={values.email || ""}
             onChange={handleChange}
-            maxLength="30"
+            required
           />
-          <button className="footer__newsLetter-form-button" type="submit">
+          <button
+            className={`newsLetter__form-button ${!isValid ? "newsLetter__form-button_disabled" : ""}`}
+            type="submit"
+            disabled={!isValid}
+          >
             <img src={newsLetterButtonIcon} alt="лого кнопки" />
           </button>
-          <span className="footer__newsLetter-form-span">Пример: example@gmail.com</span>
+          <span className={`newsLetter__form-span ${(!isValid && values.email !== undefined) ? "newsLetter__form-span_notValid" : ""}`}  id="email-error">Пример: example@gmail.com</span>
         </fieldset>
       </form>
     </div>

@@ -1,19 +1,34 @@
 import "./PhotosSlideShow.scss";
 import { Link } from "react-scroll";
-import { useEffect } from "react";
-import image1 from "../../../images/slider/slider-one.jpg";
-import image2 from "../../../images/slider/slider-two.jpg";
-import image3 from "../../../images/slider/slider-three.jpg";
-import image4 from "../../../images/slider/slider-four.jpg";
-import image5 from "../../../images/slider/slider-five.jpg";
+import { useCallback, useEffect } from "react";
+import {arrSlides} from "../../../utils/config";
 
 function PhotosSlideShow({ timerRef }) {
-  useEffect(() => {
-    makeTimer();
-    handleChangeDots();
-  }, []);
-
   let slideIndex = 1;
+
+  const handleChangeSlide = arrSlides.map((item) => {
+    if (window.innerWidth <= 768 && item.mobile) {
+      return item.mobile;
+    } else {
+      return item.desktop;
+    }
+  });
+
+  const makeTimer = useCallback(() => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      slideIndex += 1;
+      nextSlide(slideIndex);
+    }, 7000);
+  }, [slideIndex]);
+
+  const handleChangeDots = useCallback(() => {
+    const dots = document.querySelectorAll(".slideShow__dot");
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].classList.remove("slideShow__dot_active");
+    }
+    dots[slideIndex - 1].classList.add("slideShow__dot_active");
+  }, [slideIndex]);
 
   function nextSlide(currentIndex) {
     const images = document.querySelectorAll(".slideShow__image");
@@ -30,14 +45,6 @@ function PhotosSlideShow({ timerRef }) {
     handleChangeDots();
   }
 
-  function makeTimer() {
-    clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      slideIndex += 1;
-      nextSlide(slideIndex);
-    }, 7000);
-  }
-
   function currentSlide(currentIndex) {
     nextSlide((slideIndex = currentIndex));
     makeTimer();
@@ -52,13 +59,10 @@ function PhotosSlideShow({ timerRef }) {
     makeTimer();
   }
 
-  function handleChangeDots() {
-    const dots = document.querySelectorAll(".slideShow__dot");
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].classList.remove("slideShow__dot_active");
-    }
-    dots[slideIndex - 1].classList.add("slideShow__dot_active");
-  }
+  useEffect(() => {
+    makeTimer();
+    handleChangeDots();
+  }, [makeTimer, handleChangeDots]);
 
   return (
     <div className="slideShow">
@@ -82,12 +86,13 @@ function PhotosSlideShow({ timerRef }) {
           Мои контакты
         </Link>
       </div>
+
       <div className="slideShow__image-container">
-        <img className="slideShow__image" style={{ opacity: 1 }} src={image1} alt="слайд 1" />
-        <img className="slideShow__image" src={image2} alt="слайд 2" />
-        <img className="slideShow__image" src={image3} alt="слайд 3" />
-        <img className="slideShow__image" src={image4} alt="слайд 4" />
-        <img className="slideShow__image" src={image5} alt="слайд 5" />
+        <img className="slideShow__image" style={{ opacity: 1 }} src={handleChangeSlide[0]} alt="слайд 1" />
+        <img className="slideShow__image" src={handleChangeSlide[1]} alt="слайд 2" />
+        <img className="slideShow__image" src={handleChangeSlide[2]} alt="слайд 3" />
+        <img className="slideShow__image" src={handleChangeSlide[3]} alt="слайд 4" />
+        <img className="slideShow__image" src={handleChangeSlide[4]} alt="слайд 5" />
       </div>
       <div className="slideShow__dot-container">
         <span className="slideShow__dot" onClick={() => currentSlide(1)} />

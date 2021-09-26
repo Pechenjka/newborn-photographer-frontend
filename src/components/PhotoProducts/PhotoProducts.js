@@ -10,6 +10,7 @@ import photoTablets from "../../images/photo-products/tablets-with-passport.jpg"
 import photoBox from "../../images/photo-products/photo-box.jpg";
 import Table from "./Table/Table";
 
+
 const booksAccessories = [
   "Тиснение на обложке - 250р",
   "Окошко с фото - 300р",
@@ -60,8 +61,8 @@ function PhotoProducts({ timerRef }) {
     <Fragment>
       <Header timerRef={timerRef} />
       <BackgroundImage />
-      <section className="photoProducts">
-        <div className="photoProducts__item photoProducts__item-books books-accessories">
+      <section className="photoProducts anim-items">
+        <div className="photoProducts__item photoProducts__item-books books-accessories ">
           <h3 className="photoProducts__title">Фотокниги</h3>
           <img src={bookImage} alt="картинка фотокниги" className="photoProducts__image" />
           <Table table={tableBooks} />
@@ -69,7 +70,7 @@ function PhotoProducts({ timerRef }) {
         <div className="books-accessories">
           <h3 className="books-accessories__title">Дополнительные возможности</h3>
           <ul className="books-accessories__container">
-            {booksAccessories.map((item,index) => {
+            {booksAccessories.map((item, index) => {
               return (
                 <li key={index}>
                   <p className="books-accessories__item">{item}</p>

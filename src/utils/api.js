@@ -1,4 +1,5 @@
-const checkResponse = (res) => (res.ok ? res.json() : Promise.reject(new Error(`Error: ${res.status}`)));
+const checkResponse = (res) =>
+  res.ok ? res.json() : Promise.reject(new Error(`status: ${res.status}, message: ${res.statusText}`));
 
 class Api {
   constructor(options) {
@@ -10,21 +11,56 @@ class Api {
     return fetch(`${this._baseUrl}/user/newsLetter`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        email: data.email,
+      }),
     })
       .then(checkResponse)
-      .then((res) => res)
-      .catch((err) => console.log(err));
+      .then((res) => res);
+  }
+
+  getInTouch(data) {
+    return fetch(`${this._baseUrl}/user/getInTouch`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        tel: data.tel,
+        text: data.text,
+      }),
+    })
+      .then(checkResponse)
+      .then((res) => res);
+  }
+
+  sendOrder(data) {
+    const [values, dataOrder] = data;
+    return fetch(`${this._baseUrl}/user/order`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: values.name,
+        email: values.email,
+        tel: values.tel,
+        text: values.text,
+        type: dataOrder.type,
+        title: dataOrder.title,
+        price: dataOrder.price,
+        location: dataOrder.location,
+      }),
+    })
+      .then(checkResponse)
+      .then((res) => res);
   }
 
   getArrPhotos() {
-    return fetch(`${this._baseUrl}/mediaContent/photos`, {
+    return fetch(`${this._baseUrl}/mediaContent/gallery`, {
       method: "GET",
       headers: this._headers,
     })
       .then(checkResponse)
-      .then((res) => res)
-      .catch((err) => console.log(err));
+      .then((res) => res);
   }
 
   getInstagramProfile() {
@@ -33,13 +69,12 @@ class Api {
       headers: this._headers,
     })
       .then(checkResponse)
-      .then((res) => res)
-      .catch((err) => console.log(err));
+      .then((res) => res);
   }
 }
 
 const api = new Api({
-  baseUrl: "http://localhost:3002",
+  baseUrl: 'https://api.alenalobacheva.net',
   headers: {
     "Content-Type": "application/json",
   },

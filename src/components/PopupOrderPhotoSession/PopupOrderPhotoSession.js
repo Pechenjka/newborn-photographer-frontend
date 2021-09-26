@@ -4,7 +4,6 @@ import {
   closeOrderPhotoSessionPopup,
   dataOrder,
   handleSendOrder,
-  openPopupConfirmationOfTheOrder,
 } from "../../redux/Actions/userAction";
 
 import OrderPhotoSessionForm from "../OrderPhotoSessionForm/OrderPhotoSessionForm";
@@ -15,6 +14,8 @@ function PopupOrderPhotoSession() {
   const dispatch = useDispatch();
   const orderPhotoSessionPopup = useSelector((state) => state.photos.orderPhotoSessionPopup);
   const dataOrderUser = useSelector((state) => state.photos.dataOrder);
+
+
   const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
 
   const handleCloseOrderPhotoSessionPopup = () => {
@@ -25,9 +26,7 @@ function PopupOrderPhotoSession() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(handleSendOrder([values, dataOrderUser]));
-    handleCloseOrderPhotoSessionPopup();
-    dispatch(openPopupConfirmationOfTheOrder());
+    dispatch(handleSendOrder(handleCloseOrderPhotoSessionPopup, resetForm,[values, dataOrderUser]));
   };
   return (
     <Popup onClick={handleCloseOrderPhotoSessionPopup} openPopup={orderPhotoSessionPopup}>

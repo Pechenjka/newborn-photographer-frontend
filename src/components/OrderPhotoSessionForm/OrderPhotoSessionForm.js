@@ -1,7 +1,10 @@
 import "./OrderPhotoSessionForm.scss";
 import logo from "../../images/logo-header-photographer.png";
+import {useSelector} from "react-redux";
+import Spinner from "../Spinner/Spinner";
 
 function OrderPhotoSessionForm(props) {
+  const loading = useSelector(state => state.photos.loading)
   const { values, errors, isValid, handleChange, onClose, onSubmit, dataOrderUser } = props;
 
   return (
@@ -12,18 +15,22 @@ function OrderPhotoSessionForm(props) {
         <h3 className="orderForm__title">Оформление заказа</h3>
         <div className="orderForm__list-order">
           <table className="orderForm__order-table table-order">
+            <thead>
             <tr className="table-order__header-container">
               <th className="table-order__header">Категория</th>
               <th className="table-order__header">Пакет</th>
               <th className="table-order__header">Стоимость</th>
               <th className="table-order__header">Кол-во образов</th>
             </tr>
+            </thead>
+            <tbody>
             <tr className="table-order__row-container">
               <td className="table-order__row">{dataOrderUser.type}</td>
               <td className="table-order__row">{dataOrderUser.title}</td>
               <td className="table-order__row">{dataOrderUser.price}</td>
               <td className="table-order__row">{dataOrderUser.location}</td>
             </tr>
+            </tbody>
           </table>
         </div>
         <div className="orderForm__form-container">
@@ -81,11 +88,11 @@ function OrderPhotoSessionForm(props) {
               <span className="orderForm__span orderForm__span_textarea">{errors.text}</span>
             </fieldset>
             <button
-              className={`orderForm__button ${!isValid ? "orderForm__button_disabled" : ""}`}
+              className={`orderForm__button ${loading ? '' : `${!isValid ? "orderForm__button_disabled" : ""}`}`}
               type="submit"
               disabled={!isValid}
             >
-              Отправить
+              {loading ? <Spinner/> : "Отправить"}
             </button>
           </form>
         </div>

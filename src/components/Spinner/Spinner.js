@@ -2,15 +2,15 @@ import './Spinner.scss'
 
 function Spinner() {
   return (
-    <div id="floatingCirclesG">
-      <div className="f_circleG" id="frotateG_01"></div>
-      <div className="f_circleG" id="frotateG_02"></div>
-      <div className="f_circleG" id="frotateG_03"></div>
-      <div className="f_circleG" id="frotateG_04"></div>
-      <div className="f_circleG" id="frotateG_05"></div>
-      <div className="f_circleG" id="frotateG_06"></div>
-      <div className="f_circleG" id="frotateG_07"></div>
-      <div className="f_circleG" id="frotateG_08"></div>
+    <div id="fountainG">
+      <div id="fountainG_1" className="fountainG"></div>
+      <div id="fountainG_2" className="fountainG"></div>
+      <div id="fountainG_3" className="fountainG"></div>
+      <div id="fountainG_4" className="fountainG"></div>
+      <div id="fountainG_5" className="fountainG"></div>
+      <div id="fountainG_6" className="fountainG"></div>
+      <div id="fountainG_7" className="fountainG"></div>
+      <div id="fountainG_8" className="fountainG"></div>
     </div>
   )
 }

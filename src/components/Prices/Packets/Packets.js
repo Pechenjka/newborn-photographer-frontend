@@ -31,6 +31,14 @@ function Packets() {
     dispatch(showDataPacket(item));
   };
 
+  const handlerChangeViewScreen = () => {
+    if (window.innerWidth > 768) {
+      return 'Наведите курсор'
+    } else {
+      return null
+    }
+  }
+
   return (
     <ul className="packets anim-items">
       {pricePackets.map((packet, index) => {
@@ -46,7 +54,7 @@ function Packets() {
               >
                 Заказать фотоссесию
               </button>
-              <div className="item__overlay-hover-cursor">Наведите курсор</div>
+              <div className="item__overlay-hover-cursor">{handlerChangeViewScreen()}</div>
               <p className="item__overlay-price">{packet.price}</p>
               <ul className="item__overlay-describe">
                 <li className="item__overlay-describe-item">

@@ -16,11 +16,9 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   list-style: none;
   opacity: 0;
   transition: all 0.7s ease-in;
-  &__item {
-  }
 }
 .item {
-  width: 660px;
+  max-width: 660px;
   max-height: 440px;
   position: relative;
   overflow: hidden;
@@ -95,12 +93,12 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
     grid-row: 3/-1;
     grid-column: 2/-1;
     opacity: 0;
-    transition: opacity 0.7s ease-in, color 0.4s;
+    transform: translateY(50px);
+    transition: opacity 0.7s ease-in, color 0.4s ease-in, translate, 0.5s ease-in;
     border: none;
     background-color: transparent;
     color: $colorOverlayText;
     text-decoration: underline;
-    align-self: end;
     &:hover {
       cursor: pointer;
       color: $backgroundColorOverlayButton;
@@ -118,8 +116,8 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
     margin: 0 10px 0 auto;
     align-self: center;
     opacity: 0;
-    transition: transform, 0.5s ease-out, opacity 0.5s ease-in, background-color 0.5s ease-in;
-    transform: translateY(50px);
+    transition: all 0.5s ease-in;
+    transform: translateY(100px);
     &:hover {
       cursor: pointer;
     }
@@ -159,7 +157,6 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
     transform: translateY(-120px);
     background-color: $backgroundColorOverlayHover;
   }
-
   &:hover &__overlay-hover-cursor {
     transform: translateY(-20px);
     opacity: 0;
@@ -170,6 +167,7 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
 
   &:hover &__overlay-button {
     opacity: 1;
+    transform: translateY(0);
   }
   &:hover &__overlay-button-to-order {
     opacity: 1;
@@ -182,7 +180,7 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
   }
   50% {
     box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
@@ -194,4 +192,246 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
 
 .packets.anim-items_active {
   opacity: 1;
+}
+
+@media screen and (max-width: 1200px) {
+  .item {
+    &__overlay {
+      top: 68%;
+    }
+    &__overlay-title {
+      font-size: 25px;
+    }
+    &__overlay-describe {
+      font-size: 14px;
+      line-height: 15px;
+      &::before {
+        font-size: 15px;
+      }
+    }
+    &__overlay-describe-item {
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .packets {
+    grid-gap: 20px;
+    padding: 0 20px;
+  }
+  .item {
+    &__overlay-title {
+      font-size: 20px;
+    }
+    &__overlay-price {
+      font-size: 18px;
+    }
+    &__overlay-hover-cursor {
+      width: 80px;
+      height: 35px;
+      font-size: 12px;
+    }
+    &__overlay-button-to-order {
+      width: 150px;
+      height: 35px;
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .packets {
+    grid-template-columns: 1fr;
+    grid-gap: 40px;
+  }
+  .item {
+    max-width: 100%;
+    max-height: 100%;
+    &__overlay-title {
+      font-size: 30px;
+    }
+    &__overlay-price {
+      font-size: 25px;
+    }
+    &__overlay-describe {
+      font-size: 15px;
+      line-height: 18px;
+      &::before {
+        font-size: 16px;
+      }
+    }
+    &:hover &__overlay {
+      transform: translateY(-100px);
+    }
+    &__overlay-hover-cursor {
+      width: 50px;
+      height: 50px;
+      background: url("../../../images/one-finger-color.png") no-repeat center;
+      background-size: contain;
+      border-radius: 50%;
+      transform: translateY(50px);
+    }
+    &__overlay-button-to-order {
+      width: 200px;
+      height: 40px;
+      font-size: 16px;
+      transform: translateY(120px);
+    }
+    &:hover &__overlay-hover-cursor {
+      transform: translateY(-80px);
+    }
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .packets {
+    grid-gap: 30px;
+    padding: 0 10px;
+  }
+  .item {
+    &__overlay-title {
+      font-size: 25px;
+    }
+    &__overlay-price {
+      font-size: 20px;
+    }
+    &__overlay-describe {
+      font-size: 13px;
+      line-height: 15px;
+      &::before {
+        font-size: 15px;
+      }
+    }
+    &__overlay {
+      grid-gap: 10px;
+    }
+    &__overlay-button {
+      font-size: 14px;
+    }
+    &:hover &__overlay {
+      transform: translateY(-120px);
+    }
+    &__overlay-hover-cursor {
+      transform: translateY(30px);
+    }
+    &:hover &__overlay-button-to-order {
+      transform: translateY(10px);
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .packets {
+    grid-gap: 20px;
+  }
+  .item {
+    &__overlay {
+      top: 60%;
+      padding: 5px;
+    }
+    &__overlay-title {
+      transform: translateX(10px);
+      font-size: 20px;
+    }
+    &__overlay-price {
+      transform: translateX(10px);
+      font-size: 18px;
+    }
+    &__overlay-describe {
+      transform: translateX(10px);
+    }
+    &__overlay-hover-cursor {
+      width: 40px;
+      height: 40px;
+      transform: translateY(30px);
+    }
+    &__overlay-button-to-order {
+      width: 120px;
+      height: 40px;
+      font-size: 14px;
+    }
+    &:hover &__overlay {
+      transform: translateY(-130px);
+    }
+    &:hover &__overlay-button-to-order {
+      transform: translateY(10px);
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .item {
+    &__overlay {
+      grid-template-rows: max-content 1fr 1fr;
+    }
+    &__overlay-title {
+      margin-top: 5px;
+    }
+    &__overlay-price {
+      margin-bottom: 5px;
+    }
+    &__overlay-button {
+      font-size: 13px;
+    }
+    &__overlay-describe {
+      font-size: 12px;
+      line-height: 13px;
+      height: 100%;
+      &::before {
+        font-size: 12px;
+      }
+    }
+    &__overlay-hover-cursor {
+      width: 35px;
+      height: 35px;
+      transform: translateY(20px);
+    }
+    &__overlay-button-to-order {
+      width: 100px;
+      height: 40px;
+      font-size: 13px;
+    }
+    &:hover &__overlay {
+      top: 0;
+      transform: translateY(0);
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .item {
+    &__overlay {
+      grid-gap: 5px;
+    }
+    &__overlay-title {
+      font-size: 16px;
+    }
+    &__overlay-price {
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+    &__overlay-button {
+      font-size: 11px;
+    }
+    &__overlay-describe {
+      font-size: 11px;
+      line-height: 13px;
+      height: 100%;
+      &::before {
+        font-size: 11px;
+      }
+    }
+    &__overlay-button-to-order {
+      width: 80px;
+      height: 35px;
+      font-size: 11px;
+      margin: 0;
+    }
+    &__overlay-describe-item {
+      margin-top: 2px;
+    }
+  }
 }

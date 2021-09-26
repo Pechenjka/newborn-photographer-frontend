@@ -93,9 +93,22 @@ $backgroundColorTableHeader: rgba(255, 150, 150, 0.32);
     padding: 5px;
     border: none;
     box-shadow: 0 1px 6px 0 $colorBoxShadowFields;
+    -webkit-appearance: none;
     font-size: 14px;
     font-weight: 400;
     &::-webkit-input-placeholder {
+      font-size: 12px;
+      font-weight: 400;
+    }
+    &::-moz-placeholder {
+      font-size: 12px;
+      font-weight: 400;
+    }
+    &:-moz-placeholder {
+      font-size: 12px;
+      font-weight: 400;
+    }
+    &:-ms-input-placeholder {
       font-size: 12px;
       font-weight: 400;
     }
@@ -144,6 +157,7 @@ $backgroundColorTableHeader: rgba(255, 150, 150, 0.32);
     resize: none;
     border: none;
     box-shadow: 0 1px 6px 0 $colorBoxShadowFields;
+    -webkit-appearance: none;
     grid-row: 1/6;
     grid-column: 2/-1;
     font-size: 14px;
@@ -220,5 +234,121 @@ $backgroundColorTableHeader: rgba(255, 150, 150, 0.32);
     font-size: 14px;
     font-weight: 500;
     border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .orderForm {
+    width: 90vw;
+    overflow-y: auto;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .orderForm {
+    &__container {
+      margin: 20px 30px 0;
+    }
+    &__form-container {
+      width: 100%;
+      margin: 20px auto 0;
+    }
+    &__form {
+      width: 100%;
+      margin: 20px auto 40px;
+    }
+  }
+  .table-order {
+    &__row-container {
+      height: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .orderForm {
+    &__fieldset {
+      grid-template-rows: repeat(8, max-content);
+      grid-template-columns: 1fr;
+      grid-gap: 5px;
+    }
+    &__form {
+      margin: 20px auto 20px;
+    }
+    &__input {
+      &_name {
+        grid-row: 1/2;
+        grid-column: 1/-1;
+      }
+      &_email {
+        grid-row: 3/4;
+        grid-column: 1/-1;
+      }
+      &_phone {
+        grid-row: 5/6;
+        grid-column: 1/-1;
+      }
+    }
+    &__span {
+      &_name {
+        grid-row: 2/3;
+        grid-column: 1/-1;
+      }
+      &_email {
+        grid-row: 4/5;
+        grid-column: 1/-1;
+      }
+      &_phone {
+        grid-row: 6/7;
+        grid-column: 1/-1;
+      }
+      &_textarea {
+        grid-row: 8/9;
+        grid-column: 1/-1;
+      }
+    }
+    &__textarea {
+      height: 100px;
+      grid-row: 7/8;
+      grid-column: 1/-1;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .orderForm {
+    &__logo {
+      margin-top: 40px;
+      width: 250px;
+    }
+    &__container {
+      margin: 20px 20px 20px;
+    }
+    &__form-container {
+      width: 80%;
+    }
+  }
+
+  .table-order {
+    border-collapse: separate;
+    &__row {
+      font-size: 12px;
+    }
+    &__header {
+      font-size: 12px;
+      padding: 0 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .orderForm {
+    width: 100vw;
+    height: 100vh;
+    border-radius: initial;
+    &__logo {
+      margin-top: 10px;
+      width: 210px;
+    }
   }
 }

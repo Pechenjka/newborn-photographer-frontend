@@ -1,5 +1,9 @@
 import MessageToTheUser from "../MessageToTheUser/MessageToTheUser";
-import { closePopupConfirmationOfTheOrder } from "../../redux/Actions/userAction";
+import {
+  closeOrderPhotoSessionPopup,
+  closePopupConfirmationOfTheOrder,
+  dataOrder,
+} from "../../redux/Actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 
 function PopupConfirmationGetOrderFromTheUser() {
@@ -8,11 +12,13 @@ function PopupConfirmationGetOrderFromTheUser() {
 
   const handleClosePopup = () => {
     dispatch(closePopupConfirmationOfTheOrder());
+    dispatch(closeOrderPhotoSessionPopup());
+    dispatch(dataOrder([]));
   };
 
   return (
     <MessageToTheUser
-      title="Ваша заявка успешно доставлена"
+      title="Ваша заявка успешно отправлена"
       openPopup={popupConfirmationOfTheOrder}
       onClose={handleClosePopup}
     />

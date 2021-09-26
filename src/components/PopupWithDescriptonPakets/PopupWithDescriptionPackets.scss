@@ -3,12 +3,11 @@ $transitionHover: all 0.4s;
 $backgroundColorContainer: white;
 $colorBoxShadowImage: black;
 $colorBoxShadowButton: #666363;
-$colorTextPrice:#ff9696;
-$backgroundColorButton:#ff9696;
+$colorTextPrice: #ff9696;
+$backgroundColorButton: #ff9696;
 $colorTextTitle: #c69b6b;
 $colorText: #c69b6b;
 $colorTextButton: white;
-
 
 .popup-prices {
   &__container {
@@ -17,8 +16,9 @@ $colorTextButton: white;
     left: 50%;
     transform: translate(-50%, -50%);
     display: grid;
-    grid-template-columns: max-content 600px;
-    grid-template-rows: 1fr;
+    grid-template-columns: 500px 600px;
+    //grid-template-columns: max-content 600px;
+    grid-template-rows: 100%;
     grid-column-gap: 20px;
     margin: auto;
     border-radius: 10px;
@@ -50,12 +50,13 @@ $colorTextButton: white;
 
   &__image {
     display: block;
-    //max-width: 100%;
-    height: 100%;
+    //height: 100%;
+    width: 100%;
+    max-height: 100%;
     grid-column: 1/2;
     grid-row: 1/-1;
     border-radius: 10px;
-    box-shadow: 0 1px 6px 0 $colorBoxShadowImage;
+   // box-shadow: 0 1px 6px 0 $colorBoxShadowImage;
     align-self: center;
     object-fit: cover;
   }
@@ -65,12 +66,13 @@ $colorTextButton: white;
     margin-left: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100px minmax(550px, min-content) 100px;
+   // grid-template-rows: max-content minmax(550px, min-content) 100px;
+    grid-template-rows: max-content minmax(550px, min-content) 1fr;
   }
 
   &__title {
     font-size: 30px;
-    margin: 30px auto 30px 20px;
+    margin: 30px auto 20px;
     font-weight: 500;
     color: $colorTextTitle;
     grid-row: 1/2;
@@ -87,7 +89,14 @@ $colorTextButton: white;
     font-size: 14px;
     color: $colorText;
     margin-top: 10px;
+   // list-style: none;
   }
+  &__list-nested {
+    margin-left: 15px;
+    line-height: 18px;
+  }
+
+
 
   &__button {
     width: 200px;
@@ -106,6 +115,120 @@ $colorTextButton: white;
     &:hover {
       cursor: pointer;
       opacity: 0.8;
+    }
+  }
+}
+
+
+.disabled-style {
+  list-style: none;
+}
+
+@media screen and(max-width: 1199px) {
+  .popup-prices {
+    &__container {
+     // width: 90vw;
+      grid-template-columns: 400px 500px;
+    }
+    &__description {
+      grid-template-rows: max-content minmax(min-content, max-content) 1fr;
+      margin-right: 30px;
+      margin-bottom: 30px;
+    }
+    &__paragraphs-container {
+      max-width: 100%;
+    }
+    &__image {
+      width: 100%;
+      max-height: 100%;
+    }
+    &__title {
+      font-size: 25px;
+      margin: 20px auto 10px;
+    }
+    &__list-paragraph {
+      max-width: fit-content;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+    &__price {
+      max-width: min-content;
+      justify-self: center;
+      align-self: flex-end;
+    }
+    &__button {
+      align-self: flex-end;
+    }
+  }
+}
+
+@media screen and(max-width: 1023px) {
+  .popup-prices {
+    &__container {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      border-radius: initial;
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content 1fr;
+      overflow-y: auto;
+    }
+    &__image {
+      grid-column: 1/-1;
+      grid-row: 1/2;
+      height: 450px;
+      justify-self: center;
+      object-fit: cover;
+      border-radius: initial;
+      box-shadow: none;
+    }
+    &__description {
+      grid-column: 1/-1;
+      grid-row: 2/-1;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, max-content);
+      margin: 0 20px 0;
+      line-height: 15px;
+    }
+    &__title {
+      font-size: 22px;
+      margin: 20px auto 10px;
+    }
+    &__paragraphs-container {
+      //text-indent: 15px;
+     // margin-left: 20px;
+      list-style: none;
+    }
+    &__price {
+      max-width: max-content;
+      align-self: center;
+    }
+    &__button {
+      margin: 25px 0;
+    }
+  }
+}
+
+@media screen and(max-width: 414px) {
+  .popup-prices {
+    &__image {
+      height: 250px;
+    }
+    &__description {
+      margin: 0 20px;
+    }
+    &__title {
+      font-size: 20px;
+    }
+    &__price {
+      max-width: min-content;
+      font-size: 18px;
+      line-height: 23px;
+    }
+    &__button {
+      width: 120px;
+      height: 40px;
+      font-size: 12px;
     }
   }
 }

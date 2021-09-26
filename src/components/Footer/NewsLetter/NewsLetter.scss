@@ -90,7 +90,6 @@ $colorBorder: #79553d;
 
 @media screen and (max-width: 850px) {
   .newsLetter {
-    margin: auto 30px;
     &__form {
       max-width: max-content;
     }
@@ -109,12 +108,6 @@ $colorBorder: #79553d;
 }
 
 @media screen and (max-width: 768px) {
-  .newsLetter {
-    margin: auto 20px;
-  }
-}
-
-@media screen and (max-width: 767px) {
   .newsLetter {
     margin: auto;
   }

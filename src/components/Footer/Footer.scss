@@ -30,11 +30,14 @@ $colorDemarcationLine: #79553d;
       right: 33%;
       height: 100%;
     }
-  }
-  &__container-edit {
-    grid-template-columns: repeat(2, 390px);
-    &::after {
-      content: none;
+    &_edit {
+      grid-template-columns: repeat(2, 390px);
+      &::after {
+        content: none;
+      }
+      &::before {
+        left: 50%;
+      }
     }
   }
   &__copyright {
@@ -79,6 +82,10 @@ $colorDemarcationLine: #79553d;
       width: 100%;
       grid-template-columns: repeat(3, 1fr);
       margin: auto;
+      &_edit {
+        grid-template-columns: repeat(2, 390px);
+        width: max-content;
+      }
     }
     &__copyright {
       margin: auto;
@@ -102,13 +109,19 @@ $colorDemarcationLine: #79553d;
       &:nth-of-type(1) {
         flex-basis: 100%;
       }
+      &_edit {
+        font-size: 14px;
+      }
     }
     &__poweredBy-text {
       font-size: 8px;
+      &_edit {
+        font-size: 10px;
+      }
     }
   }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .footer {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -122,12 +135,31 @@ $colorDemarcationLine: #79553d;
       &::after {
         display: none;
       }
+      &_edit {
+        grid-template-columns: repeat(1, 390px);
+        width: max-content;
+        &::before {
+          content: none;
+        }
+      }
     }
     &__copyright {
       grid-row: 2/-1;
       grid-column: 1/-1;
       max-width: 100%;
-      margin: 15px auto 0;
+      margin: 20px auto 0;
+      &_edit {
+        position: relative;
+        padding-top: 15px;
+        &::before {
+          content: "";
+          border-top: solid 2px $colorDemarcationLine;
+          position: absolute;
+          top: 0;
+          height: 2px;
+          width: 100vw;
+        }
+      }
     }
     &__copyright-text {
       &:nth-of-type(1) {
@@ -141,9 +173,15 @@ $colorDemarcationLine: #79553d;
         flex-basis: initial;
         margin-bottom: 5px;
       }
+      &_edit {
+        font-size: 12px;
+      }
     }
     &__poweredBy-text {
       flex-basis: 100%;
+      &_edit {
+        font-size: 8px;
+      }
     }
   }
 }
@@ -155,6 +193,11 @@ $colorDemarcationLine: #79553d;
       grid-template-rows: max-content 1fr max-content;
       &::before {
         display: none;
+      }
+      &_edit {
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content max-content;
+        width: 100%;
       }
     }
     &__links-container {
@@ -174,6 +217,11 @@ $colorDemarcationLine: #79553d;
         top: 0;
         height: 2px;
         width: 100%;
+      }
+      &_edit {
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content max-content;
+        margin-top: 10px;
       }
     }
   }

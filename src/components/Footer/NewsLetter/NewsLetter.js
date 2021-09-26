@@ -1,11 +1,14 @@
 import "./NewsLetter.scss";
 import newsLetterButtonIcon from "../../../images/newsLetter-button-icon.svg";
 import useFormWithValidation from "../../../hooks/useForm";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleNewsLetter } from "../../../redux/Actions/userAction";
+import InfoToolTip from "../../InfoToolTip/InfoToolTip";
 
 function NewsLetter() {
   const dispatch = useDispatch();
+  const subscriptionConfirmation = useSelector((state) => state.user.subscriptionConfirmation);
+  const subscriptionError = useSelector((state) => state.user.subscriptionError);
   const { values, isValid, resetForm, handleChange } = useFormWithValidation();
 
   const handleSubmit = (evt) => {
@@ -14,16 +17,26 @@ function NewsLetter() {
     resetForm();
   };
 
-  console.log(values.name)
+  //обработчик вывода информационного табло
+  const handleDisplayInfoToolTip = () => {
+    if (subscriptionConfirmation) {
+      return <InfoToolTip text={"Подписка оформлена"} />;
+    }
+    if (subscriptionError) {
+      return <InfoToolTip text={"Произошла ошибка на сервере, попробуйте позже"} />;
+    }
+  };
 
   return (
     <div className="newsLetter">
       <form className="newsLetter__form" onSubmit={handleSubmit}>
         <fieldset className="newsLetter__form-fieldset">
-          <label className="newsLetter__form-label">
-            Интересна информация <br />
-            об акциях и проектах?
-          </label>
+          {handleDisplayInfoToolTip() || (
+            <label className="newsLetter__form-label">
+              Интересна информация <br />
+              об акциях и проектах?
+            </label>
+          )}
           <input
             className="newsLetter__form-input"
             type="email"
@@ -41,7 +54,14 @@ function NewsLetter() {
           >
             <img src={newsLetterButtonIcon} alt="лого кнопки" />
           </button>
-          <span className={`newsLetter__form-span ${(!isValid && values.email !== undefined) ? "newsLetter__form-span_notValid" : ""}`}  id="email-error">Пример: example@gmail.com</span>
+          <span
+            className={`newsLetter__form-span ${
+              !isValid && values.email !== undefined ? "newsLetter__form-span_notValid" : ""
+            }`}
+            id="email-error"
+          >
+            Пример: example@gmail.com
+          </span>
         </fieldset>
       </form>
     </div>

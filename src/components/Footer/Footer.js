@@ -3,26 +3,43 @@ import NewsLetter from "./NewsLetter/NewsLetter";
 import MyContacts from "../MyContacts/MyContacts";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Footer() {
   const { pathname } = useLocation();
-  const containerEdit = pathname === "/contacts" ? "footer__container-edit" : "";
+  const [pageContacts, setPageContacts] = useState(false);
+
+  useEffect(() => {
+    if (pathname === "/contacts") {
+      setPageContacts(true);
+    }
+  }, [pathname]);
 
   return (
     <footer className="footer">
-      <div className={`footer__container ${containerEdit}`}>
+      <div className={`footer__container ${pageContacts ? "footer__container_edit" : ""}`}>
         <NewsLetter />
-        {pathname === "/contacts" ? null : (
+        {pageContacts ? null : (
           <div className="footer__links-container">
             <MyContacts />
             <SocialLinks />
           </div>
         )}
-        <div className="footer__copyright">
-          <p className=" footer__copyright-text"> &#169; 2017-{new Date().getFullYear()}.</p>
-          <p className=" footer__copyright-text"> Фотограф Алена Лобачева.</p>
-          <p className=" footer__copyright-text">Все права защищены.</p>
-          <p className="footer__poweredBy-text">Powered by Petr Lobachev</p>
+        <div className={`footer__copyright ${pageContacts ? "footer__copyright_edit" : ""}`}>
+          <p className={`footer__copyright-text ${pageContacts ? "footer__copyright-text_edit" : ""}`}>
+            {" "}
+            &#169; 2017-{new Date().getFullYear()}.
+          </p>
+          <p className={`footer__copyright-text ${pageContacts ? "footer__copyright-text_edit" : ""}`}>
+            {" "}
+            Фотограф Алена Лобачева.
+          </p>
+          <p className={`footer__copyright-text ${pageContacts ? "footer__copyright-text_edit" : ""}`}>
+            Все права защищены.
+          </p>
+          <p className={`footer__poweredBy-text ${pageContacts ? "footer__poweredBy-text_edit" : ""} `}>
+            Powered by Petr Lobachev
+          </p>
         </div>
       </div>
     </footer>
@@ -30,4 +47,3 @@ function Footer() {
 }
 
 export default Footer;
-

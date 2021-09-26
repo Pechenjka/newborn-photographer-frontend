@@ -16,6 +16,8 @@ import PopupOrderPhotoSession from "../PopupOrderPhotoSession/PopupOrderPhotoSes
 import PopupConfirmationGetMessageFromTheUser from "../PopupConfirmationGetMessageFromTheUser/PopupConfirmationGetMessageFromTheUser";
 import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFromTheUser/PopupConfirmationGetOrderFromTheUser";
 import PhotoProducts from "../PhotoProducts/PhotoProducts";
+import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
+import PopupTheErrorWhenOderNotSend from "../PopupTheErrorWhenOrderNotSend/PopupTheErrorWhenMessageNotSend";
 
 function App() {
   const timerRef = useRef(null);
@@ -81,7 +83,9 @@ function App() {
       <PopupWithDescriptionPacket />
       <PopupOrderPhotoSession />
       <PopupConfirmationGetMessageFromTheUser />
+      <PopupTheErrorWhenMessageNotSend />
       <PopupConfirmationGetOrderFromTheUser />
+      <PopupTheErrorWhenOderNotSend />
     </div>
   );
 }

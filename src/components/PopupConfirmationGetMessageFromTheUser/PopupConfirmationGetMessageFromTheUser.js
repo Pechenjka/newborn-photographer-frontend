@@ -1,22 +1,25 @@
 import MessageToTheUser from "../MessageToTheUser/MessageToTheUser";
-import { closePopupConfirmationGetLetterFromTheUser } from "../../redux/Actions/userAction";
+import { closePopupConfirmationGetMessageFromTheUser } from "../../redux/Actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import iconChecked from "../../images/icon-checked.svg";
 
 function PopupConfirmationGetMessageFromTheUser() {
   const dispatch = useDispatch();
-  const popupConfirmationGetLetterFromTheUser = useSelector(
-    (state) => state.user.popupConfirmationGetLetterFromTheUser
+  const popupConfirmationGetMessageFromTheUser = useSelector(
+    (state) => state.user.popupConfirmationGetMessageFromTheUser
   );
 
   const handleClosePopup = () => {
-    dispatch(closePopupConfirmationGetLetterFromTheUser());
+    dispatch(closePopupConfirmationGetMessageFromTheUser());
   };
 
   return (
     <MessageToTheUser
-      title="Ваше письмо успешно доставлено"
+      title="Ваше письмо успешно отправлено!"
+      text="Мы свяжемся с вами в ближайшее время"
+      icon={iconChecked}
       onClose={handleClosePopup}
-      openPopup={popupConfirmationGetLetterFromTheUser}
+      openPopup={popupConfirmationGetMessageFromTheUser}
     />
   );
 }

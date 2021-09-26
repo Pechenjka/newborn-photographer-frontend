@@ -52,3 +52,18 @@ $colorBoxShadowButton: #666363;
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .messageToTheUser {
+    width: 90vw;
+    &__container {
+      padding: 0 15px;
+    }
+    &__text {
+      font-size: 16px;
+      font-weight: 400;
+      text-align: center;
+      margin-top: 15px;
+    }
+  }
+}

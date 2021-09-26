@@ -10,6 +10,7 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
   opacity: 0;
   transition: all 0.6s;
   z-index: -1;
+  overflow-y: auto;
   &__opened {
     opacity: 1;
     z-index: 99;

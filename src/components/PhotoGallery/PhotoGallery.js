@@ -28,7 +28,7 @@ function PhotoGallery({ timerRef }) {
 
   //Выводить фотографии одного типа на страницу при перезагрузки
   useEffect(() => {
-    if (localStorage.getItem("getPhotos")) {
+    if (sessionStorage.getItem("getPhotos")) {
       dispatch(handleTypesPhotos(typesPhotos, pathname));
     }
   }, [dispatch, pathname, typesPhotos]);
@@ -36,7 +36,7 @@ function PhotoGallery({ timerRef }) {
   //Установить тип фотографии для страницы
   useEffect(() => {
     dispatch(handleTypePhotosOfThePage(links, pathname));
-  }, [dispatch, pathname, links]);
+  }, [dispatch, pathname]);
 
   const categoryPhoto = [
     {
@@ -70,8 +70,14 @@ function PhotoGallery({ timerRef }) {
   ];
 
   const addPhotos = () => {
-    if (window.innerWidth >= 1280) {
+    if (window.innerWidth >= 1025) {
       return allPhotosOneType.slice(0, getPhotos.length + 4);
+    }
+    if (window.innerWidth >= 769) {
+      return allPhotosOneType.slice(0, getPhotos.length + 3);
+    }
+    if (window.innerWidth >= 320) {
+      return allPhotosOneType.slice(0, getPhotos.length + 2);
     }
   };
 

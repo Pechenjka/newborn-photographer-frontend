@@ -1,8 +1,10 @@
 import "./ContactMeForm.scss";
+import { useSelector} from "react-redux";
+import Spinner from "../Spinner/Spinner";
 
 function ContactMeForm(props) {
   const { onChange, onSubmit, title, values, errors, isValid } = props;
-  console.log(errors.tel);
+  const loading = useSelector(state => state.photos.loading)
   return (
     <div className="contactMeForm">
       <h3 className="contactMeForm__title">{title}</h3>
@@ -10,7 +12,7 @@ function ContactMeForm(props) {
         <fieldset className="form__fieldset">
           <label
             className={`form__label form__label_required ${errors.name === "" ? "form__label_required_true" : ""}`}
-            for="name"
+            htmlFor="name"
           >
             Имя
           </label>
@@ -20,7 +22,7 @@ function ContactMeForm(props) {
             name="name"
             id="name"
             minLength="2"
-            required
+             required
             onChange={onChange}
             value={values.name || ""}
           />
@@ -29,7 +31,7 @@ function ContactMeForm(props) {
           </span>
           <label
             className={`form__label form__label_required ${errors.email === "" ? "form__label_required_true" : ""}`}
-            for="email"
+            htmlFor="email"
           >
             Email
           </label>
@@ -38,14 +40,14 @@ function ContactMeForm(props) {
             type="email"
             name="email"
             id="email"
-            required
+             required
             onChange={onChange}
             value={values.email || ""}
           />
           <span className="form__span" id="text-email">
             {errors.email}
           </span>
-          <label className="form__label" for="tel">
+          <label className="form__label" htmlFor="tel">
             Телефон
           </label>
           <input className="form__input" type="tel" name="tel" id="tel" onChange={onChange} value={values.tel || ""} />
@@ -54,7 +56,7 @@ function ContactMeForm(props) {
           </span>
           <label
             className={`form__label form__label_required ${errors.text === "" ? "form__label_required_true" : ""}`}
-            for="text"
+            htmlFor="text"
           >
             Ваше сообщение
           </label>
@@ -64,18 +66,17 @@ function ContactMeForm(props) {
             id="text"
             onChange={onChange}
             value={values.text || ""}
-            required
+             required
           />
           <span className="form__span" id="text-error">
             {errors.text}
           </span>
         </fieldset>
         <button
-          className={`contactMeForm__button ${!isValid ? "contactMeForm__button_disabled" : ""}`}
+          className={`contactMeForm__button ${loading ? '': (!isValid ? "contactMeForm__button_disabled" : "")}`}
           type="submit"
           disabled={!isValid}
-        >
-          Отправить
+        >{ loading ? <Spinner/> : 'Отправить'}
         </button>
       </form>
     </div>

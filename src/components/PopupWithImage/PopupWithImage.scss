@@ -1,21 +1,6 @@
 $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
 
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: $colorBackgroundPopup;
-  opacity: 0;
-  transition: scale, opacity 0.6s;
-  transform: scale(0);
-  z-index: -1;
-  &__opened {
-    opacity: 1;
-    z-index: 5;
-    transform: scale(1);
-  }
+.popup-image {
   &__container {
     position: absolute;
     top: 50%;
@@ -25,8 +10,8 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
   &__image {
     display: block;
     position: relative;
-    max-width: 75vw;
-    max-height: 75vh;
+    max-width: 1600px;
+    max-height: 80vh;
     border-radius: 10px;
   }
   &__closeBtn {
@@ -44,6 +29,26 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
     &:hover {
       cursor: pointer;
       opacity: 0.6;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .popup-image {
+    &__image {
+      max-width: 80vw;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .popup-image {
+    &__image {
+      max-width: 90vw;
+    }
+    &__closeBtn {
+      top: -40px;
+      right: 0;
     }
   }
 }

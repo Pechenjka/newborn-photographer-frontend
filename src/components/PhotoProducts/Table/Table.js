@@ -15,6 +15,7 @@ function Table({ table }) {
                 );
               });
             }
+            return item.title
           })}
         </tr>
       </thead>
@@ -31,6 +32,7 @@ function Table({ table }) {
               );
             });
           }
+          return item.product
         })}
       </tbody>
     </table>

@@ -1,24 +1,30 @@
 import "./PopupWithImage.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { closeImagePopup } from "../../redux/Actions/photosActions";
+import {closeImagePopup, showImageInThePopup} from "../../redux/Actions/userAction";
+import Popup from "../Popup/Popup";
 
 function PopupWithImage() {
   const dispatch = useDispatch();
   const openImagePopup = useSelector((state) => state.photos.openImagePopup);
-  const showImage = useSelector((state) => state.photos.showImage);
+  const showImage = useSelector((state) => state.photos.showImageInThePopup);
+
+  const handleClosePopupWithImage = () => {
+    dispatch(closeImagePopup())
+    dispatch(showImageInThePopup(null))
+  }
 
   return (
-    <section className={`popup ${openImagePopup ? "popup__opened" : ""}`} onClick={() => dispatch(closeImagePopup())}>
-      <div className="popup__container" onClick={(event) => event.stopPropagation()}>
-        <img className="popup__image" src={showImage} alt="фотография" />
+    <Popup onClick={handleClosePopupWithImage} openPopup={openImagePopup}>
+      <div className="popup-image__container" onClick={(event) => event.stopPropagation()}>
+        <img className="popup-image__image" src={showImage} alt="фотография" />
         <button
-          className="popup__closeBtn"
+          className="popup-image__closeBtn"
           aria-label="закрытие модального окна"
-          onClick={() => dispatch(closeImagePopup())}
+          onClick={handleClosePopupWithImage}
         />
       </div>
-    </section>
-  );
+    </Popup>
+  )
 }
 
 export default PopupWithImage;

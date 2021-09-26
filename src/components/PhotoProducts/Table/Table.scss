@@ -8,7 +8,6 @@ $colorRowBackground: #89868623;
   border-collapse: collapse;
   table-layout: fixed;
 
-
   &__header-container {
     background-color: $colorHeaderBackground;
     border: none;
@@ -45,6 +44,17 @@ $colorRowBackground: #89868623;
     &:first-of-type {
       border-bottom-left-radius: 5px;
       border-top-left-radius: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .table {
+    &__header {
+      font-size: 13px;
+    }
+    &__row {
+      font-size: 13px;
     }
   }
 }

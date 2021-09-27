@@ -1,7 +1,7 @@
 export const animatedItems = () => {
   const animItems = document.querySelectorAll(".anim-items");
   if (animItems.length > 0) {
-   window.addEventListener("scroll", animOnScroll);
+ window.addEventListener("scroll", animOnScroll);
     function animOnScroll() {
       for (let i = 0; i < animItems.length; i++) {
         const animEl = animItems[i];
@@ -31,6 +31,6 @@ export const animatedItems = () => {
     }
     setTimeout(() => {
       animOnScroll();
-    }, 500);
+    }, 300);
   }
 };

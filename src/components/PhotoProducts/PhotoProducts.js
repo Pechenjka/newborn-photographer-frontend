@@ -9,52 +9,7 @@ import photoCanvas from "../../images/photo-products/photo-сanvases.jpg";
 import photoTablets from "../../images/photo-products/tablets-with-passport.jpg";
 import photoBox from "../../images/photo-products/photo-box.jpg";
 import Table from "./Table/Table";
-
-
-const booksAccessories = [
-  "Тиснение на обложке - 250р",
-  "Окошко с фото - 300р",
-  "Шильд (персональная надпись на шильде оплачивается отдельно) - 250р",
-  "Комбинированное тиснение (фото + тиснение в виде декорированной рамки) - 400р",
-  "Обложка премиум класса из экозамши - 600р",
-  "Дополнительный разворотзависит от размера книги",
-  "Калька на 1 странице чистый лист - 300р, лист с надписью - 700р",
-];
-
-const tableBooks = [
-  { title: ["Размер книги, см", "Качество печати", "Стоимость, р"] },
-  {
-    product: [
-      { size: "15х15", printQuality: "Матовая / шелк / баритовая", price: "3000 / 4000 / 5500" },
-      { size: "20х20", printQuality: "Матовая / шелк / баритовая", price: "5000 / 6000 / 8000" },
-      { size: "25х25", printQuality: "Матовая / шелк / баритовая", price: "8000 / 9200 / 12500" },
-      { size: "30х30", printQuality: "Матовая / шелк / баритовая", price: "9500 / 10500 / 15500" },
-    ],
-  },
-];
-const tablePhotoCanvases = [
-  { title: ["Размер фотохолста, см", "Стоимость, р"] },
-  {
-    product: [
-      { size: "20х30", price: "1100" },
-      { size: "30х40", price: "1500" },
-      { size: "40х60", price: "2000" },
-      { size: "60х90", price: "3000" },
-      { size: "90х120", price: "4500" },
-    ],
-  },
-];
-
-const tableTabletsWithPassport = [
-  { title: ["Размер фотохолста, см", "Стоимость, р"] },
-  {
-    product: [
-      { size: "Планшет 16х16, фото 10х10", price: "2 фото - 900, + еще фото 350" },
-      { size: "Планшет 21х21, фото 10х15", price: "2 фото - 1200, + еще фото 450" },
-      { size: "Планшет 21х21, фото 15х15", price: "2 фото - 1300, + еще фото 500" },
-    ],
-  },
-];
+import { booksAccessories, tableBooks, tablePhotoCanvases, tableTabletsWithPassport } from "../../utils/config";
 
 function PhotoProducts({ timerRef }) {
   return (

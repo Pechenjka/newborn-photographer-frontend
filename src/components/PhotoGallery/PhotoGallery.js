@@ -13,7 +13,7 @@ import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Photos from "../Photos/Photos";
-import { links } from "../../utils/config";
+import { categoryPhoto, links } from "../../utils/config";
 
 function PhotoGallery({ timerRef }) {
   const dispatch = useDispatch();
@@ -37,37 +37,6 @@ function PhotoGallery({ timerRef }) {
   useEffect(() => {
     dispatch(handleTypePhotosOfThePage(links, pathname));
   }, [dispatch, pathname]);
-
-  const categoryPhoto = [
-    {
-      title: "Новорожденные",
-      pathSelect: "/photoGallery/newborn",
-    },
-    {
-      title: "В ожидании чуда",
-      pathSelect: "/photoGallery/pregnancy",
-    },
-    {
-      title: "Малыши до 1 года",
-      pathSelect: "/photoGallery/baby",
-    },
-    {
-      title: "Семейная фотоссесия",
-      pathSelect: "/photoGallery/family",
-    },
-    {
-      title: "Woman съемка",
-      pathSelect: "/photoGallery/woman",
-    },
-    {
-      title: "Выписка из роддома",
-      pathSelect: "/photoGallery/discharge",
-    },
-    {
-      title: "Крещение",
-      pathSelect: "/photoGallery/christening",
-    },
-  ];
 
   const addPhotos = () => {
     if (window.innerWidth >= 1025) {

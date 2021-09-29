@@ -1,0 +1,56 @@
+$colorLink: rgba(255, 150, 150, 1);
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  &__title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 140px;
+    margin: 0;
+  }
+  &__description {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0;
+  }
+  &__link {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 17px;
+    margin: 50px 0 0;
+    text-decoration: none;
+    color: $colorLink;
+    transition: all 0.4s;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .notFound {
+    &__title {
+      font-size: 80px;
+      line-height: 97px;
+      margin: 0;
+    }
+
+    &__description {
+      font-size: 12px;
+      line-height: 15px;
+      margin-top: 10px;
+    }
+
+    &__link {
+      font-size: 12px;
+      line-height: 15px;
+      margin: 100px 0 30px;
+    }
+  }
+}

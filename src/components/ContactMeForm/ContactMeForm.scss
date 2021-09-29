@@ -1,0 +1,113 @@
+$colorLinksHover: #c2ac95ff;
+$colorText: #79553d;
+$colorNotValidData: #ff9696;
+$colorBoxShadow: #000000;
+$colorSpanError: red;
+$colorDisabledButton: rgba(201, 193, 193, 0.51);
+$colorButton: #e4c8a6;
+
+.contactMeForm {
+  max-width: 450px;
+  margin: 50px auto 100px;
+  &__title {
+    font-size: 25px;
+    font-weight: 500;
+    color: $colorText;
+  }
+  &__button {
+    margin-top: 50px;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: $colorButton;
+    cursor: pointer;
+    transition: all 0.4s;
+    border: none;
+    box-shadow: 0 1px 6px 0 $colorBoxShadow;
+    &:hover {
+      opacity: 0.8;
+    }
+    &_disabled {
+      background-color: $colorDisabledButton;
+      box-shadow: none;
+      cursor: default;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.form {
+  &__fieldset {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none;
+  }
+  &__label {
+    align-self: flex-start;
+    margin: 30px 0 5px;
+    color: $colorText;
+    &_required {
+      &::after {
+        content: "*";
+        color: $colorNotValidData;
+      }
+      &_true {
+        &::after {
+          content: "*";
+          color: $colorText;
+        }
+      }
+    }
+  }
+  &__input {
+    width: 100%;
+    border-radius: 5px;
+    height: 30px;
+    padding: 5px;
+    border: none;
+    box-shadow: 0 1px 6px 0 $colorBoxShadow;
+    -webkit-appearance: none;
+  }
+  &__textarea {
+    height: 150px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    resize: none;
+    border: none;
+    box-shadow: 0 1px 6px 0 $colorBoxShadow;
+    -webkit-appearance: none;
+  }
+  &__span {
+    font-size: 12px;
+    font-weight: 400;
+    color: $colorSpanError;
+    margin-top: 5px;
+    align-self: flex-start;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .contactMeForm {
+    max-width: 100%;
+    margin-bottom: 50px;
+  }
+  .form {
+    margin: auto 30px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .contactMeForm {
+    &__title {
+      font-size: 22px;
+    }
+  }
+}

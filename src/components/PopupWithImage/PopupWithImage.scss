@@ -1,0 +1,54 @@
+$colorBackgroundPopup: rgba(0, 0, 0, 0.8);
+
+.popup-image {
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%);
+  }
+  &__image {
+    display: block;
+    position: relative;
+    max-width: 1600px;
+    max-height: 80vh;
+    border-radius: 10px;
+  }
+  &__closeBtn {
+    background: url("../../images/close_popup-icon.svg") no-repeat center transparent;
+    background-size: cover;
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    border-style: none;
+    padding: 0;
+    outline: none;
+    transition: opacity 0.4s;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .popup-image {
+    &__image {
+      max-width: 80vw;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .popup-image {
+    &__image {
+      max-width: 90vw;
+    }
+    &__closeBtn {
+      top: -40px;
+      right: 0;
+    }
+  }
+}

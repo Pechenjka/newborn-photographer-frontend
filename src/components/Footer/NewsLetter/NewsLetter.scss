@@ -1,0 +1,129 @@
+$colorLinksHover: #c69b6b;
+$colorBackground: rgb(255, 252, 236);
+$colorInvalid: red;
+$colorExample: #898686;
+$colorBorder: #79553d;
+
+.newsLetter {
+  margin: auto 70px auto auto;
+  max-width: 230px;
+  transition: all 1s;
+  &__form {
+    width: fit-content;
+  }
+  &__form-fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0;
+    border: none;
+  }
+  &__form-label {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  &__form-input {
+    width: 200px;
+    height: 25px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    padding: 0 0 0 10px;
+    border-radius: 5px 0 0 5px;
+    border: 2px solid $colorBorder;
+    outline: none;
+    border-right: none;
+    background-color: $colorBackground;
+    &::-webkit-input-placeholder {
+      font-size: 12px;
+    }
+    &::-moz-placeholder {
+      font-size: 12px;
+    }
+    &:-moz-placeholder {
+      font-size: 12px;
+    }
+    &:-ms-input-placeholder {
+      font-size: 12px;
+    }
+  }
+  &__form-span {
+    text-align: left;
+    margin-top: 5px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 13px;
+    color: $colorExample;
+    &_notValid {
+      color: $colorInvalid;
+    }
+  }
+  &__form-button {
+    border-radius: 0 5px 5px 0;
+    border: 2px solid $colorBorder;
+    width: 30px;
+    background-color: $colorLinksHover;
+    transition: all 0.4s;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    &_disabled {
+      &:hover {
+        cursor: default;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1170px) {
+  .newsLetter {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .newsLetter {
+    &__form {
+      max-width: max-content;
+    }
+    &__form-fieldset {
+    }
+    &__form-label {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    &__form-input {
+      width: calc(100% - 30px);
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .newsLetter {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .newsLetter {
+    margin: 0 auto 15px;
+    max-width: calc(100% - 70px);
+    &__form-input {
+      width: calc(100% - 50px);
+      height: 30px;
+    }
+    &__form-button {
+      border-radius: 0 5px 5px 0;
+      width: 50px;
+    }
+  }
+}

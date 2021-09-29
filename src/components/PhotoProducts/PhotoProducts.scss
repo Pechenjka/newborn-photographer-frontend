@@ -1,0 +1,82 @@
+$colorBackground: #89868626;
+
+.photoProducts {
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.7s ease-in;
+  &__image {
+    width: 100%;
+    border-radius: 5px;
+  }
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  &__item {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  &__item-tablets {
+    margin: 30px auto;
+  }
+
+  &__background {
+    padding: 30px 0;
+    width: 100%;
+    background-color: $colorBackground;
+  }
+  &__photoBox-description {
+    margin-top: 15px;
+  }
+}
+.books-accessories {
+  max-width: 650px;
+  margin: 0 auto 30px;
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 30px 0;
+  }
+  &__container {
+    max-width: 100%;
+    padding-left: 20px;
+  }
+  &__item {
+    text-align: left;
+    font-size: 15px;
+    line-height: 24px;
+  }
+}
+
+.photoProducts.anim-items_active {
+  opacity: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .photoProducts {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .photoProducts {
+    margin: 0 20px;
+    &__photoBox-description {
+      font-size: 13px;
+    }
+  }
+  .books-accessories {
+    &__item {
+      text-align: left;
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .photoProducts {
+    margin: 0 10px;
+  }
+}

@@ -1,0 +1,119 @@
+$colorBoxShadowContainer: rgba(0, 0, 0, 0.21);
+$backgroundColor: rgb(255, 252, 236);
+$colorTitle: #bc9b5d;
+
+.aboutMe {
+  width: 100%;
+  margin-bottom: 40px;
+  &__container {
+    margin: 100px auto 50px;
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
+    box-shadow: 0 0 15px 0 $colorBoxShadowContainer;
+    background-color: $backgroundColor;
+    transition: opacity 0.7s ease-in;
+    opacity: 0;
+    border-radius: 10px;
+  }
+  &__image {
+    background: url("../../images/aboutMe-image.jpg") no-repeat center;
+    background-size: cover;
+    grid-row: 1/5;
+    border-radius: 10px;
+  }
+  &__title {
+    font-family: "MarckScript-Regular", sans-serif;
+    color: $colorTitle;
+    font-size: 42px;
+    font-weight: 400;
+    grid-row: 1/2;
+    margin: 20px 0 0;
+  }
+  &__text-container {
+    margin: 0 50px 15px;
+  }
+  &__text {
+    margin: 20px 0 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    text-align: left;
+  }
+}
+
+.aboutMe__container.anim-items_active {
+  opacity: 1;
+}
+
+@media screen and (max-width: 1024px) {
+  .aboutMe {
+    &__container {
+      margin: 50px 30px 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .aboutMe {
+    &__container {
+      grid-template-rows: min-content min-content;
+    }
+    &__image {
+      max-height: 100%;
+    }
+    &__title {
+      font-size: 38px;
+      margin: 10px 0 0;
+    }
+    &__text-container {
+      margin: 0 25px 15px;
+    }
+    &__text {
+      margin: 10px 0;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .aboutMe {
+    &__container {
+      max-width: calc(100% - 50px);
+      grid-template-rows: 700px max-content 1fr;
+      grid-template-columns: 1fr;
+      margin: 50px auto;
+    }
+    &__image {
+      grid-row: 1/2;
+    }
+    &__title {
+      grid-row: 2/3;
+    }
+    &__text-container {
+      grid-row: 3/4;
+    }
+    &__text {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .aboutMe {
+    &__container {
+      grid-template-rows: 500px max-content 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .aboutMe {
+    &__container {
+      grid-template-rows: minmax(400px, 500px) max-content 1fr;
+    }
+  }
+}

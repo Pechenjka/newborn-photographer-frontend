@@ -31,7 +31,7 @@ const Instagram = () => {
       <p className="instagram__title">Подпишитесь на меня в Instagram</p>
       <a
         className="instagram__user"
-        href="https://www.instagram.com/alina_mamochka_inlove/"
+        href="https://www.instagram.com/newbornphoto_lobacheva/"
         target="_blank"
         rel="noreferrer"
       >

@@ -17,7 +17,7 @@ function SocialLinks() {
         >{null}</a>
         <a
           className="socialLinks__item-social-networks socialLinks__item-social-networks_instagram"
-          href="https://www.instagram.com/alina_mamochka_inlove/"
+          href="https://www.instagram.com/newbornphoto_lobacheva/"
           target='_blank'
           rel="noreferrer"
         >{null}</a>

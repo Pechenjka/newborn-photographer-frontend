@@ -130,7 +130,7 @@ $colorBackgroundOverlay: rgba(0, 0, 0, 0.4);
 }
 .displayElement-enter-active {
   opacity: 1;
-  transition: opacity 600ms ease-in 1s;
+  transition: opacity 600ms ease-in 0.4s;
 }
 .displayElement-exit {
   opacity: 1;

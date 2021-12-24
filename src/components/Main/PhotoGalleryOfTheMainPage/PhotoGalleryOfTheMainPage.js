@@ -2,15 +2,23 @@ import "./PhotoGalleryOfTheMainPage.scss";
 import Photos from "../../Photos/Photos";
 
 import { useDispatch, useSelector } from "react-redux";
-import { buttonOfTheTypePhotos, handleTypesPhotos, showGalleryPhotos } from "../../../redux/Actions/userAction";
+import {
+  buttonOfTheTypePhotos,
+  displayLoadingPhotos,
+  handleTypesPhotos,
+  hideLoadingPhotos,
+  showGalleryPhotos,
+} from "../../../redux/Actions/userAction";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import PreLoader from "../../PreLoader/PreLoader";
 
 function PhotoGalleryOfTheMainPage() {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
   const activeBtn = useSelector((state) => state.photos.btnOfTheTypePhotos);
+  const loadingPhotos = useSelector((state) => state.photos.loadingPhotos);
 
   useEffect(() => {
     if (sessionStorage.getItem("getPhotos")) {
@@ -20,10 +28,13 @@ function PhotoGalleryOfTheMainPage() {
   }, [dispatch, pathname]);
 
   const handleClick = (typePhotos, typeBtn) => {
+    dispatch(displayLoadingPhotos());
     dispatch(showGalleryPhotos([]));
     setTimeout(() => {
+      dispatch(hideLoadingPhotos());
       dispatch(handleTypesPhotos(typePhotos, pathname));
-    }, 500);
+    }, 800);
+
     dispatch(buttonOfTheTypePhotos(typeBtn));
   };
 
@@ -49,7 +60,6 @@ function PhotoGalleryOfTheMainPage() {
       onClick: () => handleClick("family", "familyBtn"),
     },
   ];
-
   return (
     <section className="gallery">
       <ul className="gallery__list-title">
@@ -67,7 +77,7 @@ function PhotoGalleryOfTheMainPage() {
           );
         })}
       </ul>
-      <Photos />
+      {loadingPhotos ? <PreLoader /> : <Photos />}
     </section>
   );
 }

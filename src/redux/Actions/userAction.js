@@ -36,6 +36,8 @@ import {
   CLOSE_POPUP_THE_ERROR_WHEN_MESSAGE_NOT_SEND,
   OPEN_POPUP_THE_ERROR_WHEN_ODER_NOT_SEND,
   CLOSE_POPUP_THE_ERROR_WHEN_ODER_NOT_SEND,
+  DISPLAY_LOADING_PHOTOS,
+  HIDE_LOADING_PHOTOS,
 } from "../types";
 
 const actionInstagramUser = (dataUser) => {
@@ -223,6 +225,18 @@ export const hideLoading = () => {
   };
 };
 
+export const displayLoadingPhotos = () => {
+  return {
+    type: DISPLAY_LOADING_PHOTOS,
+  };
+};
+
+export const hideLoadingPhotos = () => {
+  return {
+    type: HIDE_LOADING_PHOTOS,
+  };
+};
+
 export const displayPricePackets = (data) => {
   return {
     type: DISPLAY_PRICE_PACKETS,
@@ -279,19 +293,25 @@ export const handlePricePackets = (data, pathname) => {
 export const handleGetPhotos = (typesPhotos, pathname) => {
   return (dispatch) => {
     if (!sessionStorage.getItem("getPhotos")) {
-      return api
-        .getArrPhotos()
-        .then((res) => {
-          return res.map((item) => item);
-        })
-        .then((res) => {
-          sessionStorage.setItem("getPhotos", JSON.stringify(res));
-          if (pathname === "/") {
-            dispatch(handleTypesPhotos(typesPhotos, pathname));
-            dispatch(buttonOfTheTypePhotos("allBtn"));
-          }
-        })
-        .catch((err) => console.log(err));
+      dispatch(displayLoadingPhotos());
+      setTimeout(() => {
+        return api
+          .getArrPhotos()
+          .then((res) => {
+            return res.map((item) => item);
+          })
+          .then((res) => {
+            sessionStorage.setItem("getPhotos", JSON.stringify(res));
+            if (pathname === "/") {
+              dispatch(handleTypesPhotos(typesPhotos, pathname));
+              dispatch(buttonOfTheTypePhotos("allBtn"));
+            }
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            dispatch(hideLoadingPhotos());
+          });
+      }, 800);
     }
   };
 };

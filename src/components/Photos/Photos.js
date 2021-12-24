@@ -13,7 +13,6 @@ function Photos() {
     dispatch(openImagePopup());
     dispatch(showImageInThePopup(getPhotos));
   };
-
   return (
     <TransitionGroup component="ul" className={`photos  ${pathname === "/" ? "" : "photos_gallery"} `}>
       {getPhotos.map((image) => {

@@ -20,6 +20,8 @@ import {
   DATA_ORDER,
   DISPLAY_LOADING,
   HIDE_LOADING,
+  DISPLAY_LOADING_PHOTOS,
+  HIDE_LOADING_PHOTOS,
 } from "../types";
 
 const initialState = {
@@ -37,6 +39,7 @@ const initialState = {
   displayPhotosOnThePagePhotoGallery: false,
   dataOrder: [],
   loading: false,
+  loadingPhotos: false,
 };
 const photoReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -82,7 +85,10 @@ const photoReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     case HIDE_LOADING:
       return { ...state, loading: false };
-
+    case DISPLAY_LOADING_PHOTOS:
+      return { ...state, loadingPhotos: true };
+    case HIDE_LOADING_PHOTOS:
+      return { ...state, loadingPhotos: false };
     default:
       return state;
   }

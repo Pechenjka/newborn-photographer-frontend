@@ -1,0 +1,23 @@
+.spinner {
+  margin: 100px auto;
+  width: max-content;
+  animation: loading-bar-spinner 600ms linear infinite;
+}
+
+.spinner .spinner-icon {
+  width: 40px;
+  height: 40px;
+  border: solid 4px transparent;
+  border-top-color: #79553d;
+  border-left-color: #79553d;
+  border-radius: 50%;
+}
+
+@keyframes loading-bar-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

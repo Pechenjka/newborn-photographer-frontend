@@ -1,75 +1,29 @@
 import "./PhotoGalleryOfTheMainPage.scss";
 import Photos from "../../Photos/Photos";
-
 import { useDispatch, useSelector } from "react-redux";
-import {
-  buttonOfTheTypePhotos,
-  displayLoadingPhotos,
-  handleTypesPhotos,
-  hideLoadingPhotos,
-  showGalleryPhotos,
-} from "../../../redux/Actions/userAction";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import PreLoader from "../../PreLoader/PreLoader";
+import { handlerActiveCategoryPhotosBtn, showPhotos } from "../../../redux/Reducers/photoSlice";
+import { filterGallery } from "../../../utils/config";
 
-function PhotoGalleryOfTheMainPage() {
+const PhotoGalleryOfTheMainPage = () => {
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
+  const { loading, error, categoryPhotosBtn } = useSelector((state) => state.photos);
 
-  const activeBtn = useSelector((state) => state.photos.btnOfTheTypePhotos);
-  const loadingPhotos = useSelector((state) => state.photos.loadingPhotos);
-
-  useEffect(() => {
-    if (sessionStorage.getItem("getPhotos")) {
-      dispatch(handleTypesPhotos("image/jpeg", pathname));
-      dispatch(buttonOfTheTypePhotos("allBtn"));
-    }
-  }, [dispatch, pathname]);
-
-  const handleClick = (typePhotos, typeBtn) => {
-    dispatch(displayLoadingPhotos());
-    dispatch(showGalleryPhotos([]));
-    setTimeout(() => {
-      dispatch(hideLoadingPhotos());
-      dispatch(handleTypesPhotos(typePhotos, pathname));
-    }, 800);
-
-    dispatch(buttonOfTheTypePhotos(typeBtn));
+  const handlerClick = (typePhotos) => {
+    dispatch(showPhotos({ type: typePhotos, order: "random" }));
+    dispatch(handlerActiveCategoryPhotosBtn(typePhotos));
   };
 
-  const filterGallery = [
-    {
-      name: "Все фотографии",
-      activeClassName: activeBtn.activeBtn === "allBtn",
-      onClick: () => handleClick("image/jpeg", "allBtn"),
-    },
-    {
-      name: "Новорожденные",
-      activeClassName: activeBtn.activeBtn === "newbornBtn",
-      onClick: () => handleClick("newborn", "newbornBtn"),
-    },
-    {
-      name: "Малыши",
-      activeClassName: activeBtn.activeBtn === "babyBtn",
-      onClick: () => handleClick("baby", "babyBtn"),
-    },
-    {
-      name: "Семейные",
-      activeClassName: activeBtn.activeBtn === "familyBtn",
-      onClick: () => handleClick("family", "familyBtn"),
-    },
-  ];
   return (
     <section className="gallery">
       <ul className="gallery__list-title">
-        {filterGallery.map((item, index) => {
+        {filterGallery.map((item) => {
           return (
-            <li className="gallery__title-element" key={index}>
+            <li className="gallery__title-element" key={item.id}>
               <button
                 type="button"
-                className={`gallery__title-link ${item.activeClassName ? "gallery__title-link_active" : ""}`}
-                onClick={item.onClick}
+                className={`gallery__title-link ${item.type === categoryPhotosBtn ? "gallery__title-link_active" : ""}`}
+                onClick={() => item.onClick(handlerClick)}
               >
                 {item.name}
               </button>
@@ -77,7 +31,8 @@ function PhotoGalleryOfTheMainPage() {
           );
         })}
       </ul>
-      {loadingPhotos ? <PreLoader /> : <Photos />}
+      {loading ? <PreLoader /> : <Photos />}
+      {error && <p>{error}</p>}
     </section>
   );
 }

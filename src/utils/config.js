@@ -99,8 +99,7 @@ export const packets = [
     type: "newborn",
     location: "3 образа",
     time: "1-1.5 часа",
-    shortDescription:
-      "30 фото в обработке (10 фото в легкой ретуши и 20 фото в цвето и свето-коррекции)",
+    shortDescription: "30 фото в обработке (10 фото в легкой ретуши и 20 фото в цвето и свето-коррекции)",
     path: "/prices/newborn",
     price: "10 000р",
     image: lifestyle_main,
@@ -599,5 +598,32 @@ export const tableTabletsWithPassport = [
       { size: "Планшет 21х21, фото 10х15", price: "2 фото - 1200, + еще фото 450" },
       { size: "Планшет 21х21, фото 15х15", price: "2 фото - 1300, + еще фото 500" },
     ],
+  },
+];
+
+export const filterGallery = [
+  {
+    name: "Все фотографии",
+    type: "all",
+    onClick: (handlerClick) => handlerClick("all"),
+    id: Math.random().toString(16).slice(2),
+  },
+  {
+    name: "Новорожденные",
+    type: "newborn",
+    onClick: (handlerClick) => handlerClick("newborn"),
+    id: Math.random().toString(16).slice(2),
+  },
+  {
+    name: "Малыши",
+    type: "baby",
+    onClick: (handlerClick) => handlerClick("baby"),
+    id: Math.random().toString(16).slice(2),
+  },
+  {
+    name: "Семейные",
+    type: "family",
+    onClick: (handlerClick) => handlerClick("family"),
+    id: Math.random().toString(16).slice(2),
   },
 ];

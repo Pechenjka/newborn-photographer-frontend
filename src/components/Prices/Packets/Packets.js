@@ -1,47 +1,46 @@
 import "./Packets.scss";
-import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  showDataPacket,
-  openPopupWithDescribePacket,
-  openOrderPhotoSessionPopup,
-  dataOrder,
-  handlePricePackets,
-} from "../../../redux/Actions/userAction";
 import { packets } from "../../../utils/config";
+
+import {
+  handlerDataOrder,
+  handlerDisplayPricePackets,
+  handlerModalOrder,
+  handlerModalWithDescribePacket,
+} from "../../../redux/Reducers/appSlice";
 import { useEffect } from "react";
+import { useRouteMatch } from "react-router-dom";
 
-
-function Packets() {
-  const { pathname } = useLocation();
+const Packets = () => {
   const dispatch = useDispatch();
-  const pricePackets = useSelector((state) => state.user.pricePackets);
+  const { path } = useRouteMatch();
+  const { displayPricePackets } = useSelector((state) => state.app);
 
   useEffect(() => {
-    dispatch(handlePricePackets(packets, pathname));
-  }, [dispatch, pathname]);
+    dispatch(handlerDisplayPricePackets({ packets, path }));
+  }, []);
 
-  const handleOpenOrderPhotoSessionPopup = (data) => {
-    dispatch(openOrderPhotoSessionPopup());
-    dispatch(dataOrder(data));
+  const handlerOpenModalOrderPhotoSession = (data) => {
+    dispatch(handlerModalOrder(true));
+    dispatch(handlerDataOrder(data));
   };
 
-  const handleOpenWithDescribePacketPopup = (item) => {
-    dispatch(openPopupWithDescribePacket());
-    dispatch(showDataPacket(item));
+  const handlerOpenModalWithDescribePacket = (data) => {
+    dispatch(handlerModalWithDescribePacket(true));
+    dispatch(handlerDataOrder(data));
   };
 
   const handlerChangeViewScreen = () => {
     if (window.innerWidth > 768) {
-      return 'Наведите курсор'
+      return "Наведите курсор";
     } else {
-      return null
+      return null;
     }
-  }
+  };
 
   return (
     <ul className="packets anim-items">
-      {pricePackets.map((packet, index) => {
+      {displayPricePackets.map((packet, index) => {
         return (
           <li className="packets__item item" key={index}>
             <img className="item__image" src={packet.image} alt="" />
@@ -50,7 +49,7 @@ function Packets() {
               <button
                 className="item__overlay-button-to-order"
                 type="button"
-                onClick={() => handleOpenOrderPhotoSessionPopup(packet)}
+                onClick={() => handlerOpenModalOrderPhotoSession(packet)}
               >
                 Заказать фотоссесию
               </button>
@@ -70,7 +69,7 @@ function Packets() {
               <button
                 className="item__overlay-button"
                 type="button"
-                onClick={() => handleOpenWithDescribePacketPopup(packet)}
+                onClick={() => handlerOpenModalWithDescribePacket(packet)}
               >
                 Подробнее ...
               </button>
@@ -79,7 +78,7 @@ function Packets() {
         );
       })}
     </ul>
-    )
-}
+  );
+};
 
 export default Packets;

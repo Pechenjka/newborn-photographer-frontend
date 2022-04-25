@@ -1,28 +1,25 @@
 import MessageToTheUser from "../MessageToTheUser/MessageToTheUser";
-import {
-  closeOrderPhotoSessionPopup,
-  closePopupConfirmationOfTheOrder,
-  dataOrder,
-} from "../../redux/Actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import { handlerDataOrder, handlerModalConfirmationOrder, handlerModalOrder } from "../../redux/Reducers/appSlice";
+import Popup from "../Popup/Popup";
 
-function PopupConfirmationGetOrderFromTheUser() {
+const PopupConfirmationGetOrderFromTheUser = () => {
   const dispatch = useDispatch();
-  const popupConfirmationOfTheOrder = useSelector((state) => state.user.popupConfirmationOfTheOrder);
+  const { openModalConfirmationOrder } = useSelector((state) => state.app);
 
   const handleClosePopup = () => {
-    dispatch(closePopupConfirmationOfTheOrder());
-    dispatch(closeOrderPhotoSessionPopup());
-    dispatch(dataOrder([]));
+    dispatch(handlerModalConfirmationOrder(false));
+    dispatch(handlerModalOrder(false));
+    dispatch(handlerDataOrder(null));
   };
 
   return (
-    <MessageToTheUser
-      title="Ваша заявка успешно отправлена"
-      openPopup={popupConfirmationOfTheOrder}
-      onClose={handleClosePopup}
-    />
+    openModalConfirmationOrder && (
+      <Popup openPopup={openModalConfirmationOrder}>
+        <MessageToTheUser title="Ваша заявка успешно отправлена" onClose={handleClosePopup} />
+      </Popup>
+    )
   );
-}
+};
 
 export default PopupConfirmationGetOrderFromTheUser;

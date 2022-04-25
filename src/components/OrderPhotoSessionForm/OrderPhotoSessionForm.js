@@ -3,9 +3,9 @@ import logo from "../../images/logo-header-photographer.png";
 import {useSelector} from "react-redux";
 import Spinner from "../Spinner/Spinner";
 
-function OrderPhotoSessionForm(props) {
-  const loading = useSelector(state => state.photos.loading)
-  const { values, errors, isValid, handleChange, onClose, onSubmit, dataOrderUser } = props;
+const OrderPhotoSessionForm = (props) => {
+  const { loading } = useSelector(state => state.app)
+  const { values, errors, isValid, handleChange, onClose, onSubmit, dataOrder } = props;
 
   return (
     <div className="orderForm" onClick={(event) => event.stopPropagation()}>
@@ -25,10 +25,10 @@ function OrderPhotoSessionForm(props) {
             </thead>
             <tbody>
             <tr className="table-order__row-container">
-              <td className="table-order__row">{dataOrderUser.type}</td>
-              <td className="table-order__row">{dataOrderUser.title}</td>
-              <td className="table-order__row">{dataOrderUser.price}</td>
-              <td className="table-order__row">{dataOrderUser.location}</td>
+              <td className="table-order__row">{dataOrder.type}</td>
+              <td className="table-order__row">{dataOrder.title}</td>
+              <td className="table-order__row">{dataOrder.price}</td>
+              <td className="table-order__row">{dataOrder.location}</td>
             </tr>
             </tbody>
           </table>

@@ -1,47 +1,41 @@
 import Popup from "../Popup/Popup";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  closeOrderPhotoSessionPopup,
-  dataOrder,
-  handleSendOrder,
-} from "../../redux/Actions/userAction";
-
 import OrderPhotoSessionForm from "../OrderPhotoSessionForm/OrderPhotoSessionForm";
 import useFormWithValidation from "../../hooks/useForm";
+import { handlerDataOrder, handlerModalOrder, sendOrder } from "../../redux/Reducers/appSlice";
 
-
-function PopupOrderPhotoSession() {
+const PopupOrderPhotoSession = () => {
   const dispatch = useDispatch();
-  const orderPhotoSessionPopup = useSelector((state) => state.photos.orderPhotoSessionPopup);
-  const dataOrderUser = useSelector((state) => state.photos.dataOrder);
-
-
+  const { dataOrder, openModalOrder } = useSelector((state) => state.app);
   const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
 
   const handleCloseOrderPhotoSessionPopup = () => {
-    dispatch(closeOrderPhotoSessionPopup());
-    dispatch(dataOrder([]));
+    dispatch(handlerModalOrder(false));
+    dispatch(handlerDataOrder(null));
     resetForm();
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(handleSendOrder(handleCloseOrderPhotoSessionPopup, resetForm,[values, dataOrderUser]));
+    dispatch(sendOrder({ data: [values, dataOrder] }));
+    // dispatch(handleSendOrder(handleCloseOrderPhotoSessionPopup, resetForm, [values, dataOrder]));
   };
   return (
-    <Popup onClick={handleCloseOrderPhotoSessionPopup} openPopup={orderPhotoSessionPopup}>
-      <OrderPhotoSessionForm
-        values={values}
-        errors={errors}
-        handleChange={handleChange}
-        onSubmit={handleSubmit}
-        isValid={isValid}
-        resetForm={resetForm}
-        onClose={handleCloseOrderPhotoSessionPopup}
-        dataOrderUser={dataOrderUser}
-      />
+    <Popup onClick={handleCloseOrderPhotoSessionPopup} openPopup={openModalOrder}>
+      {openModalOrder && (
+        <OrderPhotoSessionForm
+          values={values}
+          errors={errors}
+          handleChange={handleChange}
+          onSubmit={handleSubmit}
+          isValid={isValid}
+          resetForm={resetForm}
+          onClose={handleCloseOrderPhotoSessionPopup}
+          dataOrder={dataOrder}
+        />
+      )}
     </Popup>
   );
-}
+};
 
 export default PopupOrderPhotoSession;

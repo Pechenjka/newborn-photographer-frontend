@@ -3,21 +3,21 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import Main from "../Main/Main";
 import React from "react";
 import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
- import PopupWithImage from "../PopupWithImage/PopupWithImage";
+import { useDispatch } from "react-redux";
+import PopupWithImage from "../PopupWithImage/PopupWithImage";
 import { animatedItems } from "../AnimatedItems/AnimatedItems";
 import AboutMe from "../AboutMe/AboutMe";
 import Contacts from "../Contacts/Contacts";
 import NotFound from "../NotFound/NotFound";
 // import PhotoGallery from "../PhotoGallery/PhotoGallery";
 import Prices from "../Prices/Prices";
-// import PopupWithDescriptionPacket from "../PopupWithDescriptonPakets/PopupWithDescriptionPackets";
-// import PopupOrderPhotoSession from "../PopupOrderPhotoSession/PopupOrderPhotoSession";
+import PopupWithDescriptionPacket from "../PopupWithDescriptonPakets/PopupWithDescriptionPackets";
+import PopupOrderPhotoSession from "../PopupOrderPhotoSession/PopupOrderPhotoSession";
 // import PopupConfirmationGetMessageFromTheUser from "../PopupConfirmationGetMessageFromTheUser/PopupConfirmationGetMessageFromTheUser";
-// import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFromTheUser/PopupConfirmationGetOrderFromTheUser";
+import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFromTheUser/PopupConfirmationGetOrderFromTheUser";
 import PhotoProducts from "../PhotoProducts/PhotoProducts";
-// import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
-// import PopupTheErrorWhenOderNotSend from "../PopupTheErrorWhenOrderNotSend/PopupTheErrorWhenMessageNotSend";
+//import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
+import PopupTheErrorWhenOderNotSend from "../PopupTheErrorWhenOrderNotSend/PopupTheErrorWhenOrderNotSend";
 import { fetchPhotos, showPhotos } from "../../redux/Reducers/photoSlice";
 // import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
@@ -84,17 +84,15 @@ const App = () => {
         <Route exact path="/photo-products">
           <PhotoProducts timerRef={timerRef} />
         </Route>
-        <Route path="*">
-          <NotFound />
-        </Route>
+        <Route path="*" component={NotFound}/>
       </Switch>
       <PopupWithImage />
-      {/*<PopupWithDescriptionPacket />*/}
-      {/*<PopupOrderPhotoSession />*/}
+      <PopupWithDescriptionPacket />
+      <PopupOrderPhotoSession />
       {/*<PopupConfirmationGetMessageFromTheUser />*/}
       {/*<PopupTheErrorWhenMessageNotSend />*/}
-      {/*<PopupConfirmationGetOrderFromTheUser />*/}
-      {/*<PopupTheErrorWhenOderNotSend />*/}
+      <PopupConfirmationGetOrderFromTheUser />
+      <PopupTheErrorWhenOderNotSend />
     </div>
   );
 };

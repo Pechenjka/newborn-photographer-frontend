@@ -1,77 +1,66 @@
 import "./PhotoGallery.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useEffect } from "react";
-import {
-  displayPhotosOnThePagePhotoGallery,
-  handleTypePhotosOfThePage,
-  handleTypesPhotos,
-  showGalleryPhotos,
-} from "../../redux/Actions/userAction";
 import { useLocation } from "react-router-dom";
 import Instagram from "../Instagram/Instagram";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Photos from "../Photos/Photos";
-import { categoryPhoto, links } from "../../utils/config";
+import { categoryPhoto } from "../../utils/config";
+import { handlerShowAddPhotos, handlerShowPhotos } from "../../redux/Reducers/photoSlice";
 
-function PhotoGallery({ timerRef }) {
+const PhotoGallery = ({ timerRef }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const getPhotos = useSelector((state) => state.photos.getPhotos);
-  const typesPhotos = useSelector((state) => state.photos.typesPhotos);
-  const allPhotosOneType = useSelector((state) => state.photos.allPhotosOneType);
+  const { showPhotos, getPhotosOneType } = useSelector((state) => state.photos);
+
+  const handlerShowPhotosInGallery = (arrCategoriesPhoto) => {
+    return arrCategoriesPhoto.map((item) => {
+      if (pathname.includes(item.type)) {
+        dispatch(handlerShowPhotos({ type: item.type, order: "sort" }));
+      }
+    });
+  };
 
   useEffect(() => {
-    dispatch(displayPhotosOnThePagePhotoGallery());
-  }, [dispatch]);
-
-  //Выводить фотографии одного типа на страницу при перезагрузки
-  useEffect(() => {
-    if (sessionStorage.getItem("getPhotos")) {
-      dispatch(handleTypesPhotos(typesPhotos, pathname));
-    }
-  }, [dispatch, pathname, typesPhotos]);
-
-  //Установить тип фотографии для страницы
-  useEffect(() => {
-    dispatch(handleTypePhotosOfThePage(links, pathname));
-  }, [dispatch, pathname]);
+    handlerShowPhotosInGallery(categoryPhoto);
+  }, [categoryPhoto]);
 
   const addPhotos = () => {
     if (window.innerWidth >= 1025) {
-      return allPhotosOneType.slice(0, getPhotos.length + 4);
+      return getPhotosOneType.slice(0, showPhotos.length + 4);
     }
     if (window.innerWidth >= 769) {
-      return allPhotosOneType.slice(0, getPhotos.length + 3);
+      return getPhotosOneType.slice(0, showPhotos.length + 3);
     }
     if (window.innerWidth >= 320) {
-      return allPhotosOneType.slice(0, getPhotos.length + 2);
+      return getPhotosOneType.slice(0, showPhotos.length + 2);
     }
   };
 
-  const handleDisplayAddPhotos = () => {
-    dispatch(showGalleryPhotos(addPhotos()));
+  const handlerClickAddPhotos = () => {
+    dispatch(handlerShowAddPhotos(addPhotos()));
   };
 
-  const handleHideButton = getPhotos.length !== allPhotosOneType.length ? "" : "photoGallery__button_disabled";
+  const handlerHideButton = showPhotos.length !== getPhotosOneType.length ? "" : "photoGallery__button_disabled";
 
   return (
     <Fragment>
       <Header timerRef={timerRef} />
       <section className="photoGallery" id="#photoGallery">
         <BackgroundImage />
-        {categoryPhoto.map((item, index) => {
+        {categoryPhoto.map((item) => {
           return (
             pathname === item.pathSelect && (
-              <h2 className="photoGallery__title" key={index}>
+              <h2 className="photoGallery__title" key={item.type}>
                 {item.title}
               </h2>
             )
           );
         })}
         <Photos />
-        <button className={`photoGallery__button ${handleHideButton}`} type="button" onClick={handleDisplayAddPhotos}>
+        <button className={`photoGallery__button ${handlerHideButton}`} type="button" onClick={handlerClickAddPhotos}>
           Показать больше
         </button>
         <Instagram />
@@ -79,6 +68,6 @@ function PhotoGallery({ timerRef }) {
       <Footer />
     </Fragment>
   );
-}
+};
 
 export default PhotoGallery;

@@ -2,15 +2,21 @@ import "./PhotoGalleryOfTheMainPage.scss";
 import Photos from "../../Photos/Photos";
 import { useDispatch, useSelector } from "react-redux";
 import PreLoader from "../../PreLoader/PreLoader";
-import { handlerActiveCategoryPhotosBtn, showPhotos } from "../../../redux/Reducers/photoSlice";
+import { handlerActiveCategoryPhotosBtn, handlerShowPhotos } from "../../../redux/Reducers/photoSlice";
 import { filterGallery } from "../../../utils/config";
+import { useEffect } from "react";
 
 const PhotoGalleryOfTheMainPage = () => {
   const dispatch = useDispatch();
-  const { loading, error, categoryPhotosBtn } = useSelector((state) => state.photos);
+  const { loading, error, categoryPhotosBtn, showPhotos } = useSelector((state) => state.photos);
+
+  useEffect(() => {
+    dispatch(handlerShowPhotos({ type: "all", order: "random" }));
+    dispatch(handlerActiveCategoryPhotosBtn("all"));
+  }, []);
 
   const handlerClick = (typePhotos) => {
-    dispatch(showPhotos({ type: typePhotos, order: "random" }));
+    dispatch(handlerShowPhotos({ type: typePhotos, order: "random" }));
     dispatch(handlerActiveCategoryPhotosBtn(typePhotos));
   };
 
@@ -35,5 +41,5 @@ const PhotoGalleryOfTheMainPage = () => {
       {error && <p>{error}</p>}
     </section>
   );
-}
+};
 export default PhotoGalleryOfTheMainPage;

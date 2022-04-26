@@ -9,7 +9,7 @@ import { animatedItems } from "../AnimatedItems/AnimatedItems";
 import AboutMe from "../AboutMe/AboutMe";
 import Contacts from "../Contacts/Contacts";
 import NotFound from "../NotFound/NotFound";
-// import PhotoGallery from "../PhotoGallery/PhotoGallery";
+import PhotoGallery from "../PhotoGallery/PhotoGallery";
 import Prices from "../Prices/Prices";
 import PopupWithDescriptionPacket from "../PopupWithDescriptonPakets/PopupWithDescriptionPackets";
 import PopupOrderPhotoSession from "../PopupOrderPhotoSession/PopupOrderPhotoSession";
@@ -18,8 +18,7 @@ import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFr
 import PhotoProducts from "../PhotoProducts/PhotoProducts";
 //import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
 import PopupTheErrorWhenOderNotSend from "../PopupTheErrorWhenOrderNotSend/PopupTheErrorWhenOrderNotSend";
-import { fetchPhotos, showPhotos } from "../../redux/Reducers/photoSlice";
-// import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { fetchPhotos, handlerShowPhotos } from "../../redux/Reducers/photoSlice";
 
 const App = () => {
   const timerRef = useRef(null);
@@ -30,11 +29,9 @@ const App = () => {
     if (!sessionStorage.getItem("getPhotos")) {
       dispatch(fetchPhotos())
         .unwrap()
-        .then((res) => {
-          dispatch(showPhotos({ type: "all", order: "random" }));
+        .then(() => {
+          dispatch(handlerShowPhotos({ type: "all", order: "random" }));
         });
-    } else {
-      dispatch(showPhotos({ type: "all", order: "random" }));
     }
   }, []);
 
@@ -63,7 +60,7 @@ const App = () => {
             "/photoGallery/christening",
           ]}
         >
-          {/*<PhotoGallery timerRef={timerRef} />*/}
+          <PhotoGallery timerRef={timerRef} />
         </Route>
         <Route exact path="/contacts">
           <Contacts timerRef={timerRef} />
@@ -84,7 +81,7 @@ const App = () => {
         <Route exact path="/photo-products">
           <PhotoProducts timerRef={timerRef} />
         </Route>
-        <Route path="*" component={NotFound}/>
+        <Route path="*" component={NotFound} />
       </Switch>
       <PopupWithImage />
       <PopupWithDescriptionPacket />

@@ -3,50 +3,44 @@ import api from "../../utils/api";
 
 export const fetchPhotos = createAsyncThunk("photo/fetchPhotos", async (_, { rejectWithValue }) => {
   try {
-    const res = await api.getArrPhotos();
-    console.log(res);
-    return res;
+    return await api.getArrPhotos();
   } catch (e) {
     return rejectWithValue("Ошибка, не удалось загрузить фотографии!");
   }
 });
 
-export const showPhotos = createAsyncThunk("photo/showPhotos", async ({ type, order }, { dispatch, getState }) => {
-  try {
-    const allPhotos = JSON.parse(sessionStorage.getItem("getPhotos"));
-    const arrRes = allPhotos.filter((item) => {
-      if (item.metadata.type.includes(type)) {
-        return item;
-      } else if (!item.metadata.type.includes(type) && type === "all") {
-        return !item.metadata.type.includes("woman") && !item.metadata.type.includes("discharge");
+export const handlerShowPhotos = createAsyncThunk(
+  "photo/showPhotos",
+  async ({ type, order }, { dispatch, getState }) => {
+    try {
+      const allPhotos = JSON.parse(sessionStorage.getItem("getPhotos"));
+      const arrRes = allPhotos.filter((item) => {
+        if (item.metadata.type.includes(type)) {
+          return item;
+        } else if (!item.metadata.type.includes(type) && type === "all") {
+          return !item.metadata.type.includes("woman") && !item.metadata.type.includes("discharge");
+        }
+      });
+      if (order === "random") {
+        dispatch(handlerRandomPhotos({ arr: arrRes, n: arrRes.length }));
+      } else {
+        dispatch(handlerSortPhotos({ arr: arrRes }));
       }
-    });
-    if (order === "random") {
-      dispatch(handlerRandomPhotos({ arr: arrRes, n: arrRes.length }));
+      return arrRes;
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
   }
-});
+);
 
 const initialState = {
+  getPhotosOneType: [],
   showPhotos: [],
   categoryPhotosBtn: "all",
   loading: false,
   error: "",
   openModalWithImage: false,
-  dataForImageModal: null
-  // popupWithDescribePacket: false,
-  // orderPhotoSessionPopup: false,
-  // showImageInThePopup: null,
-  // slideShow: [],
-  // randomSortPhotos: false,
-  // allPhotosOneType: [],
-  // typesPhotos: "",
-  // showDataPacket: [],
-  // displayPhotosOnThePagePhotoGallery: false,
-  // dataOrder: [],
-  // loadingPhotos: false,
+  dataForImageModal: null,
 };
 
 const photoSlice = createSlice({
@@ -54,10 +48,10 @@ const photoSlice = createSlice({
   initialState,
   reducers: {
     handlerDataImageForModal: (state, action) => {
-      state.dataForImageModal = action.payload
+      state.dataForImageModal = action.payload;
     },
     handlerModalWithImage: (state, action) => {
-      state.openModalWithImage = action.payload
+      state.openModalWithImage = action.payload;
     },
     handlerActiveCategoryPhotosBtn: (state, action) => {
       state.categoryPhotosBtn = action.payload;
@@ -67,6 +61,7 @@ const photoSlice = createSlice({
       while (randomN.length < action.payload.n) {
         const randomIndex = Math.floor(Math.random() * action.payload.arr.length);
         randomN = [...randomN, action.payload.arr[randomIndex]];
+        action.payload.arr.splice(randomIndex, 1);
       }
       const countPhotos = () => {
         if (window.innerWidth >= 1025) {
@@ -84,6 +79,26 @@ const photoSlice = createSlice({
       };
       state.showPhotos = countPhotos();
     },
+    handlerSortPhotos: (state, action) => {
+      const countSortPhotos = () => {
+        if (window.innerWidth >= 1025) {
+          return action.payload.arr.slice(0, 16);
+        }
+        if (window.innerWidth > 768) {
+          return action.payload.arr.slice(0, 12);
+        }
+        if (window.innerWidth > 568) {
+          return action.payload.arr.slice(0, 8);
+        }
+        if (window.innerWidth >= 320) {
+          return action.payload.arr.slice(0, 5);
+        }
+      };
+      state.showPhotos = countSortPhotos();
+    },
+    handlerShowAddPhotos: (state, action) => {
+      state.showPhotos = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPhotos.pending, (state) => {
@@ -99,8 +114,18 @@ const photoSlice = createSlice({
       state.loading = false;
       state.error = payload;
     });
+    builder.addCase(handlerShowPhotos.fulfilled, (state, action) => {
+      state.getPhotosOneType = action.payload;
+    });
   },
 });
 
-export const { handlerRandomPhotos, handlerActiveCategoryPhotosBtn, handlerModalWithImage, handlerDataImageForModal } = photoSlice.actions;
+export const {
+  handlerRandomPhotos,
+  handlerActiveCategoryPhotosBtn,
+  handlerModalWithImage,
+  handlerDataImageForModal,
+  handlerSortPhotos,
+  handlerShowAddPhotos
+} = photoSlice.actions;
 export default photoSlice.reducer;

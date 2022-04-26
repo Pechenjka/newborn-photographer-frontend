@@ -2,7 +2,6 @@ import "./PhotoGallery.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Fragment, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import Instagram from "../Instagram/Instagram";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -63,7 +62,6 @@ const PhotoGallery = ({ timerRef }) => {
         <button className={`photoGallery__button ${handlerHideButton}`} type="button" onClick={handlerClickAddPhotos}>
           Показать больше
         </button>
-        <Instagram />
       </section>
       <Footer />
     </Fragment>

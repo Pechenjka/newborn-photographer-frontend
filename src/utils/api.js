@@ -62,19 +62,10 @@ class Api {
       .then(checkResponse)
       .then((res) => res);
   }
-
-  getInstagramProfile() {
-    return fetch(`${this._baseUrl}/mediaContent/instagram`, {
-      method: "GET",
-      headers: this._headers,
-    })
-      .then(checkResponse)
-      .then((res) => res);
-  }
 }
 
 const api = new Api({
-  baseUrl: 'https://api.alenalobacheva.net',
+  baseUrl: "https://api.alenalobacheva.net",
   headers: {
     "Content-Type": "application/json",
   },

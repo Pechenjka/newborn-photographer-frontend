@@ -1,6 +1,5 @@
 import "./AboutMe.scss";
 import { Fragment } from "react";
-import Instagram from "../Instagram/Instagram";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -39,7 +38,6 @@ function AboutMe({ timerRef }) {
           </div>
         </div>
       </section>
-      <Instagram />
       <Footer />
     </Fragment>
   );

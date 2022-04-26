@@ -1,7 +1,6 @@
 import "./PhotoProducts.scss";
 import { Fragment } from "react";
 import Header from "../Header/Header";
-import Instagram from "../Instagram/Instagram";
 import Footer from "../Footer/Footer";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import bookImage from "../../images/photo-products/book.jpg";
@@ -59,7 +58,6 @@ function PhotoProducts({ timerRef }) {
           </div>
         </div>
       </section>
-      <Instagram />
       <Footer />
     </Fragment>
   );

@@ -1,14 +1,13 @@
 import "./Contacts.scss";
 import { Fragment } from "react";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
-import Instagram from "../Instagram/Instagram";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import ContactMeForm from "../ContactMeForm/ContactMeForm";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import MyContacts from "../MyContacts/MyContacts";
 import {useDispatch} from "react-redux";
-import { handleGetInTouch } from "../../redux/Actions/userAction";
+//import { handleGetInTouch } from "../../redux/Actions/userAction";
 import useFormWithValidation from "../../hooks/useForm";
 
 function Contacts({ timerRef }) {
@@ -17,7 +16,7 @@ function Contacts({ timerRef }) {
 
   const handleSubmitGetInTouch = (evt) => {
     evt.preventDefault();
-    dispatch(handleGetInTouch(resetForm, values));
+ //   dispatch(handleGetInTouch(resetForm, values));
   };
 
   return (
@@ -36,7 +35,6 @@ function Contacts({ timerRef }) {
           isValid={isValid}
         />
       </section>
-      <Instagram />
       <Footer />
     </Fragment>
   );

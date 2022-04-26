@@ -1,13 +1,10 @@
 import "./Header.scss";
 import photographer from "../../images/logo-header-photographer.png";
-import NavMenu from "../NavMenu/NavMenu";
-import { closeBurgerMenu, openBurgerMenu } from "../../redux/Actions/userAction";
-
-import { useDispatch, useSelector } from "react-redux";
+import NavMenu from "./NavMenu/NavMenu";
+import { useState } from "react";
 
 function Header({ timerRef }) {
-  const dispatch = useDispatch();
-  const burgerMenu = useSelector((state) => state.user.burgerMenu);
+  const [openBurgerMenu, setOpenBurgerMenu] = useState(false);
 
   //Изменение цвета header при прокрутки страницы
   window.onscroll = () => {
@@ -20,15 +17,15 @@ function Header({ timerRef }) {
   };
 
   //Обработчик открытия закрытия бургер-меню
-  const handleOpenAndCloseBurgerMenu = () => {
-    if (burgerMenu) {
-      const link = document.querySelectorAll(".navigation__link-arrow");
+  const handlerOpenAndCloseBurgerMenu = () => {
+    if (openBurgerMenu) {
+      const links = document.querySelectorAll(".navigation__link-arrow");
       const containerWithSubLinks = document.querySelectorAll(".navigation__subLinks-container");
-      link.forEach((item) => item.classList.remove("subLinks__active"));
+      links.forEach((item) => item.classList.remove("subLinks__active"));
       containerWithSubLinks.forEach((item) => item.classList.remove("navigation__subLinks-container_active"));
-      dispatch(closeBurgerMenu());
+      setOpenBurgerMenu(false)
     } else {
-      dispatch(openBurgerMenu());
+      setOpenBurgerMenu(true)
     }
   };
 
@@ -37,12 +34,12 @@ function Header({ timerRef }) {
       <div className="header__container">
         <img className="header__logo" src={photographer} alt="лого фотографа" />
         <div
-          className={`header__burger-icon ${burgerMenu ? "header__burger-icon_close" : ""}`}
-          onClick={handleOpenAndCloseBurgerMenu}
+          className={`header__burger-icon ${openBurgerMenu ? "header__burger-icon_close" : ""}`}
+          onClick={handlerOpenAndCloseBurgerMenu}
         >
           <span></span>
         </div>
-        <NavMenu timerRef={timerRef} handleOpenAndCloseBurgerMenu={handleOpenAndCloseBurgerMenu} />
+        <NavMenu timerRef={timerRef} handlerOpenAndCloseBurgerMenu={handlerOpenAndCloseBurgerMenu} openBurgerMenu={openBurgerMenu}/>
       </div>
     </header>
   );

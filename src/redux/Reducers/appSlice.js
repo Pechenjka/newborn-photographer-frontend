@@ -8,7 +8,7 @@ const initialState = {
   openModalOrder: false,
   openModalConfirmationOrder: false,
   openModalNotSendOrder: false,
-
+  displayPricePackets: [],
   // popupWithDescribePacket: false,
   // orderPhotoSessionPopup: false,
   // showImageInThePopup: null,
@@ -36,6 +36,18 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
+    handlerDisplayPricePackets: (state, action) => {
+      if (action.payload.packets === null) {
+        state.displayPricePackets = [];
+      } else {
+        const newArr = action.payload.packets.filter((item) => {
+          if (action.payload.path.includes(item.packet)) {
+            return item;
+          }
+        });
+        state.displayPricePackets = newArr;
+      }
+    },
     handlerModalNotSendOrder: (state, action) => {
       state.openModalNotSendOrder = action.payload;
     },
@@ -71,5 +83,6 @@ export const {
   handlerModalOrder,
   handlerModalConfirmationOrder,
   handlerModalNotSendOrder,
+  handlerDisplayPricePackets,
 } = appSlice.actions;
 export default appSlice.reducer;

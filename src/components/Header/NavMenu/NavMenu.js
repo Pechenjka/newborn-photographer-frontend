@@ -1,52 +1,47 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import "./NavMenu.scss";
-import { links, packets } from "../../utils/config";
-import {
-  buttonOfTheTypePhotos,
-  deleteAllPhotosOneType,
-  displayPricePackets,
-  handlePricePackets,
-  handleTypesPhotos,
-  notDisplayPhotosOnThePagePhotoGallery,
-  showGalleryPhotos,
-} from "../../redux/Actions/userAction";
-import { useDispatch, useSelector } from "react-redux";
+import { links, packets } from "../../../utils/config";
+import { useDispatch } from "react-redux";
+import { handlerDisplayPricePackets } from "../../../redux/Reducers/appSlice";
+import { useEffect } from "react";
+import { useDisabledScroll } from "../../../hooks/useDisabledScroll";
+import { handlerShowPhotos } from "../../../redux/Reducers/photoSlice";
 
-function NavMenu({ timerRef, handleOpenAndCloseBurgerMenu }) {
+function NavMenu({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) {
   const dispatch = useDispatch();
-  const burgerMenu = useSelector((state) => state.user.burgerMenu);
-  const displayPhotos = useSelector((state) => state.photos.displayPhotosOnThePagePhotoGallery);
+  const { pathname } = useLocation();
+  const { handlerDisabledScroll } = useDisabledScroll();
+
+  useEffect(() => {
+    handlerDisabledScroll(openBurgerMenu);
+  }, [openBurgerMenu]);
 
   //Обработчик клика по ссылке подменю
-  const handleClickDropdownLink = (type, path) => {
+  const handleClickDropdownLink = (event, type, path, el) => {
     clearInterval(timerRef.current);
-    dispatch(displayPricePackets([]));
-    dispatch(buttonOfTheTypePhotos(""));
-    if (displayPhotos) {
-      dispatch(handleTypesPhotos(type, path));
+    if (pathname.includes(type)) {
+      return event.stopPropagation();
     }
-    dispatch(handlePricePackets(packets, path));
-    dispatch(notDisplayPhotosOnThePagePhotoGallery());
     if (window.innerWidth <= 768) {
-      handleOpenAndCloseBurgerMenu();
+      handlerOpenAndCloseBurgerMenu();
+    }
+    if (el.name.toLowerCase().includes("фотогалерея")) {
+      dispatch(handlerShowPhotos({ type: type, order: "sort" }));
+    } else {
+      dispatch(handlerDisplayPricePackets({ packets, path }));
     }
   };
 
   //Обработчик клика по ссылке меню
-  const handleClickLink = (path) => {
+  const handleClickLink = () => {
     clearInterval(timerRef.current);
     if (window.innerWidth <= 768) {
-      handleOpenAndCloseBurgerMenu();
+      handlerOpenAndCloseBurgerMenu();
     }
-    if (path !== "/") {
-      dispatch(showGalleryPhotos([]));
-      dispatch(buttonOfTheTypePhotos(""));
-    }
-    dispatch(deleteAllPhotosOneType([]));
-    dispatch(notDisplayPhotosOnThePagePhotoGallery());
-    dispatch(displayPricePackets([]));
+    dispatch(handlerDisplayPricePackets({ packets: null }));
   };
-  //Обработчик клика по ссылке меню
+
+  //Обработчик клика по ссылке меню в мобильной версии
   const handleClickLinkMobileVersion = (linkActive) => {
     const link = document.querySelectorAll(".navigation__link-arrow");
     const containerWithSubLinks = document.querySelectorAll(".navigation__subLinks-container");
@@ -67,8 +62,8 @@ function NavMenu({ timerRef, handleOpenAndCloseBurgerMenu }) {
 
   return (
     <nav
-      className={`navigation ${burgerMenu ? "navigation__burgerMenu_active" : ""}`}
-      onClick={handleOpenAndCloseBurgerMenu}
+      className={`navigation ${openBurgerMenu ? "navigation__burgerMenu_active" : ""}`}
+      onClick={handlerOpenAndCloseBurgerMenu}
     >
       <ul className="navigation__list_links" onClick={(e) => e.stopPropagation()}>
         {links.map((item, index) => {
@@ -87,7 +82,7 @@ function NavMenu({ timerRef, handleOpenAndCloseBurgerMenu }) {
                   activeClassName="navigation__link_active"
                   exact={true}
                   to={item.path}
-                  onClick={() => handleClickLink(item.path)}
+                  onClick={() => handleClickLink()}
                 >
                   {item.name}
                 </NavLink>
@@ -102,7 +97,7 @@ function NavMenu({ timerRef, handleOpenAndCloseBurgerMenu }) {
                           activeClassName="navigation__sublink_active"
                           to={el.pathSelect}
                           key={index}
-                          onClick={() => handleClickDropdownLink(el.type, el.pathSelect)}
+                          onClick={(event) => handleClickDropdownLink(event, el.type, el.pathSelect, item)}
                         >
                           {el.name}
                         </NavLink>

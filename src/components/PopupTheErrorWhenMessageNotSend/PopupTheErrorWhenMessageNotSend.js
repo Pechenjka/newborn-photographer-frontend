@@ -1,24 +1,27 @@
 import MessageToTheUser from "../MessageToTheUser/MessageToTheUser";
 import { useDispatch, useSelector } from "react-redux";
-import { closePopupTheErrorWhenMessageNotSend } from "../../redux/Actions/userAction";
 import iconError from "../../images/icon-error.png";
+import Popup from "../Popup/Popup";
+import { handlerModalErrorGetInTouch } from "../../redux/Reducers/appSlice";
 
 const PopupTheErrorWhenMessageNotSend = () => {
   const dispatch = useDispatch();
-  const popupTheErrorWhenMessageNotSend = useSelector((state) => state.user.popupTheErrorWhenMessageNotSend);
+  const { openModalErrorGetInTouch } = useSelector((state) => state.app);
 
   const handleClosePopup = () => {
-    dispatch(closePopupTheErrorWhenMessageNotSend());
+    dispatch(handlerModalErrorGetInTouch(false));
   };
 
   return (
-    <MessageToTheUser
-      title={"Сообщение не доставлено!"}
-      text={"На сервере произошла ошибка или возможны проблемы с интернет-соединением"}
-      icon={iconError}
-      onClose={handleClosePopup}
-      openPopup={popupTheErrorWhenMessageNotSend}
-    />
+    <Popup openPopup={openModalErrorGetInTouch}>
+      openModalErrorGetInTouch &&
+      <MessageToTheUser
+        title="Сообщение не доставлено!"
+        text="На сервере произошла ошибка или возможны проблемы с интернет-соединением"
+        icon={iconError}
+        onClose={handleClosePopup}
+      />
+    </Popup>
   );
 };
 

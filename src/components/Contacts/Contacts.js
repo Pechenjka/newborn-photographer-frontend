@@ -6,17 +6,18 @@ import Header from "../Header/Header";
 import ContactMeForm from "../ContactMeForm/ContactMeForm";
 import SocialLinks from "../SocialLinks/SocialLinks";
 import MyContacts from "../MyContacts/MyContacts";
-import {useDispatch} from "react-redux";
-//import { handleGetInTouch } from "../../redux/Actions/userAction";
+import { useDispatch } from "react-redux";
 import useFormWithValidation from "../../hooks/useForm";
+import { sendMessageGetInTouch } from "../../redux/Reducers/appSlice";
 
-function Contacts({ timerRef }) {
+const Contacts = ({ timerRef }) => {
   const dispatch = useDispatch();
   const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
 
-  const handleSubmitGetInTouch = (evt) => {
+  const handlerSubmitGetInTouch = (evt) => {
     evt.preventDefault();
- //   dispatch(handleGetInTouch(resetForm, values));
+    dispatch(sendMessageGetInTouch({ data: values }));
+    resetForm();
   };
 
   return (
@@ -28,7 +29,7 @@ function Contacts({ timerRef }) {
         <SocialLinks />
         <ContactMeForm
           onChange={handleChange}
-          onSubmit={handleSubmitGetInTouch}
+          onSubmit={handlerSubmitGetInTouch}
           title={"Свяжитесь со мной"}
           values={values}
           errors={errors}
@@ -38,6 +39,6 @@ function Contacts({ timerRef }) {
       <Footer />
     </Fragment>
   );
-}
+};
 
 export default Contacts;

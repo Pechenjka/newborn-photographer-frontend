@@ -2,34 +2,32 @@ import "./NewsLetter.scss";
 import newsLetterButtonIcon from "../../../images/newsLetter-button-icon.svg";
 import useFormWithValidation from "../../../hooks/useForm";
 import { useDispatch, useSelector } from "react-redux";
-import { handleNewsLetter } from "../../../redux/Actions/userAction";
+import { sendEmail } from "../../../redux/Reducers/appSlice";
 import InfoToolTip from "../../InfoToolTip/InfoToolTip";
 
-function NewsLetter() {
+const NewsLetter = () => {
   const dispatch = useDispatch();
-  const subscriptionConfirmation = useSelector((state) => state.user.subscriptionConfirmation);
-  const subscriptionError = useSelector((state) => state.user.subscriptionError);
+  const { errorSendEmail, confirmationSendEmail } = useSelector((state) => state.app);
   const { values, isValid, resetForm, handleChange } = useFormWithValidation();
 
-  const handleSubmit = (evt) => {
+  const handlerSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(handleNewsLetter(values));
+    dispatch(sendEmail({ data: values }));
     resetForm();
   };
 
-  //обработчик вывода информационного табло
   const handleDisplayInfoToolTip = () => {
-    if (subscriptionConfirmation) {
-      return <InfoToolTip text={"Подписка оформлена"} />;
+    if (confirmationSendEmail) {
+      return <InfoToolTip text="Подписка оформлена" />;
     }
-    if (subscriptionError) {
-      return <InfoToolTip text={"Произошла ошибка на сервере, попробуйте позже"} />;
+    if (errorSendEmail) {
+      return <InfoToolTip text="Произошла ошибка на сервере, попробуйте позже" />;
     }
   };
 
   return (
     <div className="newsLetter">
-      <form className="newsLetter__form" onSubmit={handleSubmit}>
+      <form className="newsLetter__form" onSubmit={handlerSubmit}>
         <fieldset className="newsLetter__form-fieldset">
           {handleDisplayInfoToolTip() || (
             <label className="newsLetter__form-label">
@@ -66,6 +64,6 @@ function NewsLetter() {
       </form>
     </div>
   );
-}
+};
 
 export default NewsLetter;

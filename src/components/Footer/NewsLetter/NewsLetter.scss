@@ -29,11 +29,10 @@ $colorBorder: #79553d;
   }
   &__form-input {
     width: 200px;
-    height: 25px;
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 18px;
     font-weight: 400;
-    padding: 0 0 0 10px;
+    padding: 10px 0 10px 10px;
     border-radius: 5px 0 0 5px;
     border: 2px solid $colorBorder;
     outline: none;

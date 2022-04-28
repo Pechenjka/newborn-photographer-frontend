@@ -1,12 +1,10 @@
 import "./MessageToTheUser.scss";
-import Popup from "../Popup/Popup";
 import iconChecked from "../../images/icon-checked.svg";
 
-function MessageToTheUser(props) {
-  const { title, text = "Мы свяжемся с вами в ближайшее время", icon = iconChecked, onClose, openPopup } = props;
+const MessageToTheUser = (props) => {
+  const { title, text = "Мы свяжемся с вами в ближайшее время", icon = iconChecked, onClose } = props;
 
   return (
-    <Popup openPopup={openPopup}>
       <div className="messageToTheUser">
         <div className="messageToTheUser__container">
           <img src={icon} alt="картинка" className="messageToTheUser__image" />
@@ -17,8 +15,6 @@ function MessageToTheUser(props) {
           </button>
         </div>
       </div>
-      {/*)}*/}
-    </Popup>
   );
 }
 

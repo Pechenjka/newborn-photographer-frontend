@@ -3,10 +3,10 @@ import "./InfoToolTip.scss";
 import { useSelector } from "react-redux";
 
 const InfoToolTip = ({ text }) => {
-  const subscriptionError = useSelector((state) => state.user.subscriptionError);
+  const { errorSendEmail } = useSelector((state) => state.app);
   return (
-    <div className={`infoToolTip ${subscriptionError && "infoToolTip__error"}`}>
-      <p className={`infoToolTip__text ${subscriptionError && "infoToolTip__text_error"}`}>{text}</p>
+    <div className={`infoToolTip ${errorSendEmail && "infoToolTip__error"}`}>
+      <p className={`infoToolTip__text ${errorSendEmail && "infoToolTip__text_error"}`}>{text}</p>
     </div>
   );
 };

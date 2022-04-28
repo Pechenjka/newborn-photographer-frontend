@@ -14,11 +14,10 @@ const PopupConfirmationGetOrderFromTheUser = () => {
   };
 
   return (
-    openModalConfirmationOrder && (
-      <Popup openPopup={openModalConfirmationOrder}>
-        <MessageToTheUser title="Ваша заявка успешно отправлена" onClose={handleClosePopup} />
-      </Popup>
-    )
+    <Popup openPopup={openModalConfirmationOrder}>
+      openModalConfirmationOrder && (
+      <MessageToTheUser title="Ваша заявка успешно отправлена" onClose={handleClosePopup} />)
+    </Popup>
   );
 };
 

@@ -1,27 +1,28 @@
 import MessageToTheUser from "../MessageToTheUser/MessageToTheUser";
-import { closePopupConfirmationGetMessageFromTheUser } from "../../redux/Actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import iconChecked from "../../images/icon-checked.svg";
+import Popup from "../Popup/Popup";
+import { handlerModalConfirmationGetInTouch } from "../../redux/Reducers/appSlice";
 
-function PopupConfirmationGetMessageFromTheUser() {
+const PopupConfirmationGetMessageFromTheUser = () => {
   const dispatch = useDispatch();
-  const popupConfirmationGetMessageFromTheUser = useSelector(
-    (state) => state.user.popupConfirmationGetMessageFromTheUser
-  );
+  const { openModalConfirmationGetInTouch } = useSelector((state) => state.app);
 
   const handleClosePopup = () => {
-    dispatch(closePopupConfirmationGetMessageFromTheUser());
+    dispatch(handlerModalConfirmationGetInTouch(false));
   };
 
   return (
-    <MessageToTheUser
-      title="Ваше письмо успешно отправлено!"
-      text="Мы свяжемся с вами в ближайшее время"
-      icon={iconChecked}
-      onClose={handleClosePopup}
-      openPopup={popupConfirmationGetMessageFromTheUser}
-    />
+    <Popup openPopup={openModalConfirmationGetInTouch}>
+      openModalErrorGetInTouch &&
+      <MessageToTheUser
+        title="Ваше письмо успешно отправлено!"
+        text="Мы свяжемся с вами в ближайшее время"
+        icon={iconChecked}
+        onClose={handleClosePopup}
+      />
+    </Popup>
   );
-}
+};
 
 export default PopupConfirmationGetMessageFromTheUser;

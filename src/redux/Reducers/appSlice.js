@@ -6,20 +6,13 @@ const initialState = {
   openModalWithDescribePacket: false,
   dataOrder: null,
   openModalOrder: false,
+  openModalConfirmationGetInTouch: false,
+  openModalErrorGetInTouch: false,
   openModalConfirmationOrder: false,
   openModalNotSendOrder: false,
   displayPricePackets: [],
-  // popupWithDescribePacket: false,
-  // orderPhotoSessionPopup: false,
-  // showImageInThePopup: null,
-  // slideShow: [],
-  // randomSortPhotos: false,
-  // allPhotosOneType: [],
-  // typesPhotos: "",
-  // showDataPacket: [],
-  // displayPhotosOnThePagePhotoGallery: false,
-  // dataOrder: [],
-  // loadingPhotos: false,
+  confirmationSendEmail: false,
+  errorSendEmail: false,
 };
 
 export const sendOrder = createAsyncThunk("app/sendOrder", async ({ data }, { dispatch }) => {
@@ -29,6 +22,32 @@ export const sendOrder = createAsyncThunk("app/sendOrder", async ({ data }, { di
     return res;
   } catch (e) {
     dispatch(handlerModalNotSendOrder(true));
+  }
+});
+
+export const sendEmail = createAsyncThunk("app/sendEmail", async ({ data }, { dispatch }) => {
+  try {
+    const res = await api.newsLetter(data);
+    dispatch(handlerConfirmationSendEmail(true));
+    setTimeout(() => {
+      dispatch(handlerConfirmationSendEmail(false));
+    }, 4000);
+    return res;
+  } catch (e) {
+    dispatch(handlerErrorSendEmail(true));
+    setTimeout(() => {
+      dispatch(handlerErrorSendEmail(false));
+    }, 4000);
+  }
+});
+
+export const sendMessageGetInTouch = createAsyncThunk("app/sendMessageGetInTouch", async ({ data }, { dispatch }) => {
+  try {
+    const res = await api.getInTouch(data);
+    dispatch(handlerModalConfirmationGetInTouch(true));
+    return res;
+  } catch (e) {
+     dispatch(handlerModalErrorGetInTouch(true));
   }
 });
 
@@ -48,6 +67,20 @@ const appSlice = createSlice({
         state.displayPricePackets = newArr;
       }
     },
+    handlerConfirmationSendEmail: (state, action) => {
+      state.confirmationSendEmail = action.payload;
+    },
+    handlerErrorSendEmail: (state, action) => {
+      state.errorSendEmail = action.payload;
+    },
+
+    handlerModalConfirmationGetInTouch: (state, action) => {
+      state.openModalConfirmationGetInTouch = action.payload;
+    },
+    handlerModalErrorGetInTouch: (state, action) => {
+      state.openModalErrorGetInTouch = action.payload;
+    },
+
     handlerModalNotSendOrder: (state, action) => {
       state.openModalNotSendOrder = action.payload;
     },
@@ -65,13 +98,22 @@ const appSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(sendOrder.pending, (state, action) => {
+    builder.addCase(sendOrder.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(sendOrder.fulfilled, (state, action) => {
+    builder.addCase(sendOrder.fulfilled, (state) => {
       state.loading = false;
     });
-    builder.addCase(sendOrder.rejected, (state, action) => {
+    builder.addCase(sendOrder.rejected, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(sendMessageGetInTouch.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(sendMessageGetInTouch.fulfilled, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(sendMessageGetInTouch.rejected, (state) => {
       state.loading = false;
     });
   },
@@ -84,5 +126,9 @@ export const {
   handlerModalConfirmationOrder,
   handlerModalNotSendOrder,
   handlerDisplayPricePackets,
+  handlerConfirmationSendEmail,
+  handlerErrorSendEmail,
+  handlerModalConfirmationGetInTouch,
+  handlerModalErrorGetInTouch,
 } = appSlice.actions;
 export default appSlice.reducer;

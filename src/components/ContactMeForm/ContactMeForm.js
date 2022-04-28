@@ -1,10 +1,10 @@
 import "./ContactMeForm.scss";
-import { useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import Spinner from "../Spinner/Spinner";
 
-function ContactMeForm(props) {
+const ContactMeForm = (props) => {
   const { onChange, onSubmit, title, values, errors, isValid } = props;
-  const loading = useSelector(state => state.photos.loading)
+  const { loading } = useSelector((state) => state.app);
   return (
     <div className="contactMeForm">
       <h3 className="contactMeForm__title">{title}</h3>
@@ -22,7 +22,7 @@ function ContactMeForm(props) {
             name="name"
             id="name"
             minLength="2"
-             required
+            required
             onChange={onChange}
             value={values.name || ""}
           />
@@ -40,7 +40,7 @@ function ContactMeForm(props) {
             type="email"
             name="email"
             id="email"
-             required
+            required
             onChange={onChange}
             value={values.email || ""}
           />
@@ -50,7 +50,14 @@ function ContactMeForm(props) {
           <label className="form__label" htmlFor="tel">
             Телефон
           </label>
-          <input className="form__input" type="tel" name="tel" id="tel" onChange={onChange} value={values.tel || ""} />
+          <input
+            className="form__input"
+            type="tel"
+            name="tel"
+            id="tel"
+            onChange={onChange}
+            value={values.tel || ""}
+          />
           <span className="form__span" id="tel-error">
             {errors.tel}
           </span>
@@ -66,21 +73,22 @@ function ContactMeForm(props) {
             id="text"
             onChange={onChange}
             value={values.text || ""}
-             required
+            required
           />
           <span className="form__span" id="text-error">
             {errors.text}
           </span>
         </fieldset>
         <button
-          className={`contactMeForm__button ${loading ? '': (!isValid ? "contactMeForm__button_disabled" : "")}`}
+          className={`contactMeForm__button ${loading ? "" : !isValid ? "contactMeForm__button_disabled" : ""}`}
           type="submit"
           disabled={!isValid}
-        >{ loading ? <Spinner/> : 'Отправить'}
+        >
+          {loading ? <Spinner /> : "Отправить"}
         </button>
       </form>
     </div>
   );
-}
+};
 
 export default ContactMeForm;

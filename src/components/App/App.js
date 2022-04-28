@@ -13,10 +13,10 @@ import PhotoGallery from "../PhotoGallery/PhotoGallery";
 import Prices from "../Prices/Prices";
 import PopupWithDescriptionPacket from "../PopupWithDescriptonPakets/PopupWithDescriptionPackets";
 import PopupOrderPhotoSession from "../PopupOrderPhotoSession/PopupOrderPhotoSession";
-// import PopupConfirmationGetMessageFromTheUser from "../PopupConfirmationGetMessageFromTheUser/PopupConfirmationGetMessageFromTheUser";
+ import PopupConfirmationGetMessageFromTheUser from "../PopupConfirmationGetMessageFromTheUser/PopupConfirmationGetMessageFromTheUser";
 import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFromTheUser/PopupConfirmationGetOrderFromTheUser";
 import PhotoProducts from "../PhotoProducts/PhotoProducts";
-//import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
+ import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
 import PopupTheErrorWhenOderNotSend from "../PopupTheErrorWhenOrderNotSend/PopupTheErrorWhenOrderNotSend";
 import { fetchPhotos, handlerShowPhotos } from "../../redux/Reducers/photoSlice";
 
@@ -33,7 +33,7 @@ const App = () => {
           dispatch(handlerShowPhotos({ type: "all", order: "random" }));
         });
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (pathname) animatedItems();
@@ -86,8 +86,8 @@ const App = () => {
       <PopupWithImage />
       <PopupWithDescriptionPacket />
       <PopupOrderPhotoSession />
-      {/*<PopupConfirmationGetMessageFromTheUser />*/}
-      {/*<PopupTheErrorWhenMessageNotSend />*/}
+      <PopupConfirmationGetMessageFromTheUser />
+      <PopupTheErrorWhenMessageNotSend />
       <PopupConfirmationGetOrderFromTheUser />
       <PopupTheErrorWhenOderNotSend />
     </div>

@@ -1,14 +1,13 @@
 import "./Popup.scss";
 import { useEffect } from "react";
+import { useDisabledScroll } from "../../hooks/useDisabledScroll";
 
-function Popup({ onClick, children, openPopup }) {
+const Popup = ({ onClick, children, openPopup }) => {
+  const { handlerDisabledScroll } = useDisabledScroll();
+
   useEffect(() => {
-    if (openPopup) {
-      document.body.classList.add("disabledScroll");
-    } else {
-      document.body.classList.remove("disabledScroll");
-    }
-  }, [openPopup]);
+    handlerDisabledScroll(openPopup);
+  }, [handlerDisabledScroll, openPopup]);
 
   return (
     <div className={`popup ${openPopup ? "popup__opened" : ""}`} onClick={onClick}>

@@ -8,16 +8,15 @@ https://alenalobacheva.net/
 
 - JavaScript
 - React
-- Redux
+- Redux-toolkit
 - CSS3
 - HTML5
 
 
 ### Запуск проекта на локальной машине
-1. Установить зависимости - npm install
-2. Запустить проект - npm run start
-3. Собрать приложение - npm run build
+
+ Запустить проект - npm run start
 
 Back-end в этом репозитории: https://github.com/Pechenjka/newborn-photographer-backend
 
-Проект в разработке...
+

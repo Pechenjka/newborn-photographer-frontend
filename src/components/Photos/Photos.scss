@@ -26,7 +26,6 @@ $colorBackgroundOverlay: rgba(0, 0, 0, 0.4);
     height: 100%;
     overflow: hidden;
     border-radius: 5px;
-    transition: all 0.4s;
   }
   &__photo-container-gallery &__overlay {
     position: absolute;
@@ -52,7 +51,6 @@ $colorBackgroundOverlay: rgba(0, 0, 0, 0.4);
     height: 100%;
     width: 100%;
     margin: 0;
-    transition: all 0.4s;
     overflow: hidden;
     border-radius: 5px;
     &:first-of-type {
@@ -123,20 +121,6 @@ $colorBackgroundOverlay: rgba(0, 0, 0, 0.4);
   &__photo-container:hover &__photo {
     transform: scale(1.1);
   }
-}
-
-.displayElement-enter {
-  opacity: 0;
-}
-.displayElement-enter-active {
-  opacity: 1;
-  transition: opacity 600ms ease-in 0.4s;
-}
-.displayElement-exit {
-  opacity: 1;
-}
-.displayElement-exit-active {
-  opacity: 0;
 }
 
 @media screen and (max-width: 1024px) {

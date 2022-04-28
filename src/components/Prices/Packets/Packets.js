@@ -10,6 +10,8 @@ import {
 } from "../../../redux/Reducers/appSlice";
 import { useEffect } from "react";
 import { useRouteMatch } from "react-router-dom";
+import { useGsapEffect } from "../../../hooks/useGsapEffect";
+import { useLayoutEffect } from "react";
 
 const Packets = () => {
   const dispatch = useDispatch();
@@ -38,11 +40,24 @@ const Packets = () => {
     }
   };
 
+  const { animation } = useGsapEffect('.packets__item', {
+    duration: 1,
+    opacity: 0,
+    stagger: 0.05,
+    ease: "back",
+  });
+
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      animation()
+    }, 0);
+  }, []);
+
   return (
-    <ul className="packets anim-items">
+    <ul className="packets" >
       {displayPricePackets.map((packet, index) => {
         return (
-          <li className="packets__item item" key={index}>
+          <li className="packets__item item" key={index}  >
             <img className="item__image" src={packet.image} alt="" />
             <div className="item__overlay">
               <h3 className="item__overlay-title">{packet.title}</h3>

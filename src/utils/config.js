@@ -612,27 +612,26 @@ export const filterGallery = [
   {
     name: "Все фотографии",
     type: "all",
-    onClick: (handlerClick) => handlerClick("all"),
+    onClick: (handlerClick, event) => handlerClick(event,"all"),
     id: Math.random().toString(16).slice(2),
   },
   {
     name: "Новорожденные",
     type: "newborn",
-    onClick: (handlerClick) => handlerClick("newborn"),
+    onClick: (handlerClick, event) => handlerClick(event,"newborn"),
     id: Math.random().toString(16).slice(2),
   },
   {
     name: "Малыши",
     type: "baby",
-    onClick: (handlerClick) => handlerClick("baby"),
+    onClick: (handlerClick, event) => handlerClick(event,"baby"),
     id: Math.random().toString(16).slice(2),
   },
   {
     name: "Семейные",
     type: "family",
-    onClick: (handlerClick) => handlerClick("family"),
+    onClick: (handlerClick, event) => handlerClick(event,"family"),
     id: Math.random().toString(16).slice(2),
   },
 ];
 
-// const categoriesPhotos = []

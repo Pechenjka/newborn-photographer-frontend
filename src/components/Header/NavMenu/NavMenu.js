@@ -1,20 +1,38 @@
 import { NavLink, useLocation } from "react-router-dom";
 import "./NavMenu.scss";
 import { links, packets } from "../../../utils/config";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handlerDisplayPricePackets } from "../../../redux/Reducers/appSlice";
 import { useEffect } from "react";
 import { useDisabledScroll } from "../../../hooks/useDisabledScroll";
 import { handlerShowPhotos } from "../../../redux/Reducers/photoSlice";
+import { useGsapEffect } from "../../../hooks/useGsapEffect";
+import { useState } from "react";
 
-function NavMenu({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) {
+const NavMenu = ({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const { handlerDisabledScroll } = useDisabledScroll();
+  const { displayPricePackets } = useSelector((state) => state.app);
+  const [clickOnDropDownLink, setClickOnDropDownLink] = useState(true);
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
   }, [openBurgerMenu]);
+
+  const { animation } = useGsapEffect(".animElement", {
+    duration: 0.4,
+    y: 50,
+    opacity: 0,
+    stagger: 0.05,
+    ease: "back",
+  });
+
+  const timeOut = () => {
+    setTimeout(() => {
+      setClickOnDropDownLink(true);
+    }, 1100);
+  };
 
   //Обработчик клика по ссылке подменю
   const handleClickDropdownLink = (event, type, path, el) => {
@@ -25,9 +43,19 @@ function NavMenu({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) {
     if (window.innerWidth <= 768) {
       handlerOpenAndCloseBurgerMenu();
     }
+
     if (el.name.toLowerCase().includes("фотогалерея")) {
-      dispatch(handlerShowPhotos({ type: type, order: "sort" }));
+      if (clickOnDropDownLink) {
+        setClickOnDropDownLink(false);
+        //Вывод следующих фотографий с задержкой для полной отрисовки
+        dispatch(handlerShowPhotos({ type: type, order: "sort" }));
+        animation();
+        timeOut();
+      } else {
+        event.preventDefault();
+      }
     } else {
+      //Вывод пакетов в разделе цены и услуги
       dispatch(handlerDisplayPricePackets({ packets, path }));
     }
   };
@@ -38,7 +66,9 @@ function NavMenu({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) {
     if (window.innerWidth <= 768) {
       handlerOpenAndCloseBurgerMenu();
     }
-    dispatch(handlerDisplayPricePackets({ packets: null }));
+    if (displayPricePackets.length) {
+      dispatch(handlerDisplayPricePackets({ packets: null }));
+    }
   };
 
   //Обработчик клика по ссылке меню в мобильной версии

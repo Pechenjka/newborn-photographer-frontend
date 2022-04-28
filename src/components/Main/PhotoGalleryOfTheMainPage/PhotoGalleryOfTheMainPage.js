@@ -2,22 +2,50 @@ import "./PhotoGalleryOfTheMainPage.scss";
 import Photos from "../../Photos/Photos";
 import { useDispatch, useSelector } from "react-redux";
 import PreLoader from "../../PreLoader/PreLoader";
-import { handlerActiveCategoryPhotosBtn, handlerShowPhotos } from "../../../redux/Reducers/photoSlice";
+import {
+  handlerActiveCategoryPhotosBtn,
+  handlerShowPhotos
+} from "../../../redux/Reducers/photoSlice";
 import { filterGallery } from "../../../utils/config";
-import { useEffect } from "react";
+import {useEffect} from "react";
+import {useState} from "react";
+import {useGsapEffect} from "../../../hooks/useGsapEffect";
 
 const PhotoGalleryOfTheMainPage = () => {
   const dispatch = useDispatch();
-  const { loading, error, categoryPhotosBtn, showPhotos } = useSelector((state) => state.photos);
+  const { loading, error, categoryPhotosBtn } = useSelector((state) => state.photos);
+  const [clickOnDropDownLink, setClickOnDropDownLink] = useState(true);
+
 
   useEffect(() => {
     dispatch(handlerShowPhotos({ type: "all", order: "random" }));
     dispatch(handlerActiveCategoryPhotosBtn("all"));
   }, []);
 
-  const handlerClick = (typePhotos) => {
-    dispatch(handlerShowPhotos({ type: typePhotos, order: "random" }));
-    dispatch(handlerActiveCategoryPhotosBtn(typePhotos));
+  const handlerClick = (event, typePhotos) => {
+    if(clickOnDropDownLink) {
+      setClickOnDropDownLink(false)
+      dispatch(handlerShowPhotos({ type: typePhotos, order: "random" }));
+      animation()
+      dispatch(handlerActiveCategoryPhotosBtn(typePhotos));
+      timeOut()
+    } else {
+      event.preventDefault()
+    }
+  };
+
+  const { animation } = useGsapEffect(".animElement", {
+    duration: 0.4,
+    y: 100,
+    opacity: 0,
+    stagger: 0.05,
+    ease: "back",
+  });
+
+  const timeOut = () => {
+    setTimeout(() => {
+      setClickOnDropDownLink(true);
+    }, 1000);
   };
 
   return (
@@ -29,7 +57,7 @@ const PhotoGalleryOfTheMainPage = () => {
               <button
                 type="button"
                 className={`gallery__title-link ${item.type === categoryPhotosBtn ? "gallery__title-link_active" : ""}`}
-                onClick={() => item.onClick(handlerClick)}
+                onClick={(event) => item.onClick(handlerClick, event)}
               >
                 {item.name}
               </button>

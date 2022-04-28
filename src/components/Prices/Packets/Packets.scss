@@ -14,8 +14,6 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   margin: 0 auto;
   padding: 0 40px;
   list-style: none;
-  opacity: 0;
-  transition: all 0.7s ease-in;
 }
 .item {
   max-width: 660px;
@@ -23,7 +21,6 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   position: relative;
   overflow: hidden;
   border-radius: 10px;
-  transition: all 0.7s ease-in;
   &:hover {
     box-shadow: 0 2px 12px 0 $colorShadow;
   }
@@ -190,9 +187,6 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   }
 }
 
-.packets.anim-items_active {
-  opacity: 1;
-}
 
 @media screen and (max-width: 1200px) {
   .item {

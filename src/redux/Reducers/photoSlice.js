@@ -97,8 +97,8 @@ const photoSlice = createSlice({
       state.showPhotos = countSortPhotos();
     },
     handlerShowAddPhotos: (state, action) => {
-      state.showPhotos = action.payload
-    }
+      state.showPhotos = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPhotos.pending, (state) => {
@@ -126,6 +126,6 @@ export const {
   handlerModalWithImage,
   handlerDataImageForModal,
   handlerSortPhotos,
-  handlerShowAddPhotos
+  handlerShowAddPhotos,
 } = photoSlice.actions;
 export default photoSlice.reducer;

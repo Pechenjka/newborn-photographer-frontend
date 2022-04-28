@@ -14,17 +14,13 @@ const PhotoGallery = ({ timerRef }) => {
   const { pathname } = useLocation();
   const { showPhotos, getPhotosOneType } = useSelector((state) => state.photos);
 
-  const handlerShowPhotosInGallery = (arrCategoriesPhoto) => {
-    return arrCategoriesPhoto.map((item) => {
+  useEffect(() => {
+    categoryPhoto.some((item) => {
       if (pathname.includes(item.type)) {
         dispatch(handlerShowPhotos({ type: item.type, order: "sort" }));
       }
     });
-  };
-
-  useEffect(() => {
-    handlerShowPhotosInGallery(categoryPhoto);
-  }, [categoryPhoto]);
+  }, []);
 
   const addPhotos = () => {
     if (window.innerWidth >= 1025) {

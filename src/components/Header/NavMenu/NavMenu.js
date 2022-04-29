@@ -2,19 +2,17 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./NavMenu.scss";
 import { links, packets } from "../../../utils/config";
 import { useDispatch, useSelector } from "react-redux";
-import { handlerDisplayPricePackets } from "../../../redux/Reducers/appSlice";
+import { handlerDisplayPricePackets, handlerTimeOutClick } from "../../../redux/Reducers/appSlice";
 import { useEffect } from "react";
 import { useDisabledScroll } from "../../../hooks/useDisabledScroll";
 import { handlerShowPhotos } from "../../../redux/Reducers/photoSlice";
 import { useGsapEffect } from "../../../hooks/useGsapEffect";
-import { useState } from "react";
 
 const NavMenu = ({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const { handlerDisabledScroll } = useDisabledScroll();
-  const { displayPricePackets } = useSelector((state) => state.app);
-  const [clickOnDropDownLink, setClickOnDropDownLink] = useState(true);
+  const { displayPricePackets, timeOutClick } = useSelector((state) => state.app);
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
@@ -30,7 +28,7 @@ const NavMenu = ({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) =>
 
   const timeOut = () => {
     setTimeout(() => {
-      setClickOnDropDownLink(true);
+      dispatch(handlerTimeOutClick(true))
     }, 1100);
   };
 
@@ -45,14 +43,14 @@ const NavMenu = ({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) =>
     }
 
     if (el.name.toLowerCase().includes("фотогалерея")) {
-      if (clickOnDropDownLink) {
-        setClickOnDropDownLink(false);
+      if (timeOutClick) {
+        dispatch(handlerTimeOutClick(false))
         //Вывод следующих фотографий с задержкой для полной отрисовки
         dispatch(handlerShowPhotos({ type: type, order: "sort" }));
         animation();
-        timeOut();
+        timeOut()
       } else {
-        event.preventDefault();
+          event.preventDefault();
       }
     } else {
       //Вывод пакетов в разделе цены и услуги
@@ -141,6 +139,6 @@ const NavMenu = ({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) =>
       </ul>
     </nav>
   );
-}
+};
 
 export default NavMenu;

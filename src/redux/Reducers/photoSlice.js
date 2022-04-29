@@ -20,6 +20,7 @@ export const handlerShowPhotos = createAsyncThunk(
         } else if (!item.metadata.type.includes(type) && type === "all") {
           return !item.metadata.type.includes("woman") && !item.metadata.type.includes("discharge");
         }
+        return null
       });
       if (order === "random") {
         dispatch(handlerRandomPhotos({ arr: arrRes, n: arrRes.length }));

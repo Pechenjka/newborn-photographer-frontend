@@ -2,20 +2,16 @@ import "./PhotoGalleryOfTheMainPage.scss";
 import Photos from "../../Photos/Photos";
 import { useDispatch, useSelector } from "react-redux";
 import PreLoader from "../../PreLoader/PreLoader";
-import {
-  handlerActiveCategoryPhotosBtn,
-  handlerShowPhotos
-} from "../../../redux/Reducers/photoSlice";
+import { handlerActiveCategoryPhotosBtn, handlerShowPhotos } from "../../../redux/Reducers/photoSlice";
 import { filterGallery } from "../../../utils/config";
-import {useEffect} from "react";
-import {useState} from "react";
-import {useGsapEffect} from "../../../hooks/useGsapEffect";
+import { useEffect } from "react";
+import { useGsapEffect } from "../../../hooks/useGsapEffect";
+import { handlerTimeOutClick } from "../../../redux/Reducers/appSlice";
 
 const PhotoGalleryOfTheMainPage = () => {
   const dispatch = useDispatch();
   const { loading, error, categoryPhotosBtn } = useSelector((state) => state.photos);
-  const [clickOnDropDownLink, setClickOnDropDownLink] = useState(true);
-
+  const { timeOutClick } = useSelector((state) => state.app);
 
   useEffect(() => {
     dispatch(handlerShowPhotos({ type: "all", order: "random" }));
@@ -23,14 +19,14 @@ const PhotoGalleryOfTheMainPage = () => {
   }, []);
 
   const handlerClick = (event, typePhotos) => {
-    if(clickOnDropDownLink) {
-      setClickOnDropDownLink(false)
+    if (timeOutClick) {
+      dispatch(handlerTimeOutClick(false));
       dispatch(handlerShowPhotos({ type: typePhotos, order: "random" }));
-      animation()
+      animation();
       dispatch(handlerActiveCategoryPhotosBtn(typePhotos));
-      timeOut()
+      timeOut();
     } else {
-      event.preventDefault()
+      event.preventDefault();
     }
   };
 
@@ -44,7 +40,7 @@ const PhotoGalleryOfTheMainPage = () => {
 
   const timeOut = () => {
     setTimeout(() => {
-      setClickOnDropDownLink(true);
+      dispatch(handlerTimeOutClick(true));
     }, 1000);
   };
 

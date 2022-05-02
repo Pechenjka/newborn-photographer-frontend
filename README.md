@@ -7,9 +7,10 @@ https://alenalobacheva.net/
 ### Стек технологий
 
 - JavaScript
+- Typescript
 - React
 - Redux-toolkit
-- CSS3
+- Scss
 - HTML5
 
 

@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import "./NavMenu.scss";
 import { NavLink, useLocation } from "react-router-dom";
-import { links, packets } from "../../../utils/config";
-import { handlerDisplayPricePackets, handlerTimeOutClick } from "../../../redux/Reducers/appSlice";
+import { links } from "../../../utils/config";
+import { handlerTimeOutClick } from "../../../redux/Reducers/appSlice";
 import { useDisabledScroll } from "../../../hooks/useDisabledScroll";
-import { handlerShowPhotos } from "../../../redux/Reducers/photoSlice";
-import { UseGsapEffect } from "../../../hooks/UseGsapEffect";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { ILink, ISubLink, PropsNavMenu } from "../../../types";
 
@@ -13,28 +11,14 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const { handlerDisabledScroll } = useDisabledScroll();
-  const { displayPricePackets, timeOutClick } = useAppSelector((state) => state.app);
+  const { timeOutClick } = useAppSelector((state) => state.app);
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
   }, [openBurgerMenu]);
 
-  const animationPhotos = new UseGsapEffect(".animElement", {
-      duration: 0.4,
-      y: 50,
-      opacity: 0,
-      stagger: 0.05,
-      ease: "back",
-    }).animation
-
-  const timeOut = (): void => {
-    setTimeout(() => {
-      dispatch(handlerTimeOutClick(true));
-    }, 1100);
-  };
-
   //Обработчик клика по ссылке подменю
-  const handleClickDropdownLink = (event: React.MouseEvent, type: string, path: string, el: ILink): void => {
+  const handleClickDropdownLink = (event: React.MouseEvent, type: string): void => {
     clearInterval(timerRef.current);
     if (pathname.includes(type)) {
       return event.stopPropagation();
@@ -42,19 +26,10 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
     if (window.innerWidth <= 768) {
       handlerOpenAndCloseBurgerMenu();
     }
-    if (el.name.toLowerCase().includes("фотогалерея")) {
-      if (timeOutClick) {
-        dispatch(handlerTimeOutClick(false));
-        //Вывод следующих фотографий с задержкой для полной отрисовки
-        dispatch(handlerShowPhotos({ type: type, order: "sort" }));
-        animationPhotos();
-        timeOut();
-      } else {
-        event.preventDefault();
-      }
+    if (timeOutClick) {
+      dispatch(handlerTimeOutClick(false));
     } else {
-      //Вывод пакетов в разделе цены и услуги
-      dispatch(handlerDisplayPricePackets({ packets, path }));
+      event.preventDefault();
     }
   };
 
@@ -63,9 +38,6 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
     clearInterval(timerRef.current);
     if (window.innerWidth <= 768) {
       handlerOpenAndCloseBurgerMenu();
-    }
-    if (displayPricePackets.length) {
-      dispatch(handlerDisplayPricePackets({ packets: null }));
     }
   };
 
@@ -130,7 +102,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
                           to={el.pathSelect}
                           key={index}
                           onClick={(event: React.MouseEvent<HTMLAnchorElement>) =>
-                            handleClickDropdownLink(event, el.type, el.pathSelect, item)
+                            handleClickDropdownLink(event, el.type)
                           }
                         >
                           {el.name}

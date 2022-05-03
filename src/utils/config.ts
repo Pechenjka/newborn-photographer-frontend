@@ -537,37 +537,30 @@ export const packets: IPacket[] = [
 export const photosCategoryInGallery: IPhotosCategoryInGallery[] = [
   {
     title: "Новорожденные",
-    pathSelect: "/photoGallery/newborn",
     type: "newborn",
   },
   {
     title: "В ожидании чуда",
-    pathSelect: "/photoGallery/pregnancy",
     type: "pregnancy",
   },
   {
     title: "Малыши до 1 года",
-    pathSelect: "/photoGallery/baby",
     type: "baby",
   },
   {
     title: "Семейная фотоссесия",
-    pathSelect: "/photoGallery/family",
     type: "family",
   },
   {
     title: "Woman съемка",
-    pathSelect: "/photoGallery/woman",
     type: "woman",
   },
   {
     title: "Выписка из роддома",
-    pathSelect: "/photoGallery/discharge",
     type: "discharge",
   },
   {
     title: "Крещение",
-    pathSelect: "/photoGallery/christening",
     type: "christening",
   },
 ];

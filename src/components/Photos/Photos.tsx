@@ -1,12 +1,11 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import "./Photos.scss";
 import { useLocation } from "react-router-dom";
 import { handlerDataImageForModal, handlerModalWithImage } from "../../redux/Reducers/photoSlice";
-import { UseGsapEffect } from "../../hooks/UseGsapEffect";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { IPhoto } from "../../types";
+import { IPhoto, PropsPhotos } from "../../types";
 
-const Photos: React.FC = () => {
+const Photos: React.FC<PropsPhotos> = ({ firstUpdate }) => {
   const dispatch = useAppDispatch();
   const { showPhotos } = useAppSelector((state) => state.photos);
   const { pathname } = useLocation();
@@ -16,23 +15,8 @@ const Photos: React.FC = () => {
     dispatch(handlerDataImageForModal(linkPhoto));
   };
 
-  const animationPhotos = new UseGsapEffect(".animElement", {
-      duration: 0.4,
-      y: 50,
-      opacity: 0,
-      stagger: 0.05,
-      ease: "back",
-    }).animation
-
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      animationPhotos();
-    }, 0);
-  }, []);
-
-
   return (
-    <ul className={`photos  ${pathname === "/" ? "" : "photos_gallery"} `}>
+    <ul className={`photos  ${pathname === "/" ? "" : "photos_gallery"} `} ref={firstUpdate}>
       {showPhotos.map((image: IPhoto, index: number) => {
         return (
           <li

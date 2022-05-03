@@ -6,7 +6,6 @@ import {
   IDataOrder,
   IPacket,
   PropsBoolean,
-  PropsDisplayPricePackets,
   PropsPayLoadGetInTouch,
   PropsPayLoadSendEmail,
   PropsPayLoadSendOrder,
@@ -77,18 +76,8 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    handlerDisplayPricePackets: (state, action: PropsDisplayPricePackets) => {
-      if (action.payload.packets === null) {
-        state.displayPricePackets = [];
-      } else {
-        const newArr = action.payload.packets.filter((item: IPacket) => {
-          if (action.payload.path && action.payload.path.includes(item.packet)) {
-            return item;
-          }
-          return null;
-        });
-        state.displayPricePackets = newArr;
-      }
+    handlerDisplayPricePackets: (state, action: { payload: IPacket[] }) => {
+      state.displayPricePackets = action.payload;
     },
     handlerTimeOutClick: (state, action: PropsBoolean): void => {
       state.timeOutClick = action.payload;

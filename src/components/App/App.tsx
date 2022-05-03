@@ -37,7 +37,7 @@ const App: React.FC = () => {
           dispatch(handlerShowPhotos({ type: "all", order: "random" }));
         });
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (pathname) animatedItems();

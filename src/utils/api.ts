@@ -67,10 +67,7 @@ class Api {
       headers: this.headers,
     })
       .then(checkResponse)
-      .then((res: IPhoto[]) => {
-        console.log(res);
-        return res;
-      });
+      .then((res: IPhoto[]) => res);
   }
 }
 

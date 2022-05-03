@@ -1,14 +1,15 @@
 import "./Packets.scss";
 import { packets } from "../../../utils/config";
-
+import React from "react";
 import {
   handlerDataDescription,
   handlerDataOrder,
   handlerDisplayPricePackets,
   handlerModalOrder,
   handlerModalWithDescribePacket,
+  handlerTimeOutClick,
 } from "../../../redux/Reducers/appSlice";
-import React, { useEffect } from "react";
+
 import { useRouteMatch } from "react-router-dom";
 import { UseGsapEffect } from "../../../hooks/UseGsapEffect";
 import { useLayoutEffect } from "react";
@@ -19,10 +20,6 @@ const Packets: React.FC = () => {
   const dispatch = useAppDispatch();
   const { path } = useRouteMatch();
   const { displayPricePackets } = useAppSelector((state) => state.app);
-
-  useEffect(() => {
-    dispatch(handlerDisplayPricePackets({ packets, path }));
-  }, []);
 
   const handlerOpenModalOrderPhotoSession = (data: IDataOrder): void => {
     dispatch(handlerModalOrder(true));
@@ -43,18 +40,28 @@ const Packets: React.FC = () => {
     }
   };
 
-  const animationPackets = new UseGsapEffect(".packets__item", {
+  const animationPacketsFirstRender = new UseGsapEffect(".packets__item ", {
     duration: 1,
+    y: 50,
     opacity: 0,
     stagger: 0.05,
     ease: "back",
-  }).animation
+    onComplete: () => {
+      dispatch(handlerTimeOutClick(true));
+    },
+  }).animationWithOutReverse;
 
   useLayoutEffect(() => {
+    const onTypePackets = packets.filter((item: IPacket) => {
+      if (path.includes(item.packet)) {
+        return item;
+      }
+    });
     setTimeout(() => {
-      animationPackets();
+      animationPacketsFirstRender();
     }, 0);
-  }, []);
+    dispatch(handlerDisplayPricePackets(onTypePackets));
+  }, [dispatch, path, setTimeout]);
 
   return (
     <ul className="packets">

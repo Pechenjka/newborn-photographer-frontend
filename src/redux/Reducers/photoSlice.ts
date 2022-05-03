@@ -22,8 +22,8 @@ export const handlerShowPhotos = createAsyncThunk(
   "photo/showPhotos",
   async ({ type, order }: PropsShowPhotos, { dispatch }) => {
     try {
-      const allPhotos: IPhoto[] = JSON.parse(sessionStorage.getItem("getPhotos") as string);
-      const arrRes: IPhoto[] = allPhotos.filter((item: IPhoto) => {
+      const allPhotos: IPhoto[] = await JSON.parse(sessionStorage.getItem("getPhotos") as string);
+      const arrRes: IPhoto[] =  allPhotos.filter((item: IPhoto) => {
         if (item.metadata.type.includes(type)) {
           return item;
         } else if (!item.metadata.type.includes(type) && type === "all") {
@@ -117,7 +117,7 @@ const photoSlice = createSlice({
       state.loading = true;
       state.error = "";
     });
-    builder.addCase(fetchPhotos.fulfilled, (state, action): void => {
+    builder.addCase(fetchPhotos.fulfilled, (state, action: { payload: IPhoto[] }): void => {
       sessionStorage.setItem("getPhotos", JSON.stringify(action.payload));
       state.error = "";
       state.loading = false;

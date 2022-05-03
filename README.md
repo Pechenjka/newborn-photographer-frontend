@@ -7,7 +7,7 @@ https://alenalobacheva.net/
 ### Стек технологий
 
 - JavaScript
-- Typescript
+- TypeScript
 - React
 - Redux-toolkit
 - Scss

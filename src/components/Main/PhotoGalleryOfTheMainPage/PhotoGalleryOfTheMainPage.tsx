@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import "./PhotoGalleryOfTheMainPage.scss";
 import Photos from "../../Photos/Photos";
 import PreLoader from "../../PreLoader/PreLoader";
@@ -7,7 +7,7 @@ import { photosCategoryInMainPage } from "../../../utils/config";
 import { UseGsapEffect } from "../../../hooks/UseGsapEffect";
 import { handlerTimeOutClick } from "../../../redux/Reducers/appSlice";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import {IPhotosCategoryInMainPage} from "../../../types";
+import { IPhotosCategoryInMainPage } from "../../../types";
 
 const PhotoGalleryOfTheMainPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,10 +22,12 @@ const PhotoGalleryOfTheMainPage: React.FC = () => {
   const handlerClick = (event: React.MouseEvent, typePhotos: string): void => {
     if (timeOutClick) {
       dispatch(handlerTimeOutClick(false));
-      dispatch(handlerShowPhotos({ type: typePhotos, order: "random" }));
       animationPhotos();
-      dispatch(handlerActiveCategoryPhotosBtn(typePhotos));
-      timeOut();
+      setTimeout(() => {
+        dispatch(handlerShowPhotos({ type: typePhotos, order: "random" }));
+        dispatch(handlerActiveCategoryPhotosBtn(typePhotos));
+        timeOut();
+      }, window.innerWidth < 769 ? 600 : 1200);
     } else {
       event.preventDefault();
     }
@@ -35,17 +37,26 @@ const PhotoGalleryOfTheMainPage: React.FC = () => {
     duration: 0.4,
     y: 50,
     opacity: 0,
+    stagger: {
+      each: 0.05,
+      from: "end",
+    },
+    ease: "back.in(1.7)",
+  }).animation;
+
+  const animationPhotosWithOutReverse = new UseGsapEffect(".animElement", {
+    duration: 0.4,
+    y: 50,
+    opacity: 0,
     stagger: 0.05,
     ease: "back",
-  }).animation
+  }).animationWithOutReverse;
 
-  // const { animation } = useGsapEffect(".animElement", {
-  //   duration: 0.4,
-  //   y: 100,
-  //   opacity: 0,
-  //   stagger: 0.05,
-  //   ease: "back",
-  // });
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      animationPhotosWithOutReverse();
+    }, 0);
+  }, []);
 
   const timeOut = (): void => {
     setTimeout(() => {

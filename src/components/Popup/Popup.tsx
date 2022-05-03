@@ -8,7 +8,7 @@ const Popup: React.FC<PropsPopup> = ({ onClick, children, openPopup }) => {
 
   useEffect(() => {
     handlerDisabledScroll(openPopup);
-  }, [handlerDisabledScroll, openPopup]);
+  }, [openPopup]);
 
   return (
     <div className={`popup ${openPopup ? "popup__opened" : ""}`} onClick={onClick}>

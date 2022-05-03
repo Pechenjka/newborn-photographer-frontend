@@ -204,7 +204,6 @@ export interface IPhotosCategoryInMainPage {
 
 export interface IPhotosCategoryInGallery {
   title: string;
-  pathSelect: string;
   type: string;
 }
 
@@ -227,4 +226,8 @@ export interface IProduct {
   size: string;
   printQuality?: string;
   price: string;
+}
+
+export interface PropsPhotos {
+  firstUpdate?: any;
 }

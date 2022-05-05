@@ -3,6 +3,7 @@ import "./ContactMeForm.scss";
 import Spinner from "../Spinner/Spinner";
 import { useAppSelector } from "../../redux/hooks";
 import { PropsContactMeForm } from "../../types";
+import Button from "../Button/Button";
 
 const ContactMeForm: React.FC<PropsContactMeForm> = (props) => {
   const { onChange, onSubmit, title, values, errors, isValid } = props;
@@ -74,13 +75,9 @@ const ContactMeForm: React.FC<PropsContactMeForm> = (props) => {
             {errors.text}
           </span>
         </fieldset>
-        <button
-          className={`contactMeForm__button ${loading ? "" : !isValid ? "contactMeForm__button_disabled" : ""}`}
-          type="submit"
-          disabled={!isValid}
-        >
-          {loading ? <Spinner /> : "Отправить"}
-        </button>
+        <Button styleButton="ping" disabled={!isValid} type="submit" editStyle='buttonFormContact' edit>
+          {loading ? <Spinner /> : "Отправить сообщение"}
+        </Button>
       </form>
     </div>
   );

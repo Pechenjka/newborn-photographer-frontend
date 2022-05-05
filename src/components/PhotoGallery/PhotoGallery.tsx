@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IPhoto, IPhotosCategoryInGallery } from "../../types";
 import { UseGsapEffect } from "../../hooks/UseGsapEffect";
 import { handlerTimeOutClick } from "../../redux/Reducers/appSlice";
+import Button from "../Button/Button";
 
 const PhotoGallery: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -59,8 +60,8 @@ const PhotoGallery: React.FC = () => {
         } else {
           animationPhotos();
           setTimeout(() => {
-            dispatch(handlerShowPhotos({ type: item.type, order: "sort" }));
-          }, window.innerWidth < 769 ? 600 : 1200);
+              dispatch(handlerShowPhotos({ type: item.type, order: "sort" }));
+            }, window.innerWidth < 769 ? 600 : 1200);
         }
       }
     });
@@ -83,7 +84,7 @@ const PhotoGallery: React.FC = () => {
     dispatch(handlerShowAddPhotos(addPhotos(showPhotos)));
   };
 
-  const handlerHideButton = showPhotos.length !== getPhotosOneType.length ? "" : "photoGallery__button_disabled";
+  const handlerHideButton = showPhotos.length === getPhotosOneType.length;
 
   return (
     <Fragment>
@@ -99,9 +100,9 @@ const PhotoGallery: React.FC = () => {
           );
         })}
         <Photos firstUpdate={firstUpdatePhotoGallery} />
-        <button className={`photoGallery__button ${handlerHideButton}`} type="button" onClick={handlerClickAddPhotos}>
+        <Button styleButton="ping" onClick={handlerClickAddPhotos} type="button" hide={handlerHideButton}>
           Показать больше
-        </button>
+        </Button>
       </section>
     </Fragment>
   );

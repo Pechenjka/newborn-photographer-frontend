@@ -4,6 +4,7 @@ import logo from "../../images/logo-header-photographer.png";
 import Spinner from "../Spinner/Spinner";
 import { useAppSelector } from "../../redux/hooks";
 import { PropsOrderPhotoSessionForm } from "../../types";
+import Button from "../Button/Button";
 
 const OrderPhotoSessionForm: React.FC<PropsOrderPhotoSessionForm> = (props) => {
   const { loading } = useAppSelector((state) => state.app);
@@ -89,13 +90,7 @@ const OrderPhotoSessionForm: React.FC<PropsOrderPhotoSessionForm> = (props) => {
               />
               <span className="orderForm__span orderForm__span_textarea">{errors.text}</span>
             </fieldset>
-            <button
-              className={`orderForm__button ${loading ? "" : `${!isValid ? "orderForm__button_disabled" : ""}`}`}
-              type="submit"
-              disabled={!isValid}
-            >
-              {loading ? <Spinner /> : "Отправить"}
-            </button>
+            <Button styleButton='ping' type='submit' disabled={!isValid} editStyle='buttonOrder' edit>{loading ? <Spinner /> : "Отправить"}</Button>
           </form>
         </div>
       </div>

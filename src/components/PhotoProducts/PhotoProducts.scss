@@ -1,7 +1,7 @@
 $colorBackground: #89868626;
 
 .photoProducts {
-  margin: 0 auto;
+  margin: 30px auto 0;
   opacity: 0;
   transition: opacity 0.4s ease-in;
   &__image {
@@ -61,7 +61,7 @@ $colorBackground: #89868626;
 
 @media screen and (max-width: 568px) {
   .photoProducts {
-    margin: 0 20px;
+    margin: 30px 20px 0;
     &__photoBox-description {
       font-size: 13px;
     }
@@ -77,6 +77,6 @@ $colorBackground: #89868626;
 
 @media screen and (max-width: 414px) {
   .photoProducts {
-    margin: 0 10px;
+    margin: 30px 10px 0;
   }
 }

@@ -1,0 +1,50 @@
+@import "./src/styles/vars.scss";
+
+.button {
+  width: 100%;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+  color: $ButtonTextColor;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  &__ping {
+    width: max-content;
+    background-color: $ButtonColor;
+    padding: 10px 35px;
+    font-size: 15px;
+    height: 37px;
+    &:hover {
+      background-color: $ButtonHoverColor;
+    }
+    &_disabled {
+      background-color: $ButtonDisabledColor;
+      box-shadow: none;
+      cursor: default;
+      &:hover {
+        background-color: $ButtonDisabledColor;
+      }
+    }
+    &_buttonFormContact {
+      margin-top: 30px;
+      min-width: 240px;
+    }
+    &_buttonOrder {
+      align-self: flex-end;
+      min-width: 150px;
+
+    }
+    &_buttonPriceDescription {
+      justify-self: center;
+      align-self: center;
+      min-width: min-content;
+    }
+    &_buttonOverlayPacketOrder {
+      opacity: 0;
+    }
+  }
+  &_hide {
+    display: none;
+  }
+}
+

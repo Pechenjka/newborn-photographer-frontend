@@ -4,6 +4,7 @@ import Popup from "../Popup/Popup";
 import { handlerDataOrder, handlerModalOrder, handlerModalWithDescribePacket } from "../../redux/Reducers/appSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IDataDescriptionPacket, IDataOrder } from "../../types";
+import Button from "../Button/Button";
 
 const PopupWithDescriptionPacket: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -66,9 +67,7 @@ const PopupWithDescriptionPacket: React.FC = () => {
               })}
             </ul>
             <h3 className="popup-prices__price">Стоимость {dataDescriptionPacket.price}</h3>
-            <button className="popup-prices__button" onClick={() => handleOpenOrderPhotoSessionPopup(dataOrder)}>
-              Заказать фотосессию
-            </button>
+            <Button styleButton='ping' type='button' editStyle='buttonPriceDescription' edit onClick={() => handleOpenOrderPhotoSessionPopup(dataOrder)}>Заказать фотосессию</Button>
           </div>
         </div>
       )}

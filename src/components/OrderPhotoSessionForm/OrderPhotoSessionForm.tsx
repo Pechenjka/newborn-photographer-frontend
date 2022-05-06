@@ -1,6 +1,6 @@
 import React from "react";
 import "./OrderPhotoSessionForm.scss";
-import logo from "../../images/logo-header-photographer.png";
+import logo from "../../images/logo-header-photographer.webp";
 import Spinner from "../Spinner/Spinner";
 import { useAppSelector } from "../../redux/hooks";
 import { PropsOrderPhotoSessionForm } from "../../types";

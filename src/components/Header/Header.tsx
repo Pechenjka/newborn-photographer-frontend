@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Header.scss";
-import photographer from "../../images/logo-header-photographer.png";
+import photographer from "../../images/logo-header-photographer.webp";
 import NavMenu from "./NavMenu/NavMenu";
 import { PropsTimeRef } from "../../types";
 

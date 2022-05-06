@@ -1,6 +1,6 @@
 import React from "react";
 import MessageToTheUser from "../MessageToTheUser/MessageToTheUser";
-import iconError from "../../images/icon-error.png";
+import iconError from "../../images/icon-error.webp";
 import { handlerModalNotSendOrder } from "../../redux/Reducers/appSlice";
 import Popup from "../Popup/Popup";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";

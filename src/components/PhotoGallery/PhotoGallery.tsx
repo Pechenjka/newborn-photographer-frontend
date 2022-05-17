@@ -1,5 +1,5 @@
 import "./PhotoGallery.scss";
-import React, { Fragment, useEffect, useLayoutEffect, useRef } from "react";
+import React, { Fragment, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import Photos from "../Photos/Photos";
@@ -7,62 +7,18 @@ import { photosCategoryInGallery } from "../../utils/config";
 import { handlerShowAddPhotos, handlerShowPhotos } from "../../redux/Reducers/photoSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IPhoto, IPhotosCategoryInGallery } from "../../types";
-import { UseGsapEffect } from "../../hooks/UseGsapEffect";
-import { handlerTimeOutClick } from "../../redux/Reducers/appSlice";
+
 import Button from "../Button/Button";
 
 const PhotoGallery: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const { showPhotos, getPhotosOneType } = useAppSelector((state) => state.photos);
-  const firstUpdatePhotoGallery = useRef(true);
-
-  const animationPhotosFirstRender = new UseGsapEffect(".animElement", {
-    duration: 0.4,
-    y: 50,
-    opacity: 0,
-    stagger: 0.05,
-    ease: "back",
-    onComplete: () => {
-      dispatch(handlerTimeOutClick(true));
-    },
-  }).animationWithOutReverse;
-
-  const animationPhotos = new UseGsapEffect(".animElement", {
-    duration: 0.4,
-    y: 50,
-    opacity: 0,
-    stagger: {
-      each: 0.05,
-      from: "end",
-    },
-    ease: "back.in(1.7)",
-    onComplete: () => {
-      setTimeout(() => {
-        dispatch(handlerTimeOutClick(true));
-      }, 1300);
-    },
-  }).animation;
-
-  useEffect(() => {
-    dispatch(handlerTimeOutClick(false));
-  }, []);
 
   useLayoutEffect(() => {
     photosCategoryInGallery.some((item: IPhotosCategoryInGallery) => {
       if (pathname.includes(item.type)) {
-        if (firstUpdatePhotoGallery.current) {
-          setTimeout(() => {
-            animationPhotosFirstRender();
-          }, 0);
-          dispatch(handlerShowPhotos({ type: item.type, order: "sort" }));
-          firstUpdatePhotoGallery.current = false;
-        } else {
-          animationPhotos();
-          setTimeout(() => {
-              dispatch(handlerShowPhotos({ type: item.type, order: "sort" }));
-            }, window.innerWidth < 769 ? 600 : 1200);
-        }
+        dispatch(handlerShowPhotos({ type: item.type, order: "sort" }));
       }
     });
   }, [pathname, dispatch]);
@@ -99,7 +55,7 @@ const PhotoGallery: React.FC = () => {
             )
           );
         })}
-        <Photos firstUpdate={firstUpdatePhotoGallery} />
+        <Photos />
         <Button styleButton="ping" onClick={handlerClickAddPhotos} type="button" hide={handlerHideButton}>
           Показать больше
         </Button>

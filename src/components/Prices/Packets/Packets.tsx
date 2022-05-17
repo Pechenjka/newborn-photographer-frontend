@@ -1,18 +1,15 @@
 import "./Packets.scss";
 import { packets } from "../../../utils/config";
-import React from "react";
+import React, {useEffect} from "react";
 import {
   handlerDataDescription,
   handlerDataOrder,
   handlerDisplayPricePackets,
   handlerModalOrder,
   handlerModalWithDescribePacket,
-  handlerTimeOutClick,
 } from "../../../redux/Reducers/appSlice";
 
 import { useRouteMatch } from "react-router-dom";
-import { UseGsapEffect } from "../../../hooks/UseGsapEffect";
-import { useLayoutEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { IDataDescriptionPacket, IDataOrder, IPacket } from "../../../types";
 
@@ -40,28 +37,14 @@ const Packets: React.FC = () => {
     }
   };
 
-  const animationPacketsFirstRender = new UseGsapEffect(".packets__item ", {
-    duration: 1,
-    y: 50,
-    opacity: 0,
-    stagger: 0.05,
-    ease: "back",
-    onComplete: () => {
-      dispatch(handlerTimeOutClick(true));
-    },
-  }).animationWithOutReverse;
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     const onTypePackets = packets.filter((item: IPacket) => {
       if (path.includes(item.packet)) {
         return item;
       }
     });
-    setTimeout(() => {
-      animationPacketsFirstRender();
-    }, 0);
     dispatch(handlerDisplayPricePackets(onTypePackets));
-  }, [dispatch, path, setTimeout]);
+  }, [path]);
 
   return (
     <ul className="packets">

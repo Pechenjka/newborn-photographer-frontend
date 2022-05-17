@@ -3,9 +3,9 @@ import "./Photos.scss";
 import { useLocation } from "react-router-dom";
 import { handlerDataImageForModal, handlerModalWithImage } from "../../redux/Reducers/photoSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { IPhoto, PropsPhotos } from "../../types";
+import { IPhoto } from "../../types";
 
-const Photos: React.FC<PropsPhotos> = ({ firstUpdate }) => {
+const Photos: React.FC = () => {
   const dispatch = useAppDispatch();
   const { showPhotos } = useAppSelector((state) => state.photos);
   const { pathname } = useLocation();
@@ -16,7 +16,7 @@ const Photos: React.FC<PropsPhotos> = ({ firstUpdate }) => {
   };
 
   return (
-    <ul className={`photos  ${pathname === "/" ? "" : "photos_gallery"} `} ref={firstUpdate}>
+    <ul className={`photos  ${pathname === "/" ? "" : "photos_gallery"} `}>
       {showPhotos.map((image: IPhoto, index: number) => {
         return (
           <li

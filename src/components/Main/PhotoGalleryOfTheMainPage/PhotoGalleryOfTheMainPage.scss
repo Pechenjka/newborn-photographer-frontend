@@ -42,7 +42,7 @@ $colorLineBottomLinks: #c69b6b;
       background-color: $colorLineBottomLinks;
       width: 0;
       transform: translateX(-50%);
-      transition: width 1s;
+      transition: width 0.4s;
       z-index: 1;
     }
     &_active {

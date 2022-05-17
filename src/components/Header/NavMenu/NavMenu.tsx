@@ -2,16 +2,12 @@ import React, { useEffect } from "react";
 import "./NavMenu.scss";
 import { NavLink, useLocation } from "react-router-dom";
 import { links } from "../../../utils/config";
-import { handlerTimeOutClick } from "../../../redux/Reducers/appSlice";
 import { useDisabledScroll } from "../../../hooks/useDisabledScroll";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { ILink, ISubLink, PropsNavMenu } from "../../../types";
 
 const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
-  const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const { handlerDisabledScroll } = useDisabledScroll();
-  const { timeOutClick } = useAppSelector((state) => state.app);
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
@@ -25,11 +21,6 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
     }
     if (window.innerWidth <= 768) {
       handlerOpenAndCloseBurgerMenu();
-    }
-    if (timeOutClick) {
-      dispatch(handlerTimeOutClick(false));
-    } else {
-      event.preventDefault();
     }
   };
 

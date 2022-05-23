@@ -1,4 +1,4 @@
-import { IPhoto, PropsPayLoadGetInTouch, PropsPayLoadSendEmail, PropsPayLoadSendOrder } from "../types";
+import { IPacket, IPhoto, PropsPayLoadGetInTouch, PropsPayLoadSendEmail, PropsPayLoadSendOrder } from "../types";
 
 const checkResponse = (res: any) =>
   res.ok ? res.json() : Promise.reject(new Error(`status: ${res.status}, message: ${res.statusText}`));
@@ -41,8 +41,7 @@ class Api {
       .then((res) => res);
   }
 
-  sendOrder({ data }: PropsPayLoadSendOrder) {
-    const { values, dataOrder } = data;
+  sendOrder({ values, packetInBasket }: PropsPayLoadSendOrder) {
     return fetch(`${this.baseUrl}/user/order`, {
       method: "POST",
       headers: this.headers,
@@ -51,23 +50,67 @@ class Api {
         email: values.email,
         tel: values.tel,
         text: values.text,
-        type: dataOrder.type,
-        title: dataOrder.title,
-        price: dataOrder.price,
-        location: dataOrder.location,
       }),
     })
       .then(checkResponse)
       .then((res) => res);
   }
 
-  getArrPhotos() {
-    return fetch(`${this.baseUrl}/mediaContent/gallery`, {
+  getArrPhotos(path: string) {
+    return fetch(`${this.baseUrl}/mediaContent/gallery/${path}`, {
       method: "GET",
       headers: this.headers,
     })
       .then(checkResponse)
       .then((res: IPhoto[]) => res);
+  }
+  createPackets(data: IPacket) {
+    return fetch(`${this.baseUrl}/packets`, {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({
+        title: data.title,
+        packet: data.packet,
+        duration: data.duration,
+        price: data.price,
+        description: data.description,
+        shortDescription: data.shortDescription,
+        image: data.image,
+        imageDescription: data.imageDescription,
+        getFromPhotosession: data.getFromPhotosession,
+        countLocations: data.countLocations,
+        pinned: data.pinned,
+      }),
+    })
+      .then(checkResponse)
+      .then((res) => res);
+  }
+
+  getPacketWithDetailsDescription(id: string) {
+    return fetch(`${this.baseUrl}/packets/${id}`, {
+      method: "GET",
+      headers: this.headers,
+    })
+      .then(checkResponse)
+      .then((res: IPacket) => res);
+  }
+
+  getArrPackets(path: string) {
+    return fetch(`${this.baseUrl}/packets/${path}`, {
+      method: "GET",
+      headers: this.headers,
+    })
+      .then(checkResponse)
+      .then((res: IPacket[]) => res);
+  }
+
+  getPacketsCategories() {
+    return fetch(`${this.baseUrl}/categories`, {
+      method: "GET",
+      headers: this.headers,
+    })
+      .then(checkResponse)
+      .then((res: IPacket[]) => res);
   }
 }
 

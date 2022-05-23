@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import "./NavMenu.scss";
-import { NavLink, useLocation } from "react-router-dom";
-import { links } from "../../../utils/config";
-import { handlerTimeOutClick } from "../../../redux/Reducers/appSlice";
-import { useDisabledScroll } from "../../../hooks/useDisabledScroll";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { ILink, ISubLink, PropsNavMenu } from "../../../types";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
+import { links } from "../../../../../utils/config";
+import { useDisabledScroll } from "../../../../../hooks/useDisabledScroll";
+import {  useAppSelector } from "../../../../../redux/hooks";
+import { ILink, ISubLink, PropsNavMenu } from "../../../../../types";
 
 const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
-  const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const { handlerDisabledScroll } = useDisabledScroll();
-  const { timeOutClick } = useAppSelector((state) => state.app);
+  const { packetInBasket } = useAppSelector((state) => state.packets);
+  const history = useHistory();
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
@@ -25,11 +24,6 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
     }
     if (window.innerWidth <= 768) {
       handlerOpenAndCloseBurgerMenu();
-    }
-    if (timeOutClick) {
-      dispatch(handlerTimeOutClick(false));
-    } else {
-      event.preventDefault();
     }
   };
 
@@ -101,7 +95,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
                           activeClassName="navigation__sublink_active"
                           to={el.pathSelect}
                           key={index}
-                          onClick={(event: React.MouseEvent<HTMLAnchorElement>) =>
+                          onClick={(event: React.MouseEvent) =>
                             handleClickDropdownLink(event, el.type)
                           }
                         >
@@ -114,6 +108,9 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
             </li>
           );
         })}
+        <div className="navigation__basket" onClick={() => history.push("/basket")}>
+          {packetInBasket.length > 0 && <span className="navigation__basket_notEmpty">{packetInBasket.length}</span>}
+        </div>
       </ul>
     </nav>
   );

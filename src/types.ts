@@ -13,7 +13,6 @@ export interface AppState {
   displayPricePackets: IPacket[];
   confirmationSendEmail: boolean;
   errorSendEmail: boolean;
-  timeOutClick: boolean;
 }
 
 export interface IPacket {

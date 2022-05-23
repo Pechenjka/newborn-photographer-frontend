@@ -28,7 +28,6 @@ const initialState: AppState = {
   displayPricePackets: [],
   confirmationSendEmail: false,
   errorSendEmail: false,
-  timeOutClick: true,
 };
 
 export const sendOrder = createAsyncThunk("app/sendOrder", async (data: any, { dispatch }) => {
@@ -74,9 +73,6 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    handlerTimeOutClick: (state, action: PropsBoolean): void => {
-      state.timeOutClick = action.payload;
-    },
     handlerConfirmationSendEmail: (state, action: PropsBoolean): void => {
       state.confirmationSendEmail = action.payload;
     },

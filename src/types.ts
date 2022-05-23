@@ -2,10 +2,6 @@ import React from "react";
 
 export interface AppState {
   loading: boolean;
-  openModalWithDescribePacket: boolean;
-  dataOrder: IDataOrder;
-  dataDescriptionPacket: IDataDescriptionPacket;
-  openModalOrder: boolean;
   openModalConfirmationGetInTouch: boolean;
   openModalErrorGetInTouch: boolean;
   openModalConfirmationOrder: boolean;
@@ -17,49 +13,41 @@ export interface AppState {
 
 export interface IPacket {
   title: string;
-  type: string;
-  location: string;
-  time: string;
+  countLocations: string;
+  getFromPhotosession: string;
+  duration: string;
   shortDescription: string;
   packet: string;
   price: string;
   image: string;
-  imageDescriptionPacket: string;
-  imageDescriptionPacketMobile: string;
-  description: Array<string | Array<string>>;
+  pinned: boolean;
+  imageDescription: string;
+  description: string;
+  _id: string;
+  createdAt: string;
 }
 
-export interface IDataOrder {
-  type: string;
+export interface ICategory {
   title: string;
-  price: string;
-  location: string;
+  nameRU: string;
+  _id: string;
 }
 
-export interface IDataDescriptionPacket {
-  title: string;
-  description: Array<string | Array<string>>;
-  imageDescriptionPacket: string;
-  imageDescriptionPacketMobile: string;
-  price: string;
+export interface IOrderFields {
+  name: string;
+  email: string;
+  tel: string;
+  text?: string;
 }
 
 export interface PropsPayLoadSendOrder {
-  data: {
-    values: {
-      name: string;
-      email: string;
-      tel: string;
-      text?: string;
-    };
-    dataOrder: {
-      type: string;
-      title: string;
-      price: string;
-      location: string;
-    };
+  values: {
+    name: string;
+    email: string;
+    tel: string;
+    text?: string;
   };
-
+  packetInBasket: IPacket[];
 }
 export interface PropsPayLoadSendEmail {
   data: {
@@ -87,11 +75,6 @@ export interface PropsBoolean {
   payload: boolean;
 }
 
-export interface PropsShowPhotos {
-  type: string;
-  order: string;
-}
-
 export interface PropsRandomPhotos {
   payload: {
     arr: IPhoto[];
@@ -104,37 +87,19 @@ export interface PropsArrPhotos {
 }
 
 export interface PropsPayloadString {
-  payload: string;
+  payload: string | null;
 }
 
 export interface IPhoto {
-  kind: string;
-  id: string;
-  selfLink: string;
-  mediaLink: string;
-  name: string;
-  bucket: string;
-  generation: string;
-  metageneration: string;
-  contentType: string;
-  storageClass: string;
-  size: string;
-  md5Hash: string;
-  crc32c: string;
-  etag: string;
-  temporaryHold: string;
-  eventBasedHold: string;
-  timeCreated: string;
-  updated: string;
-  timeStorageClassUpdated: string;
-  customTime: string;
-  metadata: { type: string };
+  type: string;
+  image: string;
+  _id: string;
+  createdAt: string;
 }
-
 export interface PhotosState {
-  getPhotosOneType: IPhoto[];
+  getPhotos: IPhoto[];
   showPhotos: IPhoto[];
-  categoryPhotosBtn: string;
+  categoryPhotosBtn: string | null;
   loading: boolean;
   error: string | undefined;
   openModalWithImage: boolean;
@@ -177,16 +142,6 @@ export interface PropsContactMeForm {
   isValid: boolean;
 }
 
-export interface PropsOrderPhotoSessionForm {
-  values: { name: string; email: string; tel: string; text: string };
-  errors: { name: string; email: string; tel: string; text: string };
-  isValid: boolean;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onClose: () => void;
-  onSubmit: (event: React.FormEvent) => void;
-  dataOrder: IDataOrder;
-}
-
 export interface PropsMessageToTheUser {
   title: string;
   text?: string;
@@ -196,7 +151,7 @@ export interface PropsMessageToTheUser {
 
 export interface IPhotosCategoryInMainPage {
   name: string;
-  type: string;
+  type: string | null;
   onClick: any;
   id: string;
 }
@@ -227,3 +182,41 @@ export interface IProduct {
   price: string;
 }
 
+export interface PropsPhotos {
+  photoPostPage: string;
+}
+
+export interface PropsPhoto {
+  image: IPhoto;
+  photoPostPage: string;
+  setRef: any;
+}
+
+export enum PhotoPostPage {
+  mainPage = "main",
+  photoGalleryPage = "photoGallery",
+}
+
+export interface PropsPackets {
+  getPackets: IPacket[];
+  editStyleForPrice?: boolean;
+  timerRef: any;
+}
+
+export interface PropsField {
+  nameLabel: string;
+  label?: boolean;
+  type: string;
+  rows?: number;
+  name: string;
+  component: string;
+  id: string;
+  checkbox?: boolean;
+  editStyleContainer?: string;
+  editStyleField?: string;
+}
+
+export interface PropsPopularPackets {
+  editStyleForPrice?: boolean;
+  timerRef: any;
+}

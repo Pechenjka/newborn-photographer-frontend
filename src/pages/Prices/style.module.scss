@@ -1,0 +1,22 @@
+.prices {
+  display: flex;
+  max-width: 1440px;
+  min-height: 661px;
+  margin: 0 auto;
+  &__packets {
+    max-width: 1440px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    margin: 50px auto;
+    padding: 0 40px;
+    list-style: none;
+    align-self: center;
+  }
+  &__title {
+    font-family: "MarckScript-Regular", sans-serif;
+    font-size: 50px;
+    color: #504E4E33;
+    grid-column: 1/-1;
+  }
+}

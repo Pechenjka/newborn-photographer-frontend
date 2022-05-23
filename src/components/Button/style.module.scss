@@ -29,10 +29,12 @@
       margin-top: 30px;
       min-width: 240px;
     }
+    &_buttonBasket {
+      align-self: flex-end;
+    }
     &_buttonOrder {
       align-self: flex-end;
       min-width: 150px;
-
     }
     &_buttonPriceDescription {
       justify-self: center;
@@ -42,9 +44,14 @@
     &_buttonOverlayPacketOrder {
       opacity: 0;
     }
+    &_buttonSubmitOrder {
+      grid-column: 2/-1;
+      grid-row: 4/-1;
+      justify-self: flex-end;
+      margin-top: 20px;
+    }
   }
   &_hide {
     display: none;
   }
 }
-

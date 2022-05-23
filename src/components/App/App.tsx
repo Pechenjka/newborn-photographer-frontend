@@ -1,89 +1,42 @@
 import React from "react";
 import "./App.scss";
-import { Switch, Route, useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { animatedItems } from "../AnimatedItems/AnimatedItems";
-import { unwrapResult } from "@reduxjs/toolkit";
-import { fetchPhotos, handlerShowPhotos } from "../../redux/Reducers/photoSlice";
-import { useAppDispatch } from "../../redux/hooks";
-
-import Main from "../Main/Main";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
-import AboutMe from "../AboutMe/AboutMe";
-import Contacts from "../Contacts/Contacts";
-import NotFound from "../NotFound/NotFound";
-import PhotoGallery from "../PhotoGallery/PhotoGallery";
-import Prices from "../Prices/Prices";
-import PopupWithDescriptionPacket from "../PopupWithDescriptonPakets/PopupWithDescriptionPackets";
-import PopupOrderPhotoSession from "../PopupOrderPhotoSession/PopupOrderPhotoSession";
 import PopupConfirmationGetMessageFromTheUser from "../PopupConfirmationGetMessageFromTheUser/PopupConfirmationGetMessageFromTheUser";
 import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFromTheUser/PopupConfirmationGetOrderFromTheUser";
-import PhotoProducts from "../PhotoProducts/PhotoProducts";
 import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
 import PopupTheErrorWhenOderNotSend from "../PopupTheErrorWhenOrderNotSend/PopupTheErrorWhenOrderNotSend";
+import Layout from "../../layout/Layout";
+import { getPacketsCategories, getPacketsPinned, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 
 const App: React.FC = () => {
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-
-  useEffect(() => {
-    if (!sessionStorage.getItem("getPhotos")) {
-      dispatch(fetchPhotos())
-        .then(unwrapResult)
-        .then(() => {
-          dispatch(handlerShowPhotos({ type: "all", order: "random" }));
-        });
-    }
-  }, []);
+  const { packetInBasket } = useAppSelector((state) => state.packets);
 
   useEffect(() => {
     if (pathname) animatedItems();
   }, [pathname]);
 
+  useEffect(() => {
+    dispatch(getPacketsPinned({ pinned: true }));
+    dispatch(getPacketsCategories());
+  }, []);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("packetsInBasket") && !packetInBasket.length) {
+      const arr = JSON.parse(sessionStorage.getItem("packetsInBasket") as string);
+      dispatch(handlerAddPacketInBasket(arr));
+    }
+  }, []);
+
   return (
     <div className="page">
-      <Header timerRef={timerRef} />
-      <Switch>
-        <Route exact path="/">
-          <Main timerRef={timerRef} />
-        </Route>
-        <Route exact path="/aboutMe" component={AboutMe} />
-        <Route
-          exact
-          path={[
-            "/photoGallery/newborn",
-            "/photoGallery/pregnancy",
-            "/photoGallery/baby",
-            "/photoGallery/family",
-            "/photoGallery/woman",
-            "/photoGallery/discharge",
-            "/photoGallery/christening",
-          ]}
-          component={PhotoGallery}
-        />
-        <Route exact path="/contacts" component={Contacts} />
-        <Route
-          exact
-          path={[
-            "/prices/newborn",
-            "/prices/pregnancy",
-            "/prices/baby",
-            "/prices/family",
-            "/prices/woman",
-            "/prices/discharge-christening",
-          ]}
-          component={Prices}
-        />
-        <Route exact path="/photo-products" component={PhotoProducts} />
-        <Route path="*" component={NotFound} />
-      </Switch>
-      <Footer />
+      <Layout />
       <PopupWithImage />
-      <PopupWithDescriptionPacket />
-      <PopupOrderPhotoSession />
       <PopupConfirmationGetMessageFromTheUser />
       <PopupTheErrorWhenMessageNotSend />
       <PopupConfirmationGetOrderFromTheUser />

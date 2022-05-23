@@ -2,27 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../utils/api";
 import {
   AppState,
-  IDataDescriptionPacket,
-  IDataOrder,
-  IPacket,
   PropsBoolean,
   PropsPayLoadGetInTouch,
   PropsPayLoadSendEmail,
-  PropsPayLoadSendOrder,
 } from "../../types";
 
 const initialState: AppState = {
   loading: false,
-  openModalWithDescribePacket: false,
-  dataOrder: { type: "", title: "", price: "", location: "" },
-  dataDescriptionPacket: {
-    title: "",
-    description: [],
-    imageDescriptionPacket: "",
-    imageDescriptionPacketMobile: "",
-    price: "",
-  },
-  openModalOrder: false,
   openModalConfirmationGetInTouch: false,
   openModalErrorGetInTouch: false,
   openModalConfirmationOrder: false,
@@ -32,9 +18,9 @@ const initialState: AppState = {
   errorSendEmail: false,
 };
 
-export const sendOrder = createAsyncThunk("app/sendOrder", async ({ data }: PropsPayLoadSendOrder, { dispatch }) => {
+export const sendOrder = createAsyncThunk("app/sendOrder", async (data: any, { dispatch }) => {
   try {
-    const res = await api.sendOrder({ data });
+    const res = await api.sendOrder(data);
     dispatch(handlerModalConfirmationOrder(true));
     return res;
   } catch (e) {
@@ -75,9 +61,6 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    handlerDisplayPricePackets: (state, action: { payload: IPacket[] }) => {
-      state.displayPricePackets = action.payload;
-    },
     handlerConfirmationSendEmail: (state, action: PropsBoolean): void => {
       state.confirmationSendEmail = action.payload;
     },
@@ -97,18 +80,6 @@ const appSlice = createSlice({
     },
     handlerModalConfirmationOrder: (state, action: PropsBoolean): void => {
       state.openModalConfirmationOrder = action.payload;
-    },
-    handlerModalWithDescribePacket: (state, action: PropsBoolean): void => {
-      state.openModalWithDescribePacket = action.payload;
-    },
-    handlerModalOrder: (state, action: PropsBoolean): void => {
-      state.openModalOrder = action.payload;
-    },
-    handlerDataOrder: (state, action: { payload: IDataOrder }): void => {
-      state.dataOrder = action.payload;
-    },
-    handlerDataDescription: (state, action: { payload: IDataDescriptionPacket }): void => {
-      state.dataDescriptionPacket = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -134,13 +105,8 @@ const appSlice = createSlice({
 });
 
 export const {
-  handlerModalWithDescribePacket,
-  handlerDataOrder,
-  handlerDataDescription,
-  handlerModalOrder,
   handlerModalConfirmationOrder,
   handlerModalNotSendOrder,
-  handlerDisplayPricePackets,
   handlerConfirmationSendEmail,
   handlerErrorSendEmail,
   handlerModalConfirmationGetInTouch,

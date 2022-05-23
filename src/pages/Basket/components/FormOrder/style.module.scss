@@ -1,0 +1,13 @@
+.formOrder {
+  max-height: 500px;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+  padding: 0;
+  border: none;
+  &__formTitle {
+    font-weight: normal;
+    color: #ff9696;
+  }
+}

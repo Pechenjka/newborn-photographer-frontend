@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Footer.scss";
-import NewsLetter from "./NewsLetter/NewsLetter";
-import MyContacts from "../MyContacts/MyContacts";
-import SocialLinks from "../SocialLinks/SocialLinks";
+import NewsLetter from "./components/NewsLetter/NewsLetter";
+import MyContacts from "../../../components/MyContacts/MyContacts";
+import SocialLinks from "../../../components/SocialLinks/SocialLinks";
 import { useLocation } from "react-router-dom";
 
 const Footer: React.FC = () => {

@@ -5,12 +5,11 @@ $colorLink: rgba(255, 150, 150, 1);
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   &__title {
     font-style: normal;
     font-weight: normal;
     font-size: 140px;
-    margin: 0;
+    margin: 100px 0 0;
   }
   &__description {
     font-style: normal;
@@ -23,7 +22,7 @@ $colorLink: rgba(255, 150, 150, 1);
     font-weight: normal;
     font-size: 16px;
     line-height: 17px;
-    margin: 50px 0 0;
+    margin: 50px 0 200px;
     text-decoration: none;
     color: $colorLink;
     transition: all 0.4s;

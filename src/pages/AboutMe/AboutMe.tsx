@@ -1,6 +1,6 @@
 import "./AboutMe.scss";
 import React, { Fragment } from "react";
-import BackgroundImage from "../BackgroundImage/BackgroundImage";
+import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 
 const AboutMe: React.FC = () => {
   return (

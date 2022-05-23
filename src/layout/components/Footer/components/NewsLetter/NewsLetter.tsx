@@ -1,10 +1,10 @@
 import React from "react";
 import "./NewsLetter.scss";
-import newsLetterButtonIcon from "../../../images/newsLetter-button-icon.svg";
-import useFormWithValidation from "../../../hooks/useForm";
-import { sendEmail } from "../../../redux/Reducers/appSlice";
-import InfoToolTip from "../../InfoToolTip/InfoToolTip";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import newsLetterButtonIcon from "../../../../../images/newsLetter-button-icon.svg";
+import useFormWithValidation from "../../../../../hooks/useForm";
+import { sendEmail } from "../../../../../redux/Reducers/appSlice";
+import InfoToolTip from "../../../../../components/InfoToolTip/InfoToolTip";
+import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 
 const NewsLetter: React.FC = () => {
   const dispatch = useAppDispatch();

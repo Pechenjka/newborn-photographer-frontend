@@ -1,52 +1,34 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../utils/api";
-import {
-  IPhoto,
-  PhotosState,
-  PropsArrPhotos,
-  PropsBoolean,
-  PropsPayloadString,
-  PropsRandomPhotos,
-  PropsShowPhotos,
-} from "../../types";
+import { IPhoto, PhotosState, PropsArrPhotos, PropsBoolean, PropsRandomPhotos } from "../../types";
 
-export const fetchPhotos = createAsyncThunk("photo/fetchPhotos", async (_: void, { rejectWithValue }) => {
-  try {
-    return await api.getArrPhotos();
-  } catch (e) {
-    return rejectWithValue("Ошибка, не удалось загрузить фотографии!");
-  }
-});
-
-export const handlerShowPhotos = createAsyncThunk(
-  "photo/showPhotos",
-  async ({ type, order }: PropsShowPhotos, { dispatch }) => {
+export const fetchPhotos = createAsyncThunk(
+  "photo/fetchPhotos",
+  async (arg: { type: string | null; order: string }, { dispatch, rejectWithValue }) => {
     try {
-      const allPhotos: IPhoto[] = await JSON.parse(sessionStorage.getItem("getPhotos") as string);
-      const arrRes: IPhoto[] =  allPhotos.filter((item: IPhoto) => {
-        if (item.metadata.type.includes(type)) {
-          return item;
-        } else if (!item.metadata.type.includes(type) && type === "all") {
-          return !item.metadata.type.includes("woman") && !item.metadata.type.includes("discharge");
-        }
-        return null;
-      });
-      if (order === "random") {
-        dispatch(handlerRandomPhotos({ arr: arrRes, n: arrRes.length }));
+      const res = await api.getArrPhotos(
+        `${
+          arg.type === null
+            ? "?type=newborn&type=baby&type=family&type=pregnancy&type=christening"
+            : `?type=${arg.type}`
+        }`
+      );
+      if (arg.order === "random") {
+        dispatch(handlerRandomPhotos({ arr: res, n: res.length }));
       } else {
-        dispatch(handlerSortPhotos(arrRes));
+        dispatch(handlerSortPhotos(res));
       }
-      return arrRes;
+      return res;
     } catch (e) {
-      console.log(e);
+      return rejectWithValue("Ошибка, не удалось загрузить фотографии!");
     }
   }
 );
 
 const initialState: PhotosState = {
-  getPhotosOneType: [],
+  getPhotos: [],
   showPhotos: [],
-  categoryPhotosBtn: "all",
+  categoryPhotosBtn: null,
   loading: false,
   error: "",
   openModalWithImage: false,
@@ -57,13 +39,13 @@ const photoSlice = createSlice({
   name: "photo",
   initialState,
   reducers: {
-    handlerDataImageForModal: (state, action: PropsPayloadString): void => {
+    handlerDataImageForModal: (state, action: { payload: string }): void => {
       state.dataForImageModal = action.payload;
     },
     handlerModalWithImage: (state, action: PropsBoolean): void => {
       state.openModalWithImage = action.payload;
     },
-    handlerActiveCategoryPhotosBtn: (state, action: PropsPayloadString): void => {
+    handlerActiveCategoryPhotosBtn: (state, action: { payload: string | null }): void => {
       state.categoryPhotosBtn = action.payload;
     },
     handlerRandomPhotos: (state, action: PropsRandomPhotos): void => {
@@ -118,16 +100,13 @@ const photoSlice = createSlice({
       state.error = "";
     });
     builder.addCase(fetchPhotos.fulfilled, (state, action: { payload: IPhoto[] }): void => {
-      sessionStorage.setItem("getPhotos", JSON.stringify(action.payload));
+     state.getPhotos = action.payload;
       state.error = "";
       state.loading = false;
     });
     builder.addCase(fetchPhotos.rejected, (state, action: { payload: any }): void => {
       state.loading = false;
       state.error = action.payload;
-    });
-    builder.addCase(handlerShowPhotos.fulfilled, (state, action: { payload: any }): void => {
-      state.getPhotosOneType = action.payload;
     });
   },
 });

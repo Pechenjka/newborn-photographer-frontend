@@ -1,8 +1,8 @@
 import "./PhotosSlideShow.scss";
 import { Link } from "react-scroll";
 import React, { useCallback, useEffect } from "react";
-import { arrSlides } from "../../../utils/config";
-import { IArrSlides, PropsTimeRef } from "../../../types";
+import { arrSlides } from "../../../../utils/config";
+import { IArrSlides, PropsTimeRef } from "../../../../types";
 
 const PhotosSlideShow: React.FC<PropsTimeRef> = ({ timerRef }) => {
   let slideIndex: number = 1;

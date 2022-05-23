@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import "./PhotoProducts.scss";
-import BackgroundImage from "../BackgroundImage/BackgroundImage";
+import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import bookImage from "../../images/photo-products/book.webp";
 import photoCanvas from "../../images/photo-products/photo-сanvases.webp";
 import photoTablets from "../../images/photo-products/tablets-with-passport.webp";
 import photoBox from "../../images/photo-products/photo-box.webp";
-import Table from "./Table/Table";
+import Table from "./components/Table/Table";
 import {
   booksAccessories,
   tableBooks,

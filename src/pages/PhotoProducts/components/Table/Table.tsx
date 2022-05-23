@@ -1,6 +1,6 @@
 import "./Table.scss";
 import React from "react";
-import {IProduct, ITable, ITablesPhotoProducts} from "../../../types";
+import {IProduct, ITable, ITablesPhotoProducts} from "../../../../types";
 
 const Table: React.FC<ITable> = ({ table }) => {
   return (

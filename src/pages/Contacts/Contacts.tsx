@@ -1,9 +1,9 @@
 import "./Contacts.scss";
 import React, { Fragment } from "react";
-import BackgroundImage from "../BackgroundImage/BackgroundImage";
-import ContactMeForm from "../ContactMeForm/ContactMeForm";
-import SocialLinks from "../SocialLinks/SocialLinks";
-import MyContacts from "../MyContacts/MyContacts";
+import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
+import ContactMeForm from "../../components/ContactMeForm/ContactMeForm";
+import SocialLinks from "../../components/SocialLinks/SocialLinks";
+import MyContacts from "../../components/MyContacts/MyContacts";
 import useFormWithValidation from "../../hooks/useForm";
 import { sendMessageGetInTouch } from "../../redux/Reducers/appSlice";
 import { useAppDispatch } from "../../redux/hooks";

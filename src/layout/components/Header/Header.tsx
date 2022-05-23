@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./Header.scss";
-import photographer from "../../images/logo-header-photographer.webp";
-import NavMenu from "./NavMenu/NavMenu";
-import { PropsTimeRef } from "../../types";
+import photographer from "../../../images/logo-header-photographer.webp";
+import NavMenu from "./components/NavMenu/NavMenu";
+import { PropsTimeRef } from "../../../types";
 
 const Header: React.FC<PropsTimeRef> = ({ timerRef }) => {
   const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(false);

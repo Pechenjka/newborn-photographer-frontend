@@ -2,8 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../utils/api";
 import {
   AppState,
-  IDataDescriptionPacket,
-  IDataOrder,
   PropsBoolean,
   PropsPayLoadGetInTouch,
   PropsPayLoadSendEmail,
@@ -11,16 +9,6 @@ import {
 
 const initialState: AppState = {
   loading: false,
-  openModalWithDescribePacket: false,
-  dataOrder: { type: "", title: "", price: "", location: "" },
-  dataDescriptionPacket: {
-    title: "",
-    description: [],
-    imageDescriptionPacket: "",
-    imageDescriptionPacketMobile: "",
-    price: "",
-  },
-  openModalOrder: false,
   openModalConfirmationGetInTouch: false,
   openModalErrorGetInTouch: false,
   openModalConfirmationOrder: false,
@@ -93,18 +81,6 @@ const appSlice = createSlice({
     handlerModalConfirmationOrder: (state, action: PropsBoolean): void => {
       state.openModalConfirmationOrder = action.payload;
     },
-    handlerModalWithDescribePacket: (state, action: PropsBoolean): void => {
-      state.openModalWithDescribePacket = action.payload;
-    },
-    handlerModalOrder: (state, action: PropsBoolean): void => {
-      state.openModalOrder = action.payload;
-    },
-    handlerDataOrder: (state, action: { payload: IDataOrder }): void => {
-      state.dataOrder = action.payload;
-    },
-    handlerDataDescription: (state, action: { payload: IDataDescriptionPacket }): void => {
-      state.dataDescriptionPacket = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(sendOrder.pending, (state): void => {
@@ -129,10 +105,6 @@ const appSlice = createSlice({
 });
 
 export const {
-  handlerModalWithDescribePacket,
-  handlerDataOrder,
-  handlerDataDescription,
-  handlerModalOrder,
   handlerModalConfirmationOrder,
   handlerModalNotSendOrder,
   handlerConfirmationSendEmail,

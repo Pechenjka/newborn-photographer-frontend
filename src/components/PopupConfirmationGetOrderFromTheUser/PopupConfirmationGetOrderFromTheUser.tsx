@@ -1,6 +1,6 @@
 import React from "react";
 import MessageToTheUser from "../MessageToTheUser/MessageToTheUser";
-import { handlerDataOrder, handlerModalConfirmationOrder, handlerModalOrder } from "../../redux/Reducers/appSlice";
+import { handlerModalConfirmationOrder } from "../../redux/Reducers/appSlice";
 import Popup from "../Popup/Popup";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
@@ -10,9 +10,6 @@ const PopupConfirmationGetOrderFromTheUser: React.FC = () => {
 
   const handleClosePopup = (): void => {
     dispatch(handlerModalConfirmationOrder(false));
-    dispatch(handlerModalOrder(false));
-    dispatch(handlerDataOrder({ type: "", title: "", price: "", location: "" }));
-
   };
 
   return (

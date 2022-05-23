@@ -4,9 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { animatedItems } from "../AnimatedItems/AnimatedItems";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
-import PopupWithDescriptionPacket from "../PopupWithDescriptonPakets/PopupWithDescriptionPackets";
 import PopupConfirmationGetMessageFromTheUser from "../PopupConfirmationGetMessageFromTheUser/PopupConfirmationGetMessageFromTheUser";
 import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFromTheUser/PopupConfirmationGetOrderFromTheUser";
 import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
@@ -39,7 +37,6 @@ const App: React.FC = () => {
     <div className="page">
       <Layout />
       <PopupWithImage />
-      <PopupWithDescriptionPacket />
       <PopupConfirmationGetMessageFromTheUser />
       <PopupTheErrorWhenMessageNotSend />
       <PopupConfirmationGetOrderFromTheUser />

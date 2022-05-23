@@ -2,10 +2,6 @@ import React from "react";
 
 export interface AppState {
   loading: boolean;
-  openModalWithDescribePacket: boolean;
-  dataOrder: IDataOrder;
-  dataDescriptionPacket: IDataDescriptionPacket;
-  openModalOrder: boolean;
   openModalConfirmationGetInTouch: boolean;
   openModalErrorGetInTouch: boolean;
   openModalConfirmationOrder: boolean;
@@ -42,20 +38,6 @@ export interface IOrderFields {
   email: string;
   tel: string;
   text?: string;
-}
-export interface IDataOrder {
-  type: string;
-  title: string;
-  price: string;
-  location: string;
-}
-
-export interface IDataDescriptionPacket {
-  title: string;
-  description: Array<string | Array<string>>;
-  imageDescriptionPacket: string;
-  imageDescriptionPacketMobile: string;
-  price: string;
 }
 
 export interface PropsPayLoadSendOrder {

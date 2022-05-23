@@ -44,7 +44,7 @@ const Button: React.FC<ButtonProps> = ({
     { [`button__${styleButton}_${editStyle}`]: edit }
   );
   return (
-    <button className={className} onClick={onClick} type={type} form={form} disabled={disabled}>
+    <button  className={className} onClick={onClick} type={type} form={form} disabled={disabled}>
       {children}
       {buttonWithIcon && <span className={Styles.button__icon} />}
     </button>

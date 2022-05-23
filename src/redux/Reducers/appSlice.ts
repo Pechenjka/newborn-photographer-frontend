@@ -143,7 +143,6 @@ export const {
   handlerErrorSendEmail,
   handlerModalConfirmationGetInTouch,
   handlerModalErrorGetInTouch,
-  handlerTimeOutClick,
 } = appSlice.actions;
 
 export default appSlice.reducer;

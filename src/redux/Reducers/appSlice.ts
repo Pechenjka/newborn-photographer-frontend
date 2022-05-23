@@ -4,11 +4,9 @@ import {
   AppState,
   IDataDescriptionPacket,
   IDataOrder,
-  IPacket,
   PropsBoolean,
   PropsPayLoadGetInTouch,
   PropsPayLoadSendEmail,
-  PropsPayLoadSendOrder,
 } from "../../types";
 
 const initialState: AppState = {
@@ -33,9 +31,9 @@ const initialState: AppState = {
   timeOutClick: true,
 };
 
-export const sendOrder = createAsyncThunk("app/sendOrder", async ({ data }: PropsPayLoadSendOrder, { dispatch }) => {
+export const sendOrder = createAsyncThunk("app/sendOrder", async (data: any, { dispatch }) => {
   try {
-    const res = await api.sendOrder({ data });
+    const res = await api.sendOrder(data);
     dispatch(handlerModalConfirmationOrder(true));
     return res;
   } catch (e) {
@@ -76,9 +74,6 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    handlerDisplayPricePackets: (state, action: { payload: IPacket[] }) => {
-      state.displayPricePackets = action.payload;
-    },
     handlerTimeOutClick: (state, action: PropsBoolean): void => {
       state.timeOutClick = action.payload;
     },
@@ -144,7 +139,6 @@ export const {
   handlerModalOrder,
   handlerModalConfirmationOrder,
   handlerModalNotSendOrder,
-  handlerDisplayPricePackets,
   handlerConfirmationSendEmail,
   handlerErrorSendEmail,
   handlerModalConfirmationGetInTouch,

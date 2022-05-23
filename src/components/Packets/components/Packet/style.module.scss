@@ -1,0 +1,107 @@
+$colorShadow: black;
+$backgroundColorOverlayInit: rgba(0, 0, 0, 0.1);
+$backgroundColorOverlayHover: rgba(0, 0, 0, 0.4);
+$backgroundColorOverlayHoverTitle: rgba(255, 150, 150, 0.6);
+$colorOverlayText: white;
+$backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
+
+.packet {
+  max-width: 660px;
+  max-height: max-content;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  &__wrapperImage {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__addInBasket {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 15px 0;
+    height: max-content;
+    width: 100%;
+    transform: translateY(100%);
+    transition: all 0.3s ease-in;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    &_success {
+      background-color: #79553d;
+      &:hover {
+        background-color: rgba(121, 85, 61, 0.8);
+      }
+    }
+  }
+  &__wrapperImage:hover &__addInBasket {
+    transform: translateY(0);
+  }
+  &__image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  &__description {
+    background-color: #000000;
+    display: flex;
+  }
+
+  &__namePacketLink {
+    font-size: 25px;
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    transition: all 0.3s ease-in;
+    margin-top: 10px;
+    text-align: left;
+    &:hover {
+      color: #79553d;
+    }
+    &_edit {
+      font-size: 18px;
+    }
+  }
+
+  &__price {
+    font-weight: normal;
+    font-family: MarckScript-Regular, serif;
+    color: #79553d;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .packet {
+    &__namePacketLink {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 866px) {
+  .packet {
+    flex-direction: column;
+    &__price {
+      font-size: 25px;
+    }
+  }
+}
+
+@media screen and (max-width: 737px) {
+  .packet {
+    flex-direction: row;
+  }
+}

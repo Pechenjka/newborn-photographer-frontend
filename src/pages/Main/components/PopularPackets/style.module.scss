@@ -1,0 +1,70 @@
+.popularPackets {
+  max-width: 1300px;
+  margin: 50px auto;
+  &__title {
+    position: relative;
+    width: 100%;
+    font-size: 30px;
+    font-family: "MarckScript-Regular", sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding: 0 40px;
+    &_edit {
+      font-size: 20px;
+    }
+  }
+  &__titleSpan {
+    position: absolute;
+    top: 0;
+    transform: translate(55px, 10px);
+    display: block;
+    font-size: 70px;
+    color: #504E4E33;
+    font-weight: bold;
+    &_edit {
+      font-size: 40px;
+    }
+  }
+  &__packets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-gap: 30px;
+    max-width: 1300px;
+    margin: 50px auto 40px;
+    padding: 0 40px;
+    list-style: none;
+    &_edit {
+      display: flex;
+      flex-direction: column;
+      margin: 40px 0 0;
+      grid-gap: 20px;
+    }
+  }
+  &_edit {
+    max-width: 250px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .popularPackets {
+    max-width: 90%;
+    &__packets {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .popularPackets {
+    max-width: 100%;
+    &__packets {
+      grid-gap: 15px;
+    }
+    &__titleSpan {
+      transform: translate(55px, 20px);
+      font-size: 50px;
+    }
+  }
+}

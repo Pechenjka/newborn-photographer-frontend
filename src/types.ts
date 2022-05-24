@@ -220,3 +220,8 @@ export interface PropsPopularPackets {
   editStyleForPrice?: boolean;
   timerRef: any;
 }
+
+export interface PropsPacketsInBasket {
+  packetInBasket: IPacket[];
+  onClickDeletePacket: (id: string) => void;
+}

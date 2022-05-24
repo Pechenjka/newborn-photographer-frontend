@@ -1,0 +1,125 @@
+@import "./src/styles/vars";
+
+.packetsInBasket {
+  &__title {
+    font-size: 25px;
+    color: #ff9696;
+    &_span {
+      font-family: "MarckScript-Regular", sans-serif;
+      padding-left: 5px;
+      color: #504e4e33;
+      font-size: 60px;
+    }
+  }
+  &__table {
+    margin: 30px auto;
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  &__tableHeader {
+    padding: 20px 0;
+    font-size: 14px;
+    font-weight: 500;
+    &:last-of-type {
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    &:first-of-type {
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+  }
+  &__tableHeaderContainer {
+    background-color: $BackgroundColorHeaderTable;
+    border: none;
+  }
+  &__tableRowContainer {
+    width: 100%;
+    &:nth-child(2n) {
+      background-color: $BackgroundColorRowTable;
+    }
+  }
+  &__tableRow {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 400;
+    &:last-of-type {
+      border-bottom-right-radius: 5px;
+      border-top-right-radius: 5px;
+    }
+    &:first-of-type {
+      border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+  }
+  &__image {
+    max-width: 100px;
+    width: 100%;
+  }
+  &__buttonDeletePacket {
+    width: 25px;
+    height: 25px;
+    background: url("../../../../images/close_popup-packet-icon.svg") no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .packetsInBasket {
+    &__title {
+      font-size: 20px;
+      &_span {
+        font-size: 45px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .packetsInBasket {
+    &__title {
+      font-size: 18px;
+      &_span {
+        font-size: 35px;
+      }
+    }
+    &__tableHeader {
+      padding: 15px 0;
+      font-size: 12px;
+    }
+    &__tableRow {
+      padding: 10px 15px;
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .packetsInBasket {
+    &__tableHeader {
+      padding: 15px 0;
+      font-size: 11px;
+    }
+    &__tableRow {
+      padding: 15px 10px;
+      font-size: 11px;
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .packetsInBasket {
+    &__tableHeader {
+      font-size: 10px;
+    }
+    &__tableRow {
+      padding: 15px 5px;
+      font-size: 11px;
+    }
+  }
+}

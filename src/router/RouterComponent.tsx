@@ -50,7 +50,9 @@ const RouterComponent: React.FC<PropsTimeRef> = ({ timerRef }) => {
       </Route>
       <Route exact path="/prices/packets/:id" component={PacketWithDetailsDescription} />
       <Route exact path="/photo-products" component={PhotoProducts} />
-      <Route exact path="/basket" component={Basket} />
+      <Route exact path="/basket" >
+        <Basket timerRef={timerRef}/>
+      </Route>
       {/*{isStaff && <Route exact path="/admin" component={Admin} />}*/}
       <Route exact path="/not-found" component={NotFound} />
       <Route path="*">

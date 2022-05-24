@@ -54,6 +54,10 @@
       border-top-left-radius: 5px;
     }
   }
+  &__image {
+    max-width: 100px;
+    width: 100%;
+  }
   &__buttonDeletePacket {
     width: 25px;
     height: 25px;
@@ -62,5 +66,60 @@
     cursor: pointer;
     border-radius: 50%;
     border: none;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .packetsInBasket {
+    &__title {
+      font-size: 20px;
+      &_span {
+        font-size: 45px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .packetsInBasket {
+    &__title {
+      font-size: 18px;
+      &_span {
+        font-size: 35px;
+      }
+    }
+    &__tableHeader {
+      padding: 15px 0;
+      font-size: 12px;
+    }
+    &__tableRow {
+      padding: 10px 15px;
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .packetsInBasket {
+    &__tableHeader {
+      padding: 15px 0;
+      font-size: 11px;
+    }
+    &__tableRow {
+      padding: 15px 10px;
+      font-size: 11px;
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .packetsInBasket {
+    &__tableHeader {
+      font-size: 10px;
+    }
+    &__tableRow {
+      padding: 15px 5px;
+      font-size: 11px;
+    }
   }
 }

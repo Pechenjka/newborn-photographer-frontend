@@ -35,7 +35,7 @@ const Basket: React.FC<PropsTimeRef> = ({ timerRef }) => {
       <BackgroundImage />
       <div className={Styles.basket__container}>
         {!packetInBasket.length ? (
-          <p className="list__not-posts">Корзина пуста</p>
+          <p className={Styles.basket__notPackets}>Корзина пуста</p>
         ) : (
           <div className={Styles.basket__wrapperTable}>
             <PacketsInBasket onClickDeletePacket={handlerClickDeletePacketFromBasket} packetInBasket={packetInBasket} />

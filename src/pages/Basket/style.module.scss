@@ -1,12 +1,38 @@
-
 .basket {
   &__container {
     max-width: 1024px;
+    min-height: 400px;
     margin: 50px auto;
+    padding: 0 40px;
+  }
+  &__notPackets {
+    padding-top: 100px;
   }
   &__wrapperTable {
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .basket {
+    &__container {
+      padding: 0 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .basket {
+    &__container {
+      margin: 30px auto;
+      padding: 0 10px;
+    }
+    &__wrapperTable {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

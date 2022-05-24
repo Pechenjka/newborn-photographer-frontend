@@ -11,3 +11,29 @@
     color: #ff9696;
   }
 }
+
+@media screen and (max-width: 470px) {
+  .formOrder {
+    &__formTitle {
+      font-size: 17px;
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .formOrder {
+    &__formTitle {
+      font-size: 15px;
+    }
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .formOrder {
+   grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 1fr;
+    &__formTitle {
+      font-size: 15px;
+    }
+  }
+}

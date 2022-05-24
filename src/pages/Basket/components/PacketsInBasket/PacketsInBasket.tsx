@@ -3,6 +3,7 @@ import React from "react";
 import { IPacket, PropsPacketsInBasket } from "../../../../types";
 
 const PacketsInBasket: React.FC<PropsPacketsInBasket> = ({ packetInBasket, onClickDeletePacket }) => {
+
   const titleBasket = () =>
     (packetInBasket.length === 1 && "пакет") ||
     (packetInBasket.length <= 4 && "пакета") ||
@@ -37,7 +38,7 @@ const PacketsInBasket: React.FC<PropsPacketsInBasket> = ({ packetInBasket, onCli
                   />
                 </th>
                 <th className={Styles.packetsInBasket__tableRow}>
-                  <img src={packet.image} style={{ width: "100px" }} alt="image from paket" />
+                  <img className={Styles.packetsInBasket__image} src={packet.image}  alt="image from paket" />
                 </th>
                 <th className={Styles.packetsInBasket__tableRow}>{packet.title}</th>
                 <th className={Styles.packetsInBasket__tableRow}>{packet.packet}</th>

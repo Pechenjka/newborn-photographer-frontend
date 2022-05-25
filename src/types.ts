@@ -22,6 +22,7 @@ export interface IPacket {
   image: string;
   pinned: boolean;
   imageDescription: string;
+  imageDescriptionMobile: string;
   description: string;
   _id: string;
   createdAt: string;

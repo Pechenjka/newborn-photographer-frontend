@@ -24,13 +24,17 @@ const PacketWithDetailsDescription: React.FC = () => {
           <div className={Styles.packetDetails__containerImage}>
             <img
               className={Styles.packetDetails__image}
-              src={packetWithDetailsDescription.imageDescription}
+              src={
+                window.innerWidth > 1024
+                  ? packetWithDetailsDescription.imageDescription
+                  : packetWithDetailsDescription.imageDescriptionMobile
+              }
               alt="image-description"
             />
             <div className={Styles.packetDetails__aboutPacket}>
               <h3 className={Styles.packetDetails__title}>{packetWithDetailsDescription.title}</h3>
               <p className={Styles.packetDetails__price}>{packetWithDetailsDescription.price}p</p>
-              <p className={Styles.packetDetails__getFromPhotosession}>
+              <div className={Styles.packetDetails__getFromPhotosession}>
                 Что получаете с фотосессии: <br />
                 <ul className={Styles.packetDetails__getFromPhotosessionList}>
                   {packetWithDetailsDescription.getFromPhotosession.split("\n").map((str, i) => (
@@ -39,7 +43,7 @@ const PacketWithDetailsDescription: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-              </p>
+              </div>
               <p className={Styles.packetDetails__category}>
                 Тип съемки:
                 <span className={Styles.packetDetails__category_span}>{packetWithDetailsDescription.packet}</span>

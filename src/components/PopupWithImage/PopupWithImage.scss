@@ -11,7 +11,9 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
     display: block;
     position: relative;
     max-width: 1600px;
+    width: 100%;
     max-height: 80vh;
+    height: 100%;
     border-radius: 10px;
   }
   &__closeBtn {

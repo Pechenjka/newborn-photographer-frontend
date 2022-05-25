@@ -84,3 +84,43 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .packetDetails {
+    margin: 50px auto;
+    padding: 0 20px;
+    &__containerImage {
+      flex-direction: column;
+    }
+    &__image {
+      max-height: 400px;
+      object-fit: cover;
+    }
+    &__aboutPacket {
+      margin: 50px auto 0;
+      padding: 0 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .packetDetails {
+    padding: 0 10px;
+    &__aboutPacket {
+      margin: 50px auto 0;
+      padding: 0 20px;
+    }
+    &__aboutPacket {
+align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .packetDetails {
+    &__aboutPacket {
+      margin: 50px auto 0;
+      padding: 0 20px;
+    }
+  }
+}

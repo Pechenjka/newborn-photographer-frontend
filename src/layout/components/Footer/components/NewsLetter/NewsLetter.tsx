@@ -51,7 +51,7 @@ const NewsLetter: React.FC = () => {
             type="submit"
             disabled={!isValid}
           >
-            <img src={newsLetterButtonIcon} alt="лого кнопки" />
+            <img className='newsLetter__form-button_icon' src={newsLetterButtonIcon} alt="лого кнопки" />
           </button>
           <span
             className={`newsLetter__form-span ${

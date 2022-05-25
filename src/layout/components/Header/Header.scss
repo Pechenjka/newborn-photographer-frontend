@@ -17,6 +17,8 @@ $colorIconBurgerMenu: rgba(255,252,236,1);
   }
   &__logo {
     max-width: 200px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     margin-left: 50px;
     z-index: 1;
@@ -45,7 +47,7 @@ $colorIconBurgerMenu: rgba(255,252,236,1);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .header {
     &__container {
       display: flex;

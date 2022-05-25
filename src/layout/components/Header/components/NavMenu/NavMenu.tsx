@@ -22,7 +22,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
     if (pathname.includes(type)) {
       return event.stopPropagation();
     }
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       handlerOpenAndCloseBurgerMenu();
     }
   };
@@ -30,7 +30,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
   //Обработчик клика по ссылке меню
   const handleClickLink = (): void => {
     clearInterval(timerRef.current);
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       handlerOpenAndCloseBurgerMenu();
     }
   };
@@ -39,7 +39,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ timerRef, handlerOpenAndCloseBurgerMe
   const handleClickLinkMobileVersion = (linkActive: ILink): void => {
     const link = document.querySelectorAll(".navigation__link-arrow") as NodeListOf<Element>;
     const containerWithSubLinks = document.querySelectorAll(".navigation__subLinks-container") as NodeListOf<Element>;
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1024) {
       link.forEach((item: Element) => {
         if (item.textContent === linkActive.name) {
           item.classList.toggle("subLinks__active");

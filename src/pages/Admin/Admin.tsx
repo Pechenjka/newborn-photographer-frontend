@@ -47,6 +47,7 @@ const Admin: React.FC = () => {
     shortDescription: "",
     image: "",
     imageDescription: "",
+    imageDescriptionMobile: "",
     getFromPhotosession: "",
     countLocations: "",
     pinned: false,

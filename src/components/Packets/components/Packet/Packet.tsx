@@ -10,10 +10,10 @@ export interface PropsPacket {
   packet: IPacket;
   editStyleForPrice?: boolean;
   timerRef: any;
-  setRef:any
+  setRef: any;
 }
 
-const Packet: React.FC<PropsPacket> = ({ timerRef, packet, editStyleForPrice = false, setRef }) => {
+const Packet: React.FC<PropsPacket> = ({ timerRef, packet, editStyleForPrice, setRef }) => {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { packetInBasket } = useAppSelector((state) => state.packets);

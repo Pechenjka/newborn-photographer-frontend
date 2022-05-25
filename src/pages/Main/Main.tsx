@@ -11,7 +11,7 @@ const Main: React.FC<PropsTimeRef> = ({ timerRef }) => {
       <main className="main">
         <PhotosSlideShow timerRef={timerRef} />
         <PhotoGalleryOfTheMainPage />
-        <PopularPackets timerRef={timerRef}/>
+        <PopularPackets editStyleForPrice={window.innerWidth < 768 && true} timerRef={timerRef} />
       </main>
     </Fragment>
   );

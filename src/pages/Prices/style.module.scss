@@ -16,7 +16,37 @@
   &__title {
     font-family: "MarckScript-Regular", sans-serif;
     font-size: 50px;
-    color: #504E4E33;
+    color: #504e4e33;
     grid-column: 1/-1;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .prices {
+    flex-direction: column;
+    &__title {
+      font-size: 40px;
+    }
+    &__packets {
+      padding: 0 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 776px) {
+  .prices {
+    &__packets {
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .prices {
+    &__packets {
+      padding: 0 20px;
+      grid-template-columns: 1fr;
+    }
   }
 }

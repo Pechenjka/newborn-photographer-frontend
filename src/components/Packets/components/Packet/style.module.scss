@@ -83,10 +83,13 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   }
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1024px) {
   .packet {
     &__namePacketLink {
-      font-size: 20px;
+      font-size: 22px;
+      &_edit {
+        font-size: 20px;
+      }
     }
   }
 }
@@ -100,8 +103,12 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   }
 }
 
-@media screen and (max-width: 737px) {
+@media screen and (max-width: 567px) {
   .packet {
-    flex-direction: row;
+    &__namePacketLink {
+      &_edit {
+        font-size: 15px;
+      }
+    }
   }
 }

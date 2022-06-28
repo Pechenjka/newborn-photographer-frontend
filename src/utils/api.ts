@@ -15,7 +15,7 @@ class Api {
   }
 
   newsLetter({ data }: PropsPayLoadSendEmail) {
-    return fetch(`${this.baseUrl}/user/newsLetter`, {
+    return fetch(`${this.baseUrl}/contact/newsLetter`, {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify({
@@ -27,7 +27,7 @@ class Api {
   }
 
   getInTouch({ data }: PropsPayLoadGetInTouch) {
-    return fetch(`${this.baseUrl}/user/getInTouch`, {
+    return fetch(`${this.baseUrl}/contact/getInTouch`, {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify({
@@ -42,7 +42,7 @@ class Api {
   }
 
   sendOrder({ values, packetInBasket }: PropsPayLoadSendOrder) {
-    return fetch(`${this.baseUrl}/user/order`, {
+    return fetch(`${this.baseUrl}/contact/order`, {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify({
@@ -50,6 +50,7 @@ class Api {
         email: values.email,
         tel: values.tel,
         text: values.text,
+        packets: packetInBasket,
       }),
     })
       .then(checkResponse)

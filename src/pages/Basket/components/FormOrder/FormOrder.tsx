@@ -94,7 +94,7 @@ const FormOrder: React.FC = () => {
               editStyleField="textOrder"
             />
             <Button styleButton="ping" editStyle="buttonSubmitOrder" edit type="submit">
-              Оформленить заказ
+              Оформить заказ
             </Button>
           </form>
         )}

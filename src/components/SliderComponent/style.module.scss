@@ -9,12 +9,43 @@ $colorBackgroundArrowHover: rgba(255, 255, 255, 0.2);
 $colorArrow: rgba(255, 255, 255, 0.5);
 $colorArrowHover: rgba(255, 255, 255, 0.9);
 
+.mySwiper {
+  height: 100%;
+}
+
+.swiperBtn {
+  width: 40px;
+  height: 100px;
+  z-index: 10;
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50px);
+  border: none;
+  background-color: $colorBackgroundArrow;
+  font-size: 28px;
+  color: $colorArrow;
+  border-radius: 20px;
+  transition: all 0.3s;
+  &:hover {
+    background-color: $colorBackgroundArrowHover;
+    color: $colorArrowHover;
+  }
+  &_prev {
+    left: 100px;
+  }
+  &_next {
+    right: 100px;
+  }
+}
+
 .slideShow {
   position: relative;
   height: 640px;
   width: 100%;
   box-sizing: border-box;
-  &__aboutMe-container {
+  &__aboutMeContainer {
     width: calc(100% - 1440px);
     transform: translateX(50%);
     z-index: 1;
@@ -24,14 +55,12 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     bottom: 30px;
     text-align: left;
   }
-  &__welcome-title {
+  &__welcomeTitle {
     display: block;
     width: max-content;
     font-size: 45px;
     font-weight: 700;
     margin: 0;
-    transform: translateY(50px);
-    opacity: 0;
     background: -webkit-linear-gradient(#ff9696, #ffe89e);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -44,22 +73,19 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
       background: -webkit-linear-gradient(#ff9696, #ffe89e);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      opacity: 0;
     }
   }
-  &__welcome-description {
+  &__welcomeDescription {
     margin: 10px 0 0;
     width: max-content;
     font-size: 16px;
     line-height: 19px;
     font-weight: 400;
     font-style: normal;
-    opacity: 0;
-    transform: translateY(50px);
     transition: all 1s 0.4s;
     color: $colorText;
   }
-  &__welcome-link {
+  &__welcomeLink {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,8 +99,6 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     border-radius: 15px;
     background-color: $colorBackgroundLink;
     color: $colorText;
-    opacity: 0;
-    transform: translateY(50px);
     transition: transform 1s 0.6s, opacity 1s 0.6s, background 0.6s;
     &:hover {
       cursor: pointer;
@@ -90,114 +114,42 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     object-fit: cover;
     height: 100%;
     width: 100%;
-    opacity: 0;
-    transition: opacity 1.5s;
   }
 
-  &__image-container {
+  &__imageContainer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
   }
-  &__dot-container {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-  }
-  &__dot {
-    height: 15px;
-    width: 15px;
-    margin: 0 5px;
-    background-color: $colorInitDots;
-    border-radius: 50%;
-    display: inline-block;
-    transition: all 0.6s;
-    transform: translateY(0);
-    &_active {
-      background-color: $colorActiveDots;
-    }
-    &:hover {
-      cursor: pointer;
-      background-color: $colorActiveDots;
-    }
-  }
-
-  &__arrow {
-    position: absolute;
-    top: 50%;
-    height: 100px;
-    width: 40px;
-    transform: translateY(-50px);
-    border: none;
-    background-color: $colorBackgroundArrow;
-    font-size: 28px;
-    color: $colorArrow;
-    cursor: pointer;
-    border-radius: 20px;
-    transition: all 0.3s;
-    &:hover {
-      background-color: $colorBackgroundArrowHover;
-      color: $colorArrowHover;
-    }
-    &_prev {
-      left: 100px;
-    }
-    &_next {
-      right: 100px;
-    }
-  }
-  &__prev-image {
-    animation: slideShow__prev-image ease 1s;
-    animation-delay: 6s;
-  }
-  &__next-image {
-    animation: slideShow__next-image ease 2s;
-  }
-}
-
-.slideShow__welcome-title.anim-items_active {
-  opacity: 1;
-  transform: translateY(0);
-  &:before {
-    opacity: 1;
-  }
-}
-.slideShow__welcome-description.anim-items_active,
-.slideShow__welcome-link.anim-items_active {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 @media screen and(max-width: 768px) {
   .slideShow {
     height: 650px;
-    &__aboutMe-container {
+    &__aboutMeContainer {
       padding-left: 30px;
     }
-    &__welcome-title {
+    &__welcomeTitle {
       font-size: 40px;
       font-weight: 700;
       &::before {
         font-size: 30px;
       }
     }
-    &__welcome-description {
+    &__welcomeDescription {
       font-size: 15px;
     }
-
-    &__arrow {
-      border-radius: 0;
-      background-color: transparent;
-      &_prev {
-        left: 0;
-      }
-      &_next {
-        right: 0;
-      }
+  }
+  .swiperBtn {
+    border-radius: 0;
+    background-color: transparent;
+    &_prev {
+      left: 20px;
+    }
+    &_next {
+      right: 20px;
     }
   }
 }
@@ -205,7 +157,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
 @media screen and(max-width: 568px) {
   .slideShow {
     height: 550px;
-    &__aboutMe-container {
+    &__aboutMeContainer {
       width: 100%;
       display: grid;
       grid-template-columns: max-content 1fr;
@@ -214,7 +166,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
       transform: translateX(0);
       padding-left: 20px;
     }
-    &__welcome-title {
+    &__welcomeTitle {
       grid-row: 1/2;
       grid-column: 1/-1;
       font-size: 30px;
@@ -222,13 +174,13 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
         font-size: 20px;
       }
     }
-    &__welcome-description {
+    &__welcomeDescription {
       margin: 0;
       grid-row: 2/-1;
       grid-column: 1/2;
       font-size: 14px;
     }
-    &__welcome-link {
+    &__welcomeLink {
       grid-row: 2/-1;
       grid-column: 2/-1;
       margin: auto;
@@ -238,46 +190,46 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
       font-size: 12px;
       border-radius: 10px;
     }
-    &__dot-container {
-      bottom: 5px;
-    }
-    &__dot {
-      height: 12px;
-      width: 12px;
-      margin: 0 5px;
-    }
   }
 }
 
 @media screen and(max-width: 474px) {
   .slideShow {
     height: 400px;
-    &__welcome-title {
+    &__welcomeTitle {
       font-size: 25px;
       &::before {
         font-size: 18px;
       }
     }
-    &__welcome-description {
+    &__welcomeDescription {
       font-size: 12px;
       line-height: 15px;
     }
-    &__welcome-link {
+    &__welcomeLink {
       width: 90px;
       font-size: 11px;
+    }
+  }
+  .swiperBtn {
+    &_prev {
+      left: 0;
+    }
+    &_next {
+      right: 0;
     }
   }
 }
 
 @media screen and(max-width: 413px) {
   .slideShow {
-    &__aboutMe-container {
+    &__aboutMeContainer {
       display: block;
     }
-    &__welcome-description {
+    &__welcomeDescription {
       margin: 5px 0 0 ;
     }
-    &__welcome-link {
+    &__welcomeLink {
       margin: 8px auto 0 0;
     }
   }

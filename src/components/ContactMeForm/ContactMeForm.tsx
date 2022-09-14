@@ -1,84 +1,55 @@
 import React from "react";
 import "./ContactMeForm.scss";
-import Spinner from "../Spinner/Spinner";
-import { useAppSelector } from "../../redux/hooks";
-import { PropsContactMeForm } from "../../types";
-import Button from "../Button/Button";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { IOrderFields, PropsContactMeForm } from "../../types";
+import { FormikFormComponent } from "../FormikFormComponent";
+import { sendMessageGetInTouch } from "../../redux/Reducers/appSlice";
+import { MyTextField } from "../MyTextField";
+import { validationSchemaContactWithMe } from "../../validationForms";
+import { ShowInfoToolTip } from "../ShowInfoToolTip";
 
-const ContactMeForm: React.FC<PropsContactMeForm> = (props) => {
-  const { onChange, onSubmit, title, values, errors, isValid } = props;
-  const { loading } = useAppSelector((state) => state.app);
+const initialValues: IOrderFields = {
+  name: "",
+  email: "",
+  phone: "",
+  text: "",
+};
+
+const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
+  const dispatch = useAppDispatch();
+  const { loading, confirmationGetInTouch, errorGetInTouch } = useAppSelector((state) => state.app);
+
+  const handlerSubmitGetInTouch = (values: { name: string; email: string; phone: string; text: string }): void => {
+    dispatch(sendMessageGetInTouch({ data: values }));
+  };
+
   return (
     <div className="contactMeForm">
       <h3 className="contactMeForm__title">{title}</h3>
-      <form className="contactMeForm__form form" onSubmit={onSubmit}>
-        <fieldset className="form__fieldset">
-          <label
-            className={`form__label form__label_required ${errors.name === "" ? "form__label_required_true" : ""}`}
-            htmlFor="name"
-          >
-            Имя
-          </label>
-          <input
-            className="form__input"
-            type="text"
-            name="name"
-            id="name"
-            minLength={2}
-            required
-            onChange={onChange}
-            value={values.name || ""}
-          />
-          <span className="form__span" id="text-name">
-            {errors.name}
-          </span>
-          <label
-            className={`form__label form__label_required ${errors.email === "" ? "form__label_required_true" : ""}`}
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            className="form__input"
-            type="email"
-            name="email"
-            id="email"
-            required
-            onChange={onChange}
-            value={values.email || ""}
-          />
-          <span className="form__span" id="text-email">
-            {errors.email}
-          </span>
-          <label className="form__label" htmlFor="tel">
-            Телефон
-          </label>
-          <input className="form__input" type="tel" name="tel" id="tel" onChange={onChange} value={values.tel || ""} />
-          <span className="form__span" id="tel-error">
-            {errors.tel}
-          </span>
-          <label
-            className={`form__label form__label_required ${errors.text === "" ? "form__label_required_true" : ""}`}
-            htmlFor="text"
-          >
-            Ваше сообщение
-          </label>
-          <textarea
-            className="form__textarea"
-            name="text"
-            id="text"
-            onChange={onChange}
-            value={values.text || ""}
-            required
-          />
-          <span className="form__span" id="text-error">
-            {errors.text}
-          </span>
-        </fieldset>
-        <Button styleButton="ping" disabled={!isValid} type="submit" editStyle='buttonFormContact' edit>
-          {loading ? <Spinner /> : "Отправить сообщение"}
-        </Button>
-      </form>
+      <ShowInfoToolTip
+        error={errorGetInTouch}
+        textErrorMessage="Ошибка, отправить сообщение не получилось, попробуйте позже"
+        textConfirmMessage="Ваше письмо успешно отправлено!, Мы свяжемся с вами в ближайшее время"
+        confirmation={confirmationGetInTouch}
+      />
+      <FormikFormComponent
+        initialValues={initialValues}
+        validationSchema={validationSchemaContactWithMe}
+        onSubmit={handlerSubmitGetInTouch}
+        buttonProps={{
+          title: "Отправить сообщение",
+          style: "ping",
+          onDirty: true,
+          edit: true,
+          editStyle: "contactMeButton",
+        }}
+        loading={loading}
+      >
+        <MyTextField nameLabel="Имя" type="text" name="name" component="input" id="name" />
+        <MyTextField nameLabel="Email" type="email" name="email" component="input" id="email" />
+        <MyTextField nameLabel="Телефон" type="phone" name="phone" component="input" id="phone" />
+        <MyTextField nameLabel="Сообщение" type="text" name="text" component="textarea" id="text" />
+      </FormikFormComponent>
     </div>
   );
 };

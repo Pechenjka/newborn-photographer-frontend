@@ -9,19 +9,18 @@ import { handlerAddPacketInBasket } from "../../../../redux/Reducers/packetSlice
 export interface PropsPacket {
   packet: IPacket;
   editStyleForPrice?: boolean;
-  timerRef: any;
   setRef: any;
 }
 
-const Packet: React.FC<PropsPacket> = ({ timerRef, packet, editStyleForPrice, setRef }) => {
+const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, setRef }) => {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { packetInBasket } = useAppSelector((state) => state.packets);
 
   const showPacketInBasket = packetInBasket.some((item: IPacket) => item._id === packet._id);
+  // const showPacketInBasket = packetInBasket.some((item: IPacket) => item._id === packet._id);
 
   const handlerClickAddPacketInBasket = (itemData: IPacket) => {
-    clearInterval(timerRef.current);
     dispatch(handlerAddPacketInBasket(itemData));
   };
 
@@ -31,12 +30,7 @@ const Packet: React.FC<PropsPacket> = ({ timerRef, packet, editStyleForPrice, se
     packet__addInBasket_success: showPacketInBasket,
   });
 
-  const handlerClickOnTitlePacket = () => {
-    clearInterval(timerRef.current);
-  };
-
   const handlerClickOnImagePacket = () => {
-    handlerClickOnTitlePacket();
     history.push(`/prices/packets/${packet._id}`);
   };
 
@@ -46,7 +40,7 @@ const Packet: React.FC<PropsPacket> = ({ timerRef, packet, editStyleForPrice, se
         <img
           className={Styles.packet__image}
           src={packet.image}
-          alt="image-packet"
+          alt="img-packet"
           onClick={handlerClickOnImagePacket}
         />
         {!editStyleForPrice && (
@@ -55,8 +49,8 @@ const Packet: React.FC<PropsPacket> = ({ timerRef, packet, editStyleForPrice, se
           </button>
         )}
       </div>
-      <Link className={classNameLink} to={`/prices/packets/${packet._id}`} onClick={handlerClickOnTitlePacket}>
-        {packet.title} _ <span className={Styles.packet__price}>{packet.price}</span>
+      <Link className={classNameLink} to={`/prices/packets/${packet._id}`} onClick={handlerClickOnImagePacket}>
+        {packet.namePacket} _ <span className={Styles.packet__price}>{packet.price}</span>
       </Link>
     </li>
   );

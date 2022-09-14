@@ -1,8 +1,15 @@
 import Styles from "./style.module.scss";
 import React from "react";
 import { IPacket, PropsPacketsInBasket } from "../../../../types";
+import { useHistory } from "react-router-dom";
 
 const PacketsInBasket: React.FC<PropsPacketsInBasket> = ({ packetInBasket, onClickDeletePacket }) => {
+  const history = useHistory();
+
+  const handleDeletePackets = (packetId: string): void => {
+    onClickDeletePacket(packetId);
+    packetInBasket.length < 2 && history.push("/");
+  };
 
   const titleBasket = () =>
     (packetInBasket.length === 1 && "пакет") ||
@@ -34,14 +41,14 @@ const PacketsInBasket: React.FC<PropsPacketsInBasket> = ({ packetInBasket, onCli
                 <th className={Styles.packetsInBasket__tableRow}>
                   <button
                     className={Styles.packetsInBasket__buttonDeletePacket}
-                    onClick={() => onClickDeletePacket(packet._id)}
+                    onClick={() => handleDeletePackets(packet._id)}
                   />
                 </th>
                 <th className={Styles.packetsInBasket__tableRow}>
-                  <img className={Styles.packetsInBasket__image} src={packet.image}  alt="image from paket" />
+                  <img className={Styles.packetsInBasket__image} src={packet.image} alt="img-from-paket" />
                 </th>
-                <th className={Styles.packetsInBasket__tableRow}>{packet.title}</th>
-                <th className={Styles.packetsInBasket__tableRow}>{packet.packet}</th>
+                <th className={Styles.packetsInBasket__tableRow}>{packet.namePacket}</th>
+                <th className={Styles.packetsInBasket__tableRow}>{packet.photosessionType}</th>
                 <th className={Styles.packetsInBasket__tableRow}>{packet.price}</th>
               </tr>
             );

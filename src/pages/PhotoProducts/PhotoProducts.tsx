@@ -17,7 +17,7 @@ const PhotoProducts: React.FC = () => {
   return (
     <Fragment>
       <BackgroundImage />
-      <section className="photoProducts anim-items">
+      <section className="photoProducts">
         <div className="photoProducts__item photoProducts__item-books books-accessories ">
           <h3 className="photoProducts__title">Фотокниги</h3>
           <img src={bookImage} alt="картинка фотокниги" className="photoProducts__image" />

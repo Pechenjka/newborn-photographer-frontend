@@ -2,15 +2,21 @@ import Styles from "./style.module.scss";
 import React from "react";
 import { ErrorMessage, useField, Field } from "formik";
 import classNames from "classnames/bind";
-import {PropsField} from "../../../types";
+import { PropsMyTextField } from "../../types";
 
-const MyTextField: React.FC<PropsField> = ({
+export type TypeFieldComponent = "input" | "textarea" | "select";
+
+export const MyTextField: React.FC<PropsMyTextField> = ({
   label = true,
   editStyleField,
   editStyleContainer,
   nameLabel,
   component,
   checkbox,
+  select = false,
+  options,
+  placeholder,
+
   ...props
 }) => {
   const [field, meta] = useField(props);
@@ -36,10 +42,16 @@ const MyTextField: React.FC<PropsField> = ({
           {nameLabel}
         </label>
       )}
-      <Field className={classNameField} {...field} {...props} as={component} />
+      <Field className={classNameField} {...field} {...props} as={component} placeholder={placeholder}>
+        {options &&
+          options.map((option) => (
+            <option key={option.title} value={option.value} hidden={option.hidden}>
+              {option.title}
+            </option>
+          ))}
+      </Field>
       <ErrorMessage component="div" name={field.name} className={Styles.field__error} />
     </div>
   );
 };
 
-export default MyTextField;

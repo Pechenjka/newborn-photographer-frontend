@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import api from "../../utils/api";
-import { ICategory, IPacket } from "../../types";
+import { apiApp } from "../../utils/apiApp";
+import { ICategory, PropsInitialStatePacketSlice, IPacket } from "../../types";
 
 export const createPacket = createAsyncThunk("packet/createPacket", async (data: IPacket, { rejectWithValue }) => {
   try {
-    return await api.createPackets(data);
+    const res = await apiApp().createPacket(data);
+    return res.data;
   } catch (e) {
     return rejectWithValue("Ошибка, не удалось создать пакет!");
   }
@@ -14,7 +15,8 @@ export const getPacketWithDetailsDescription = createAsyncThunk(
   "packet/getPacketWIthDetailsDescription",
   async (id: string, { rejectWithValue }) => {
     try {
-      return await api.getPacketWithDetailsDescription(id);
+      const res = await apiApp().getPacketWithDetailsDescription(id);
+      return res.data;
     } catch (e) {
       return rejectWithValue("Ошибка, детальные данные пакета не получены");
     }
@@ -23,7 +25,8 @@ export const getPacketWithDetailsDescription = createAsyncThunk(
 
 export const getPacketsCategories = createAsyncThunk("packet/getPacketsCategories", async (_, { rejectWithValue }) => {
   try {
-    return await api.getPacketsCategories();
+    const res = await apiApp().getPacketsCategories();
+    return res.data;
   } catch (e) {
     return rejectWithValue("Ошибка, не удалось загрузить категории пакетов!");
   }
@@ -33,7 +36,8 @@ export const getPacketsPinned = createAsyncThunk(
   "packet/getPacketsPinned",
   async (arg: { pinned: boolean }, { rejectWithValue }) => {
     try {
-      return await api.getArrPackets(`/?pinned=${arg.pinned}`);
+      const res = await apiApp().getArrPackets(`/?pinned=${arg.pinned}`);
+      return res.data;
     } catch (e) {
       return rejectWithValue("Ошибка, не удалось загрузить популярные пакеты!");
     }
@@ -42,26 +46,17 @@ export const getPacketsPinned = createAsyncThunk(
 
 export const getArrPackets = createAsyncThunk(
   "packet/getArrPackets",
-  async (arg: { packet: string }, { rejectWithValue }) => {
+  async (arg: { photosessionType: string }, { rejectWithValue }) => {
     try {
-      return await api.getArrPackets(`/?packet=${arg.packet}`);
+      const res = await apiApp().getArrPackets(`/?photosessionType=${arg.photosessionType}`);
+      return res.data;
     } catch (e) {
       return rejectWithValue("Ошибка, не удалось загрузить пакеты!");
     }
   }
 );
 
-export interface PacketState {
-  loading: boolean;
-  error: string;
-  getPackets: IPacket[];
-  getPinnedPackets: IPacket[];
-  packetWithDetailsDescription: IPacket | null;
-  getPacketsCategories: ICategory[];
-  packetInBasket: IPacket[];
-}
-
-const initialState: PacketState = {
+const initialState: PropsInitialStatePacketSlice = {
   loading: false,
   error: "",
   getPackets: [],
@@ -95,14 +90,13 @@ export const packetSlice = createSlice({
     },
     handlerDeletePacketFromBasket(state, action: { payload: string | null }) {
       if (action.payload === null) {
-        console.log(action.payload);
         sessionStorage.removeItem("packetsInBasket");
         state.packetInBasket = [];
       } else {
-        const res = state.packetInBasket.filter((packet: IPacket) => {
+        const remainingPackages = state.packetInBasket.filter((packet: IPacket) => {
           return packet._id !== action.payload && packet;
         });
-        state.packetInBasket = res;
+        state.packetInBasket = remainingPackages;
       }
     },
   },
@@ -111,21 +105,21 @@ export const packetSlice = createSlice({
     builder.addCase(getArrPackets.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getArrPackets.fulfilled, (state, action: { payload: any }) => {
-      state.loading = false
+    builder.addCase(getArrPackets.fulfilled, (state, action: { payload: IPacket[] }) => {
+      state.loading = false;
       state.getPackets = action.payload;
     });
     builder.addCase(getArrPackets.rejected, (state, action: { payload: any }) => {
       state.loading = false;
       state.error = action.payload;
     });
-    builder.addCase(getPacketsCategories.fulfilled, (state, action: { payload: any }) => {
+    builder.addCase(getPacketsCategories.fulfilled, (state, action: { payload: ICategory[] }) => {
       state.getPacketsCategories = action.payload;
     });
     builder.addCase(getPacketsPinned.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getPacketsPinned.fulfilled, (state, action: { payload: any }) => {
+    builder.addCase(getPacketsPinned.fulfilled, (state, action: { payload: IPacket[] }) => {
       state.getPinnedPackets = action.payload;
       state.loading = false;
     });

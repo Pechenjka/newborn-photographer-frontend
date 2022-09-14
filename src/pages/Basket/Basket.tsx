@@ -3,7 +3,7 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import { IPacket } from "../../types";
-import { handlerDeletePacketFromBasket } from "../../redux/Reducers/packetSlice";
+import { handlerBasketIsNotEmpty, handlerDeletePacketFromBasket } from "../../redux/Reducers/packetSlice";
 import { Button } from "../../components/Button";
 import PacketsInBasket from "./components/PacketsInBasket/PacketsInBasket";
 import { Link, useHistory } from "react-router-dom";
@@ -22,6 +22,7 @@ const Basket: React.FC = () => {
       });
       sessionStorage.setItem("packetsInBasket", JSON.stringify(newArr));
     } else {
+      dispatch(handlerBasketIsNotEmpty(false));
       sessionStorage.removeItem("packetsInBasket");
     }
     dispatch(handlerDeletePacketFromBasket(id));

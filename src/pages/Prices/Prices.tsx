@@ -4,12 +4,11 @@ import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import Packets from "../../components/Packets/Packets";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopularPackets from "../Main/components/PopularPackets/PopularPackets";
-import { PropsTimeRef } from "../../types";
 import { getArrPackets } from "../../redux/Reducers/packetSlice";
 import { useRouteMatch } from "react-router-dom";
 import PreLoader from "../../components/PreLoader/PreLoader";
 
-const Prices: React.FC<PropsTimeRef> = ({ timerRef }) => {
+const Prices: React.FC = () => {
   const dispatch = useAppDispatch();
   const { getPackets, getPacketsCategories, loading, error } = useAppSelector((state) => state.packets);
   const [nameCategory, setNameCategory] = useState("");
@@ -18,7 +17,7 @@ const Prices: React.FC<PropsTimeRef> = ({ timerRef }) => {
   useEffect(() => {
     getPacketsCategories.map((category) => {
       if (path.includes(category.title)) {
-        dispatch(getArrPackets({ packet: category.title }));
+        dispatch(getArrPackets({ photosessionType: category.title }));
         setNameCategory(category.nameRU);
       }
     });
@@ -35,11 +34,11 @@ const Prices: React.FC<PropsTimeRef> = ({ timerRef }) => {
               <PreLoader />
             </div>
           ) : (
-            <Packets getPackets={getPackets} timerRef={timerRef} />
+            <Packets getPackets={getPackets}  />
           )}
           {error && <p style={{ gridColumn: "1/-1" }}>{error}</p>}
         </ul>
-        <PopularPackets editStyleForPrice timerRef={timerRef} />
+        <PopularPackets editStyleForPrice  />
       </div>
     </Fragment>
   );

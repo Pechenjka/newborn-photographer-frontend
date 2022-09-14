@@ -4,7 +4,7 @@ import { useDisabledScroll } from "../../hooks/useDisabledScroll";
 import { PropsPopup } from "../../types";
 
 const Popup: React.FC<PropsPopup> = ({ onClick, children, openPopup }) => {
-  const { handlerDisabledScroll } = useDisabledScroll();
+  const { handlerDisabledScroll } = useDisabledScroll;
 
   useEffect(() => {
     handlerDisabledScroll(openPopup);

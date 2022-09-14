@@ -1,21 +1,18 @@
 import Styles from "./style.module.scss";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
-import { IPacket, PropsTimeRef } from "../../types";
+import { IPacket } from "../../types";
 import { handlerDeletePacketFromBasket } from "../../redux/Reducers/packetSlice";
-import Button from "../../components/Button/Button";
-import FormOrder from "./components/FormOrder/FormOrder";
+import { Button } from "../../components/Button";
 import PacketsInBasket from "./components/PacketsInBasket/PacketsInBasket";
+import { Link, useHistory } from "react-router-dom";
 
-const Basket: React.FC<PropsTimeRef> = ({ timerRef }) => {
+const Basket: React.FC = () => {
   const dispatch = useAppDispatch();
+  const history = useHistory();
   const { packetInBasket } = useAppSelector((state) => state.packets);
-  const [formOrder, setFormOder] = useState<boolean>(false);
-
-  useEffect(() => {
-    clearInterval(timerRef.current);
-  }, []);
+  const { auth } = useAppSelector((state) => state.user);
 
   const handlerClickDeletePacketFromBasket = (id: string) => {
     const arr = JSON.parse(sessionStorage.getItem("packetsInBasket") as string);
@@ -35,16 +32,27 @@ const Basket: React.FC<PropsTimeRef> = ({ timerRef }) => {
       <BackgroundImage />
       <div className={Styles.basket__container}>
         {!packetInBasket.length ? (
-          <p className={Styles.basket__notPackets}>Корзина пуста</p>
+          <p className={Styles.basket__notPackets}>Ваша корзина пуста</p>
         ) : (
           <div className={Styles.basket__wrapperTable}>
             <PacketsInBasket onClickDeletePacket={handlerClickDeletePacketFromBasket} packetInBasket={packetInBasket} />
-            {!formOrder ? (
-              <Button styleButton="ping" editStyle="buttonBasket" edit type="button" onClick={() => setFormOder(true)}>
+            {!auth ? (
+              <div className={Styles.basket__containerLinkRegister}>
+                <p>Вы не авторизованны! Для оформления заказа необходимо авторизоваться.</p>
+                <Link className={Styles.basket__linkRegister} to="/signin">
+                  Авторизоваться!
+                </Link>
+              </div>
+            ) : (
+              <Button
+                styleButton="ping"
+                editStyle="buttonBasket"
+                edit
+                type="button"
+                onClick={() => history.push("/checkout")}
+              >
                 Продолжить оформление заказа
               </Button>
-            ) : (
-              <FormOrder />
             )}
           </div>
         )}

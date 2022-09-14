@@ -39,7 +39,7 @@ const PhotoGalleryOfTheMainPage: React.FC = () => {
         })}
       </ul>
       {loading ? (
-        <div style={{ height: "1000px" }}>
+        <div style={{ height: "1000px", margin:'100px auto' }}>
           <PreLoader />
         </div>
       ) : (

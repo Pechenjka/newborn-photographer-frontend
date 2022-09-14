@@ -14,9 +14,6 @@ $colorButton: #e4c8a6;
     font-weight: 500;
     color: $colorText;
   }
-}
-
-.form {
   &__fieldset {
     max-width: 100%;
     display: flex;
@@ -76,9 +73,10 @@ $colorButton: #e4c8a6;
   .contactMeForm {
     max-width: 100%;
     margin-bottom: 50px;
-  }
-  .form {
-    margin: auto 30px;
+    padding: 0 30px;
+    &__form {
+      margin: auto 30px;
+    }
   }
 }
 

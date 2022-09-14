@@ -4,7 +4,7 @@ import { IPacket, PropsPackets } from "../../types";
 import Packet from "./components/Packet/Packet";
 import { useArrayRef, UseGsapEffect } from "../../hooks/UseGsapEffect";
 
-const Packets: React.FC<PropsPackets> = ({ timerRef, getPackets, editStyleForPrice }) => {
+const Packets: React.FC<PropsPackets> = ({ getPackets, editStyleForPrice }) => {
   const [refs, setRef] = useArrayRef();
 
   useLayoutEffect(() => {
@@ -29,7 +29,6 @@ const Packets: React.FC<PropsPackets> = ({ timerRef, getPackets, editStyleForPri
             packet={packet}
             key={index}
             editStyleForPrice={editStyleForPrice}
-            timerRef={timerRef}
             setRef={setRef}
           />
         );

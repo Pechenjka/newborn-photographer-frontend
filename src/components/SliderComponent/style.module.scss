@@ -1,0 +1,236 @@
+$colorLinks: #c69b6b;
+$colorInitDots: #bbbb;
+$colorActiveDots: #717171;
+$colorText: white;
+$colorBackgroundLink: #ff9696;
+$colorBackgroundLinkHover: rgba(255, 150, 150, 0.6);
+$colorBackgroundArrow: rgba(255, 255, 255, 0.1);
+$colorBackgroundArrowHover: rgba(255, 255, 255, 0.2);
+$colorArrow: rgba(255, 255, 255, 0.5);
+$colorArrowHover: rgba(255, 255, 255, 0.9);
+
+.mySwiper {
+  height: 100%;
+}
+
+.swiperBtn {
+  width: 40px;
+  height: 100px;
+  z-index: 10;
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50px);
+  border: none;
+  background-color: $colorBackgroundArrow;
+  font-size: 28px;
+  color: $colorArrow;
+  border-radius: 20px;
+  transition: all 0.3s;
+  &:hover {
+    background-color: $colorBackgroundArrowHover;
+    color: $colorArrowHover;
+  }
+  &_prev {
+    left: 100px;
+  }
+  &_next {
+    right: 100px;
+  }
+}
+
+.slideShow {
+  position: relative;
+  height: 640px;
+  width: 100%;
+  box-sizing: border-box;
+  &__aboutMeContainer {
+    width: calc(100% - 1440px);
+    transform: translateX(50%);
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    padding-left: 50px;
+    bottom: 30px;
+    text-align: left;
+  }
+  &__welcomeTitle {
+    display: block;
+    width: max-content;
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0;
+    background: -webkit-linear-gradient(#ff9696, #ffe89e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 1s;
+    &::before {
+      content: "Привет!";
+      display: inline-block;
+      font-size: 35px;
+      font-weight: 700;
+      background: -webkit-linear-gradient(#ff9696, #ffe89e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+  &__welcomeDescription {
+    margin: 10px 0 0;
+    width: max-content;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 400;
+    font-style: normal;
+    transition: all 1s 0.4s;
+    color: $colorText;
+  }
+  &__welcomeLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 15px 0 0;
+    width: 120px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    border-radius: 15px;
+    background-color: $colorBackgroundLink;
+    color: $colorText;
+    transition: transform 1s 0.6s, opacity 1s 0.6s, background 0.6s;
+    &:hover {
+      cursor: pointer;
+      background-color: $colorBackgroundLinkHover;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__imageContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and(max-width: 768px) {
+  .slideShow {
+    height: 650px;
+    &__aboutMeContainer {
+      padding-left: 30px;
+    }
+    &__welcomeTitle {
+      font-size: 40px;
+      font-weight: 700;
+      &::before {
+        font-size: 30px;
+      }
+    }
+    &__welcomeDescription {
+      font-size: 15px;
+    }
+  }
+  .swiperBtn {
+    border-radius: 0;
+    background-color: transparent;
+    &_prev {
+      left: 20px;
+    }
+    &_next {
+      right: 20px;
+    }
+  }
+}
+
+@media screen and(max-width: 568px) {
+  .slideShow {
+    height: 550px;
+    &__aboutMeContainer {
+      width: 100%;
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      grid-template-rows: 1fr min-content;
+      grid-gap: 10px;
+      transform: translateX(0);
+      padding-left: 20px;
+    }
+    &__welcomeTitle {
+      grid-row: 1/2;
+      grid-column: 1/-1;
+      font-size: 30px;
+      &::before {
+        font-size: 20px;
+      }
+    }
+    &__welcomeDescription {
+      margin: 0;
+      grid-row: 2/-1;
+      grid-column: 1/2;
+      font-size: 14px;
+    }
+    &__welcomeLink {
+      grid-row: 2/-1;
+      grid-column: 2/-1;
+      margin: auto;
+      justify-items: flex-end;
+      width: 100px;
+      height: 35px;
+      font-size: 12px;
+      border-radius: 10px;
+    }
+  }
+}
+
+@media screen and(max-width: 474px) {
+  .slideShow {
+    height: 400px;
+    &__welcomeTitle {
+      font-size: 25px;
+      &::before {
+        font-size: 18px;
+      }
+    }
+    &__welcomeDescription {
+      font-size: 12px;
+      line-height: 15px;
+    }
+    &__welcomeLink {
+      width: 90px;
+      font-size: 11px;
+    }
+  }
+  .swiperBtn {
+    &_prev {
+      left: 0;
+    }
+    &_next {
+      right: 0;
+    }
+  }
+}
+
+@media screen and(max-width: 413px) {
+  .slideShow {
+    &__aboutMeContainer {
+      display: block;
+    }
+    &__welcomeDescription {
+      margin: 5px 0 0 ;
+    }
+    &__welcomeLink {
+      margin: 8px auto 0 0;
+    }
+  }
+}

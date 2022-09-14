@@ -1,10 +1,6 @@
 .contacts {
   margin: 50px auto;
-  opacity: 0;
   transition: opacity 0.4s ease-in;
 }
 
-.contacts.anim-items_active {
-  opacity: 1;
-}
 

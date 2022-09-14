@@ -1,0 +1,42 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
+  &__title {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  &__container {
+    margin: 30px 0;
+    width: 100%;
+    max-width: 600px;
+  }
+  &__cardContainer {
+    list-style: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px 2px rgba(0, 26, 52, 0.16);
+    padding: 15px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &__cardItem {
+    color: #797878;
+    margin-bottom: 5px;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    &_span {
+      color: #262626;
+      margin-left: 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .profile {
+    margin: 50px 20px;
+  }
+}

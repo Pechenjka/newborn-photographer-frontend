@@ -13,7 +13,6 @@ $colorTitle: #bc9b5d;
     box-shadow: 0 0 15px 0 $colorBoxShadowContainer;
     background-color: $backgroundColor;
     transition: opacity 0.4s ease-in;
-    opacity: 0;
     border-radius: 10px;
   }
   &__image {
@@ -40,10 +39,6 @@ $colorTitle: #bc9b5d;
     line-height: 25px;
     text-align: left;
   }
-}
-
-.aboutMe__container.anim-items_active {
-  opacity: 1;
 }
 
 @media screen and (max-width: 1024px) {

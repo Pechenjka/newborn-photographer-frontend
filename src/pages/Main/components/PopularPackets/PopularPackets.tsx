@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 import PreLoader from "../../../../components/PreLoader/PreLoader";
 import { PropsPopularPackets } from "../../../../types";
 
-const PopularPackets: React.FC<PropsPopularPackets> = ({ timerRef, editStyleForPrice = false }) => {
+const PopularPackets: React.FC<PropsPopularPackets> = ({ editStyleForPrice = false }) => {
   const { getPinnedPackets, loading, error } = useAppSelector((state) => state.packets);
 
   const cx = classNames.bind(Styles);
@@ -30,7 +30,7 @@ const PopularPackets: React.FC<PropsPopularPackets> = ({ timerRef, editStyleForP
             <PreLoader />
           </div>
         ) : (
-          <Packets getPackets={getPinnedPackets} editStyleForPrice={editStyleForPrice} timerRef={timerRef} />
+          <Packets getPackets={getPinnedPackets} editStyleForPrice={editStyleForPrice} />
         )}
         {error && <p style={{ gridColumn: "1/-1" }}>{error}</p>}
       </ul>

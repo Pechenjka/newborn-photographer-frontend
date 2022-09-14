@@ -2,12 +2,12 @@ import "./AboutMe.scss";
 import React, { Fragment } from "react";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 
-const AboutMe: React.FC = () => {
+export const AboutMe: React.FC = () => {
   return (
     <Fragment>
       <BackgroundImage />
       <section className="aboutMe">
-        <div className="aboutMe__container anim-items">
+        <div className="aboutMe__container">
           <div className="aboutMe__image" />
           <h3 className="aboutMe__title">Обо мне</h3>
           <div className="aboutMe__text-container">
@@ -39,4 +39,3 @@ const AboutMe: React.FC = () => {
   );
 };
 
-export default AboutMe;

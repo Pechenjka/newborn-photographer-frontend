@@ -1,12 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../utils/api";
-import { IPhoto, PhotosState, PropsArrPhotos, PropsBoolean, PropsRandomPhotos } from "../../types";
+import {
+  PropsInitialStatePhotoSlice,
+  IPhoto,
+  PropsArrPhotos,
+  PropsBoolean,
+  PropsRandomPhotos,
+  PropsAddNewPhoto
+} from "../../types";
+
+import { apiApp } from "../../utils/apiApp";
 
 export const fetchPhotos = createAsyncThunk(
   "photo/fetchPhotos",
   async (arg: { type: string | null; order: string }, { dispatch, rejectWithValue }) => {
     try {
-      const res = await api.getArrPhotos(
+      const res = await apiApp().getArrPhotos(
         `${
           arg.type === null
             ? "?type=newborn&type=baby&type=family&type=pregnancy&type=christening"
@@ -14,18 +22,30 @@ export const fetchPhotos = createAsyncThunk(
         }`
       );
       if (arg.order === "random") {
-        dispatch(handlerRandomPhotos({ arr: res, n: res.length }));
+        dispatch(handlerRandomPhotos({ arr: res.data, n: res.data.length }));
       } else {
-        dispatch(handlerSortPhotos(res));
+        dispatch(handlerSortPhotos(res.data));
       }
-      return res;
+      return res.data;
     } catch (e) {
       return rejectWithValue("Ошибка, не удалось загрузить фотографии!");
     }
   }
 );
 
-const initialState: PhotosState = {
+export const addNewPhoto = createAsyncThunk(
+  "photo/addNewPhoto",
+  async (data: PropsAddNewPhoto, { rejectWithValue }) => {
+    try {
+      const res = await apiApp().uploadPhoto(data);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Ошибка, не удалось загрузить фотографию!");
+    }
+  }
+);
+
+const initialState: PropsInitialStatePhotoSlice = {
   getPhotos: [],
   showPhotos: [],
   categoryPhotosBtn: null,
@@ -100,7 +120,7 @@ const photoSlice = createSlice({
       state.error = "";
     });
     builder.addCase(fetchPhotos.fulfilled, (state, action: { payload: IPhoto[] }): void => {
-     state.getPhotos = action.payload;
+      state.getPhotos = action.payload;
       state.error = "";
       state.loading = false;
     });

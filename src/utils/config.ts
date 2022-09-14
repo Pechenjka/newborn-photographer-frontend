@@ -1,5 +1,5 @@
 import React from "react";
-
+import navbarLogo from "../images/navbar-menu.webp";
 import image1 from "../images/slider/slider-one.webp";
 import imageMobile1 from "../images/slider/mobile/slide-mobile-1.webp";
 import image2 from "../images/slider/slider-two.webp";
@@ -10,14 +10,7 @@ import image4 from "../images/slider/slider-four.webp";
 import imageMobile4 from "../images/slider/mobile/slide-mobile-4.webp";
 import image5 from "../images/slider/slider-five.webp";
 import imageMobile5 from "../images/slider/mobile/slide-mobile-5.webp";
-import {
-  IArrSlides,
-  ILink,
-  IPhotosCategoryInGallery,
-  IPhotosCategoryInMainPage,
-  ITablesPhotoProducts,
-} from "../types";
-
+import { IArrSlides, ILink, IPhotosCategoryInGallery, IPhotosCategoryInMainPage, ITablesPhotoProducts } from "../types";
 
 export const arrSlides: IArrSlides[] = [
   { desktop: image1, mobile: imageMobile1 },
@@ -29,7 +22,6 @@ export const arrSlides: IArrSlides[] = [
 
 export const links: ILink[] = [
   { name: "Главная", path: "/" },
-  { name: "Обо мне", path: "/aboutMe" },
   {
     name: "Фотогалерея",
     select: [
@@ -53,10 +45,18 @@ export const links: ILink[] = [
     ],
   },
   {
-    name: "Фотопродукция",
-    path: "/photo-products",
+    name: "",
+    logo: navbarLogo,
+    select: [
+      {
+        name: "Фотопродукция",
+        pathSelect: "/photo-products",
+        type: "photo-products"
+      },
+      { name: "Обо мне", pathSelect: "/aboutMe", type: "aboutMe" },
+      { name: "Контакты", pathSelect: "/contacts", type: "contacts" },
+    ],
   },
-  { name: "Контакты", path: "/contacts" },
 ];
 
 export const photosCategoryInGallery: IPhotosCategoryInGallery[] = [

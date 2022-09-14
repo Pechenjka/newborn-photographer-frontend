@@ -1,18 +1,24 @@
-import React, { useRef } from "react";
+import React from "react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import RouterComponent from "../router/RouterComponent";
+import { RouterComponent } from "../router";
+import { useLocation } from "react-router-dom";
+import { allRoutes } from "../router/config";
+import { IRoute } from "../types";
 
-const Layout: React.FC = () => {
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+export const Layout: React.FC = () => {
+  const { pathname } = useLocation<string>();
+  const isAdminRoutes: (string | Array<string>)[] = allRoutes
+    .filter((route: IRoute) => route.isAdmin && route)
+    .map((route) => route.path);
+
+  const withOutHeaderAndFooter: (string | Array<string>)[] = ["/signin", "/signup", ...isAdminRoutes];
 
   return (
-    <section>
-      <Header timerRef={timerRef} />
-      <RouterComponent timerRef={timerRef} />
-      <Footer />
+    <section style={{ width: "100%", height: "100%" }}>
+      {!withOutHeaderAndFooter.includes(pathname) && <Header />}
+      <RouterComponent />
+      {!withOutHeaderAndFooter.includes(pathname) && <Footer />}
     </section>
   );
 };
-
-export default Layout;

@@ -1,41 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import api from "../../utils/api";
-import {
-  AppState,
-  PropsBoolean,
-  PropsPayLoadGetInTouch,
-  PropsPayLoadSendEmail,
-} from "../../types";
+import { PropsInitialStateAppSlice, PropsBoolean, PropsPayLoadGetInTouch, PropsPayLoadSendEmail } from "../../types";
+import { apiApp } from "../../utils/apiApp";
 
-const initialState: AppState = {
+const initialState: PropsInitialStateAppSlice = {
   loading: false,
-  openModalConfirmationGetInTouch: false,
-  openModalErrorGetInTouch: false,
-  openModalConfirmationOrder: false,
-  openModalNotSendOrder: false,
+  confirmationGetInTouch: false,
+  errorGetInTouch: false,
   displayPricePackets: [],
   confirmationSendEmail: false,
   errorSendEmail: false,
 };
 
-export const sendOrder = createAsyncThunk("app/sendOrder", async (data: any, { dispatch }) => {
-  try {
-    const res = await api.sendOrder(data);
-    dispatch(handlerModalConfirmationOrder(true));
-    return res;
-  } catch (e) {
-    dispatch(handlerModalNotSendOrder(true));
-  }
-});
-
 export const sendEmail = createAsyncThunk("app/sendEmail", async ({ data }: PropsPayLoadSendEmail, { dispatch }) => {
   try {
-    const res = await api.newsLetter({ data });
+    const res = await apiApp().newsLetter({ data });
     dispatch(handlerConfirmationSendEmail(true));
     setTimeout(() => {
       dispatch(handlerConfirmationSendEmail(false));
     }, 4000);
-    return res;
+    return res.data;
   } catch (e) {
     dispatch(handlerErrorSendEmail(true));
     setTimeout(() => {
@@ -48,11 +31,17 @@ export const sendMessageGetInTouch = createAsyncThunk(
   "app/sendMessageGetInTouch",
   async ({ data }: PropsPayLoadGetInTouch, { dispatch }) => {
     try {
-      const res = await api.getInTouch({ data });
-      dispatch(handlerModalConfirmationGetInTouch(true));
-      return res;
+      const res = await apiApp().getInTouch({ data });
+      dispatch(handlerConfirmationGetInTouch(true));
+      setTimeout(() => {
+        dispatch(handlerConfirmationGetInTouch(false));
+      }, 5000);
+      return res.data;
     } catch (e) {
-      dispatch(handlerModalErrorGetInTouch(true));
+      dispatch(handlerErrorGetInTouch(true));
+      setTimeout(() => {
+        dispatch(handlerErrorGetInTouch(false));
+      }, 5000);
     }
   }
 );
@@ -68,49 +57,32 @@ const appSlice = createSlice({
       state.errorSendEmail = action.payload;
     },
 
-    handlerModalConfirmationGetInTouch: (state, action: PropsBoolean): void => {
-      state.openModalConfirmationGetInTouch = action.payload;
+    handlerConfirmationGetInTouch: (state, action: PropsBoolean): void => {
+      state.confirmationGetInTouch = action.payload;
     },
-    handlerModalErrorGetInTouch: (state, action: PropsBoolean): void => {
-      state.openModalErrorGetInTouch = action.payload;
-    },
-
-    handlerModalNotSendOrder: (state, action: PropsBoolean): void => {
-      state.openModalNotSendOrder = action.payload;
-    },
-    handlerModalConfirmationOrder: (state, action: PropsBoolean): void => {
-      state.openModalConfirmationOrder = action.payload;
+    handlerErrorGetInTouch: (state, action: PropsBoolean): void => {
+      state.errorGetInTouch = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(sendOrder.pending, (state): void => {
-      state.loading = true;
-    });
-    builder.addCase(sendOrder.fulfilled, (state): void => {
-      state.loading = false;
-    });
-    builder.addCase(sendOrder.rejected, (state): void => {
-      state.loading = false;
-    });
+
     builder.addCase(sendMessageGetInTouch.pending, (state): void => {
       state.loading = true;
     });
     builder.addCase(sendMessageGetInTouch.fulfilled, (state): void => {
       state.loading = false;
     });
-    builder.addCase(sendMessageGetInTouch.rejected, (state): void => {
+    builder.addCase(sendMessageGetInTouch.rejected, (state, action: { payload: any }): void => {
       state.loading = false;
     });
   },
 });
 
 export const {
-  handlerModalConfirmationOrder,
-  handlerModalNotSendOrder,
   handlerConfirmationSendEmail,
   handlerErrorSendEmail,
-  handlerModalConfirmationGetInTouch,
-  handlerModalErrorGetInTouch,
+  handlerConfirmationGetInTouch,
+  handlerErrorGetInTouch,
 } = appSlice.actions;
 
 export default appSlice.reducer;

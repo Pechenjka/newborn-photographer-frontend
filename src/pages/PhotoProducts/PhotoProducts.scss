@@ -2,7 +2,6 @@ $colorBackground: #89868626;
 
 .photoProducts {
   margin: 30px auto 0;
-  opacity: 0;
   transition: opacity 0.4s ease-in;
   &__image {
     width: 100%;
@@ -47,10 +46,6 @@ $colorBackground: #89868626;
     font-size: 15px;
     line-height: 24px;
   }
-}
-
-.photoProducts.anim-items_active {
-  opacity: 1;
 }
 
 @media screen and (max-width: 767px) {

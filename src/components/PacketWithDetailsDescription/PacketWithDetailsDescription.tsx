@@ -3,11 +3,11 @@ import React, { Fragment, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useParams } from "react-router-dom";
 import { getPacketWithDetailsDescription, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
-import Button from "../Button/Button";
+import { Button } from "../Button";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import PreLoader from "../PreLoader/PreLoader";
 
-const PacketWithDetailsDescription: React.FC = () => {
+export const PacketWithDetailsDescription: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const { packetWithDetailsDescription, loading, error } = useAppSelector((state) => state.packets);
@@ -24,15 +24,11 @@ const PacketWithDetailsDescription: React.FC = () => {
           <div className={Styles.packetDetails__containerImage}>
             <img
               className={Styles.packetDetails__image}
-              src={
-                window.innerWidth > 1024
-                  ? packetWithDetailsDescription.imageDescription
-                  : packetWithDetailsDescription.imageDescriptionMobile
-              }
-              alt="image-description"
+              src={packetWithDetailsDescription.imageDescription}
+              alt="img-description"
             />
             <div className={Styles.packetDetails__aboutPacket}>
-              <h3 className={Styles.packetDetails__title}>{packetWithDetailsDescription.title}</h3>
+              <h3 className={Styles.packetDetails__title}>{packetWithDetailsDescription.namePacket}</h3>
               <p className={Styles.packetDetails__price}>{packetWithDetailsDescription.price}p</p>
               <div className={Styles.packetDetails__getFromPhotosession}>
                 Что получаете с фотосессии: <br />
@@ -46,7 +42,9 @@ const PacketWithDetailsDescription: React.FC = () => {
               </div>
               <p className={Styles.packetDetails__category}>
                 Тип съемки:
-                <span className={Styles.packetDetails__category_span}>{packetWithDetailsDescription.packet}</span>
+                <span className={Styles.packetDetails__category_span}>
+                  {packetWithDetailsDescription.photosessionType}
+                </span>
               </p>
               <p className={Styles.packetDetails__category}>
                 Продолжительность съемки:
@@ -100,5 +98,3 @@ const PacketWithDetailsDescription: React.FC = () => {
     </Fragment>
   );
 };
-
-export default PacketWithDetailsDescription;

@@ -1,20 +1,17 @@
 import React, { Fragment } from "react";
 import "./Main.scss";
 import PhotoGalleryOfTheMainPage from "./components/PhotoGalleryOfTheMainPage/PhotoGalleryOfTheMainPage";
-import PhotosSlideShow from "./components/PhotosSlideShow/PhotosSlideShow";
-import { PropsTimeRef } from "../../types";
 import PopularPackets from "./components/PopularPackets/PopularPackets";
+import { SliderComponent } from "../../components/SliderComponent";
 
-const Main: React.FC<PropsTimeRef> = ({ timerRef }) => {
+export const Main: React.FC = () => {
   return (
     <Fragment>
       <main className="main">
-        <PhotosSlideShow timerRef={timerRef} />
+        <SliderComponent />
         <PhotoGalleryOfTheMainPage />
-        <PopularPackets editStyleForPrice={window.innerWidth < 768 && true} timerRef={timerRef} />
+        <PopularPackets editStyleForPrice={window.innerWidth < 768 && true}  />
       </main>
     </Fragment>
   );
 };
-
-export default Main;

@@ -52,7 +52,7 @@ const AuthForm: React.FC<PropsAuthForm> = ({
           return (
             <Form style={{ width: "100%" }} onSubmit={props.handleSubmit}>
               {children}
-              <Link className={Styles.auth__forgotPassword} to="/restorePassword">
+              <Link className={Styles.auth__forgotPassword} to="#">
                 Забыли пароль?
               </Link>
               <Button

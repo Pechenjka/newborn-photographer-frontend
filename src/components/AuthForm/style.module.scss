@@ -1,0 +1,57 @@
+.auth {
+  max-width: 500px;
+  width: 100%;
+  margin: 100px auto auto;
+  padding: 30px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background-color: white;
+  &__logo {
+    max-width: 300px;
+  }
+  &__title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 20px 0;
+    padding: 0;
+    color: #79553d;
+  }
+  &__question {
+    font-size: 16px;
+    color: rgba(80, 78, 78, 0.7);
+    &_linkToAnotherAuthorisation {
+      text-decoration: none;
+      margin-left: 5px;
+      color: #79553d;
+      &:hover {
+        color: #79553d;
+      }
+    }
+  }
+  &__linkToMainPage {
+    text-decoration: none;
+    color: #ff9696;
+    margin: 20px auto;
+  }
+  &__forgotPassword {
+    display: block;
+    text-decoration: none;
+    text-align: end;
+    margin-top: 10px;
+    color: #ff9696;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .auth {
+    margin: 0 auto;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: transparent;
+  }
+}

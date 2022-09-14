@@ -7,7 +7,7 @@ import { photosCategoryInGallery } from "../../utils/config";
 import { fetchPhotos, handlerShowAddPhotos } from "../../redux/Reducers/photoSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IPhoto, IPhotosCategoryInGallery, PhotoPostPage } from "../../types";
-import Button from "../../components/Button/Button";
+import { Button } from "../../components/Button";
 import PreLoader from "../../components/PreLoader/PreLoader";
 
 const PhotoGallery: React.FC = () => {

@@ -4,13 +4,7 @@ $colorTextButton: white;
 $colorBoxShadowButton: #666363;
 
 .messageToTheUser {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 900px;
-  background-color: $backgroundColor;
-  border-radius: 10px;
+  width: 100%;
   &__spinner {
     position: absolute;
     top: 50%;
@@ -56,7 +50,6 @@ $colorBoxShadowButton: #666363;
 
 @media screen and (max-width: 768px) {
   .messageToTheUser {
-    width: 90vw;
     &__container {
       padding: 0 15px;
     }

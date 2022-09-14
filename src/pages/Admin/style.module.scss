@@ -5,30 +5,12 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 50px;
-  &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 600px;
-    width: 100%;
-    padding: 0 30px 50px;
-    border-radius: 10px;
-    margin: 40px 0;
-    background-color: white;
-    box-shadow: 0 10px 30px 1px rgba(0, 0, 0, 0.3);
-  }
   &__form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-  }
-  &__title {
-    margin: 50px 0 20px;
-    font-size: 25px;
-    font-weight: 500;
-    color: $TextColor;
   }
   &__formButton {
     margin-top: 30px;
@@ -50,18 +32,6 @@
   }
   &__formLabel {
     color: $TextColor;
-  }
-  &__formButton {
-    width: 100%;
-    padding: 10px 0;
-    border-radius: 5px;
-    color: $TextColor;
-    background-color: rgba(121, 85, 61, 0.3);
-    border: none;
-    cursor: pointer;
-    &:hover {
-      background-color: rgba(121, 85, 61, 0.5);
-    }
   }
   &__formCheckbox {
     margin-left: 10px;

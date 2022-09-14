@@ -1,0 +1,28 @@
+@import "../../../../styles/vars";
+.adminContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 0 30px 50px;
+  border-radius: 10px;
+  margin: 40px auto;
+  background-color: white;
+  box-shadow: 0 10px 30px 1px rgba(0, 0, 0, 0.3);
+  position: relative;
+  &__linkBack {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    text-decoration: none;
+    color: #ff9696;
+
+  }
+  &__title {
+    margin: 50px 0 40px;
+    font-size: 25px;
+    font-weight: 500;
+    color: $TextColor;
+  }
+}

@@ -1,0 +1,12 @@
+.linkList {
+  list-style: none;
+  &__linkContainer {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #79553d;
+  }
+  &__link {
+    text-decoration: none;
+    color: #79553d;
+  }
+}

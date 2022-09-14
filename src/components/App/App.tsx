@@ -1,30 +1,33 @@
 import React from "react";
 import "./App.scss";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { animatedItems } from "../AnimatedItems/AnimatedItems";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
-import PopupConfirmationGetMessageFromTheUser from "../PopupConfirmationGetMessageFromTheUser/PopupConfirmationGetMessageFromTheUser";
-import PopupConfirmationGetOrderFromTheUser from "../PopupConfirmationGetOrderFromTheUser/PopupConfirmationGetOrderFromTheUser";
-import PopupTheErrorWhenMessageNotSend from "../PopupTheErrorWhenMessageNotSend/PopupTheErrorWhenMessageNotSend";
-import PopupTheErrorWhenOderNotSend from "../PopupTheErrorWhenOrderNotSend/PopupTheErrorWhenOrderNotSend";
-import Layout from "../../layout/Layout";
+import { Layout } from "../../layout";
 import { getPacketsCategories, getPacketsPinned, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
+import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  const history = useHistory();
+
   const { packetInBasket } = useAppSelector((state) => state.packets);
 
   useEffect(() => {
-    if (pathname) animatedItems();
-  }, [pathname]);
+    const jwt = localStorage.getItem("token");
+    if (jwt) {
+      dispatch(checkAuth({ history, pathname }));
+    } else {
+      dispatch(authorization(false));
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getPacketsPinned({ pinned: true }));
     dispatch(getPacketsCategories());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (sessionStorage.getItem("packetsInBasket") && !packetInBasket.length) {
@@ -37,10 +40,6 @@ const App: React.FC = () => {
     <div className="page">
       <Layout />
       <PopupWithImage />
-      <PopupConfirmationGetMessageFromTheUser />
-      <PopupTheErrorWhenMessageNotSend />
-      <PopupConfirmationGetOrderFromTheUser />
-      <PopupTheErrorWhenOderNotSend />
     </div>
   );
 };

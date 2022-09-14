@@ -3,13 +3,14 @@ import classNames from "classnames/bind";
 import Styles from "./style.module.scss";
 
 type TypeButton = "button" | "submit";
-type TypeStyle =  "ping" ;
+export type TypeStyleButton =  "ping" | 'brown' | 'transparent';
 
 interface ButtonProps {
   children: React.ReactNode;
-  styleButton: TypeStyle;
+  styleButton: TypeStyleButton;
   styleButtonActive?: string;
   buttonWithIcon?: boolean;
+  icon?: string;
   disabled?: boolean;
   active?: boolean;
   onClick?: () => void;
@@ -20,9 +21,10 @@ interface ButtonProps {
   hide?: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
   children,
   buttonWithIcon = false,
+  icon,
   styleButton,
   disabled = false,
   active = false,
@@ -40,15 +42,15 @@ const Button: React.FC<ButtonProps> = ({
     `button__${styleButton}`,
     { 'button_hide': hide },
     { [`button__${styleButtonActive}`]: active },
-    { [`button__${styleButton}_disabled`]: disabled },
+     { [`button__${styleButton}_disabled`]: disabled },
+     { [`button_disabled`]: disabled },
     { [`button__${styleButton}_${editStyle}`]: edit }
   );
   return (
     <button  className={className} onClick={onClick} type={type} form={form} disabled={disabled}>
+      {buttonWithIcon && <img src={icon} alt='logo' className={Styles.button__icon} />}
       {children}
-      {buttonWithIcon && <span className={Styles.button__icon} />}
     </button>
   );
 };
 
-export default Button;

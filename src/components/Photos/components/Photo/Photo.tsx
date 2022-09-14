@@ -23,7 +23,7 @@ const Photo: React.FC<PropsPhoto> = ({ image, photoPostPage, setRef }) => {
 
   return (
     <li className={styleContainerPhoto} ref={setRef}>
-      <img className={Styles.photo__image} src={image.image} alt="photo" />
+      <img className={Styles.photo__image} src={image.image} alt="img" />
       <div className={Styles.photo__overlay} onClick={() => handleOpenImagePopup(image.image)}>
         <div className={Styles.photo__overlayIcon} />
       </div>

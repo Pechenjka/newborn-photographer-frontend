@@ -8,6 +8,16 @@
   border-radius: 5px;
   border: none;
   cursor: pointer;
+  display: flex;
+  &__icon {
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
+  }
+  &_disabled {
+    box-shadow: none;
+    cursor: default;
+  }
   &__ping {
     width: max-content;
     background-color: $ButtonColor;
@@ -19,8 +29,6 @@
     }
     &_disabled {
       background-color: $ButtonDisabledColor;
-      box-shadow: none;
-      cursor: default;
       &:hover {
         background-color: $ButtonDisabledColor;
       }
@@ -50,7 +58,63 @@
       justify-self: flex-end;
       margin-top: 20px;
     }
+    &_buttonUser {
+      padding: 5px 15px;
+      height: max-content;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    &_authButton {
+      width: 100%;
+      margin: 10px auto 20px;
+      height: 40px;
+      justify-content: center;
+    }
+    &_contactMeButton {
+      margin: 20px auto 0;
+    }
   }
+
+  &__brown {
+    color: $TextColor;
+    background-color: rgba(121, 85, 61, 0.3);
+    justify-content: center;
+    &:hover {
+      background-color: rgba(121, 85, 61, 0.5);
+    }
+    &_disabled {
+      background-color: $ButtonDisabledColor;
+      &:hover {
+        background-color: $ButtonDisabledColor;
+      }
+    }
+    &_adminFormButton {
+      width: 100%;
+      margin-top: 30px;
+    }
+  }
+
+  &__transparent {
+    background-color: transparent;
+    width: max-content;
+    color: #79553d;
+    margin-top: 20px;
+    border: 1px solid #79553d;
+    &:hover {
+      background-color: transparent;
+      color: #79553D7F;
+      border: 1px solid #79553D7F;
+    }
+    &_disabled {
+      display: none;
+    }
+  }
+
   &_hide {
     display: none;
   }

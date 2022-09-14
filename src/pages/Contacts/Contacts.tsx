@@ -4,33 +4,17 @@ import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import ContactMeForm from "../../components/ContactMeForm/ContactMeForm";
 import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import MyContacts from "../../components/MyContacts/MyContacts";
-import useFormWithValidation from "../../hooks/useForm";
-import { sendMessageGetInTouch } from "../../redux/Reducers/appSlice";
-import { useAppDispatch } from "../../redux/hooks";
 
 const Contacts: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
-
-  const handlerSubmitGetInTouch = (evt: React.FormEvent): void => {
-    evt.preventDefault();
-    dispatch(sendMessageGetInTouch({ data: values }));
-    resetForm();
-  };
 
   return (
     <Fragment>
       <BackgroundImage />
-      <section className="contacts anim-items">
+      <section className="contacts">
         <MyContacts />
         <SocialLinks />
         <ContactMeForm
-          onChange={handleChange}
-          onSubmit={handlerSubmitGetInTouch}
-          title={"Свяжитесь со мной"}
-          values={values}
-          errors={errors}
-          isValid={isValid}
+          title="Свяжитесь со мной"
         />
       </section>
     </Fragment>

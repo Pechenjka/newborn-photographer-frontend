@@ -15,5 +15,3 @@ export const Main: React.FC = () => {
     </Fragment>
   );
 };
-
-// export default Main;

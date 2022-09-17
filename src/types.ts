@@ -68,6 +68,7 @@ export interface IRoute {
   name: string;
   isAdmin: boolean;
   isAuth: boolean;
+  protectRouteBasket?: boolean
 }
 
 export interface PropsProtectedRoute {
@@ -86,6 +87,7 @@ export interface PropsInitialStatePacketSlice {
   packetWithDetailsDescription: IPacket | null;
   getPacketsCategories: ICategory[];
   packetInBasket: IPacket[];
+  basketIsNotEmpty: boolean
 }
 export interface IPacket {
   namePacket: string;

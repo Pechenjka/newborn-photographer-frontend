@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiApp } from "../../utils/apiApp";
-import { ICategory, PropsInitialStatePacketSlice, IPacket } from "../../types";
+import { ICategory, PropsInitialStatePacketSlice, IPacket, PropsBoolean } from "../../types";
 
 export const createPacket = createAsyncThunk("packet/createPacket", async (data: IPacket, { rejectWithValue }) => {
   try {
@@ -64,6 +64,7 @@ const initialState: PropsInitialStatePacketSlice = {
   getPacketsCategories: [],
   packetWithDetailsDescription: null,
   packetInBasket: [],
+  basketIsNotEmpty: false,
 };
 
 export const packetSlice = createSlice({
@@ -74,9 +75,11 @@ export const packetSlice = createSlice({
       if (!sessionStorage.getItem("packetsInBasket")) {
         sessionStorage.setItem("packetsInBasket", JSON.stringify([action.payload]));
         state.packetInBasket = [...state.packetInBasket, action.payload];
+        state.basketIsNotEmpty = true;
       } else {
         if (!state.packetInBasket.length) {
           state.packetInBasket = [...state.packetInBasket, ...action.payload];
+          state.basketIsNotEmpty = true;
         } else {
           state.packetInBasket = [...state.packetInBasket, action.payload];
           const obj = JSON.parse(sessionStorage.getItem("packetsInBasket") as string);
@@ -98,6 +101,9 @@ export const packetSlice = createSlice({
         });
         state.packetInBasket = remainingPackages;
       }
+    },
+    handlerBasketIsNotEmpty(state, action: PropsBoolean) {
+      state.basketIsNotEmpty = action.payload;
     },
   },
 
@@ -151,6 +157,6 @@ export const packetSlice = createSlice({
   },
 });
 
-export const { handlerAddPacketInBasket, handlerDeletePacketFromBasket } = packetSlice.actions;
+export const { handlerAddPacketInBasket, handlerDeletePacketFromBasket, handlerBasketIsNotEmpty } = packetSlice.actions;
 
 export default packetSlice.reducer;

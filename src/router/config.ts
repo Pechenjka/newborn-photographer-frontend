@@ -50,7 +50,7 @@ export const routes: IRoute[] = [
     isAuth: false,
   },
   { component: Contacts, path: "/contacts", name: "contacts", isAdmin: false, isAuth: false },
-  { component: Basket, path: "/basket", name: "basket", isAdmin: false, isAuth: false },
+  { component: Basket, path: "/basket", name: "basket", isAdmin: false, isAuth: false, protectRouteBasket: true },
   { component: PhotoProducts, path: "/photo-products", name: "photo-products", isAdmin: false, isAuth: false },
   { component: NotFound, path: "/not-found", name: "not-found", isAdmin: false, isAuth: false },
   { component: Login, path: "/signin", name: "signin", isAdmin: false, isAuth: false },

@@ -12,7 +12,6 @@ const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const history = useHistory();
-
   const { packetInBasket } = useAppSelector((state) => state.packets);
 
   useEffect(() => {
@@ -33,6 +32,9 @@ const App: React.FC = () => {
     if (sessionStorage.getItem("packetsInBasket") && !packetInBasket.length) {
       const arr = JSON.parse(sessionStorage.getItem("packetsInBasket") as string);
       dispatch(handlerAddPacketInBasket(arr));
+      if (pathname === "/basket") {
+        history.push(pathname);
+      }
     }
   }, []);
 

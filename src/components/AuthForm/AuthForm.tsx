@@ -23,6 +23,7 @@ const AuthForm: React.FC<PropsAuthForm> = ({
   error,
   loading,
   showError,
+  showLinkForgotPassword = true,
 }) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -52,9 +53,11 @@ const AuthForm: React.FC<PropsAuthForm> = ({
           return (
             <Form style={{ width: "100%" }} onSubmit={props.handleSubmit}>
               {children}
-              <Link className={Styles.auth__forgotPassword} to="#">
-                Забыли пароль?
-              </Link>
+              {showLinkForgotPassword && (
+                <Link className={Styles.auth__forgotPassword} to="/forgot">
+                  Забыли пароль?
+                </Link>
+              )}
               <Button
                 edit
                 editStyle="authButton"
@@ -70,7 +73,7 @@ const AuthForm: React.FC<PropsAuthForm> = ({
       </Formik>
       <p className={Styles.auth__question}>
         {textQuestion}
-        <Link className={Styles.auth__question_linkToAnotherAuthorisation} to={pathOnAnotherAuthorization}>
+        <Link className={Styles.auth__question_linkToAnotherAuthorisation} to={pathOnAnotherAuthorization || ""}>
           {textAnswer}
         </Link>
       </p>

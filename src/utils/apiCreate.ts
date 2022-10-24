@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { apiAuthorization } from "./apiAuth";
 
 const URL = "https://api.alenalobacheva.net";
-
+//const URL = "http://localhost:3005";
 const $api = axios.create({ withCredentials: true, baseURL: URL });
 
 $api.interceptors.request.use(async (config: AxiosRequestConfig) => {

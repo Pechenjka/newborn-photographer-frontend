@@ -16,6 +16,8 @@ import { IRoute } from "../types";
 import { AddNewPhoto } from "../pages/Admin/components/AddNewPhoto";
 import { FormOrder } from "../pages/Basket/components/FormOrder";
 import { OrderList } from "../pages/Admin/components/OrderList";
+import { SendOnEmailActivateLink } from "../components/SendOnEmailActivateLink";
+import { PasswordChange } from "../components/PasswordChange";
 
 export const routes: IRoute[] = [
   { component: Main, path: "/", name: "main", isAdmin: false, isAuth: false },
@@ -53,8 +55,24 @@ export const routes: IRoute[] = [
   { component: Basket, path: "/basket", name: "basket", isAdmin: false, isAuth: false, protectRouteBasket: true },
   { component: PhotoProducts, path: "/photo-products", name: "photo-products", isAdmin: false, isAuth: false },
   { component: NotFound, path: "/not-found", name: "not-found", isAdmin: false, isAuth: false },
-  { component: Login, path: "/signin", name: "signin", isAdmin: false, isAuth: false },
-  { component: Register, path: "/signup", name: "signup", isAdmin: false, isAuth: false },
+  { component: Login, path: "/signin", name: "signin", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
+  { component: Register, path: "/signup", name: "signup", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
+  {
+    component: SendOnEmailActivateLink,
+    path: "/forgot",
+    name: "forgot",
+    isAdmin: false,
+    isAuth: false,
+    withOutHeaderAndFooter: true,
+  },
+  {
+    component: PasswordChange,
+    path: "/passwordChange/:id",
+    name: "passwordChange",
+    isAdmin: false,
+    isAuth: false,
+    withOutHeaderAndFooter: true,
+  },
 ];
 
 export const ProtectRoutes = [

@@ -15,15 +15,16 @@ const Prices: React.FC = () => {
   const { path } = useRouteMatch();
 
   useEffect(() => {
-    if (getPacketsCategories.length) {
+    if (getPacketsCategories.length > 0) {
       getPacketsCategories.map((category) => {
         if (path.includes(category.title)) {
           dispatch(getArrPackets({ photosessionType: category.title }));
           setNameCategory(category.nameRU);
         }
+        dispatch(handlerErrorGetPackets(""));
       });
     } else {
-      dispatch(handlerErrorGetPackets("Oшибка, пакеты не загружены!"));
+      dispatch(handlerErrorGetPackets("Ошибка, пакеты не загружены!"));
     }
   }, [path, getPacketsCategories, dispatch]);
 
@@ -40,7 +41,7 @@ const Prices: React.FC = () => {
           ) : (
             <Packets getPackets={getPackets} />
           )}
-          {error && <p style={{ gridColumn: "1/-1" }}>{error.packets}</p>}
+          {error.packets && <p style={{ gridColumn: "1/-1" }}>{error.packets}</p>}
         </ul>
         <PopularPackets editStyleForPrice />
       </div>

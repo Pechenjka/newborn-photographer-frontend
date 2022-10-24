@@ -94,7 +94,7 @@ export const PacketWithDetailsDescription: React.FC = () => {
         </div>
       )}
       {loading && <PreLoader />}
-      {error && <p style={{ padding: "30px" }}>{error}</p>}
+      {error && <p style={{ padding: "30px" }}>{error.packetDetail}</p>}
     </Fragment>
   );
 };

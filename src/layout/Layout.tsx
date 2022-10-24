@@ -9,10 +9,10 @@ import { IRoute } from "../types";
 export const Layout: React.FC = () => {
   const { pathname } = useLocation<string>();
   const isAdminRoutes: (string | Array<string>)[] = allRoutes
-    .filter((route: IRoute) => route.isAdmin && route)
+    .filter((route: IRoute) => (route.isAdmin || route.withOutHeaderAndFooter) && route)
     .map((route) => route.path);
 
-  const withOutHeaderAndFooter: (string | Array<string>)[] = ["/signin", "/signup", ...isAdminRoutes];
+  const withOutHeaderAndFooter: (string | Array<string>)[] = [...isAdminRoutes];
 
   return (
     <section style={{ width: "100%", height: "100%" }}>

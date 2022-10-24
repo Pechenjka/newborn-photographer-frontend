@@ -68,7 +68,8 @@ export interface IRoute {
   name: string;
   isAdmin: boolean;
   isAuth: boolean;
-  protectRouteBasket?: boolean
+  protectRouteBasket?: boolean;
+  withOutHeaderAndFooter?: boolean;
 }
 
 export interface PropsProtectedRoute {
@@ -81,13 +82,18 @@ export interface PropsProtectedRoute {
 //Paket
 export interface PropsInitialStatePacketSlice {
   loading: boolean;
-  error: string;
+  error: {
+    newPacket: string;
+    packets: string;
+    packetDetail: string;
+    packetsPinned: string;
+  };
   getPackets: IPacket[];
   getPinnedPackets: IPacket[];
   packetWithDetailsDescription: IPacket | null;
   getPacketsCategories: ICategory[];
   packetInBasket: IPacket[];
-  basketIsNotEmpty: boolean
+  basketIsNotEmpty: boolean;
 }
 export interface IPacket {
   namePacket: string;
@@ -128,6 +134,7 @@ export interface IUser {
   email: string;
   phone?: string;
   prevOrders?: [];
+  passwordChange: boolean;
   _id: string;
   isActivated: boolean;
   role: string;
@@ -136,11 +143,19 @@ export interface IUser {
 export interface PropsInitialStateUserSlice {
   user: IUser;
   auth: boolean;
-  loading: boolean;
+  loading: {
+    register: boolean;
+    login: boolean;
+    passwordChange: boolean;
+    logOut: boolean;
+    getUserInfo: boolean;
+    updateUser: boolean;
+  };
   error: string;
   adminEmail: string;
   isRegister: boolean;
   showError: boolean;
+  passwordRecoveryEnabled: boolean;
 }
 export interface IUserProfile {
   name: string;
@@ -188,9 +203,9 @@ export interface PropsRegister {
 }
 export interface PropsAuthForm {
   titleAuthorization: string;
-  textQuestion: string;
-  textAnswer: string;
-  pathOnAnotherAuthorization: string;
+  textQuestion?: string;
+  textAnswer?: string;
+  pathOnAnotherAuthorization?: string;
   children?: React.ReactNode;
   initialValues: Object;
   validationSchema: any;
@@ -199,6 +214,7 @@ export interface PropsAuthForm {
   error: string;
   loading: boolean;
   showError: boolean;
+  showLinkForgotPassword?: boolean;
 }
 
 //Orders
@@ -231,7 +247,11 @@ export interface IPacketInOrder {
 export interface PropsInitialStateOrderSlice {
   dataOrders: IOrderData[];
   meOrders: Array<IMeOrders>;
-  loading: boolean;
+  loading: {
+    newOrder: boolean;
+    getOrders: boolean;
+    getMeOrders: boolean;
+  };
   error: string;
 }
 export interface PropsOrderCheckout {

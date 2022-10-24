@@ -32,7 +32,7 @@ const PopularPackets: React.FC<PropsPopularPackets> = ({ editStyleForPrice = fal
         ) : (
           <Packets getPackets={getPinnedPackets} editStyleForPrice={editStyleForPrice} />
         )}
-        {error && <p style={{ gridColumn: "1/-1" }}>{error}</p>}
+        {error && <p style={{ gridColumn: "1/-1" }}>{error.packetsPinned}</p>}
       </ul>
     </div>
   );

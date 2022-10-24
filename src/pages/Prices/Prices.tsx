@@ -4,7 +4,7 @@ import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import Packets from "../../components/Packets/Packets";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopularPackets from "../Main/components/PopularPackets/PopularPackets";
-import { getArrPackets } from "../../redux/Reducers/packetSlice";
+import { getArrPackets, handlerErrorGetPackets } from "../../redux/Reducers/packetSlice";
 import { useRouteMatch } from "react-router-dom";
 import PreLoader from "../../components/PreLoader/PreLoader";
 
@@ -15,12 +15,16 @@ const Prices: React.FC = () => {
   const { path } = useRouteMatch();
 
   useEffect(() => {
-    getPacketsCategories.map((category) => {
-      if (path.includes(category.title)) {
-        dispatch(getArrPackets({ photosessionType: category.title }));
-        setNameCategory(category.nameRU);
-      }
-    });
+    if (getPacketsCategories.length) {
+      getPacketsCategories.map((category) => {
+        if (path.includes(category.title)) {
+          dispatch(getArrPackets({ photosessionType: category.title }));
+          setNameCategory(category.nameRU);
+        }
+      });
+    } else {
+      dispatch(handlerErrorGetPackets("Oшибка, пакеты не загружены!"));
+    }
   }, [path, getPacketsCategories, dispatch]);
 
   return (
@@ -34,11 +38,11 @@ const Prices: React.FC = () => {
               <PreLoader />
             </div>
           ) : (
-            <Packets getPackets={getPackets}  />
+            <Packets getPackets={getPackets} />
           )}
-          {error && <p style={{ gridColumn: "1/-1" }}>{error}</p>}
+          {error && <p style={{ gridColumn: "1/-1" }}>{error.packets}</p>}
         </ul>
-        <PopularPackets editStyleForPrice  />
+        <PopularPackets editStyleForPrice />
       </div>
     </Fragment>
   );

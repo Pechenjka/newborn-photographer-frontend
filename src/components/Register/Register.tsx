@@ -59,7 +59,7 @@ export const Register: React.FC = () => {
       textButton="Зарегестрироваться"
       handleSubmit={handleSubmit}
       error={error}
-      loading={loading}
+      loading={loading.register}
       showError={showError}
     >
       <MyTextField nameLabel="Имя" type="text" name="name" component="input" id="name" />

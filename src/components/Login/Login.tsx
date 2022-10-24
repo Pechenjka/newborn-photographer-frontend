@@ -40,7 +40,7 @@ export const Login: React.FC = () => {
       textButton="Войти"
       handleSubmit={handleSubmit}
       error={error}
-      loading={loading}
+      loading={loading.login}
       showError={showError}
     >
       <MyTextField nameLabel="Email" type="email" name="email" component="input" id="email" />

@@ -35,7 +35,6 @@ export const getPacketsCategories = createAsyncThunk("packet/getPacketsCategorie
 export const getPacketsPinned = createAsyncThunk(
   "packet/getPacketsPinned",
   async (arg: { pinned: boolean }, { rejectWithValue }) => {
-    console.log(arg.pinned);
     try {
       const res = await apiApp().getArrPackets(`/?pinned=${arg.pinned}`);
 
@@ -49,7 +48,6 @@ export const getPacketsPinned = createAsyncThunk(
 export const getArrPackets = createAsyncThunk(
   "packet/getArrPackets",
   async (arg: { photosessionType: string }, { rejectWithValue }) => {
-    console.log(arg.photosessionType);
     try {
       const res = await apiApp().getArrPackets(`/?photosessionType=${arg.photosessionType}`);
       return res.data;
@@ -60,7 +58,12 @@ export const getArrPackets = createAsyncThunk(
 );
 
 const initialState: PropsInitialStatePacketSlice = {
-  loading: false,
+  loading: {
+    getArrPackets: false,
+    getPacketsPinned: false,
+    createPacket: false,
+    getPacketWithDetailsDescription: false,
+  },
   error: {
     newPacket: "",
     packets: "",
@@ -113,56 +116,56 @@ export const packetSlice = createSlice({
     handlerBasketIsNotEmpty(state, action: PropsBoolean) {
       state.basketIsNotEmpty = action.payload;
     },
-    handlerErrorGetPackets(state, action: { payload: string }) {
-      state.error.packets = action.payload;
+    handlerDeleteDetailsPacket(state, action: { payload: null }) {
+      state.packetWithDetailsDescription = action.payload;
     },
   },
 
   extraReducers: (builder) => {
     builder.addCase(getArrPackets.pending, (state) => {
-      state.loading = true;
+      state.loading.getArrPackets = true;
     });
     builder.addCase(getArrPackets.fulfilled, (state, action: { payload: IPacket[] }) => {
-      state.loading = false;
+      state.loading.getArrPackets = false;
       state.getPackets = action.payload;
     });
     builder.addCase(getArrPackets.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
+      state.loading.getArrPackets = false;
       state.error.packets = action.payload;
     });
     builder.addCase(getPacketsCategories.fulfilled, (state, action: { payload: ICategory[] }) => {
       state.getPacketsCategories = action.payload;
     });
     builder.addCase(getPacketsPinned.pending, (state) => {
-      state.loading = true;
+      state.loading.getPacketsPinned = true;
     });
     builder.addCase(getPacketsPinned.fulfilled, (state, action: { payload: IPacket[] }) => {
       state.getPinnedPackets = action.payload;
-      state.loading = false;
+      state.loading.getPacketsPinned = false;
     });
     builder.addCase(getPacketsPinned.rejected, (state, action: { payload: any }) => {
       state.error.packetsPinned = action.payload;
-      state.loading = false;
+      state.loading.getPacketsPinned = false;
     });
     builder.addCase(createPacket.pending, (state) => {
-      state.loading = true;
+      state.loading.createPacket = true;
     });
     builder.addCase(createPacket.fulfilled, (state) => {
-      state.loading = false;
+      state.loading.createPacket = false;
     });
     builder.addCase(createPacket.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
+      state.loading.createPacket = false;
       state.error.newPacket = action.payload;
     });
     builder.addCase(getPacketWithDetailsDescription.pending, (state) => {
-      state.loading = true;
+      state.loading.getPacketWithDetailsDescription = true;
     });
     builder.addCase(getPacketWithDetailsDescription.fulfilled, (state, action: { payload: IPacket }) => {
-      state.loading = false;
+      state.loading.getPacketWithDetailsDescription = false;
       state.packetWithDetailsDescription = action.payload;
     });
     builder.addCase(getPacketWithDetailsDescription.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
+      state.loading.getPacketWithDetailsDescription = false;
       state.error.packetDetail = action.payload;
     });
   },
@@ -172,7 +175,7 @@ export const {
   handlerAddPacketInBasket,
   handlerDeletePacketFromBasket,
   handlerBasketIsNotEmpty,
-  handlerErrorGetPackets,
+  handlerDeleteDetailsPacket
 } = packetSlice.actions;
 
 export default packetSlice.reducer;

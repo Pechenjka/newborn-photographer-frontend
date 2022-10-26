@@ -81,7 +81,12 @@ export interface PropsProtectedRoute {
 
 //Paket
 export interface PropsInitialStatePacketSlice {
-  loading: boolean;
+  loading: {
+    getArrPackets: boolean,
+    getPacketsPinned: boolean,
+    createPacket: boolean,
+    getPacketWithDetailsDescription: boolean
+  };
   error: {
     newPacket: string;
     packets: string;

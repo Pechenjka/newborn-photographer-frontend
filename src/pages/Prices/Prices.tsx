@@ -3,8 +3,8 @@ import Styles from "./style.module.scss";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import Packets from "../../components/Packets/Packets";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import PopularPackets from "../Main/components/PopularPackets/PopularPackets";
-import { getArrPackets, handlerErrorGetPackets } from "../../redux/Reducers/packetSlice";
+import PopularPackets from "../../components/PopularPackets/PopularPackets";
+import { getArrPackets } from "../../redux/Reducers/packetSlice";
 import { useRouteMatch } from "react-router-dom";
 import PreLoader from "../../components/PreLoader/PreLoader";
 
@@ -21,10 +21,7 @@ const Prices: React.FC = () => {
           dispatch(getArrPackets({ photosessionType: category.title }));
           setNameCategory(category.nameRU);
         }
-        dispatch(handlerErrorGetPackets(""));
       });
-    } else {
-      dispatch(handlerErrorGetPackets("Ошибка, пакеты не загружены!"));
     }
   }, [path, getPacketsCategories, dispatch]);
 
@@ -34,7 +31,7 @@ const Prices: React.FC = () => {
       <div className={Styles.prices}>
         <ul className={Styles.prices__packets}>
           <h3 className={Styles.prices__title}>{nameCategory}</h3>
-          {loading ? (
+          {loading.getArrPackets ? (
             <div style={{ gridColumn: "1/-1" }}>
               <PreLoader />
             </div>

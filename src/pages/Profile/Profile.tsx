@@ -56,7 +56,7 @@ export const Profile: React.FC = () => {
               onSubmit={handleSubmit}
               buttonProps={{ title: "редактировать", style: "transparent", onDirty: true }}
               styleForm="userProfile"
-              loading={loading}
+              loading={loading.updateUser}
             >
               <MyTextField
                 nameLabel="Имя"

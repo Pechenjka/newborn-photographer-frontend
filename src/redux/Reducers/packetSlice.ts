@@ -18,7 +18,7 @@ export const getPacketWithDetailsDescription = createAsyncThunk(
       const res = await apiApp().getPacketWithDetailsDescription(id);
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, детальные данные пакета не получены");
+      return rejectWithValue("Ошибка, подробные данные пакета не получены");
     }
   }
 );
@@ -37,6 +37,7 @@ export const getPacketsPinned = createAsyncThunk(
   async (arg: { pinned: boolean }, { rejectWithValue }) => {
     try {
       const res = await apiApp().getArrPackets(`/?pinned=${arg.pinned}`);
+
       return res.data;
     } catch (e) {
       return rejectWithValue("Ошибка, не удалось загрузить популярные пакеты!");
@@ -57,8 +58,18 @@ export const getArrPackets = createAsyncThunk(
 );
 
 const initialState: PropsInitialStatePacketSlice = {
-  loading: false,
-  error: "",
+  loading: {
+    getArrPackets: false,
+    getPacketsPinned: false,
+    createPacket: false,
+    getPacketWithDetailsDescription: false,
+  },
+  error: {
+    newPacket: "",
+    packets: "",
+    packetDetail: "",
+    packetsPinned: "",
+  },
   getPackets: [],
   getPinnedPackets: [],
   getPacketsCategories: [],
@@ -105,58 +116,66 @@ export const packetSlice = createSlice({
     handlerBasketIsNotEmpty(state, action: PropsBoolean) {
       state.basketIsNotEmpty = action.payload;
     },
+    handlerDeleteDetailsPacket(state, action: { payload: null }) {
+      state.packetWithDetailsDescription = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
     builder.addCase(getArrPackets.pending, (state) => {
-      state.loading = true;
+      state.loading.getArrPackets = true;
     });
     builder.addCase(getArrPackets.fulfilled, (state, action: { payload: IPacket[] }) => {
-      state.loading = false;
+      state.loading.getArrPackets = false;
       state.getPackets = action.payload;
     });
     builder.addCase(getArrPackets.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
-      state.error = action.payload;
+      state.loading.getArrPackets = false;
+      state.error.packets = action.payload;
     });
     builder.addCase(getPacketsCategories.fulfilled, (state, action: { payload: ICategory[] }) => {
       state.getPacketsCategories = action.payload;
     });
     builder.addCase(getPacketsPinned.pending, (state) => {
-      state.loading = true;
+      state.loading.getPacketsPinned = true;
     });
     builder.addCase(getPacketsPinned.fulfilled, (state, action: { payload: IPacket[] }) => {
       state.getPinnedPackets = action.payload;
-      state.loading = false;
+      state.loading.getPacketsPinned = false;
     });
     builder.addCase(getPacketsPinned.rejected, (state, action: { payload: any }) => {
-      state.error = action.payload;
-      state.loading = false;
+      state.error.packetsPinned = action.payload;
+      state.loading.getPacketsPinned = false;
     });
     builder.addCase(createPacket.pending, (state) => {
-      state.loading = true;
+      state.loading.createPacket = true;
     });
     builder.addCase(createPacket.fulfilled, (state) => {
-      state.loading = false;
+      state.loading.createPacket = false;
     });
     builder.addCase(createPacket.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
-      state.error = action.payload;
+      state.loading.createPacket = false;
+      state.error.newPacket = action.payload;
     });
     builder.addCase(getPacketWithDetailsDescription.pending, (state) => {
-      state.loading = true;
+      state.loading.getPacketWithDetailsDescription = true;
     });
     builder.addCase(getPacketWithDetailsDescription.fulfilled, (state, action: { payload: IPacket }) => {
-      state.loading = false;
+      state.loading.getPacketWithDetailsDescription = false;
       state.packetWithDetailsDescription = action.payload;
     });
     builder.addCase(getPacketWithDetailsDescription.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
-      state.error = action.payload;
+      state.loading.getPacketWithDetailsDescription = false;
+      state.error.packetDetail = action.payload;
     });
   },
 });
 
-export const { handlerAddPacketInBasket, handlerDeletePacketFromBasket, handlerBasketIsNotEmpty } = packetSlice.actions;
+export const {
+  handlerAddPacketInBasket,
+  handlerDeletePacketFromBasket,
+  handlerBasketIsNotEmpty,
+  handlerDeleteDetailsPacket
+} = packetSlice.actions;
 
 export default packetSlice.reducer;

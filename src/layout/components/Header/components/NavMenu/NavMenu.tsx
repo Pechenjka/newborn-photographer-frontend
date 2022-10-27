@@ -20,10 +20,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
   }, [handlerDisabledScroll, openBurgerMenu]);
 
   //Обработчик клика по ссылке подменю
-  const handleClickDropdownLink = (event: React.MouseEvent, type: string): void => {
-    if (pathname.includes(type)) {
-      return event.stopPropagation();
-    }
+  const handleClickDropdownLink = (): void => {
     if (window.innerWidth <= 1024) {
       handlerOpenAndCloseBurgerMenu();
     }
@@ -131,7 +128,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                           activeClassName="navigation__sublink_active"
                           to={el.pathSelect}
                           key={index}
-                          onClick={(event: React.MouseEvent) => el.type && handleClickDropdownLink(event, el.type)}
+                          onClick={handleClickDropdownLink}
                         >
                           {el.name}
                         </NavLink>

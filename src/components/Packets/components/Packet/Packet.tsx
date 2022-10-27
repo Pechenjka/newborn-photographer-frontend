@@ -18,9 +18,11 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, setRef }) =>
   const { packetInBasket } = useAppSelector((state) => state.packets);
 
   const showPacketInBasket = packetInBasket.some((item: IPacket) => item._id === packet._id);
-  // const showPacketInBasket = packetInBasket.some((item: IPacket) => item._id === packet._id);
 
   const handlerClickAddPacketInBasket = (itemData: IPacket) => {
+    if (showPacketInBasket) {
+      return;
+    }
     dispatch(handlerAddPacketInBasket(itemData));
   };
 
@@ -37,12 +39,7 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, setRef }) =>
   return (
     <li className={Styles.packet} ref={setRef}>
       <div className={Styles.packet__wrapperImage}>
-        <img
-          className={Styles.packet__image}
-          src={packet.image}
-          alt="img-packet"
-          onClick={handlerClickOnImagePacket}
-        />
+        <img className={Styles.packet__image} src={packet.image} alt="img-packet" onClick={handlerClickOnImagePacket} />
         {!editStyleForPrice && (
           <button type="button" className={classNameButton} onClick={() => handlerClickAddPacketInBasket(packet)}>
             {showPacketInBasket ? "Уже в корзине" : "Добавить в корзину"}

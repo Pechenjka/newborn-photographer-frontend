@@ -3,7 +3,7 @@ import Styles from "./style.module.scss";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import Packets from "../../components/Packets/Packets";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import PopularPackets from "../Main/components/PopularPackets/PopularPackets";
+import PopularPackets from "../../components/PopularPackets/PopularPackets";
 import { getArrPackets } from "../../redux/Reducers/packetSlice";
 import { useRouteMatch } from "react-router-dom";
 import PreLoader from "../../components/PreLoader/PreLoader";
@@ -15,12 +15,14 @@ const Prices: React.FC = () => {
   const { path } = useRouteMatch();
 
   useEffect(() => {
-    getPacketsCategories.map((category) => {
-      if (path.includes(category.title)) {
-        dispatch(getArrPackets({ photosessionType: category.title }));
-        setNameCategory(category.nameRU);
-      }
-    });
+    if (getPacketsCategories.length > 0) {
+      getPacketsCategories.map((category) => {
+        if (path.includes(category.title)) {
+          dispatch(getArrPackets({ photosessionType: category.title }));
+          setNameCategory(category.nameRU);
+        }
+      });
+    }
   }, [path, getPacketsCategories, dispatch]);
 
   return (
@@ -29,16 +31,16 @@ const Prices: React.FC = () => {
       <div className={Styles.prices}>
         <ul className={Styles.prices__packets}>
           <h3 className={Styles.prices__title}>{nameCategory}</h3>
-          {loading ? (
+          {loading.getArrPackets ? (
             <div style={{ gridColumn: "1/-1" }}>
               <PreLoader />
             </div>
           ) : (
-            <Packets getPackets={getPackets}  />
+            <Packets getPackets={getPackets} />
           )}
-          {error && <p style={{ gridColumn: "1/-1" }}>{error}</p>}
+          {error.packets && <p style={{ gridColumn: "1/-1" }}>{error.packets}</p>}
         </ul>
-        <PopularPackets editStyleForPrice  />
+        <PopularPackets editStyleForPrice />
       </div>
     </Fragment>
   );

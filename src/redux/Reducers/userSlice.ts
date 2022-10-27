@@ -37,6 +37,19 @@ export const login = createAsyncThunk("user/login", async (data: ILoginUser, { d
   }
 });
 
+export const sendEmailForPasswordRecovery = createAsyncThunk(
+  "user/passwordRecovery",
+  async (data: { email: string }, { rejectWithValue }) => {
+    try {
+      const res = await apiAuthorization().activatePasswordChange(data);
+      console.log(res.data);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Произошла ошибка");
+    }
+  }
+);
+
 export const checkAuth = createAsyncThunk(
   "user/checkAuth",
   async (data: { pathname: string; history: any }, { dispatch, rejectWithValue }) => {
@@ -90,6 +103,28 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const passwordChange = createAsyncThunk(
+  "user/passwordChange",
+  async (data: { newPassword: string }, { rejectWithValue }) => {
+    console.log(data)
+    try {
+      const res = await apiAuthorization().passwordChange(data);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Пароль не изменен");
+    }
+  }
+);
+
+export const passwordChangeClosed = createAsyncThunk('user/passwordChangeClosed', async ()=> {
+  try {
+
+  } catch (e) {
+
+  }
+})
+
+
 const initialState: PropsInitialStateUserSlice = {
   user: {
     name: "",
@@ -97,6 +132,7 @@ const initialState: PropsInitialStateUserSlice = {
     phone: "",
     _id: "",
     isActivated: false,
+    passwordChange: false,
     prevOrders: [],
     role: "",
     orders: [],
@@ -104,9 +140,17 @@ const initialState: PropsInitialStateUserSlice = {
   adminEmail: "testaccfordevelop@gmail.com",
   auth: false,
   isRegister: false,
-  loading: false,
+  loading: {
+    register: false,
+    login: false,
+    passwordChange: false,
+    logOut: false,
+    getUserInfo: false,
+    updateUser: false,
+  },
   error: "",
   showError: false,
+  passwordRecoveryEnabled: false,
 };
 
 const userSlice = createSlice({
@@ -128,25 +172,37 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(createUser.pending, (state) => {
-      state.loading = true;
+      state.loading.register = true;
     });
     builder.addCase(createUser.fulfilled, (state) => {
-      state.loading = false;
+      state.loading.register = false;
       state.error = "";
     });
     builder.addCase(createUser.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
+      state.loading.register = false;
       state.error = action.payload;
     });
     builder.addCase(login.pending, (state) => {
-      state.loading = true;
+      state.loading.login = true;
     });
     builder.addCase(login.fulfilled, (state) => {
-      state.loading = false;
+      state.loading.login = false;
       state.error = "";
     });
     builder.addCase(login.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
+      state.loading.login = false;
+      state.error = action.payload;
+    });
+    builder.addCase(sendEmailForPasswordRecovery.pending, (state) => {
+      state.loading.passwordChange = true;
+    });
+    builder.addCase(sendEmailForPasswordRecovery.fulfilled, (state) => {
+      state.loading.passwordChange = false;
+      state.error = "";
+      state.passwordRecoveryEnabled = true;
+    });
+    builder.addCase(sendEmailForPasswordRecovery.rejected, (state, action: { payload: any }) => {
+      state.loading.passwordChange = false;
       state.error = action.payload;
     });
     builder.addCase(getUserInfo.fulfilled, (state, action: { payload: IUser }) => {
@@ -154,7 +210,6 @@ const userSlice = createSlice({
     });
 
     builder.addCase(logOut.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
       state.error = action.payload;
     });
     builder.addCase(logOut.fulfilled, (state) => {
@@ -165,31 +220,32 @@ const userSlice = createSlice({
         phone: "",
         _id: "",
         isActivated: false,
+        passwordChange: false,
         prevOrders: [],
         role: "",
         orders: [],
       };
     });
     builder.addCase(checkAuth.pending, (state) => {
-      state.loading = true;
+      //state.loading = true;
     });
     builder.addCase(checkAuth.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
+      //state.loading = false;
       state.error = action.payload;
     });
     builder.addCase(checkAuth.fulfilled, (state) => {
-      state.loading = false;
+      // state.loading = false;
       state.error = "";
     });
     builder.addCase(updateUser.pending, (state) => {
-      state.loading = true;
+      state.loading.updateUser = true;
     });
     builder.addCase(updateUser.rejected, (state, action: { payload: any }) => {
-      state.loading = false;
+      state.loading.updateUser = false;
       state.error = action.payload;
     });
     builder.addCase(updateUser.fulfilled, (state) => {
-      state.loading = false;
+      state.loading.updateUser = false;
     });
   },
 });

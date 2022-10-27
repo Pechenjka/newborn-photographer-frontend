@@ -100,7 +100,7 @@ export const FormOrder: React.FC = () => {
                 edit: true,
               }}
               styleForm="order"
-              loading={loading}
+              loading={loading.newOrder}
             >
               <MyTextField
                 nameLabel="Имя"

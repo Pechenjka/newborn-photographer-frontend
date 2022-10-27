@@ -9,6 +9,8 @@ export const apiAuthorization = (): {
   refresh: any;
   userInfo: any;
   updateUser: any;
+  activatePasswordChange: any;
+  passwordChange: any;
 } => {
   return {
     registration: async (data: ICreateUser): Promise<AxiosResponse<ICreateUser>> => {
@@ -18,6 +20,13 @@ export const apiAuthorization = (): {
     login: async (data: { email: string; password: string }): Promise<AxiosResponse<IUserResponse>> => {
       const { email, password } = data;
       return await $api.post("/user/signin", { email, password });
+    },
+    activatePasswordChange: async (data: { email: string }): Promise<void> => {
+      return $api.post("/user/activatePasswordChange", data.email);
+    },
+    passwordChange: async (data: { newPassword: string }): Promise<void> => {
+      console.log('data.newPassword', data.newPassword)
+      return await $api.post("/user/passwordChange/:id", data.newPassword);
     },
     logout: async (): Promise<void> => {
       return await $api.post("/user/logout");

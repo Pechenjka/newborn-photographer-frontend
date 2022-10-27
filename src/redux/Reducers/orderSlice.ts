@@ -38,7 +38,11 @@ export const getMeOrders = createAsyncThunk(`order/getOwnOrder`, async (_, { rej
 const initialState: PropsInitialStateOrderSlice = {
   dataOrders: [],
   meOrders: [],
-  loading: false,
+  loading: {
+    newOrder: false,
+    getOrders: false,
+    getMeOrders: false
+  },
   error: "",
 };
 
@@ -52,26 +56,26 @@ const orderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(newOrder.pending, (state) => {
-      state.loading = true;
+      state.loading.newOrder = true;
     });
     builder.addCase(newOrder.rejected, (state, action: { payload: any }) => {
       state.error = action.payload;
-      state.loading = false;
+      state.loading.newOrder = false;
+    });
+    builder.addCase(newOrder.fulfilled, (state) => {
+      state.loading.newOrder = false;
     });
     builder.addCase(getOrders.rejected, (state, action: { payload: any }) => {
       state.error = action.payload;
-      state.loading = false;
     });
     builder.addCase(getOrders.fulfilled, (state, action: { payload: IOrderData[] }) => {
       state.dataOrders = action.payload;
     });
     builder.addCase(getMeOrders.rejected, (state, action: { payload: any }) => {
       state.error = action.payload;
-      state.loading = false;
     });
     builder.addCase(getMeOrders.fulfilled, (state, action: { payload: IMeOrders[] }) => {
       state.meOrders = action.payload;
-      state.loading = false;
     });
   },
 });

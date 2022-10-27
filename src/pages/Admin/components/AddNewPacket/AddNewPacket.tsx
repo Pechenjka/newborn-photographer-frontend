@@ -9,7 +9,7 @@ import { createPacket } from "../../../../redux/Reducers/packetSlice";
 
 export const AddNewPacket: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state) => state.app);
+  const { loading, error } = useAppSelector((state) => state.packets);
   const initialValues: IPacket = {
     namePacket: "",
     photosessionType: "",
@@ -46,7 +46,7 @@ export const AddNewPacket: React.FC = () => {
           onDirty: true,
         }}
         styleForm="admin"
-        loading={loading}
+        loading={loading.createPacket}
       >
         <MyTextField nameLabel="Заголовок" type="text" name="namePacket" id="namePacket" component="input" />
         <MyTextField nameLabel="Пакет" type="text" name="photosessionType" id="photosessionType" component="input" />

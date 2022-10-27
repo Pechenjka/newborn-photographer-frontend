@@ -1,15 +1,22 @@
-import React from "react";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Redirect, Route, Switch, useLocation, withRouter } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { useAppSelector } from "../redux/hooks";
-import { allRoutes, routes } from "./config";
+import { allRoutes } from "./config";
 import { IRoute } from "../types";
 
-export const RouterComponent: React.FC = () => {
+const RouterComponent: React.FC = () => {
   const { pathname } = useLocation();
   const { auth } = useAppSelector((state) => state.user);
   const { basketIsNotEmpty } = useAppSelector((state) => state.packets);
   const staff = true;
+
+  useEffect(() => {
+    if (pathname) {
+      // @ts-ignore
+      window.ym(90939090, "hit", window.location.href);
+    }
+  }, [pathname]);
 
   return (
     <Switch>
@@ -44,3 +51,5 @@ export const RouterComponent: React.FC = () => {
     </Switch>
   );
 };
+
+export default withRouter(RouterComponent);

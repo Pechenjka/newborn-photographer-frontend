@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import {useHistory, useLocation, useParams, useRouteMatch} from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
@@ -9,7 +9,7 @@ import {
   getPacketsCategories,
   getPacketsPinned,
   handlerAddPacketInBasket,
-  handlerDeleteDetailsPacket
+  handlerDeleteDetailsPacket,
 } from "../../redux/Reducers/packetSlice";
 import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 

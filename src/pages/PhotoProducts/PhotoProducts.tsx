@@ -6,16 +6,20 @@ import photoCanvas from "../../images/photo-products/photo-сanvases.webp";
 import photoTablets from "../../images/photo-products/tablets-with-passport.webp";
 import photoBox from "../../images/photo-products/photo-box.webp";
 import Table from "./components/Table/Table";
-import {
-  booksAccessories,
-  tableBooks,
-  tablePhotoCanvases,
-  tableTabletsWithPassport,
-} from "../../utils/config";
+import { booksAccessories, tableBooks, tablePhotoCanvases, tableTabletsWithPassport } from "../../utils/config";
+import { useLocation } from "react-router-dom";
+import { MetaData } from "../../helpers/MetaData";
 
 const PhotoProducts: React.FC = () => {
+  const { pathname } = useLocation();
+
   return (
     <Fragment>
+      <MetaData
+        title="Фотокниги, фотохолсты и другая фотопродукция"
+        description="Заказать фотокнигу любого формата, фотохолст, планшет с паспарту, фотобокс и многое другое"
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
+      />
       <BackgroundImage />
       <section className="photoProducts">
         <div className="photoProducts__item photoProducts__item-books books-accessories ">

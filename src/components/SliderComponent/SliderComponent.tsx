@@ -57,9 +57,9 @@ export const SliderComponent: React.FC = () => {
         className={Styles.mySwiper}
       >
         <div className={Styles.slideShow__aboutMeContainer}>
-          <h3 className={styleWelcomeTitle}>
+          <h1 className={styleWelcomeTitle}>
             <br /> Я Алена Лобачева
-          </h3>
+          </h1>
           <p className={styleWelcomeDescription}>
             Профессиональный фотограф новорожденных.
             <br />

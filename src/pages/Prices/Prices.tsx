@@ -5,15 +5,16 @@ import Packets from "../../components/Packets/Packets";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopularPackets from "../../components/PopularPackets/PopularPackets";
 import { getArrPackets } from "../../redux/Reducers/packetSlice";
-import { useRouteMatch } from "react-router-dom";
+import { useLocation, useRouteMatch } from "react-router-dom";
 import PreLoader from "../../components/PreLoader/PreLoader";
+import { MetaData } from "../../helpers/MetaData";
 
 const Prices: React.FC = () => {
   const dispatch = useAppDispatch();
   const { getPackets, getPacketsCategories, loading, error } = useAppSelector((state) => state.packets);
   const [nameCategory, setNameCategory] = useState("");
   const { path } = useRouteMatch();
-
+  const { pathname } = useLocation();
   useEffect(() => {
     if (getPacketsCategories.length > 0) {
       getPacketsCategories.map((category) => {
@@ -27,10 +28,15 @@ const Prices: React.FC = () => {
 
   return (
     <Fragment>
+      <MetaData
+        title={`Узнать стоимость и оформить заказ - ${nameCategory}`}
+        description={`Фотосессиия новорожденного, семейная фотосессия, съемка детей до 1 года, фотоссессия беременности, крещение, выписка из роддома, съемка для контента.`}
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
+      />
       <BackgroundImage />
       <div className={Styles.prices}>
         <ul className={Styles.prices__packets}>
-          <h3 className={Styles.prices__title}>{nameCategory}</h3>
+          <h1 className={Styles.prices__title}>{nameCategory}</h1>
           {loading.getArrPackets ? (
             <div style={{ gridColumn: "1/-1" }}>
               <PreLoader />

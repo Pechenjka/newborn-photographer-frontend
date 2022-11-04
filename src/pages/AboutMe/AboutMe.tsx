@@ -1,10 +1,19 @@
 import "./AboutMe.scss";
 import React, { Fragment } from "react";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
+import { useLocation } from "react-router-dom";
+import { MetaData } from "../../helpers/MetaData";
 
 export const AboutMe: React.FC = () => {
+  const { pathname } = useLocation();
+
   return (
     <Fragment>
+      <MetaData
+        title="О том, как я стала фотографом новорожденных"
+        description="Я, профессиональный фотограф новорожденных. Вместе со мной, вы тщательно подготовись к фотосессии: подберем одежду, выберем локацию по вашим интересам."
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
+      />
       <BackgroundImage />
       <section className="aboutMe">
         <div className="aboutMe__container">
@@ -38,4 +47,3 @@ export const AboutMe: React.FC = () => {
     </Fragment>
   );
 };
-

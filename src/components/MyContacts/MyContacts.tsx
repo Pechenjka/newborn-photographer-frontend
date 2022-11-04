@@ -19,7 +19,6 @@ const MyContacts: React.FC = () => {
             className={`myContacts__link myContacts__email ${myContactsEdit}`}
             href="https://e.mail.ru/compose/?to=newbornphoto_lobacheva@mail.ru"
             target="_blank"
-            rel="noreferrer"
           >
             newbornphoto_lobacheva@mail.ru
           </a>
@@ -30,7 +29,6 @@ const MyContacts: React.FC = () => {
             className={`myContacts__link myContacts__phone ${myContactsEdit}`}
             href="tel:+7-926-936-1110"
             target="_blank"
-            rel="noreferrer"
           >
             +7-926-936-11-10
           </a>

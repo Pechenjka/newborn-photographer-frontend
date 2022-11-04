@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IPhoto, IPhotosCategoryInGallery, PhotoPostPage } from "../../types";
 import { Button } from "../../components/Button";
 import PreLoader from "../../components/PreLoader/PreLoader";
+import { MetaData } from "../../helpers/MetaData";
 
 const PhotoGallery: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -44,6 +45,11 @@ const PhotoGallery: React.FC = () => {
 
   return (
     <Fragment>
+      <MetaData
+        title={`Каталог фотографий ${photosCategoryInGallery.filter(item => pathname.includes(item.type) && item.title)[0].title} с авторской обработкой`}
+        description="Оставляю памятные мгновения Вам и Вашим близким на всю жизнь."
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
+      />
       <section className="photoGallery" id="photoGallery">
         <BackgroundImage />
         {photosCategoryInGallery.map((item: IPhotosCategoryInGallery, index: number) => {

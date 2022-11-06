@@ -4,6 +4,7 @@ import PhotoGalleryOfTheMainPage from "./components/PhotoGalleryOfTheMainPage/Ph
 import PopularPackets from "../../components/PopularPackets/PopularPackets";
 import { SliderComponent } from "../../components/SliderComponent";
 import { MetaData } from "../../helpers/MetaData";
+import { AboutNewborn } from "./components/AboutNewborn";
 
 export const Main: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ export const Main: React.FC = () => {
         />
         <SliderComponent />
         <PhotoGalleryOfTheMainPage />
+        <AboutNewborn />
         <PopularPackets editStyleForPrice={window.innerWidth < 768 && true} />
       </main>
     </Fragment>

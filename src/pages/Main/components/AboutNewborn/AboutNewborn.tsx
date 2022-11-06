@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "./style.module.scss";
 import { VideoComponent } from "../../../../components/VideoComponent";
+import coverOnTheInterview from '../../../../images/cover-for-interview.webp'
 
 export const AboutNewborn: React.FC = () => {
   return (
@@ -8,7 +9,7 @@ export const AboutNewborn: React.FC = () => {
       <VideoComponent
         link="https://storage.yandexcloud.net/newborn-photographer-alena-lobacheva/video/interview.mp4"
         title="О фотосессии новорожденного"
-        poster="https://storage.yandexcloud.net/newborn-photographer-alena-lobacheva/video/Cover-for-interview.png"
+        poster={coverOnTheInterview}
       />
     </div>
   );

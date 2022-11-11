@@ -16,11 +16,6 @@ const SocialLinks:React.FC = () => {
           href="tg://resolve?domain=newbornphoto_lobacheva"
           target='_blank'
         >{null}</a>
-        <a
-          className="socialLinks__item-social-networks socialLinks__item-social-networks_instagram"
-          href="https://www.instagram.com/newbornphoto_lobacheva/"
-          target='_blank'
-        >{null}</a>
       </div>
     </div>
   )

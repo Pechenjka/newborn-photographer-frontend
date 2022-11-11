@@ -5,7 +5,7 @@ import coverOnTheInterview from '../../../../images/cover-for-interview.webp'
 
 export const AboutNewborn: React.FC = () => {
   return (
-    <div className={Styles.aboutNewborn}>
+    <div className={Styles.aboutNewborn} id='aboutNewborn'>
       <VideoComponent
         link="https://storage.yandexcloud.net/newborn-photographer-alena-lobacheva/video/interview.mp4"
         title="О фотосессии новорожденного"

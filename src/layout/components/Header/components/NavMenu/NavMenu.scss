@@ -328,12 +328,17 @@ $colorLinksInBurgerMenu: #696554;
     transition: all 3s ease-in-out;
 
     width: 120px;
-
   }
   &__textUserBtn {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  &__adminPanel {
+    text-decoration: none;
+    color: #ff9696;
+    padding-top: 5px;
+
   }
 }
 

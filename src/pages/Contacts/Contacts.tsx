@@ -14,8 +14,8 @@ const Contacts: React.FC = () => {
     <Fragment>
       <MetaData
         title="Контактная информация"
-        description="telegram: @newbornphoto_lobacheva, instagram: @newbornphoto_lobacheva, whatsApp: +7-926-936-11-10, email: newbornphoto_lobacheva@mail.ru"
-        canonicalLink={`https://alenalobacheva.net${pathname}`}
+        description="Мои контактные данные: telegram: @newbornphoto_lobacheva, instagram: @newbornphoto_lobacheva, whatsApp: +7-926-936-11-10, email: newbornphoto_lobacheva@mail.ru"
+        canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <BackgroundImage />
       <section className="contacts">

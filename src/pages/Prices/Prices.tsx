@@ -15,6 +15,7 @@ const Prices: React.FC = () => {
   const [nameCategory, setNameCategory] = useState("");
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
+
   useEffect(() => {
     if (getPacketsCategories.length > 0) {
       getPacketsCategories.map((category) => {
@@ -29,9 +30,9 @@ const Prices: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title={`Узнать стоимость и оформить заказ - ${nameCategory}`}
-        description={`Фотосессиия новорожденного, семейная фотосессия, съемка детей до 1 года, фотоссессия беременности, крещение, выписка из роддома, съемка для контента.`}
-        canonicalLink={`https://alenalobacheva.net${pathname}`}
+        title={`Узнать стоимость на фотосессию ${nameCategory}`}
+        description={`Подобрать пакет и заказать фотосессию ${nameCategory}.`}
+        canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <BackgroundImage />
       <div className={Styles.prices}>

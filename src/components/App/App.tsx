@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import { useHistory, useLocation, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
 import { Layout } from "../../layout";
@@ -45,7 +44,7 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if(!pathname.includes(id)) {
+    if (!pathname.includes(id)) {
       dispatch(handlerDeleteDetailsPacket(null));
     }
   }, [id, pathname]);

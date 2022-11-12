@@ -46,9 +46,9 @@ const PhotoGallery: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title={`Каталог фотографий ${photosCategoryInGallery.filter(item => pathname.includes(item.type) && item.title)[0].title} с авторской обработкой`}
+        title={`Галерея фотографий '${photosCategoryInGallery.filter(item => pathname.includes(item.type) && item.title)[0].title}' с авторской обработкой`}
         description="Оставляю памятные мгновения Вам и Вашим близким на всю жизнь."
-        canonicalLink={`https://alenalobacheva.net${pathname}`}
+        canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <section className="photoGallery" id="photoGallery">
         <BackgroundImage />

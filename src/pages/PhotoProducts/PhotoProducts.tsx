@@ -18,7 +18,7 @@ const PhotoProducts: React.FC = () => {
       <MetaData
         title="Фотокниги, фотохолсты и другая фотопродукция"
         description="Заказать фотокнигу любого формата, фотохолст, планшет с паспарту, фотобокс и многое другое"
-        canonicalLink={`https://alenalobacheva.net${pathname}`}
+        canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <BackgroundImage />
       <section className="photoProducts">

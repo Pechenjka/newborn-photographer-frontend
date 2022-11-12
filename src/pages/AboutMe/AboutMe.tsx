@@ -12,7 +12,7 @@ export const AboutMe: React.FC = () => {
       <MetaData
         title="О том, как я стала фотографом новорожденных"
         description="Я, профессиональный фотограф новорожденных. Вместе со мной, вы тщательно подготовись к фотосессии: подберем одежду, выберем локацию по вашим интересам."
-        canonicalLink={`https://alenalobacheva.net${pathname}`}
+        canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <BackgroundImage />
       <section className="aboutMe">

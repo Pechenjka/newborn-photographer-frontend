@@ -30,8 +30,8 @@ const Prices: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title={`Узнать стоимость на фотосессию ${nameCategory}`}
-        description={`Подобрать пакет и заказать фотосессию ${nameCategory}.`}
+        title={`Узнать стоимость на фотосессию ${nameCategory.toLowerCase()}`}
+        description={`Подобрать пакет и заказать фотосессию - ${nameCategory.toLowerCase()}.`}
         canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <BackgroundImage />

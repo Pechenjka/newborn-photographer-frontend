@@ -1,27 +1,24 @@
 import Styles from "./style.module.scss";
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { IOrderFields, IPacketInOrder, IUserProfile } from "../../../../types";
 import { MyTextField } from "../../../../components/MyTextField";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { useHistory } from "react-router-dom";
-import { handlerDeletePacketFromBasket } from "../../../../redux/Reducers/packetSlice";
 import { FormikFormComponent } from "../../../../components/FormikFormComponent";
 import { Link } from "react-router-dom";
 import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 import { Order } from "./components/Order";
-import { updateUser } from "../../../../redux/Reducers/userSlice";
-import { newOrder } from "../../../../redux/Reducers/orderSlice";
+import { handleConfirmSendOrder, newOrder } from "../../../../redux/Reducers/orderSlice";
 import MessageToTheUser from "../../../../components/MessageToTheUser/MessageToTheUser";
 import { validationSchemaOrderForm } from "../../../../validationForms";
 
 export const FormOrder: React.FC = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-  const [confirmSend, setConfirmSend] = useState<boolean>();
 
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { user } = useAppSelector((state) => state.user);
-  const { loading } = useAppSelector((state) => state.order);
+  const { loading, error, confirmSendOrder } = useAppSelector((state) => state.order);
   const initialValues: IOrderFields = {
     name: user.name,
     email: user.email,
@@ -40,32 +37,23 @@ export const FormOrder: React.FC = () => {
     return { namePacket, photosessionType, price, link: "" };
   });
 
-  const userDTO = (user: any): IUserProfile => {
-    const { name, email, phone, _id } = user;
-    return { name, email, phone, _id };
-  };
-
   const handleOrderNumber = orderNumber() as string;
 
   const handleSubmit = (values: { name: string; email: string; phone: string; text?: string }): void => {
     dispatch(
-      newOrder({ orderNumber: handleOrderNumber, packets: packetsInOrder, user: userDTO(user), text: values.text })
-    );
-    dispatch(
-      updateUser({
+      newOrder({
+        orderNumber: handleOrderNumber,
+        packets: packetsInOrder,
         name: values.name,
         email: values.email,
         phone: values.phone,
-        orders: user.orders && [...user.orders, handleOrderNumber],
+        text: values.text,
       })
     );
-
-    setConfirmSend(true);
-    dispatch(handlerDeletePacketFromBasket(null));
   };
 
   const handleClick = (): void => {
-    setConfirmSend(false);
+    dispatch(handleConfirmSendOrder(false));
     history.push("/");
   };
 
@@ -73,7 +61,7 @@ export const FormOrder: React.FC = () => {
     <Fragment>
       <BackgroundImage />
       <section className={Styles.formOrder}>
-        {confirmSend ? (
+        {confirmSendOrder ? (
           <MessageToTheUser title="Заказ отправлен" onClose={handleClick} />
         ) : (
           <Fragment>
@@ -82,13 +70,20 @@ export const FormOrder: React.FC = () => {
                 Вернуться в корзину
               </Link>
               <h3 className={Styles.formOrder__formTitle}>Оформление заказа</h3>
-              {!user.phone && (
-                <p className={Styles.formOrder__formDescription}>Для оформления заказа, укажите номер телефона!</p>
-              )}
             </div>
             <div className={Styles.formOrder__containerOrder}>
               <Order orderData={packetsInOrder} title="Заказ" />
             </div>
+            {error.newOrder ? (
+              <p className={Styles.formOrder__formDescription_error}>
+                {error.newOrder}
+              </p>
+            ) : (
+              <p className={Styles.formOrder__formDescription}>
+                Для оформления заказа, укажите ваши контактные данные!
+              </p>
+            )}
+
             <FormikFormComponent
               initialValues={initialValues}
               validationSchema={validationSchemaOrderForm}

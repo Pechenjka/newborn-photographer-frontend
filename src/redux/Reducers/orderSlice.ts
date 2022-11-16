@@ -1,13 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { PropsInitialStateOrderSlice, IMeOrders, INewOrder, IOrderData } from "../../types";
+import { PropsInitialStateOrderSlice, IMeOrders, INewOrder, IOrderData, PropsBoolean } from "../../types";
 import { apiOrder } from "../../utils/apiOrder";
+import { handlerDeletePacketFromBasket } from "./packetSlice";
 
-export const newOrder = createAsyncThunk("order/newOrder", async (data: INewOrder, { rejectWithValue }) => {
+export const newOrder = createAsyncThunk("order/newOrder", async (data: INewOrder, { rejectWithValue, dispatch }) => {
   try {
     const res = await apiOrder().newOrder(data);
+    if (res.data) {
+      dispatch(handlerDeletePacketFromBasket(null));
+    }
     return res.data;
   } catch (e) {
-    return rejectWithValue("Ошибка, не удалось отправить заказ");
+    return rejectWithValue("Ошибка, не удалось отправить заказ, ведутся технические работы. В ближайшее время сможете отправить заказ")
   }
 });
 
@@ -38,12 +42,17 @@ export const getMeOrders = createAsyncThunk(`order/getOwnOrder`, async (_, { rej
 const initialState: PropsInitialStateOrderSlice = {
   dataOrders: [],
   meOrders: [],
+  confirmSendOrder: false,
   loading: {
     newOrder: false,
     getOrders: false,
-    getMeOrders: false
+    getMeOrders: false,
   },
-  error: "",
+  error: {
+    newOrder: '',
+    getOrders: '',
+    getMeOrders: '',
+  },
 };
 
 const orderSlice = createSlice({
@@ -53,26 +62,30 @@ const orderSlice = createSlice({
     deleteMeOrders: (state) => {
       state.meOrders = [];
     },
+    handleConfirmSendOrder: (state, action: PropsBoolean) => {
+      state.confirmSendOrder = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(newOrder.pending, (state) => {
       state.loading.newOrder = true;
     });
     builder.addCase(newOrder.rejected, (state, action: { payload: any }) => {
-      state.error = action.payload;
+      state.error.newOrder = action.payload;
       state.loading.newOrder = false;
     });
     builder.addCase(newOrder.fulfilled, (state) => {
       state.loading.newOrder = false;
+      state.confirmSendOrder = true;
     });
     builder.addCase(getOrders.rejected, (state, action: { payload: any }) => {
-      state.error = action.payload;
+      state.error.getOrders = action.payload;
     });
     builder.addCase(getOrders.fulfilled, (state, action: { payload: IOrderData[] }) => {
       state.dataOrders = action.payload;
     });
     builder.addCase(getMeOrders.rejected, (state, action: { payload: any }) => {
-      state.error = action.payload;
+      state.error.getMeOrders = action.payload;
     });
     builder.addCase(getMeOrders.fulfilled, (state, action: { payload: IMeOrders[] }) => {
       state.meOrders = action.payload;
@@ -80,5 +93,5 @@ const orderSlice = createSlice({
   },
 });
 
-export const { deleteMeOrders } = orderSlice.actions;
+export const { deleteMeOrders, handleConfirmSendOrder } = orderSlice.actions;
 export default orderSlice.reducer;

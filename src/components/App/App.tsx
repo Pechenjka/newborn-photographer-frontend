@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./App.scss";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
 import { Layout } from "../../layout";
-import {
-  getPacketsCategories,
-  getPacketsPinned,
-  handlerAddPacketInBasket,
-  handlerDeleteDetailsPacket,
-} from "../../redux/Reducers/packetSlice";
+import { getPacketsCategories, getPacketsPinned, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { id } = useParams<{ id: string }>();
   const { pathname } = useLocation();
   const history = useHistory();
   const { packetInBasket } = useAppSelector((state) => state.packets);
@@ -42,12 +36,6 @@ const App: React.FC = () => {
       }
     }
   }, []);
-
-  useEffect(() => {
-    if (!pathname.includes(id)) {
-      dispatch(handlerDeleteDetailsPacket(null));
-    }
-  }, [id, pathname]);
 
   return (
     <div className="page">

@@ -2,7 +2,6 @@ import React from "react";
 import { TypeFieldComponent } from "./components/MyTextField";
 import { RouteComponentProps } from "react-router-dom";
 
-
 export interface PropsPayLoadSendEmail {
   data: {
     email?: string;
@@ -82,10 +81,10 @@ export interface PropsProtectedRoute {
 //Paket
 export interface PropsInitialStatePacketSlice {
   loading: {
-    getArrPackets: boolean,
-    getPacketsPinned: boolean,
-    createPacket: boolean,
-    getPacketWithDetailsDescription: boolean
+    getArrPackets: boolean;
+    getPacketsPinned: boolean;
+    createPacket: boolean;
+    getPacketWithDetailsDescription: boolean;
   };
   error: {
     newPacket: string;
@@ -241,7 +240,10 @@ export interface INewOrder {
   orderNumber: string;
   text?: string;
   packets: IPacketInOrder[];
-  user: IUserProfile;
+  name: string;
+  email: string;
+  phone: string;
+  // user: IUserProfile;
 }
 export interface IPacketInOrder {
   namePacket: string;
@@ -252,12 +254,17 @@ export interface IPacketInOrder {
 export interface PropsInitialStateOrderSlice {
   dataOrders: IOrderData[];
   meOrders: Array<IMeOrders>;
+  confirmSendOrder: boolean;
   loading: {
     newOrder: boolean;
     getOrders: boolean;
     getMeOrders: boolean;
   };
-  error: string;
+  error: {
+    newOrder: string;
+    getOrders: string;
+    getMeOrders: string;
+  };
 }
 export interface PropsOrderCheckout {
   orderInMyProfile?: boolean;

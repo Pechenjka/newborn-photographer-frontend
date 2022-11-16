@@ -5,14 +5,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/modules/navigation/navigation.scss";
 import "swiper/modules/pagination/pagination.scss";
-import { Link } from "react-scroll";
+import * as Scroll from 'react-scroll'
 import { arrSlides } from "../../utils/config";
 import { IArrSlides } from "../../types";
 import classNames from "classnames/bind";
+import { Link } from 'react-router-dom'
 
 export const SliderComponent: React.FC = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  const LinkScroll = Scroll.Link
 
   const handleChangeSlide = arrSlides.map((item: IArrSlides): string => {
     if (window.innerWidth <= 768 && item.mobile) {
@@ -23,9 +25,6 @@ export const SliderComponent: React.FC = () => {
   });
 
   const cx = classNames.bind(Styles);
-  const styleWelcomeTitle = cx("slideShow__welcomeTitle", "animItems");
-  const styleWelcomeDescription = cx("slideShow__welcomeDescription", "animItems");
-  const styleWelcomeLink = cx("slideShow__welcomeLink", "animItems");
   const stylePrevBtn = cx("swiperBtn", "swiperBtn_prev");
   const styleNextBtn = cx("swiperBtn", "swiperBtn_next");
 
@@ -56,18 +55,25 @@ export const SliderComponent: React.FC = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className={Styles.mySwiper}
       >
-        <div className={Styles.slideShow__aboutMeContainer}>
-          <h1 className={styleWelcomeTitle}>
-            <br /> Я Алена Лобачева
-          </h1>
-          <p className={styleWelcomeDescription}>
-            Профессиональный фотограф новорожденных.
-            <br />
-            Знаю, как оставить на память самые ценные <br /> и неповторимые моменты вашей жизни
-          </p>
-          <Link className={styleWelcomeLink} to="footer" spy={true} smooth={true} offset={50} duration={1000}>
-            Мои контакты
-          </Link>
+        <div className={Styles.slideShow__welcomeContainer}>
+          <div className={Styles.slideShow__aboutMeContainer}>
+            <h1 className={Styles.slideShow__welcomeTitle}>
+              <br /> Я Алена Лобачева
+            </h1>
+            <p className={Styles.slideShow__welcomeDescription}>
+              Профессиональный фотограф новорожденных.
+              <br />
+              Знаю, как оставить на память самые ценные <br /> и неповторимые моменты вашей жизни
+            </p>
+            <Link className={Styles.slideShow__welcomeLink} to='/contacts' >
+              Мои контакты
+            </Link>
+          </div>
+          <div className={Styles.slideShow__linkAboutNewbornContainer}>
+            <LinkScroll className={Styles.slideShow__linkAboutNewborn} to='aboutNewborn' spy={true}  smooth={true} offset={-100} duration={1000}>
+              О фотосесии новорожденного в видеоформате
+            </LinkScroll>
+          </div>
         </div>
         <div className={Styles.slideShow__imageContainer}>
           {handleChangeSlide.map((slide: string, index: number) => {

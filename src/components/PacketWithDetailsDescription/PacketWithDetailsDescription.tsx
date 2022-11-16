@@ -44,7 +44,7 @@ export const PacketWithDetailsDescription: React.FC = () => {
             <h3 className={Styles.packetDetails__title}>{packetWithDetailsDescription.namePacket}</h3>
             <img
               className={Styles.packetDetails__image}
-              src={packetWithDetailsDescription.imageDescription}
+              src={window.innerWidth <= 1024 ? packetWithDetailsDescription.imageDescriptionMobile : packetWithDetailsDescription.imageDescription}
               alt="img-description"
             />
             <div className={Styles.packetDetails__aboutPacket}>

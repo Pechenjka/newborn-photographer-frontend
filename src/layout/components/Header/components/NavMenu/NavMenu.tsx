@@ -157,7 +157,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
         </li>
         <li className="navigation__container-link">
           {user.role.includes("ADMIN") ? (
-            <Link to="/admin">Админ-панель</Link>
+            <Link className='navigation__adminPanel' to="/admin">Админ-панель</Link>
           ) : (
             <div>
               <div className="navigation__basket navigation__tooltip" onClick={handleClickFromBasket}>

@@ -18,7 +18,7 @@ const PhotoProducts: React.FC = () => {
       <MetaData
         title="Фотокниги, фотохолсты и другая фотопродукция"
         description="Заказать фотокнигу любого формата, фотохолст, планшет с паспарту, фотобокс и многое другое"
-        canonicalLink={`https://alenalobacheva.net${pathname}`}
+        canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <BackgroundImage />
       <section className="photoProducts">
@@ -56,7 +56,7 @@ const PhotoProducts: React.FC = () => {
             <h3 className="photoProducts__title">Фотобоксы</h3>
             <img src={photoBox} alt="артинка фотобокса" className="photoProducts__image" />
             <p className="photoProducts__photoBox-description">
-              Дизайнерский деревянный бокс 1400р, печать фото для бокса – в подарок.
+              Дизайнерский деревянный бокс 1500р, печать фото для бокса – в подарок.
             </p>
             <p className="photoProducts__photoBox-description">
               Деревянная USB флеш карта с индивидуальным дизайном на 8 гб - 1000р

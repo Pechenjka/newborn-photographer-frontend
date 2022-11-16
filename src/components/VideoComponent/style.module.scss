@@ -1,0 +1,26 @@
+.videoComponent {
+  &__title {
+    font-size: 27px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  &__video {
+    border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 776px) {
+  .videoComponent {
+    &__title {
+      font-size: 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 474px) {
+  .videoComponent {
+    &__title {
+      font-size: 18px;
+    }
+  }
+}

@@ -16,11 +16,12 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, setRef }) =>
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { packetInBasket } = useAppSelector((state) => state.packets);
+  const {user} = useAppSelector(state => state.user)
 
   const showPacketInBasket = packetInBasket.some((item: IPacket) => item._id === packet._id);
 
   const handlerClickAddPacketInBasket = (itemData: IPacket) => {
-    if (showPacketInBasket) {
+    if (showPacketInBasket || user.role.includes('ADMIN')) {
       return;
     }
     dispatch(handlerAddPacketInBasket(itemData));

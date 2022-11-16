@@ -33,6 +33,14 @@ const MyContacts: React.FC = () => {
             +7-926-936-11-10
           </a>
         </li>
+        <li className="myContacts__item-container">
+          <span className="myContacts__icon myContacts__icon_instagram" />
+          <p
+            className={`myContacts__link myContacts__instagram ${myContactsEdit}`}
+           >
+            @newbornphoto_lobacheva
+          </p>
+        </li>
       </ul>
     </div>
   );

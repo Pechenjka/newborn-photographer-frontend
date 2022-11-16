@@ -108,6 +108,7 @@
     &__image {
       max-height: 400px;
       object-fit: cover;
+      width: 100%;
     }
     &__aboutPacket {
       margin: 30px auto 0;
@@ -126,6 +127,9 @@
     &__aboutPacket {
       align-items: center;
     }
+    &__title {
+      font-size: 24px;
+    }
     &__getFromPhotosession {
       &_title {
        display: block;
@@ -139,7 +143,7 @@
 @media screen and (max-width: 414px) {
   .packetDetails {
     &__aboutPacket {
-      margin: 50px auto 0;
+      margin: 20px auto 0;
       padding: 0 20px;
     }
   }

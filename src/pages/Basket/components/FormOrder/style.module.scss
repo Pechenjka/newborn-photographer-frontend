@@ -17,6 +17,12 @@
   &__formDescription {
     font-size: 15px;
     color: rgba(255, 0, 0, 0.5);
+    &_error {
+      color: rgba(255, 0, 0, 0.5);
+      background-color: rgba(255, 150, 150, 0.4);
+      padding: 10px;
+      border-radius: 5px;
+    }
   }
   &__containerHeader {
     display: flex;
@@ -40,6 +46,7 @@
   .formOrder {
     &__formTitle {
       font-size: 25px;
+      margin: 10px auto 0;
     }
     &__containerHeader {
       width: 100%;

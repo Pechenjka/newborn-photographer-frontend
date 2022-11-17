@@ -87,8 +87,8 @@ export const Profile: React.FC = () => {
           </DataUser>
           {meOrders.length > 0 &&
             user.role !== "ADMIN" &&
-            (error.length ? (
-              <p style={{ margin: "50px auto" }}>{error}</p>
+            (error.getMeOrders.length ? (
+              <p style={{ margin: "50px auto" }}>{error.getMeOrders}</p>
             ) : (
               <DataUser title="Мои заказы">
                 {meOrders.map((item) => {

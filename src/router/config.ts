@@ -78,7 +78,7 @@ export const routes: IRoute[] = [
 export const ProtectRoutes = [
   { component: Admin, path: "/admin", name: "adminName", isAdmin: true, isAuth: false },
   { component: Profile, path: "/profile", name: "profile", isAdmin: false, isAuth: true },
-  { component: FormOrder, path: "/checkout", name: "checkout", isAdmin: false, isAuth: true },
+  { component: FormOrder, path: "/checkout", name: "checkout", isAdmin: false, isAuth: false },
 ];
 
 export const subRoutes = [

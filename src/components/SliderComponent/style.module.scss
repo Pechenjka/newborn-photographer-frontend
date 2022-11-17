@@ -138,7 +138,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
   }
   &__linkAboutNewborn {
     height: max-content;
-    animation: animationLinkAboutNewborn 2s infinite;
+    animation: animationLinkAboutNewborn 2.5s infinite;
     display: inline-block;
     font-size: 16px;
     color: white;
@@ -285,7 +285,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
   }
   50% {
-    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
   }
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);

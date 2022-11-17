@@ -107,7 +107,7 @@ export const tableBooks: ITablesPhotoProducts[] = [
       { size: "15х15", printQuality: "Матовая / шелк", price: "4000 / 5000" },
       { size: "20х20", printQuality: "Матовая / шелк", price: "6000 / 7500" },
       { size: "25х25", printQuality: "Матовая / шелк", price: "8000 / 9000" },
-      { size: "30х30", printQuality: "Матовая / шелк", price: "9500 / 10500" },
+      { size: "30х30", printQuality: "Матовая / шелк", price: "9500 / 11000" },
     ],
   },
 ];

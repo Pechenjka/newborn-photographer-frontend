@@ -5,6 +5,7 @@ import { useAppSelector } from "../redux/hooks";
 import { allRoutes } from "./config";
 import { IRoute } from "../types";
 
+
 const RouterComponent: React.FC = () => {
   const { pathname } = useLocation();
   const { auth } = useAppSelector((state) => state.user);
@@ -31,7 +32,6 @@ const RouterComponent: React.FC = () => {
           if (route.protectRouteBasket) return basketIsNotEmpty;
           return false;
         };
-
         const protectedRoutes = route.isAdmin || route.isAuth || route.protectRouteBasket;
         return protectedRoutes ? (
           <ProtectedRoute
@@ -42,7 +42,7 @@ const RouterComponent: React.FC = () => {
             key={route.name}
           />
         ) : (
-          <Route exact path={route.path} key={route.name} component={route.component} />
+          <Route exact={route.path !== '/not-found' && true } path={route.path} key={route.name} component={route.component} />
         );
       })}
       <Route path="*">

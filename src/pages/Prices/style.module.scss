@@ -3,12 +3,16 @@
   max-width: 1440px;
   min-height: 661px;
   margin: 0 auto;
-  &__packets {
+  &__container {
     max-width: 1440px;
+    width: 100%;
+  }
+  &__packets {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 40px;
-    margin: 50px auto;
+    margin: 0 auto 50px;
     padding: 0 40px;
     list-style: none;
     align-self: center;

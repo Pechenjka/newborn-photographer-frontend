@@ -8,6 +8,7 @@ import { getArrPackets } from "../../redux/Reducers/packetSlice";
 import { useLocation, useRouteMatch } from "react-router-dom";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import { MetaData } from "../../helpers/MetaData";
+import { framerMotionPhotosAndPackets } from "../../helpers/framerMotion";
 
 const Prices: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -27,6 +28,8 @@ const Prices: React.FC = () => {
     }
   }, [path, getPacketsCategories, dispatch]);
 
+  const { container, item } = framerMotionPhotosAndPackets();
+
   return (
     <Fragment>
       <MetaData
@@ -36,17 +39,17 @@ const Prices: React.FC = () => {
       />
       <BackgroundImage />
       <div className={Styles.prices}>
-        <ul className={Styles.prices__packets}>
+        <div className={Styles.prices__container}>
           <h1 className={Styles.prices__title}>{nameCategory}</h1>
           {loading.getArrPackets ? (
             <div style={{ gridColumn: "1/-1" }}>
               <PreLoader />
             </div>
           ) : (
-            <Packets getPackets={getPackets} />
+            <Packets getPackets={getPackets} item={item} container={container} styleContainer={Styles.prices__packets}/>
           )}
           {error.packets && <p style={{ gridColumn: "1/-1" }}>{error.packets}</p>}
-        </ul>
+        </div>
         <PopularPackets editStyleForPrice />
       </div>
     </Fragment>

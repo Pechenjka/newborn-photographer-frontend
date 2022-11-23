@@ -83,9 +83,9 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
         className="navigation__list_links"
         onClick={(event: React.MouseEvent<HTMLUListElement>) => event.stopPropagation()}
       >
-        {links.map((item: ILink, index: number) => {
+        {links.map((item: ILink) => {
           return (
-            <li className="navigation__container-link navigation__view-lists-links" key={index}>
+            <li className="navigation__container-link navigation__view-lists-links" key={item.name}>
               {item.select ? (
                 <div
                   className={`navigation__link  ${
@@ -121,13 +121,13 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
               {item.select && (
                 <div className={`navigation__subLinks-container navigation__view-lists-links_active`}>
                   {Array.isArray(item.select) &&
-                    item.select.map((el: ISubLink, index: number) => {
+                    item.select.map((el: ISubLink) => {
                       return (
                         <NavLink
                           className="navigation__sublink"
                           activeClassName="navigation__sublink_active"
                           to={el.pathSelect}
-                          key={index}
+                          key={el.name}
                           onClick={handleClickDropdownLink}
                         >
                           {el.name}

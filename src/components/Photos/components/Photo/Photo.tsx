@@ -4,8 +4,9 @@ import { PhotoPostPage, PropsPhoto } from "../../../../types";
 import { handlerDataImageForModal, handlerModalWithImage } from "../../../../redux/Reducers/photoSlice";
 import { useAppDispatch } from "../../../../redux/hooks";
 import classNames from "classnames/bind";
+import { motion } from "framer-motion";
 
-const Photo: React.FC<PropsPhoto> = ({ image, photoPostPage, setRef }) => {
+const Photo: React.FC<PropsPhoto> = ({ image, photoPostPage, variants }) => {
   const dispatch = useAppDispatch();
 
   const handleOpenImagePopup = (linkPhoto: string): void => {
@@ -22,12 +23,15 @@ const Photo: React.FC<PropsPhoto> = ({ image, photoPostPage, setRef }) => {
   );
 
   return (
-    <li className={styleContainerPhoto} ref={setRef}>
+    <motion.li
+      className={styleContainerPhoto}
+      variants={variants}
+    >
       <img className={Styles.photo__image} src={image.image} alt="img" />
       <div className={Styles.photo__overlay} onClick={() => handleOpenImagePopup(image.image)}>
         <div className={Styles.photo__overlayIcon} />
       </div>
-    </li>
+    </motion.li>
   );
 };
 

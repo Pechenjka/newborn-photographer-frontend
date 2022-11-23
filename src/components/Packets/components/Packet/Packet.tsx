@@ -5,23 +5,24 @@ import { Link, useHistory } from "react-router-dom";
 import classNames from "classnames/bind";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { handlerAddPacketInBasket } from "../../../../redux/Reducers/packetSlice";
+import { motion } from "framer-motion";
 
 export interface PropsPacket {
   packet: IPacket;
   editStyleForPrice?: boolean;
-  setRef: any;
+  variants: any;
 }
 
-const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, setRef }) => {
+const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, variants }) => {
   const dispatch = useAppDispatch();
   const history = useHistory();
   const { packetInBasket } = useAppSelector((state) => state.packets);
-  const {user} = useAppSelector(state => state.user)
+  const { user } = useAppSelector((state) => state.user);
 
   const showPacketInBasket = packetInBasket.some((item: IPacket) => item._id === packet._id);
 
   const handlerClickAddPacketInBasket = (itemData: IPacket) => {
-    if (showPacketInBasket || user.role.includes('ADMIN')) {
+    if (showPacketInBasket || user.role.includes("ADMIN")) {
       return;
     }
     dispatch(handlerAddPacketInBasket(itemData));
@@ -38,7 +39,7 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, setRef }) =>
   };
 
   return (
-    <li className={Styles.packet} ref={setRef}>
+    <motion.li className={Styles.packet} variants={variants}>
       <div className={Styles.packet__wrapperImage}>
         <img className={Styles.packet__image} src={packet.image} alt="img-packet" onClick={handlerClickOnImagePacket} />
         {!editStyleForPrice && (
@@ -50,7 +51,7 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, setRef }) =>
       <Link className={classNameLink} to={`/prices/packets/${packet._id}`} onClick={handlerClickOnImagePacket}>
         {packet.namePacket} _ <span className={Styles.packet__price}>{packet.price}</span>
       </Link>
-    </li>
+    </motion.li>
   );
 };
 

@@ -5,6 +5,7 @@ import { useAppSelector } from "../../redux/hooks";
 import classNames from "classnames/bind";
 import PreLoader from "../PreLoader/PreLoader";
 import { PropsPopularPackets } from "../../types";
+import { framerMotionPinnedPackets } from "../../helpers/framerMotion";
 
 const PopularPackets: React.FC<PropsPopularPackets> = ({ editStyleForPrice = false }) => {
   const { getPinnedPackets, loading, error } = useAppSelector((state) => state.packets);
@@ -18,22 +19,29 @@ const PopularPackets: React.FC<PropsPopularPackets> = ({ editStyleForPrice = fal
   const classNameContainerPackets = cx("popularPackets__packets", {
     popularPackets__packets_edit: editStyleForPrice,
   });
+  const { container, item } = framerMotionPinnedPackets();
 
   return (
     <div className={classNameContainer}>
       <h3 className={classNameTitle}>
         Популярные<span className={classNameTitleSpan}> пакеты</span>
       </h3>
-      <ul className={classNameContainerPackets}>
+      <div className={Styles.popularPackets__container}>
         {loading.getPacketsPinned ? (
           <div style={{ gridColumn: "1/-1" }}>
             <PreLoader />
           </div>
         ) : (
-          <Packets getPackets={getPinnedPackets} editStyleForPrice={editStyleForPrice} />
+          <Packets
+            getPackets={getPinnedPackets}
+            editStyleForPrice={editStyleForPrice}
+            item={item}
+            container={container}
+            styleContainer={classNameContainerPackets}
+          />
         )}
         {error.packetsPinned && <p style={{ gridColumn: "1/-1" }}>{error.packetsPinned}</p>}
-      </ul>
+      </div>
     </div>
   );
 };

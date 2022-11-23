@@ -57,7 +57,8 @@ export interface PropsPhotos {
 export interface PropsPhoto {
   image: IPhoto;
   photoPostPage: string;
-  setRef: any;
+  setRef?: any;
+  variants?: any;
 }
 
 //Route
@@ -125,6 +126,9 @@ export interface PropsPacketsInBasket {
 export interface PropsPackets {
   getPackets: IPacket[];
   editStyleForPrice?: boolean;
+  item: any;
+  container: any;
+  styleContainer: string;
 }
 export interface ICategory {
   title: string;

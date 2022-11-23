@@ -1,39 +1,16 @@
 import "./Packets.scss";
-import React, { Fragment, useLayoutEffect } from "react";
+import React from "react";
 import { IPacket, PropsPackets } from "../../types";
 import Packet from "./components/Packet/Packet";
-import { useArrayRef, UseGsapEffect } from "../../hooks/UseGsapEffect";
+import { motion } from "framer-motion";
 
-const Packets: React.FC<PropsPackets> = ({ getPackets, editStyleForPrice }) => {
-  const [refs, setRef] = useArrayRef();
-
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      animationPhotosWithOutReverse();
-    }, 0);
-  }, []);
-
-  const animationPhotosWithOutReverse = new UseGsapEffect(refs.current, {
-    duration: 0.5,
-    y: 70,
-    opacity: 0,
-    stagger: 0.05,
-    ease: "back",
-  }).animationWithOutReverse;
-
+const Packets: React.FC<PropsPackets> = ({ getPackets, editStyleForPrice,styleContainer, container, item }) => {
   return (
-    <Fragment>
-      {getPackets.map((packet: IPacket, index: number) => {
-        return (
-          <Packet
-            packet={packet}
-            key={index}
-            editStyleForPrice={editStyleForPrice}
-            setRef={setRef}
-          />
-        );
+    <motion.ul className={styleContainer}  variants={container} initial="hidden" animate="show">
+      {getPackets.map((packet: IPacket) => {
+        return <Packet packet={packet} key={packet._id} editStyleForPrice={editStyleForPrice} variants={item} />;
       })}
-    </Fragment>
+    </motion.ul>
   );
 };
 

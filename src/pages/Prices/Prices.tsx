@@ -16,6 +16,7 @@ const Prices: React.FC = () => {
   const [nameCategory, setNameCategory] = useState("");
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
+const [typePhotosession, setTypePhotosession] = useState<string>('')
 
   useEffect(() => {
     if (getPacketsCategories.length > 0) {
@@ -30,11 +31,32 @@ const Prices: React.FC = () => {
 
   const { container, item } = framerMotionPhotosAndPackets();
 
+  const allType = {
+    'newborn': 'фотосессию новорожденного',
+    'baby': 'фотосессию малышей до 1 года',
+    'family': 'семейную фотосессию',
+    'discharge-christening': 'фотосессию выписка из роддома и крещение',
+    'woman': 'женскую фотосессию и съемку для контента'
+  }
+
+  const handleTypePhotosession = (allType: any) => {
+    for ( let key in allType) {
+      console.log(pathname, allType[key], pathname.includes(key))
+      if(pathname.includes(key)) {
+        setTypePhotosession(allType[key])
+      }
+    }
+  }
+
+  useEffect(()=> {
+    if(pathname) handleTypePhotosession(allType)
+  }, [pathname])
+
   return (
     <Fragment>
       <MetaData
-        title={`Узнать стоимость на фотосессию ${nameCategory.toLowerCase()}`}
-        description={`Подобрать пакет и заказать фотосессию - ${nameCategory.toLowerCase()}.`}
+        title={`Цены на ${typePhotosession} | Фотограф новорожденных в Москве Алена Лобачева`}
+        description={`Узнать стоимость и подобрать нужный пакет на  - ${typePhotosession}. `}
         canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <BackgroundImage />

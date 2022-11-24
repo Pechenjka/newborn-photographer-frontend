@@ -138,13 +138,6 @@ export const tableTabletsWithPassport: ITablesPhotoProducts[] = [
 
 export const photosCategoryInMainPage: IPhotosCategoryInMainPage[] = [
   {
-    name: "Все фотографии",
-    type: null,
-    onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string | null) => void, event: React.MouseEvent) =>
-      handlerClick(event, null),
-    id: Math.random().toString(16).slice(2),
-  },
-  {
     name: "Новорожденные",
     type: "newborn",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
@@ -163,6 +156,13 @@ export const photosCategoryInMainPage: IPhotosCategoryInMainPage[] = [
     type: "family",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
       handlerClick(event, "family"),
+    id: Math.random().toString(16).slice(2),
+  },
+  {
+    name: "Все фотографии",
+    type: null,
+    onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string | null) => void, event: React.MouseEvent) =>
+      handlerClick(event, null),
     id: Math.random().toString(16).slice(2),
   },
 ];

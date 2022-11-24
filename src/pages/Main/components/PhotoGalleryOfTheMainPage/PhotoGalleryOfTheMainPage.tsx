@@ -12,8 +12,8 @@ const PhotoGalleryOfTheMainPage: React.FC = () => {
   const { loading, error, categoryPhotosBtn } = useAppSelector((state) => state.photos);
 
   useEffect(() => {
-    dispatch(fetchPhotos({ type: null, order: "random" }));
-    dispatch(handlerActiveCategoryPhotosBtn(null));
+    dispatch(fetchPhotos({ type: 'newborn', order: "random" }));
+    dispatch(handlerActiveCategoryPhotosBtn('newborn'));
   }, []);
 
   const handlerClick = (event: React.MouseEvent, typePhotos: string | null): void => {

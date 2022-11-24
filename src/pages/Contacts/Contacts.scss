@@ -1,6 +1,19 @@
 .contacts {
   margin: 50px auto;
   transition: opacity 0.4s ease-in;
+  &__title {
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #79553d;
+    font-weight: normal;
+    font-size: 30px;
+  }
 }
 
-
+@media screen and (max-width: 414px) {
+  .contacts {
+    &__title {
+      font-size: 26px;
+    }
+  }
+}

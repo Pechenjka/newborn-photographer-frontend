@@ -13,15 +13,16 @@ const Contacts: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title="Контактная информация"
-        description="Мои контактные данные: telegram: @newbornphoto_lobacheva, instagram: @newbornphoto_lobacheva, whatsApp: +7-926-936-11-10, email: newbornphoto_lobacheva@mail.ru"
+        title="Мои контакты | Фотограф новорожденных в Москве Алена Лобачева"
+        description="Есть вопросы по выбору фотосесиии? Вы всегда можете связаться со мной."
         canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <BackgroundImage />
       <section className="contacts">
+        <h1 className='contacts__title'>Мои контакты</h1>
         <MyContacts />
         <SocialLinks />
-        <ContactMeForm title="Свяжитесь со мной" />
+        <ContactMeForm title="Напишите мне" />
       </section>
     </Fragment>
   );

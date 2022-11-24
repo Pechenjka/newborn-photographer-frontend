@@ -60,7 +60,7 @@ export const validationSchemaContactWithMe = Yup.object().shape({
     /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)$/,
     "Введите корректный номер талефона"
   ),
-  text: Yup.string().max(250, "Максимальное кол-во символов 250").required("Поле 'Email' обязательное к заполнению"),
+  text: Yup.string().max(250, "Максимальное кол-во символов 250").required("Поле 'Ваше сообщение' обязательное к заполнению"),
 });
 
 export const validationSchemaUserInProfile = Yup.object().shape({

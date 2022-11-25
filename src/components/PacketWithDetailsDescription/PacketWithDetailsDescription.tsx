@@ -1,18 +1,22 @@
 import Styles from "./style.module.scss";
 import React, { Fragment, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getPacketWithDetailsDescription, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { Button } from "../Button";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
 import PreLoader from "../PreLoader/PreLoader";
 import { IPacket } from "../../types";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { MetaData } from "../../helpers/MetaData";
 
 export const PacketWithDetailsDescription: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const { packetWithDetailsDescription, loading, error, packetInBasket } = useAppSelector((state) => state.packets);
   const [disabledButton, setDisabledButton] = useState<boolean>(false);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(getPacketWithDetailsDescription(id));
@@ -37,17 +41,47 @@ export const PacketWithDetailsDescription: React.FC = () => {
 
   return (
     <Fragment>
+      <MetaData
+        title={`Пакет ${packetWithDetailsDescription?.namePacket} | Фотограф в Москве Алена Лобачева`}
+        description={`В пакет включено: ${packetWithDetailsDescription?.getFromPhotosession}`}
+        canonicalLink={`https://alenalobacheva.net${pathname}/`}
+      />
       <BackgroundImage />
       {packetWithDetailsDescription !== null && (
-        <div className={Styles.packetDetails}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className={Styles.packetDetails}
+        >
+          {window.innerWidth > 768 && (
+            <Link
+              className={Styles.packetDetails__linkBack}
+              to={`/prices/${packetWithDetailsDescription.photosessionType}`}
+            >
+              вернуться к выбору пакета
+            </Link>
+          )}
           <div className={Styles.packetDetails__containerImage}>
-            <h3 className={Styles.packetDetails__title}>{packetWithDetailsDescription.namePacket}</h3>
-            <img
+            <h2 className={Styles.packetDetails__title}>Пакет {packetWithDetailsDescription.namePacket}</h2>
+            <motion.img
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
               className={Styles.packetDetails__image}
-              src={window.innerWidth <= 1024 ? packetWithDetailsDescription.imageDescriptionMobile : packetWithDetailsDescription.imageDescription}
+              src={
+                window.innerWidth <= 1024
+                  ? packetWithDetailsDescription.imageDescriptionMobile
+                  : packetWithDetailsDescription.imageDescription
+              }
               alt="img-description"
             />
-            <div className={Styles.packetDetails__aboutPacket}>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              className={Styles.packetDetails__aboutPacket}
+            >
               <p className={Styles.packetDetails__price}>{packetWithDetailsDescription.price}p</p>
               <div className={Styles.packetDetails__getFromPhotosession}>
                 <span className={Styles.packetDetails__getFromPhotosession_title}>Что получаете с фотосессии:</span>
@@ -86,10 +120,15 @@ export const PacketWithDetailsDescription: React.FC = () => {
                 Добавить пакет в корзину
               </Button>
               {disabledButton && <p className={Styles.packetDetails__alreadyInBasket}>Этот пакет уже в корзине</p>}
-            </div>
+            </motion.div>
           </div>
-          <div className={Styles.packetDetails__containerDescription}>
-            <p className={Styles.packetDetails__titleDescription}>Описание пакета</p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className={Styles.packetDetails__containerDescription}
+          >
+            <h3 className={Styles.packetDetails__titleDescription}>Описание пакета</h3>
             <ul className={Styles.packetDetails__containerListDescription}>
               {packetWithDetailsDescription.description.split("\n").map((str, i) => {
                 return (
@@ -111,8 +150,8 @@ export const PacketWithDetailsDescription: React.FC = () => {
                 );
               })}
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
       {loading.getPacketWithDetailsDescription && (
         <div style={{ height: "50vh", margin: "auto" }}>

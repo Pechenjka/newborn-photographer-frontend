@@ -41,7 +41,6 @@ const [typePhotosession, setTypePhotosession] = useState<string>('')
 
   const handleTypePhotosession = (allType: any) => {
     for ( let key in allType) {
-      console.log(pathname, allType[key], pathname.includes(key))
       if(pathname.includes(key)) {
         setTypePhotosession(allType[key])
       }

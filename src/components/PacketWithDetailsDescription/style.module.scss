@@ -1,8 +1,14 @@
 .packetDetails {
   max-width: 950px;
   width: 100%;
-  margin: 50px auto;
+  margin: 35px auto;
 
+  &__linkBack {
+    display: block;
+    color: rgba(137, 134, 134, 0.8);
+    text-decoration: none;
+    width: max-content;
+  }
   &__containerImage {
     max-height: max-content;
     height: 100%;
@@ -12,6 +18,8 @@
   }
   &__image {
     max-height: 500px;
+    box-shadow: 0 10px 40px rgba(0, 1, 0, 0.4);
+    border-radius: 10px;
   }
   &__aboutPacket {
     margin-left: 50px;
@@ -68,9 +76,10 @@
     color: #79553d;
   }
   &__containerListDescription {
-    border: 1px solid #79553d;
+    box-shadow: 0 0 20px rgba(128, 128, 128, 0.2);
     padding: 40px;
     text-align: left;
+    border-radius: 10px;
   }
   &__descriptionItem {
     margin-top: 5px;
@@ -114,6 +123,16 @@
       margin: 30px auto 0;
       padding: 0 50px;
     }
+    &__linkBack {
+      padding-left: 20px;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .packetDetails {
+    &__linkBack {
+      margin-bottom: 30px;
+    }
   }
 }
 
@@ -128,7 +147,7 @@
       align-items: center;
     }
     &__title {
-      font-size: 24px;
+      font-size: 26px;
     }
     &__getFromPhotosession {
       &_title {

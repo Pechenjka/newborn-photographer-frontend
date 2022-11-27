@@ -5,16 +5,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.scss";
 import "swiper/modules/navigation/navigation.scss";
 import "swiper/modules/pagination/pagination.scss";
-import * as Scroll from 'react-scroll'
+import * as Scroll from "react-scroll";
 import { arrSlides } from "../../utils/config";
 import { IArrSlides } from "../../types";
 import classNames from "classnames/bind";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export const SliderComponent: React.FC = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
-  const LinkScroll = Scroll.Link
+  const LinkScroll = Scroll.Link;
 
   const handleChangeSlide = arrSlides.map((item: IArrSlides): string => {
     if (window.innerWidth <= 768 && item.mobile) {
@@ -29,7 +30,9 @@ export const SliderComponent: React.FC = () => {
   const styleNextBtn = cx("swiperBtn", "swiperBtn_next");
 
   return (
-    <div className={Styles.slideShow}>
+    <div
+      className={Styles.slideShow}
+    >
       <Swiper
         slidesPerView={1}
         spaceBetween={0}
@@ -56,21 +59,33 @@ export const SliderComponent: React.FC = () => {
         className={Styles.mySwiper}
       >
         <div className={Styles.slideShow__welcomeContainer}>
-          <div className={Styles.slideShow__aboutMeContainer}>
-            <h1 className={Styles.slideShow__welcomeTitle}>
+          <div        className={Styles.slideShow__aboutMeContainer}>
+            <motion.h1 initial={{ opacity: 0, y: -30 }}
+                       animate={{ opacity: 1, y: 0 }}
+                       transition={{ duration: 0.7 }} className={Styles.slideShow__welcomeTitle}>
               <br /> Я Алена Лобачева
-            </h1>
-            <p className={Styles.slideShow__welcomeDescription}>
+            </motion.h1>
+            <motion.p initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.7 }}
+                      className={Styles.slideShow__welcomeDescription}>
               Профессиональный фотограф новорожденных.
               <br />
               Знаю, как оставить на память самые ценные <br /> и неповторимые моменты вашей жизни
-            </p>
-            <Link className={Styles.slideShow__welcomeLink} to='/contacts' >
+            </motion.p>
+            <Link className={Styles.slideShow__welcomeLink} to="/contacts">
               Мои контакты
             </Link>
           </div>
           <div className={Styles.slideShow__linkAboutNewbornContainer}>
-            <LinkScroll className={Styles.slideShow__linkAboutNewborn} to='aboutNewborn' spy={true}  smooth={true} offset={-100} duration={1000}>
+            <LinkScroll
+              className={Styles.slideShow__linkAboutNewborn}
+              to="aboutNewborn"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={1000}
+            >
               О фотосесии новорожденного в видеоформате
             </LinkScroll>
           </div>

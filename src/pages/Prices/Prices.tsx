@@ -3,7 +3,6 @@ import Styles from "./style.module.scss";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import Packets from "../../components/Packets/Packets";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import PopularPackets from "../../components/PopularPackets/PopularPackets";
 import { getArrPackets } from "../../redux/Reducers/packetSlice";
 import { useLocation, useRouteMatch } from "react-router-dom";
 import PreLoader from "../../components/PreLoader/PreLoader";
@@ -71,7 +70,6 @@ const [typePhotosession, setTypePhotosession] = useState<string>('')
           )}
           {error.packets && <p style={{ gridColumn: "1/-1" }}>{error.packets}</p>}
         </div>
-        <PopularPackets editStyleForPrice />
       </div>
     </Fragment>
   );

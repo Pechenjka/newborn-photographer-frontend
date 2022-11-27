@@ -49,7 +49,7 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, variants }) 
         )}
       </div>
       <Link className={classNameLink} to={`/prices/packets/${packet._id}`} onClick={handlerClickOnImagePacket}>
-        {packet.namePacket} _ <span className={Styles.packet__price}>{packet.price}</span>
+        Пакет {packet.namePacket} _ <span className={Styles.packet__price}>{packet.price}р</span>
       </Link>
     </motion.li>
   );

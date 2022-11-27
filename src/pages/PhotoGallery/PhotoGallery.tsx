@@ -55,9 +55,9 @@ const PhotoGallery: React.FC = () => {
         {photosCategoryInGallery.map((item: IPhotosCategoryInGallery, index: number) => {
           return (
             pathname.includes(item.type) && (
-              <h2 className="photoGallery__title" key={index}>
+              <h1 className="photoGallery__title" key={index}>
                 {item.title}
-              </h2>
+              </h1>
             )
           );
         })}

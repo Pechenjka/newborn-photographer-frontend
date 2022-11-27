@@ -25,7 +25,7 @@ const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
 
   return (
     <div className="contactMeForm">
-      <h3 className="contactMeForm__title">{title}</h3>
+      <h2 className="contactMeForm__title">{title}</h2>
       <ShowInfoToolTip
         error={errorGetInTouch}
         textErrorMessage="Ошибка, отправить сообщение не получилось, попробуйте позже"

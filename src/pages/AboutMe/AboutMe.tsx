@@ -18,7 +18,7 @@ export const AboutMe: React.FC = () => {
       <section className="aboutMe">
         <div className="aboutMe__container">
           <div className="aboutMe__image" />
-          <h3 className="aboutMe__title">Обо мне</h3>
+          <h1 className="aboutMe__title">Обо мне</h1>
           <div className="aboutMe__text-container">
             <p className="aboutMe__text">Меня зовут Алена Лобачева, и я профессиональный фотограф новорожденных.</p>
             <p className="aboutMe__text">

@@ -1,3 +1,4 @@
+@import '../../styles/vars';
 $colorBackgroundLinkHover: rgba(255, 150, 150, 0.6);
 $colorBackgroundButton: #ff9696;
 $ColorTextButton: white;
@@ -22,8 +23,9 @@ $ColorTextButton: white;
   }
   &__title {
     margin: 0 auto 0;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 400;
+    color: $TextColorBrownDark;
   }
   &__photo-wrapper {
     max-width: 100%;
@@ -35,5 +37,13 @@ $ColorTextButton: white;
     width: 100%;
     height: 100%;
     border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .photoGallery {
+    &__title {
+      font-size: 20px;
+    }
   }
 }

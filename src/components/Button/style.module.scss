@@ -33,6 +33,12 @@
         background-color: $ButtonDisabledColor;
       }
     }
+    &_green {
+      background-color: #0080007F;
+      &:hover {
+        background-color: #00800099;
+      }
+    }
     &_buttonFormContact {
       margin-top: 30px;
       min-width: 240px;

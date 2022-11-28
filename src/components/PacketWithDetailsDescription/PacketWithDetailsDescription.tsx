@@ -1,7 +1,7 @@
 import Styles from "./style.module.scss";
 import React, { Fragment, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { useLocation, useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { getPacketWithDetailsDescription, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { Button } from "../Button";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
@@ -15,8 +15,9 @@ export const PacketWithDetailsDescription: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const { packetWithDetailsDescription, loading, error, packetInBasket } = useAppSelector((state) => state.packets);
-  const [disabledButton, setDisabledButton] = useState<boolean>(false);
+  const [showGoToBasket, setShowGoToBasket] = useState<boolean>(false);
   const { pathname } = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getPacketWithDetailsDescription(id));
@@ -26,7 +27,7 @@ export const PacketWithDetailsDescription: React.FC = () => {
     if (packetInBasket) {
       packetInBasket.some((item) => {
         if (item._id === id) {
-          setDisabledButton(true);
+          setShowGoToBasket(true);
         }
       });
     }
@@ -111,15 +112,22 @@ export const PacketWithDetailsDescription: React.FC = () => {
                   {packetWithDetailsDescription.countLocations} образа
                 </span>
               </p>
-              <Button
-                styleButton="ping"
-                type="button"
-                disabled={disabledButton}
-                onClick={() => handlerClickAddPacketInTheBasket(packetWithDetailsDescription)}
-              >
-                Добавить пакет в корзину
-              </Button>
-              {disabledButton && <p className={Styles.packetDetails__alreadyInBasket}>Этот пакет уже в корзине</p>}
+              <div>
+                <Button
+                  styleButton="ping"
+                  editStyle={showGoToBasket ? "green" : ""}
+                  type="button"
+                  edit
+                  onClick={
+                    showGoToBasket
+                      ? () => history.push("/basket")
+                      : () => handlerClickAddPacketInTheBasket(packetWithDetailsDescription)
+                  }
+                >
+                  {showGoToBasket ? "Перейти к оформлению" : "Добавить пакет в корзину"}
+                </Button>
+                {showGoToBasket && <p className={Styles.packetDetails__alreadyInBasket}>Этот пакет уже в корзине</p>}
+              </div>
             </motion.div>
           </div>
           <motion.div

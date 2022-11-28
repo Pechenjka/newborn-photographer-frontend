@@ -38,7 +38,7 @@ export const FormikFormComponent: React.FC<PropsAdminFrom> = ({
         action
       ) => {
         onSubmit(values);
-        error?.length && action.resetForm();
+        action.resetForm();
       }}
       enableReinitialize={true}
     >

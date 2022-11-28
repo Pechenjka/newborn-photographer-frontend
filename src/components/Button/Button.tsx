@@ -13,7 +13,7 @@ interface ButtonProps {
   icon?: string;
   disabled?: boolean;
   active?: boolean;
-  onClick?: () => void;
+  onClick?: any;
   editStyle?: string;
   edit?: boolean;
   type: TypeButton;

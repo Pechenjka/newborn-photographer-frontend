@@ -5,7 +5,7 @@ import {
   PropsArrPhotos,
   PropsBoolean,
   PropsRandomPhotos,
-  PropsAddNewPhoto
+  PropsAddNewPhoto,
 } from "../../types";
 
 import { apiApp } from "../../utils/apiApp";
@@ -93,6 +93,8 @@ const photoSlice = createSlice({
       state.showPhotos = countPhotos(randomN);
     },
     handlerSortPhotos: (state, action: PropsArrPhotos) => {
+      action.payload.sort((a: any, b: any) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+
       const countSortPhotos = (arrItem: IPhoto[]): IPhoto[] => {
         if (window.innerWidth >= 1025) {
           return arrItem.slice(0, 16);
@@ -108,8 +110,10 @@ const photoSlice = createSlice({
         }
         return arrItem;
       };
+      console.log(action.payload);
       state.showPhotos = countSortPhotos(action.payload);
     },
+
     handlerShowAddPhotos: (state, action: PropsArrPhotos) => {
       state.showPhotos = action.payload;
     },

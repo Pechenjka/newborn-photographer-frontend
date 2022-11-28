@@ -110,7 +110,6 @@ const photoSlice = createSlice({
         }
         return arrItem;
       };
-      console.log(action.payload);
       state.showPhotos = countSortPhotos(action.payload);
     },
 

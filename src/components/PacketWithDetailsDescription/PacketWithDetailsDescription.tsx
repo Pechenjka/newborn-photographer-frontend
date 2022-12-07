@@ -97,7 +97,11 @@ export const PacketWithDetailsDescription: React.FC = () => {
               <p className={Styles.packetDetails__category}>
                 Тип съемки:
                 <span className={Styles.packetDetails__category_span}>
-                  {packetWithDetailsDescription.photosessionType}
+                  {packetWithDetailsDescription.photosessionType.includes("discharge-christening")
+                    ? packetWithDetailsDescription.namePacket.includes("Выписка")
+                      ? "discharge"
+                      : "christening"
+                    : packetWithDetailsDescription.photosessionType}
                 </span>
               </p>
               <p className={Styles.packetDetails__category}>

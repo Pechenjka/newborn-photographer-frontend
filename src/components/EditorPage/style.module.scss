@@ -1,0 +1,31 @@
+@import "../../styles/vars";
+
+.editorPage {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  &__title {
+    margin: 40px auto;
+  }
+  &__preview {
+    padding: 15px 5px;
+    outline: solid 1px $BorderColorBrown-1;
+    margin: 40px auto;
+  }
+  &__select {
+    width: max-content;
+    margin-bottom: 30px;
+    padding: 5px;
+    background-color: transparent;
+  }
+  &__previewContainer {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 574px) {
+  .editorPage {
+    padding: 0 15px;
+  }
+}

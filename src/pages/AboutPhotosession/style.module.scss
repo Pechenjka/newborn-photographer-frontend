@@ -1,0 +1,39 @@
+@import "../../styles/vars";
+
+.aboutPhotoSession {
+  width: 100%;
+  &__container {
+    max-width: 1440px;
+    margin: 40px auto;
+    padding: 0 40px;
+  }
+  &__textContainer {
+    display: flex;
+  }
+  &__title {
+    font-size: 27px;
+    font-weight: normal;
+    color: $TextColorBrownDark;
+    margin: 0 0 50px;
+  }
+  &__linkOnEditor {
+    display: block;
+    width: max-content;
+    margin: 40px auto 0;
+    text-decoration: none;
+    padding: 10px;
+    background-color: $ButtonColorPing;
+    color: $ButtonTextColorWhite;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .aboutPhotoSession {
+    &__container {
+      padding: 0;
+    }
+    &__title {
+      font-size: 20px;
+    }
+  }
+}

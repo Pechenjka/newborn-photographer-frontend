@@ -4,6 +4,7 @@ import appSlice from "./Reducers/appSlice";
 import packetSlice from "./Reducers/packetSlice";
 import userSlice from "./Reducers/userSlice";
 import orderSlice from "./Reducers/orderSlice";
+import editorSlice from "./Reducers/editorSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     app: appSlice,
     user: userSlice,
     order: orderSlice,
+    editor: editorSlice,
   },
 });
 

@@ -5,12 +5,11 @@ import { EditorState, convertToRaw } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
 import draftToHtml from "draftjs-to-html";
+import { PropsEditorComponent } from "../../types";
 
-export const EditorComponent: React.FC = () => {
+export const EditorComponent: React.FC<PropsEditorComponent> = ({ setContent }) => {
   const [editorState, setEditorState] = useState<EditorState>(() => EditorState.createEmpty());
-  const [content, setContent] = useState<string>("");
 
-  console.log(content);
   const onEditorStateChange = (newState: EditorState) => {
     setEditorState(newState);
     setContent(draftToHtml(convertToRaw(editorState.getCurrentContent())));
@@ -20,16 +19,12 @@ export const EditorComponent: React.FC = () => {
     <div className={Styles.editorContainer}>
       <Editor
         editorState={editorState}
-        // onEditorStateChange={onChange}
         toolbarClassName="toolbarClassName"
         wrapperClassName="wrapperClassName"
         onEditorStateChange={onEditorStateChange}
         editorClassName={Styles.editor}
         placeholder="Текст"
       />
-      <div>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </div>
     </div>
   );
 };

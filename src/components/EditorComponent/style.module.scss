@@ -1,3 +1,5 @@
+@import "../../styles/vars";
+
 .editorContainer {
   max-width: 1440px;
   width: 100%;
@@ -5,7 +7,6 @@
 }
 
 .editor {
-  background-color: white;
+  background-color: $BackgroundColorWhite;
   padding: 0 5px ;
- // border: 1px solid black;
 }

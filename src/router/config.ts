@@ -18,6 +18,8 @@ import { FormOrder } from "../pages/Basket/components/FormOrder";
 import { OrderList } from "../pages/Admin/components/OrderList";
 import { SendOnEmailActivateLink } from "../components/SendOnEmailActivateLink";
 import { PasswordChange } from "../components/PasswordChange";
+import { AboutPhotoSession } from "../pages/AboutPhotosession";
+import { EditorPage } from "../components/EditorPage";
 
 export const routes: IRoute[] = [
   { component: Main, path: "/", name: "main", isAdmin: false, isAuth: false },
@@ -73,12 +75,20 @@ export const routes: IRoute[] = [
     isAuth: false,
     withOutHeaderAndFooter: true,
   },
+  {
+    component: AboutPhotoSession,
+    path: "/aboutPhotosession",
+    name: "aboutPhotosession",
+    isAdmin: false,
+    isAuth: false,
+  },
+  { component: FormOrder, path: "/checkout", name: "checkout", isAdmin: false, isAuth: false },
 ];
 
 export const ProtectRoutes = [
   { component: Admin, path: "/admin", name: "adminName", isAdmin: true, isAuth: false },
   { component: Profile, path: "/profile", name: "profile", isAdmin: false, isAuth: true },
-  { component: FormOrder, path: "/checkout", name: "checkout", isAdmin: false, isAuth: false },
+  { component: EditorPage, path: "/editor", name: "editor", isAdmin: true, isAuth: false },
 ];
 
 export const subRoutes = [

@@ -395,6 +395,30 @@ export interface IOrderFields {
   text?: string;
 }
 
+export interface PropsDataTabs {
+  labelName: string;
+  id: string;
+  idContent: string;
+  getText: PropsText[];
+  defaultChecked: boolean;
+}
+
+export interface PropsText {
+  _id: string;
+  text: string;
+  typePhotoSession: string;
+}
+
+export interface PropsEditorComponent {
+  setContent: any;
+}
+
+export interface PropsArrTabs {
+  value: string;
+  title: string;
+  hidden?: boolean;
+}
+
 //enum
 export enum PhotoPostPage {
   mainPage = "main",

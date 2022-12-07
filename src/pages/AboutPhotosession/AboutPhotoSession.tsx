@@ -1,19 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Styles from "./style.module.scss";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import { TabsAboutPhotoSession } from "./components/TabsAboutPhotoSession";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import { Link } from "react-router-dom";
-import { getTextOnPage } from "../../redux/Reducers/editorSlice";
+
 import { MetaData } from "../../helpers/MetaData";
 
 export const AboutPhotoSession: React.FC = () => {
-  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
-
-  useEffect(() => {
-    dispatch(getTextOnPage());
-  }, []);
 
   return (
     <section className={Styles.aboutPhotoSession}>
@@ -30,7 +25,7 @@ export const AboutPhotoSession: React.FC = () => {
           canonicalLink="https://alenalobacheva.net/aboutPhotosession/"
         />
         <h1 className={Styles.aboutPhotoSession__title}>Как подготовиться к съемке</h1>
-          <TabsAboutPhotoSession />
+        <TabsAboutPhotoSession />
       </div>
     </section>
   );

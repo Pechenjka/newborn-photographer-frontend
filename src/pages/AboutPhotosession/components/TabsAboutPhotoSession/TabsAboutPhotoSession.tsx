@@ -51,9 +51,9 @@ export const TabsAboutPhotoSession: React.FC = () => {
               {error.getTextsAboutPhotoSession ? (
                 <p>{error.getTextsAboutPhotoSession}</p>
               ) : (
-                item.getText?.map((el: PropsText) => {
+                item.getText?.map((el: PropsText, index: number) => {
                   return (
-                    <div className={Styles.tabs__textContainer} key={el._id}>
+                    <div className={Styles.tabs__textContainer} key={index}>
                       <div className={Styles.tabs__blockText} dangerouslySetInnerHTML={{ __html: el.text }} />
                       {user.role.includes("ADMIN") && (
                         <div className={Styles.tabs__noteContainer}>

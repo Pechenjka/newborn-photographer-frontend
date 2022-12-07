@@ -6,6 +6,7 @@ import PopupWithImage from "../PopupWithImage/PopupWithImage";
 import { Layout } from "../../layout";
 import { getPacketsCategories, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
+import { getTextOnPage } from "../../redux/Reducers/editorSlice";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +25,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(getPacketsCategories());
+    dispatch(getTextOnPage());
   }, []);
 
   useEffect(() => {

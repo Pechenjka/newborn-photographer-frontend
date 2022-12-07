@@ -4,7 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
 import { Layout } from "../../layout";
-import { getPacketsCategories, getPacketsPinned, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
+import { getPacketsCategories, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 
 const App: React.FC = () => {
@@ -23,9 +23,8 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(getPacketsPinned({ pinned: true }));
     dispatch(getPacketsCategories());
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     if (sessionStorage.getItem("packetsInBasket") && !packetInBasket.length) {

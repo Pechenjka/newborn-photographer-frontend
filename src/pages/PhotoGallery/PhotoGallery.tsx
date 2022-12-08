@@ -46,8 +46,12 @@ const PhotoGallery: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title={`Галерея фотографий - ${photosCategoryInGallery.filter(item => pathname.includes(item.type) && item.title)[0].title.toLowerCase()} | Семейный фотограф в Москве Алена Лобачева`}
-        description="Аторская обработка снимков. Оставляю памятные мгновения Вам и Вашим близким на всю жизнь."
+        title={`Галерея фотографий - ${photosCategoryInGallery
+          .filter((item) => pathname.includes(item.type) && item.title)[0]
+          .title.toLowerCase()} | Семейный фотограф в Москве Алена Лобачева`}
+        description={`Аторская обработка снимков - ${photosCategoryInGallery
+          .filter((item) => pathname.includes(item.type) && item.title)[0]
+          .title.toLowerCase()}. Оставляю памятные мгновения Вам и Вашим близким на всю жизнь.`}
         canonicalLink={`https://alenalobacheva.net${pathname}/`}
       />
       <section className="photoGallery" id="photoGallery">

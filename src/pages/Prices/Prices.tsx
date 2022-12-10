@@ -15,7 +15,7 @@ const Prices: React.FC = () => {
   const [nameCategory, setNameCategory] = useState("");
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
-const [typePhotosession, setTypePhotosession] = useState<string>('')
+  const [typePhotosession, setTypePhotosession] = useState<string>("");
 
   useEffect(() => {
     if (getPacketsCategories.length > 0) {
@@ -31,24 +31,26 @@ const [typePhotosession, setTypePhotosession] = useState<string>('')
   const { container, item } = framerMotionPhotosAndPackets();
 
   const allType = {
-    'newborn': 'фотосессию новорожденного',
-    'baby': 'фотосессию малышей до 1 года',
-    'family': 'семейную фотосессию',
-    'discharge-christening': 'фотосессию выписка из роддома и крещение',
-    'woman': 'женскую фотосессию и съемку для контента'
-  }
+    newborn: "фотосессию новорожденного",
+    baby: "фотосессию малышей до 1 года",
+    family: "семейную фотосессию",
+    "discharge-christening": "фотосессию выписка из роддома и крещение",
+    woman: "женскую фотосессию и съемку для контента",
+  };
 
   const handleTypePhotosession = (allType: any) => {
-    for ( let key in allType) {
-      if(pathname.includes(key)) {
-        setTypePhotosession(allType[key])
+    for (let key in allType) {
+      if (pathname.includes(key)) {
+        setTypePhotosession(allType[key]);
       }
     }
-  }
+  };
 
-  useEffect(()=> {
-    if(pathname) handleTypePhotosession(allType)
-  }, [pathname])
+  useEffect(() => {
+    if (pathname) handleTypePhotosession(allType);
+  }, [pathname]);
+
+  const sortPackets = [...getPackets].sort((a, b) => Number(a.price) - Number(b.price));
 
   return (
     <Fragment>
@@ -66,7 +68,12 @@ const [typePhotosession, setTypePhotosession] = useState<string>('')
               <PreLoader />
             </div>
           ) : (
-            <Packets getPackets={getPackets} item={item} container={container} styleContainer={Styles.prices__packets}/>
+            <Packets
+              getPackets={sortPackets}
+              item={item}
+              container={container}
+              styleContainer={Styles.prices__packets}
+            />
           )}
           {error.packets && <p style={{ gridColumn: "1/-1" }}>{error.packets}</p>}
         </div>

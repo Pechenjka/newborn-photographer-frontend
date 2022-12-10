@@ -21,7 +21,7 @@ const App: React.FC = () => {
     } else {
       dispatch(authorization(false));
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     dispatch(getPacketsCategories());

@@ -1,17 +1,23 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Styles from "./style.module.scss";
-import { useAppSelector } from "../../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import classNames from "classnames/bind";
 import { PropsDataTabs, PropsText } from "../../../../types";
-
+import { Button } from "../../../../components/Button";
+import { deleteTextBlock, handlerEditNote, handlerEditTextBlock } from "../../../../redux/Reducers/editorSlice";
+import { useDisabledScroll } from "../../../../hooks/useDisabledScroll";
+import { useHistory } from "react-router-dom";
 
 export const TabsAboutPhotoSession: React.FC = () => {
-  const { aboutPhotoSession, error, loading } = useAppSelector((state) => state.editor);
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+  const { aboutPhotoSession, error, loading, textBlock, editNote } = useAppSelector((state) => state.editor);
   const { user } = useAppSelector((state) => state.user);
   const [openNote, setOpenNote] = useState<boolean>(false);
+  const { handlerDisabledScroll } = useDisabledScroll;
 
   const cx = classNames.bind(Styles);
-  const StyleCOverContainerNote = cx("tabs__coverContainerNote", {
+  const StyleCoverContainerNote = cx("tabs__coverContainerNote", {
     tabs__coverContainerNote_open: openNote,
   });
 
@@ -31,6 +37,33 @@ export const TabsAboutPhotoSession: React.FC = () => {
       defaultChecked: false,
     },
   ];
+
+  useEffect(() => {
+    handlerDisabledScroll(openNote);
+  }, [openNote]);
+
+  const handlerOpenNoteTextBlock = (typeAboutPhotoSession: PropsText[], id: string) => {
+    typeAboutPhotoSession.some((textBlock: PropsText) => {
+      if (textBlock._id === id) dispatch(handlerEditTextBlock(textBlock));
+    });
+    setOpenNote(true);
+  };
+
+  const handlerCloseNoteTextBlock = (): void => {
+    dispatch(handlerEditTextBlock({ text: "", _id: "", typePhotoSession: "" }));
+    setOpenNote(false);
+  };
+
+  const handlerDeleteTExtBlock = (itemId: string): void => {
+    dispatch(deleteTextBlock(itemId));
+    setOpenNote(false);
+  };
+
+  const handleEditTextBlock = (): void => {
+    setOpenNote(false);
+    dispatch(handlerEditNote(true));
+    history.push("/editor");
+  };
 
   return (
     <ul className={Styles.tabs}>
@@ -52,6 +85,7 @@ export const TabsAboutPhotoSession: React.FC = () => {
                 <p>{error.getTextsAboutPhotoSession}</p>
               ) : (
                 item.getText?.map((el: PropsText, index: number) => {
+                  const showTabs = textBlock?._id === el._id;
                   return (
                     <div className={Styles.tabs__textContainer} key={index}>
                       <div className={Styles.tabs__blockText} dangerouslySetInnerHTML={{ __html: el.text }} />
@@ -59,15 +93,16 @@ export const TabsAboutPhotoSession: React.FC = () => {
                         <div className={Styles.tabs__noteContainer}>
                           <button
                             className={Styles.tabs__noteButton}
-                            onClick={() => {
-                              setOpenNote(true);
-                            }}
+                            onClick={() => handlerOpenNoteTextBlock(item.getText, el._id)}
                           />
-                          <div className={StyleCOverContainerNote} onClick={() => setOpenNote(false)}>
-                            <div className={Styles.tabs__note}>
-                              <button>редактировать</button>
-                              <button>удалить</button>
-                            </div>
+                          <div className={StyleCoverContainerNote} onClick={handlerCloseNoteTextBlock} />
+                          <div className={`${Styles.tabs__note} ${showTabs && Styles.tabs__note_open}`}>
+                            <Button styleButton="simply" type="button" onClick={handleEditTextBlock}>
+                              Редактировать
+                            </Button>
+                            <Button styleButton="simply" type="button" onClick={() => handlerDeleteTExtBlock(el._id)}>
+                              Удалить блок
+                            </Button>
                           </div>
                         </div>
                       )}

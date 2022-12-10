@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { apiApp } from "../../utils/apiApp";
-import { PropsText } from "../../types";
+import { PropsBoolean, PropsText } from "../../types";
 
 export const createTextOnPage: any = createAsyncThunk(
   "editor/createTextOnPage",
-  async (data: { text: string; typePhotoSession: string }, { rejectWithValue }) => {
+  async (data: { text: string; typePhotoSession: string }, { dispatch, rejectWithValue }) => {
     try {
       const res = await apiApp().createTextOnPage(data);
+      dispatch(getTextOnPage());
       return res.data;
     } catch (e) {
       return rejectWithValue("Ошибка,добавить текст не получилось");
@@ -23,14 +24,29 @@ export const getTextOnPage: any = createAsyncThunk("editor/getTextOnPage", async
   }
 });
 
-export const updateTextOnPage: any = createAsyncThunk("editor/updateTextOnPage", async (data, { rejectWithValue }) => {
-  try {
-    const res = await apiApp().addOrUpdateTextOnPage(data);
-    return res.data;
-  } catch (e) {
-    return rejectWithValue("Ошибка, обновить тект не получилось");
+export const editTextOnPage: any = createAsyncThunk(
+  "editor/updateTextOnPage",
+  async (data: { _id: string; text: string }, { rejectWithValue }) => {
+    try {
+      const res = await apiApp().editTextOnPage(data);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Ошибка, обновить тект не получилось");
+    }
   }
-});
+);
+export const deleteTextBlock: any = createAsyncThunk(
+  "editor/deleteTextBlock",
+  async (dataId: string, { dispatch, rejectWithValue }) => {
+    try {
+      const res = await apiApp().deleteTextBlock(dataId);
+      dispatch(getTextOnPage());
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Ошибка, удалить текст не получилось");
+    }
+  }
+);
 
 export interface PropsInitialStateEditor {
   aboutPhotoSession: {
@@ -45,6 +61,8 @@ export interface PropsInitialStateEditor {
     createTextAboutPhotoSession: boolean;
     getTextsAboutPhotoSession: boolean;
   };
+  textBlock: PropsText;
+  editNote: boolean;
 }
 
 const initialState: PropsInitialStateEditor = {
@@ -60,13 +78,24 @@ const initialState: PropsInitialStateEditor = {
     createTextAboutPhotoSession: false,
     getTextsAboutPhotoSession: false,
   },
+  textBlock: {
+    text: "",
+    typePhotoSession: "",
+    _id: "",
+  },
+  editNote: false,
 };
 
 export const editorSlice = createSlice({
   name: "editor",
   initialState,
   reducers: {
-    handleOptionsAddTextOnPage: (state, action) => {},
+    handlerEditTextBlock: (state, action: { payload: PropsText }) => {
+      state.textBlock = action.payload;
+    },
+    handlerEditNote: (state, action: PropsBoolean) => {
+      state.editNote = action.payload;
+    },
   },
   extraReducers: {
     [createTextOnPage.pending]: (state) => {
@@ -87,6 +116,8 @@ export const editorSlice = createSlice({
       state.loading.getTextsAboutPhotoSession = false;
     },
     [getTextOnPage.fulfilled]: (state, action: any) => {
+      state.aboutPhotoSession.family = [];
+      state.aboutPhotoSession.newborn = [];
       action.payload.map((item: any) => {
         if (item.typePhotoSession.includes("family")) {
           state.aboutPhotoSession.family = [...state.aboutPhotoSession.family, item];
@@ -100,5 +131,5 @@ export const editorSlice = createSlice({
   },
 });
 
-export const {} = editorSlice.actions;
+export const { handlerEditTextBlock, handlerEditNote } = editorSlice.actions;
 export default editorSlice.reducer;

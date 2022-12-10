@@ -1,4 +1,12 @@
-import { ICategory, IPacket, IPhoto, PropsAddNewPhoto, PropsPayLoadGetInTouch, PropsPayLoadSendEmail } from "../types";
+import {
+  ICategory,
+  IPacket,
+  IPhoto,
+  PropsAddNewPhoto,
+  PropsPayLoadGetInTouch,
+  PropsPayLoadSendEmail,
+  PropsText,
+} from "../types";
 import $api from "./apiCreate";
 import { AxiosResponse } from "axios";
 
@@ -12,8 +20,9 @@ export const apiApp = (): {
   getInTouch: any;
   newsLetter: any;
   createTextOnPage: any;
-  addOrUpdateTextOnPage: any;
+  editTextOnPage: any;
   getTextOnPage: any;
+  deleteTextBlock: any;
 } => {
   return {
     createPacket: async (data: IPacket): Promise<AxiosResponse<IPacket>> => {
@@ -69,16 +78,17 @@ export const apiApp = (): {
         email: data.email,
       });
     },
-    createTextOnPage: async (data: { text: string; typePhotoSession: string }): Promise<any> => {
-      console.log(data);
+    createTextOnPage: async (data: { text: string; typePhotoSession: string }): Promise<AxiosResponse<PropsText>> => {
       return await $api.post("/editor/createTextOnPage", { text: data.text, typePhotoSession: data.typePhotoSession });
     },
-    getTextOnPage: async (): Promise<void> => {
+    getTextOnPage: async (): Promise<AxiosResponse<PropsText[]>> => {
       return await $api.get("/editor");
     },
-    addOrUpdateTextOnPage: async (data: { text: string }): Promise<any> => {
-      console.log(data);
-      return await $api.patch("/editor/addAndUpdateTextOnPage", { text: data.text });
+    editTextOnPage: async (data: { _id: string; text: string }): Promise<any> => {
+      return await $api.patch(`/editor/${data._id}`, { text: data.text });
+    },
+    deleteTextBlock: async (dataId: string): Promise<any> => {
+      return await $api.delete(`/editor/${dataId}`);
     },
   };
 };

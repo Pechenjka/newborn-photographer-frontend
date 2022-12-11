@@ -30,9 +30,7 @@ export const SliderComponent: React.FC = () => {
   const styleNextBtn = cx("swiperBtn", "swiperBtn_next");
 
   return (
-    <div
-      className={Styles.slideShow}
-    >
+    <div className={Styles.slideShow}>
       <Swiper
         slidesPerView={1}
         spaceBetween={0}
@@ -59,16 +57,21 @@ export const SliderComponent: React.FC = () => {
         className={Styles.mySwiper}
       >
         <div className={Styles.slideShow__welcomeContainer}>
-          <div        className={Styles.slideShow__aboutMeContainer}>
-            <motion.h1 initial={{ opacity: 0, y: -30 }}
-                       animate={{ opacity: 1, y: 0 }}
-                       transition={{ duration: 0.7 }} className={Styles.slideShow__welcomeTitle}>
+          <div className={Styles.slideShow__aboutMeContainer}>
+            <motion.h1
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              className={Styles.slideShow__welcomeTitle}
+            >
               <br /> Я Алена Лобачева
             </motion.h1>
-            <motion.p initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.7 }}
-                      className={Styles.slideShow__welcomeDescription}>
+            <motion.p
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+              className={Styles.slideShow__welcomeDescription}
+            >
               Профессиональный фотограф новорожденных.
               <br />
               Знаю, как оставить на память самые ценные <br /> и неповторимые моменты вашей жизни
@@ -94,7 +97,14 @@ export const SliderComponent: React.FC = () => {
           {handleChangeSlide.map((slide: string, index: number) => {
             return (
               <SwiperSlide key={index}>
-                <img className={Styles.slideShow__image} src={slide} alt={`${index + 1}`} />
+                <motion.img
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7 }}
+                  className={Styles.slideShow__image}
+                  src={slide}
+                  alt={`${index + 1}`}
+                />
               </SwiperSlide>
             );
           })}

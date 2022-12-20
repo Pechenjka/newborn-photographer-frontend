@@ -45,6 +45,27 @@ $colorBackgroundOverlay: rgba(0, 0, 0, 0.4);
     transition: all 0.4s;
     transform: scale(1);
   }
+  &__delete {
+    position: absolute;
+    content: "";
+    border: 0;
+    background-image: url("../../../../images/deletePhoto-button.svg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: initial;
+    width: 30px;
+    height: 30px;
+    outline: none;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    &:hover {
+      cursor: pointer;
+      background-color: #FFFFFF4C;
+      border-radius: 5px;
+    }
+  }
   &__container {
     &:first-of-type {
       grid-column-start: 1;

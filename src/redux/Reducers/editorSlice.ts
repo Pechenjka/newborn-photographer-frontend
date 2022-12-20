@@ -118,7 +118,7 @@ export const editorSlice = createSlice({
     [getTextOnPage.fulfilled]: (state, action: any) => {
       state.aboutPhotoSession.family = [];
       state.aboutPhotoSession.newborn = [];
-      action.payload.map((item: any) => {
+      action.payload.forEach((item: PropsText) => {
         if (item.typePhotoSession.includes("family")) {
           state.aboutPhotoSession.family = [...state.aboutPhotoSession.family, item];
         }

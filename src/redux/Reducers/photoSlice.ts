@@ -6,6 +6,7 @@ import {
   PropsBoolean,
   PropsRandomPhotos,
   PropsAddNewPhoto,
+  PropsDeletePhoto,
 } from "../../types";
 
 import { apiApp } from "../../utils/apiApp";
@@ -41,6 +42,21 @@ export const addNewPhoto = createAsyncThunk(
       return res.data;
     } catch (e) {
       return rejectWithValue("Ошибка, не удалось загрузить фотографию!");
+    }
+  }
+);
+
+export const deletePhoto: any = createAsyncThunk(
+  "photo/deletePhoto",
+  async (data: PropsDeletePhoto, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await apiApp().deletePhoto(data.photoId);
+      if (res) {
+        dispatch(fetchPhotos({ type: data.type, order: data.path }));
+      }
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Ошибка, фотография не удалена");
     }
   }
 );
@@ -116,13 +132,21 @@ const photoSlice = createSlice({
     handlerShowAddPhotos: (state, action: PropsArrPhotos) => {
       state.showPhotos = action.payload;
     },
+    // handlerClearGetPhotos: (state) => {
+    //   state.getPhotos = [];
+    // },
   },
   extraReducers: (builder) => {
+    // builder.addCase(deletePhoto.pending, (state): void => {
+    //   state.showPhotos = [];
+    //   state.getPhotos = [];
+    // });
     builder.addCase(fetchPhotos.pending, (state): void => {
       state.loading = true;
       state.error = "";
     });
     builder.addCase(fetchPhotos.fulfilled, (state, action: { payload: IPhoto[] }): void => {
+      // console.log(action.payload)
       state.getPhotos = action.payload;
       state.error = "";
       state.loading = false;
@@ -141,5 +165,6 @@ export const {
   handlerDataImageForModal,
   handlerSortPhotos,
   handlerShowAddPhotos,
+  //handlerClearGetPhotos,
 } = photoSlice.actions;
 export default photoSlice.reducer;

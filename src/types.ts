@@ -18,7 +18,7 @@ export interface PropsPayLoadGetInTouch {
 
 //Photo
 export interface PropsInitialStatePhotoSlice {
-  getPhotos: IPhoto[];
+  getPhotos: IPhoto[] | [];
   showPhotos: IPhoto[];
   categoryPhotosBtn: string | null;
   loading: boolean;
@@ -59,6 +59,13 @@ export interface PropsPhoto {
   photoPostPage: string;
   setRef?: any;
   variants?: any;
+  handleDeletePhoto: (photoId: string, arrPhoto: IPhoto[]) => any;
+  showPhotos: IPhoto[];
+}
+export interface PropsDeletePhoto {
+  photoId: string;
+  type: string;
+  path: string;
 }
 
 //Route

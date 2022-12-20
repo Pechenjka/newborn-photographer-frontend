@@ -23,6 +23,7 @@ export const apiApp = (): {
   editTextOnPage: any;
   getTextOnPage: any;
   deleteTextBlock: any;
+  deletePhoto: any
 } => {
   return {
     createPacket: async (data: IPacket): Promise<AxiosResponse<IPacket>> => {
@@ -57,6 +58,9 @@ export const apiApp = (): {
       return await $api.get(`/mediaContent/gallery/${path}`);
     },
 
+    deletePhoto: async (dataId: string): Promise<void> => {
+      return await $api.delete(`/mediaContent/gallery/${dataId}`)
+    },
     uploadPhoto: async (data: PropsAddNewPhoto): Promise<AxiosResponse<IPhoto>> => {
       return await $api.post("/mediaContent/gallery", {
         image: data.image,

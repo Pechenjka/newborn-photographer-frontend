@@ -1,13 +1,21 @@
 import Styles from "./style.module.scss";
 import React from "react";
-import { PhotoPostPage, PropsPhoto } from "../../../../types";
+import { IPhoto, PhotoPostPage, PropsPhoto } from "../../../../types";
 import { handlerDataImageForModal, handlerModalWithImage } from "../../../../redux/Reducers/photoSlice";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import classNames from "classnames/bind";
 import { motion } from "framer-motion";
 
-const Photo: React.FC<PropsPhoto> = ({ image, photoPostPage, variants, handleDeletePhoto, showPhotos }) => {
+const Photo: React.FC<PropsPhoto> = ({
+  image,
+  photoPostPage,
+  variants,
+  handleDeletePhoto,
+  showPhotos,
+  handleChangeOrderPhoto,
+}) => {
   const { user } = useAppSelector((state) => state.user);
+  const { openChangeSortPhotos } = useAppSelector((state) => state.photos);
   const dispatch = useAppDispatch();
 
   const handleOpenImagePopup = (linkPhoto: string): void => {
@@ -23,10 +31,25 @@ const Photo: React.FC<PropsPhoto> = ({ image, photoPostPage, variants, handleDel
     { photo__container: photoPostPage === PhotoPostPage.mainPage }
   );
 
+  const StylesBtnUpPhoto = cx("photo__btnUpDown", "photo__btnUp");
+  const StylesBtnDownPhoto = cx("photo__btnUpDown", "photo__btnDown");
+
+  const currentPhoto: any = showPhotos.find((photo: IPhoto) => {
+    return photo._id.includes(image._id) && photo;
+  });
+
   return (
     <motion.li className={styleContainerPhoto} variants={variants}>
       {user.role.includes("ADMIN") && (
-        <button className={Styles.photo__delete} onClick={() => handleDeletePhoto(image._id, showPhotos)} />
+        <>
+          {openChangeSortPhotos && (
+            <div className={Styles.photo__containerBtnUpDown}>
+              <button className={StylesBtnUpPhoto} onClick={() => handleChangeOrderPhoto(currentPhoto, "up")} />
+              <button className={StylesBtnDownPhoto} onClick={() => handleChangeOrderPhoto(currentPhoto, "down")} />
+            </div>
+          )}
+          <button className={Styles.photo__delete} onClick={() => handleDeletePhoto(image._id, showPhotos)} />
+        </>
       )}
       <img className={Styles.photo__image} src={image.image} alt="img" />
       <div className={Styles.photo__overlay} onClick={() => handleOpenImagePopup(image.image)}>

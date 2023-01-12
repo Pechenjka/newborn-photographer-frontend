@@ -4,7 +4,11 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import classNames from "classnames/bind";
 import { PropsDataTabs, PropsText } from "../../../../types";
 import { Button } from "../../../../components/Button";
-import { deleteTextBlock, handlerEditNote, handlerEditTextBlock } from "../../../../redux/Reducers/editorSlice";
+import {
+  deleteTextBlock,
+  handlerEditNote,
+  handlerEditTextBlock,
+} from "../../../../redux/Reducers/editorSlice";
 import { useDisabledScroll } from "../../../../hooks/useDisabledScroll";
 import { useHistory } from "react-router-dom";
 

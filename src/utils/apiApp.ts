@@ -23,7 +23,8 @@ export const apiApp = (): {
   editTextOnPage: any;
   getTextOnPage: any;
   deleteTextBlock: any;
-  deletePhoto: any
+  deletePhoto: any;
+  changeOrderPhoto: any;
 } => {
   return {
     createPacket: async (data: IPacket): Promise<AxiosResponse<IPacket>> => {
@@ -59,8 +60,15 @@ export const apiApp = (): {
     },
 
     deletePhoto: async (dataId: string): Promise<void> => {
-      return await $api.delete(`/mediaContent/gallery/${dataId}`)
+      return await $api.delete(`/mediaContent/gallery/${dataId}`);
     },
+
+    changeOrderPhoto: async (data: IPhoto[]): Promise<any> => {
+      return await $api.put("/mediaContent/gallery/changeOrder", {
+        newArr: data,
+      });
+    },
+
     uploadPhoto: async (data: PropsAddNewPhoto): Promise<AxiosResponse<IPhoto>> => {
       return await $api.post("/mediaContent/gallery", {
         image: data.image,

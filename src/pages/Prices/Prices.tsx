@@ -57,7 +57,7 @@ const Prices: React.FC = () => {
       <MetaData
         title={`Цены на ${typePhotosession} | Фотограф новорожденных в Москве Алена Лобачева`}
         description={`Узнать стоимость и подобрать нужный пакет на  - ${typePhotosession}. `}
-        canonicalLink={`https://alenalobacheva.net${pathname}/`}
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <BackgroundImage />
       <div className={Styles.prices}>

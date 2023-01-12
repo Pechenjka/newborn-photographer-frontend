@@ -22,7 +22,7 @@ export const AboutPhotoSession: React.FC = () => {
         <MetaData
           title="Как подготовиться к сьемке/фотосессии | Фотограф в Москве Алена Лобачева"
           description="Инструкция, в которой я подробно рассказываю о подготовке к фотосессии, помогаю советом в подборке образов, где лучше проводить фотосессию и много другой полезной информации."
-          canonicalLink="https://alenalobacheva.net/aboutPhotosession/"
+          canonicalLink="https://alenalobacheva.net/aboutPhotosession"
         />
         <h1 className={Styles.aboutPhotoSession__title}>Как подготовиться к съемке</h1>
         <TabsAboutPhotoSession />

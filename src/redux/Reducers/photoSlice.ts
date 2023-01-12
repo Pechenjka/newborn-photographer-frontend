@@ -61,6 +61,15 @@ export const deletePhoto: any = createAsyncThunk(
   }
 );
 
+export const saveChangeSortPhotos: any = createAsyncThunk("photo/saveChangeSortPhotos", async (newArr: IPhoto[], { rejectWithValue }) => {
+  try {
+    const res = apiApp().changeOrderPhoto(newArr);
+    return res.data;
+  } catch (e) {
+    return rejectWithValue("Ошибка, сортировка не удалась");
+  }
+});
+
 const initialState: PropsInitialStatePhotoSlice = {
   getPhotos: [],
   showPhotos: [],
@@ -69,6 +78,7 @@ const initialState: PropsInitialStatePhotoSlice = {
   error: "",
   openModalWithImage: false,
   dataForImageModal: "",
+  openChangeSortPhotos: false,
 };
 
 const photoSlice = createSlice({
@@ -109,7 +119,7 @@ const photoSlice = createSlice({
       state.showPhotos = countPhotos(randomN);
     },
     handlerSortPhotos: (state, action: PropsArrPhotos) => {
-      action.payload.sort((a: any, b: any) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
+      action.payload.sort((a: any, b: any) => a.order - b.order);
 
       const countSortPhotos = (arrItem: IPhoto[]): IPhoto[] => {
         if (window.innerWidth >= 1025) {
@@ -132,15 +142,32 @@ const photoSlice = createSlice({
     handlerShowAddPhotos: (state, action: PropsArrPhotos) => {
       state.showPhotos = action.payload;
     },
-    // handlerClearGetPhotos: (state) => {
-    //   state.getPhotos = [];
-    // },
+    handlerOpenChangeSortPhotos: (state, action: { payload: boolean }) => {
+      state.openChangeSortPhotos = action.payload;
+    },
+    changeOrderPhoto: (state, action: { payload: { id: string; duration: string } }) => {
+      const arr = state.showPhotos;
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i]._id === action.payload.id) {
+          let tmp;
+          if (action.payload.duration.includes("down") && i !== arr.length - 1) {
+            tmp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = tmp;
+            break;
+          }
+          if (action.payload.duration.includes("up") && i !== 0) {
+            tmp = arr[i];
+            arr[i] = arr[i - 1];
+            arr[i - 1] = tmp;
+            break;
+          }
+        }
+      }
+      state.showPhotos = arr;
+    },
   },
   extraReducers: (builder) => {
-    // builder.addCase(deletePhoto.pending, (state): void => {
-    //   state.showPhotos = [];
-    //   state.getPhotos = [];
-    // });
     builder.addCase(fetchPhotos.pending, (state): void => {
       state.loading = true;
       state.error = "";
@@ -165,6 +192,7 @@ export const {
   handlerDataImageForModal,
   handlerSortPhotos,
   handlerShowAddPhotos,
-  //handlerClearGetPhotos,
+  changeOrderPhoto,
+  handlerOpenChangeSortPhotos,
 } = photoSlice.actions;
 export default photoSlice.reducer;

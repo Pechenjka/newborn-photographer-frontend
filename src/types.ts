@@ -25,6 +25,7 @@ export interface PropsInitialStatePhotoSlice {
   error: string | undefined;
   openModalWithImage: boolean;
   dataForImageModal: string;
+  openChangeSortPhotos: boolean;
 }
 export interface PropsArrPhotos {
   payload: IPhoto[];
@@ -36,6 +37,7 @@ export interface IPhoto {
   type: string;
   image: string;
   _id: string;
+  order: number;
   createdAt: string;
 }
 export interface IPhotosCategoryInMainPage {
@@ -60,6 +62,7 @@ export interface PropsPhoto {
   setRef?: any;
   variants?: any;
   handleDeletePhoto: (photoId: string, arrPhoto: IPhoto[]) => any;
+  handleChangeOrderPhoto: (currentPhoto: IPhoto, duration: string) => void;
   showPhotos: IPhoto[];
 }
 export interface PropsDeletePhoto {
@@ -67,6 +70,13 @@ export interface PropsDeletePhoto {
   type: string;
   path: string;
 }
+
+// export interface PropsChangeOrderPhoto {
+//   photoId: string;
+//   type: string;
+//   duration: string;
+//   newOrder: number;
+// }
 
 //Route
 export interface IRoute {

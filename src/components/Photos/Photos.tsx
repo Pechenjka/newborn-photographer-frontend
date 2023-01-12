@@ -6,7 +6,7 @@ import Photo from "./components/Photo/Photo";
 import classNames from "classnames/bind";
 import { motion } from "framer-motion";
 import { framerMotionPhotosAndPackets } from "../../helpers/framerMotion";
-import { deletePhoto } from "../../redux/Reducers/photoSlice";
+import { changeOrderPhoto, deletePhoto } from "../../redux/Reducers/photoSlice";
 import { useLocation } from "react-router-dom";
 
 const Photos: React.FC<PropsPhotos> = ({ photoPostPage }) => {
@@ -31,6 +31,12 @@ const Photos: React.FC<PropsPhotos> = ({ photoPostPage }) => {
     );
   };
 
+  const handleChangeOrderPhoto = (currentPhoto: IPhoto, duration: string): void => {
+    dispatch(
+      changeOrderPhoto({ id: currentPhoto._id, duration })
+    );
+  };
+
   return (
     <motion.ul className={styleContainPhotos} variants={container} initial="hidden" animate="show">
       {showPhotos.map((image: IPhoto) => {
@@ -41,6 +47,7 @@ const Photos: React.FC<PropsPhotos> = ({ photoPostPage }) => {
             key={image._id}
             variants={item}
             handleDeletePhoto={handleDeletePhoto}
+            handleChangeOrderPhoto={handleChangeOrderPhoto}
             showPhotos={showPhotos}
           />
         );

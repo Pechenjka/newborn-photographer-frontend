@@ -6,6 +6,40 @@ $colorBackgroundOverlay: rgba(0, 0, 0, 0.4);
   height: 100%;
   overflow: hidden;
   border-radius: 5px;
+  &__containerBtnUpDown {
+    z-index: 10;
+    position: absolute;
+    content: "";
+    top: 20px;
+    left: 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 20px;
+    height: max-content;
+    align-self: center;
+  }
+  &__btnUpDown {
+    border: none;
+    padding: 10px;
+    background-size: 20px;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #ffffff4c;
+    background-position: center;
+    background-repeat: no-repeat;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  &__btnUp {
+    background-image: url("../../../../images/arrow-up.svg");
+  }
+  &__btnDown {
+    background-image: url("../../../../images/arrow-down.svg");
+  }
   &__overlay {
     position: absolute;
     top: 0;
@@ -62,7 +96,7 @@ $colorBackgroundOverlay: rgba(0, 0, 0, 0.4);
     z-index: 100;
     &:hover {
       cursor: pointer;
-      background-color: #FFFFFF4C;
+      background-color: #ffffff4c;
       border-radius: 5px;
     }
   }

@@ -67,7 +67,7 @@ const PhotoGallery: React.FC = () => {
         description={`Аторская обработка снимков - ${photosCategoryInGallery
           .filter((item) => pathname.includes(item.type) && item.title)[0]
           .title.toLowerCase()}. Оставляю памятные мгновения Вам и Вашим близким на всю жизнь.`}
-        canonicalLink={`https://alenalobacheva.net${pathname}/`}
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <section className="photoGallery" id="photoGallery">
         <BackgroundImage />

@@ -15,7 +15,7 @@ const Contacts: React.FC = () => {
       <MetaData
         title="Мои контакты | Фотограф новорожденных в Москве Алена Лобачева"
         description="Есть вопросы по выбору фотосесиии? Вы всегда можете связаться со мной."
-        canonicalLink={`https://alenalobacheva.net${pathname}/`}
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <BackgroundImage />
       <section className="contacts">

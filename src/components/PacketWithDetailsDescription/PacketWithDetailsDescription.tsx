@@ -45,7 +45,7 @@ export const PacketWithDetailsDescription: React.FC = () => {
       <MetaData
         title={`Пакет ${packetWithDetailsDescription?.namePacket} | Фотограф в Москве Алена Лобачева`}
         description={`В пакет включено: ${packetWithDetailsDescription?.getFromPhotosession}`}
-        canonicalLink={`https://alenalobacheva.net${pathname}/`}
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <BackgroundImage />
       {packetWithDetailsDescription !== null && (

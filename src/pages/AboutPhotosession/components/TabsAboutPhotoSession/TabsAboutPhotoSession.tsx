@@ -4,16 +4,12 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import classNames from "classnames/bind";
 import { PropsDataTabs, PropsText } from "../../../../types";
 import { Button } from "../../../../components/Button";
-import {
-  deleteTextBlock,
-  handlerEditNote,
-  handlerEditTextBlock,
-} from "../../../../redux/Reducers/editorSlice";
+import { deleteTextBlock, handlerEditNote, handlerEditTextBlock } from "../../../../redux/Reducers/editorSlice";
 import { useDisabledScroll } from "../../../../hooks/useDisabledScroll";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const TabsAboutPhotoSession: React.FC = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { aboutPhotoSession, error, loading, textBlock, editNote } = useAppSelector((state) => state.editor);
   const { user } = useAppSelector((state) => state.user);
@@ -66,7 +62,7 @@ export const TabsAboutPhotoSession: React.FC = () => {
   const handleEditTextBlock = (): void => {
     setOpenNote(false);
     dispatch(handlerEditNote(true));
-    history.push("/editor");
+    navigate("/editor");
   };
 
   return (

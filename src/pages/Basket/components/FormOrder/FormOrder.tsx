@@ -1,9 +1,9 @@
 import Styles from "./style.module.scss";
 import React, { Fragment } from "react";
-import { IOrderFields, IPacketInOrder, IUserProfile } from "../../../../types";
+import { IOrderFields, IPacketInOrder } from "../../../../types";
 import { MyTextField } from "../../../../components/MyTextField";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FormikFormComponent } from "../../../../components/FormikFormComponent";
 import { Link } from "react-router-dom";
 import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
@@ -14,7 +14,7 @@ import { validationSchemaOrderForm } from "../../../../validationForms";
 
 export const FormOrder: React.FC = () => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { user } = useAppSelector((state) => state.user);
@@ -54,7 +54,7 @@ export const FormOrder: React.FC = () => {
 
   const handleClick = (): void => {
     dispatch(handleConfirmSendOrder(false));
-    history.push("/");
+    navigate("/");
   };
 
   return (
@@ -75,9 +75,7 @@ export const FormOrder: React.FC = () => {
               <Order orderData={packetsInOrder} title="Заказ" />
             </div>
             {error.newOrder ? (
-              <p className={Styles.formOrder__formDescription_error}>
-                {error.newOrder}
-              </p>
+              <p className={Styles.formOrder__formDescription_error}>{error.newOrder}</p>
             ) : (
               <p className={Styles.formOrder__formDescription}>
                 Для оформления заказа, укажите ваши контактные данные!

@@ -1,7 +1,7 @@
 import Styles from "./style.module.scss";
 import React, { Fragment, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { getPacketWithDetailsDescription, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { Button } from "../Button";
 import BackgroundImage from "../BackgroundImage/BackgroundImage";
@@ -17,10 +17,12 @@ export const PacketWithDetailsDescription: React.FC = () => {
   const { packetWithDetailsDescription, loading, error, packetInBasket } = useAppSelector((state) => state.packets);
   const [showGoToBasket, setShowGoToBasket] = useState<boolean>(false);
   const { pathname } = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getPacketWithDetailsDescription(id));
+    if (id != null) {
+      dispatch(getPacketWithDetailsDescription(id));
+    }
   }, []);
 
   useEffect(() => {
@@ -124,7 +126,7 @@ export const PacketWithDetailsDescription: React.FC = () => {
                   edit
                   onClick={
                     showGoToBasket
-                      ? () => history.push("/basket")
+                      ? () => navigate("/basket")
                       : () => handlerClickAddPacketInTheBasket(packetWithDetailsDescription)
                   }
                 >

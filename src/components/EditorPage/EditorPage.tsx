@@ -9,14 +9,14 @@ import {
   handlerEditNote,
   handlerEditTextBlock,
 } from "../../redux/Reducers/editorSlice";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button";
 import { PropsArrTabs } from "../../types";
 import { useDisabledScroll } from "../../hooks/useDisabledScroll";
 
 export const EditorPage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [content, setContent] = useState<string>("");
   const { textBlock, editNote } = useAppSelector((state) => state.editor);
   const [typePhotoSession, setTypePhotoSession] = useState<string>("");
@@ -44,7 +44,7 @@ export const EditorPage: React.FC = () => {
     } else {
       dispatch(createTextOnPage({ text: content, typePhotoSession }));
     }
-    history.push("/aboutPhotosession");
+    navigate("/aboutPhotosession");
   };
 
   const onChangeNamePage = (event: React.ChangeEvent<any>) => {
@@ -54,7 +54,7 @@ export const EditorPage: React.FC = () => {
 
   const handleClickBackBtn = (): void => {
     dispatch(handlerEditTextBlock({ text: "", typePhotoSession: "", _id: "" }));
-    history.push("/aboutPhotosession");
+    navigate("/aboutPhotosession");
   };
 
   const arrTabs: PropsArrTabs[] = [

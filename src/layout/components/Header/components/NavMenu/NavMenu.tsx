@@ -1,19 +1,20 @@
 import React, { useEffect } from "react";
 import "./NavMenu.scss";
-import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { links } from "../../../../../utils/config";
 import { useDisabledScroll } from "../../../../../hooks/useDisabledScroll";
 import { useAppSelector } from "../../../../../redux/hooks";
 import { ILink, ISubLink, PropsNavMenu } from "../../../../../types";
 import { Button } from "../../../../../components/Button";
 import logoUser from "../../../../../images/user.webp";
+import cx from "classnames/bind";
 
 const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
   const { pathname } = useLocation();
   const { handlerDisabledScroll } = useDisabledScroll;
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { auth, user } = useAppSelector((state) => state.user);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
@@ -38,13 +39,13 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
     if (window.innerWidth <= 1024) {
       handlerOpenAndCloseBurgerMenu();
     }
-    history.push(auth ? "/profile" : "/signin");
+    navigate(auth ? "/profile" : "/signin");
   };
 
   //Обработчик клика по корзине
   const handleClickFromBasket = (event: React.MouseEvent): void => {
     if (packetInBasket.length) {
-      history.push("/basket");
+      navigate("/basket");
       if (window.innerWidth <= 1024) {
         handlerOpenAndCloseBurgerMenu();
       }
@@ -73,6 +74,8 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
       });
     }
   };
+
+  //console.log(cx("styles", `styles_${isActive}`));
 
   return (
     <nav
@@ -109,9 +112,14 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                 </div>
               ) : (
                 <NavLink
-                  className={`navigation__link ${item.select ? "navigation__link-arrow" : ""}`}
-                  activeClassName="navigation__link_active"
-                  exact={true}
+                  className={({ isActive }) =>
+                    cx(
+                      "navigation__link",
+                      `navigation__link_${isActive ? "active" : ""}`,
+                      item.select ? "navigation__link-arrow" : ""
+                    )
+                  }
+                  end
                   to={item.path ? item.path : ""}
                   onClick={handleClickLink}
                 >
@@ -124,8 +132,9 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                     item.select.map((el: ISubLink) => {
                       return (
                         <NavLink
-                          className="navigation__sublink"
-                          activeClassName="navigation__sublink_active"
+                          className={({ isActive }) =>
+                            cx("navigation__sublink", `navigation__sublink${isActive ? "_active" : ""}`)
+                          }
                           to={el.pathSelect}
                           key={el.name}
                           onClick={handleClickDropdownLink}
@@ -157,7 +166,9 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
         </li>
         <li className="navigation__container-link">
           {user.role.includes("ADMIN") ? (
-            <Link className='navigation__adminPanel' to="/admin">Админ-панель</Link>
+            <Link className="navigation__adminPanel" to="/admin">
+              Админ-панель
+            </Link>
           ) : (
             <div>
               <div className="navigation__basket navigation__tooltip" onClick={handleClickFromBasket}>

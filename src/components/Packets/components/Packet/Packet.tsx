@@ -1,7 +1,7 @@
 import Styles from "./style.module.scss";
 import React from "react";
 import { IPacket } from "../../../../types";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { handlerAddPacketInBasket } from "../../../../redux/Reducers/packetSlice";
@@ -15,7 +15,7 @@ export interface PropsPacket {
 
 const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, variants }) => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { user } = useAppSelector((state) => state.user);
 
@@ -35,7 +35,7 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, variants }) 
   });
 
   const handlerClickOnImagePacket = () => {
-    history.push(`/prices/packets/${packet._id}`);
+    navigate(`/prices/packets/${packet._id}`);
   };
 
   return (

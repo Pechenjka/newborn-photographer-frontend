@@ -6,11 +6,11 @@ import { IPacket } from "../../types";
 import { handlerBasketIsNotEmpty, handlerDeletePacketFromBasket } from "../../redux/Reducers/packetSlice";
 import { Button } from "../../components/Button";
 import PacketsInBasket from "./components/PacketsInBasket/PacketsInBasket";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Basket: React.FC = () => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { packetInBasket } = useAppSelector((state) => state.packets);
 
   const handlerClickDeletePacketFromBasket = (id: string) => {
@@ -41,7 +41,7 @@ const Basket: React.FC = () => {
                 editStyle="buttonBasket"
                 edit
                 type="button"
-                onClick={() => history.push("/checkout")}
+                onClick={() => navigate("/checkout")}
               >
                 Продолжить оформление заказа
               </Button>

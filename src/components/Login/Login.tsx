@@ -3,14 +3,14 @@ import AuthForm from "../AuthForm/AuthForm";
 import { MyTextField } from "../MyTextField";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { login } from "../../redux/Reducers/userSlice";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDisabledScroll } from "../../hooks/useDisabledScroll";
 import { validationSchemaLogin } from "../../validationForms";
 import { ILoginUser, PropsLogin } from "../../types";
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { handlerDisabledScroll } = useDisabledScroll;
   const { error, loading, showError } = useAppSelector((state) => state.user);
 
@@ -24,7 +24,7 @@ export const Login: React.FC = () => {
   };
 
   const handleSubmit = (data: ILoginUser) => {
-    dispatch(login({ ...data, history }));
+    dispatch(login({ ...data, navigate }));
   };
 
   // console.log(error, loading)

@@ -4,7 +4,7 @@ import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import Packets from "../../components/Packets/Packets";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getArrPackets } from "../../redux/Reducers/packetSlice";
-import { useLocation, useRouteMatch } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import { MetaData } from "../../helpers/MetaData";
 import { framerMotionPhotosAndPackets } from "../../helpers/framerMotion";
@@ -13,20 +13,19 @@ const Prices: React.FC = () => {
   const dispatch = useAppDispatch();
   const { getPackets, getPacketsCategories, loading, error } = useAppSelector((state) => state.packets);
   const [nameCategory, setNameCategory] = useState("");
-  const { path } = useRouteMatch();
   const { pathname } = useLocation();
   const [typePhotosession, setTypePhotosession] = useState<string>("");
 
   useEffect(() => {
     if (getPacketsCategories.length > 0) {
       getPacketsCategories.map((category) => {
-        if (path.includes(category.title)) {
+        if (pathname.includes(category.title)) {
           dispatch(getArrPackets({ photosessionType: category.title }));
           setNameCategory(category.nameRU);
         }
       });
     }
-  }, [path, getPacketsCategories, dispatch]);
+  }, [pathname, getPacketsCategories, dispatch]);
 
   const { container, item } = framerMotionPhotosAndPackets();
 

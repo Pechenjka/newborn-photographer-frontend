@@ -1,6 +1,5 @@
 import React from "react";
 import { TypeFieldComponent } from "./components/MyTextField";
-import { RouteComponentProps } from "react-router-dom";
 
 export interface PropsPayLoadSendEmail {
   data: {
@@ -80,8 +79,10 @@ export interface PropsDeletePhoto {
 
 //Route
 export interface IRoute {
-  component: React.FC;
-  path: string | Array<string>;
+  index?: boolean;
+  component: any;
+  path: string;
+  subPath?: Array<string>;
   name: string;
   isAdmin: boolean;
   isAuth: boolean;
@@ -89,11 +90,14 @@ export interface IRoute {
   withOutHeaderAndFooter?: boolean;
 }
 
+// export interface PropsProtectedRoute {
+//   component: React.ReactFragment
+//   authorization: boolean;
+//   path: string;
+// }
 export interface PropsProtectedRoute {
-  component: React.FC;
   authorization: boolean;
-  exact: boolean;
-  path: string;
+  children: any;
 }
 
 //Paket
@@ -209,7 +213,7 @@ export interface ICreateUser {
 export interface ILoginUser {
   email: string;
   password: string;
-  history: RouteComponentProps["history"];
+  navigate: any;
 }
 export interface IRefreshTokenResponse {
   accessToken: string;

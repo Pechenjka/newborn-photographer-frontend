@@ -66,6 +66,7 @@ $colorDemarcationLine: #79553d;
     font-weight: 400;
   }
   &__links-container {
+    height: max-content;
     margin: 0 auto;
     width: max-content;
   }
@@ -200,7 +201,7 @@ $colorDemarcationLine: #79553d;
       }
     }
     &__links-container {
-      margin: 15px auto 30px;
+      margin: 15px auto ;
     }
     &__copyright {
       position: relative;

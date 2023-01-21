@@ -82,10 +82,11 @@ export interface IRoute {
   index?: boolean;
   component: any;
   path: string;
+  // subRoutes?: Array<{path: string, name: string}>
   subPath?: Array<string>;
   name: string;
-  isAdmin: boolean;
-  isAuth: boolean;
+  isAdmin?: boolean;
+  isAuth?: boolean;
   protectRouteBasket?: boolean;
   withOutHeaderAndFooter?: boolean;
 }

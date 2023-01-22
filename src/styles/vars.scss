@@ -1,13 +1,33 @@
 //COLORS
-$ButtonHoverColor: #FF969699;
-$ButtonColor: #ff9696;
-$ButtonDisabledColor: #C9C1C182;
-$ButtonTextColor: #FFFFFFFF;
-$TextColor: #79553d;
+$ButtonHoverColor: #ff969699;
+$ButtonColorPing: #ff9696;
+$ButtonDisabledColor: #c9c1c182;
+$ButtonTextColorWhite: #ffffffff;
+$TextColorBrownDark: #79553d;
+$TextColorBlack: #000000ff;
+$TextColorGray-1: #797878e5;
+$TextColorBrown-2: #79553d7f;
+$TextColorGreen-1: #0080007f;
+$TextColorGreen-2: #00800099;
+
+//Background colors
+$BackgroundColorGray-1: #79787833;
+$BackgroundColorGray-2: #79787819;
+$BackgroundColorBrown-1: #79553d4c;
+$BackgroundColorBrown-2: #79553d7f;
+$BackgroundColorWhite: #ffffff;
 $BackgroundColorHeaderTable: #89868666;
 $BackgroundColorRowTable: #89868623;
+$backgroundColorPage: #fffcecff;
 
 $colorBackground: rgba(0, 0, 0, 0.4);
 $colorBackgroundScroll: rgba(0, 0, 0, 0.8);
-$colorIconBurgerMenu: rgba(255,252,236,1);
+$colorIconBurgerMenu: rgba(255, 252, 236, 1);
 
+//Box-shadow
+$BoxShadowColorGray-1: #00000019;
+
+//Border colors
+$BorderColorGray-1: #00000033;
+$BorderColorBrown-1: #79553d;
+$BorderColorBrown-3: #79553d7f;

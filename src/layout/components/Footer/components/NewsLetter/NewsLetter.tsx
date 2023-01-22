@@ -22,14 +22,14 @@ const NewsLetter: React.FC = () => {
     <div className="newsLetter">
       <form className="newsLetter__form" onSubmit={handlerSubmit}>
         <fieldset className="newsLetter__form-fieldset">
-          {(
+          {errorSendEmail || confirmationSendEmail ? (
             <ShowInfoToolTip
               confirmation={confirmationSendEmail}
               error={errorSendEmail}
               textConfirmMessage="Подписка оформлена"
               textErrorMessage="Произошла ошибка на сервере, попробуйте позже"
             />
-          ) || (
+          ) : (
             <label className="newsLetter__form-label">
               Интересна информация <br />
               об акциях и проектах?

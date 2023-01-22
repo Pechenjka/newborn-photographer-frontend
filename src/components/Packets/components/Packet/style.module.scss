@@ -1,3 +1,5 @@
+@import '../../../../styles/vars';
+
 $colorShadow: black;
 $backgroundColorOverlayInit: rgba(0, 0, 0, 0.1);
 $backgroundColorOverlayHover: rgba(0, 0, 0, 0.4);
@@ -38,7 +40,7 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
       background-color: rgba(0, 0, 0, 0.8);
     }
     &_success {
-      background-color: #79553d;
+      background-color: $TextColorBrownDark;
       &:hover {
         background-color: rgba(121, 85, 61, 0.8);
       }
@@ -60,16 +62,16 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   }
 
   &__namePacketLink {
-    font-size: 25px;
+    font-size: 24px;
     display: block;
     font-weight: bold;
     text-decoration: none;
-    color: black;
+    color: $TextColorBlack;
     transition: all 0.3s ease-in;
     margin-top: 10px;
     text-align: left;
     &:hover {
-      color: #79553d;
+      color: $TextColorBrownDark;
     }
     &_edit {
       font-size: 18px;
@@ -79,7 +81,8 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   &__price {
     font-weight: normal;
     font-family: MarckScript-Regular, serif;
-    color: #79553d;
+    color: $TextColorBrownDark;
+    font-size: 27px;
   }
 }
 
@@ -98,7 +101,7 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   .packet {
     flex-direction: column;
     &__price {
-      font-size: 25px;
+      font-size: 20px;
     }
   }
 }
@@ -107,7 +110,7 @@ $backgroundColorOverlayButton: rgba(255, 150, 150, 0.6);
   .packet {
     &__namePacketLink {
       &_edit {
-        font-size: 15px;
+        font-size: 16px;
       }
     }
   }

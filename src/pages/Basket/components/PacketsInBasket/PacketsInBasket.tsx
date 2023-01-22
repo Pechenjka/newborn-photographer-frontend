@@ -1,14 +1,14 @@
 import Styles from "./style.module.scss";
 import React from "react";
 import { IPacket, PropsPacketsInBasket } from "../../../../types";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PacketsInBasket: React.FC<PropsPacketsInBasket> = ({ packetInBasket, onClickDeletePacket }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleDeletePackets = (packetId: string): void => {
     onClickDeletePacket(packetId);
-    packetInBasket.length < 2 && history.push("/");
+    packetInBasket.length < 2 && navigate("/");
   };
 
   const titleBasket = () =>

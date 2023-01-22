@@ -16,9 +16,9 @@ const PhotoProducts: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title="Фотокниги, фотохолсты и другая фотопродукция"
-        description="Заказать фотокнигу любого формата, фотохолст, планшет с паспарту, фотобокс и многое другое"
-        canonicalLink={`https://alenalobacheva.net${pathname}/`}
+        title="Фотокниги, фотохолсты и другая фотопродукция | Детский фотограф в Москве Алена Лобачева"
+        description="В дополнение к фотосесии можно заказать фотокнигу любого формата, фотохолст, планшет с паспарту, фотобокс и многое другое"
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <BackgroundImage />
       <section className="photoProducts">

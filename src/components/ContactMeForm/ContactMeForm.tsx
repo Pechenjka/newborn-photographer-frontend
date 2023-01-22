@@ -25,7 +25,7 @@ const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
 
   return (
     <div className="contactMeForm">
-      <h3 className="contactMeForm__title">{title}</h3>
+      <h2 className="contactMeForm__title">{title}</h2>
       <ShowInfoToolTip
         error={errorGetInTouch}
         textErrorMessage="Ошибка, отправить сообщение не получилось, попробуйте позже"
@@ -39,7 +39,7 @@ const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
         buttonProps={{
           title: "Отправить сообщение",
           style: "ping",
-          onDirty: true,
+          onDirty: false,
           edit: true,
           editStyle: "contactMeButton",
         }}
@@ -48,7 +48,7 @@ const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
         <MyTextField nameLabel="Имя" type="text" name="name" component="input" id="name" />
         <MyTextField nameLabel="Email" type="email" name="email" component="input" id="email" />
         <MyTextField nameLabel="Телефон" type="phone" name="phone" component="input" id="phone" />
-        <MyTextField nameLabel="Сообщение" type="text" name="text" component="textarea" id="text" />
+        <MyTextField nameLabel="Ваше сообщение" type="text" name="text" component="textarea" id="text" />
       </FormikFormComponent>
     </div>
   );

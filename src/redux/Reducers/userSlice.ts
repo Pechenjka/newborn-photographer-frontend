@@ -25,7 +25,7 @@ export const login = createAsyncThunk("user/login", async (data: ILoginUser, { d
       localStorage.setItem("token", res.data.accessToken);
       await dispatch(authorization(true));
       await dispatch(getUserInfo());
-      data.history.push("/");
+      data.navigate("/");
     }
     return res.data.user;
   } catch (error: any) {
@@ -52,7 +52,7 @@ export const sendEmailForPasswordRecovery = createAsyncThunk(
 
 export const checkAuth = createAsyncThunk(
   "user/checkAuth",
-  async (data: { pathname: string; history: any }, { dispatch, rejectWithValue }) => {
+  async (data: { pathname: string; navigate: any }, { dispatch, rejectWithValue }) => {
     try {
       const res = await apiAuthorization().refresh();
       if (res) {
@@ -60,9 +60,9 @@ export const checkAuth = createAsyncThunk(
         await dispatch(authorization(true));
         await dispatch(getUserInfo());
         if (data.pathname === "/signup" || data.pathname === "/signin") {
-          return data.history.push("/");
+          return data.navigate("/");
         }
-        data.history.push(`${data.pathname}`);
+        data.navigate(`${data.pathname}`);
       }
     } catch (e) {
       localStorage.removeItem("token");

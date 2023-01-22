@@ -5,7 +5,8 @@ import {
   PropsArrPhotos,
   PropsBoolean,
   PropsRandomPhotos,
-  PropsAddNewPhoto
+  PropsAddNewPhoto,
+  PropsDeletePhoto,
 } from "../../types";
 
 import { apiApp } from "../../utils/apiApp";
@@ -45,6 +46,30 @@ export const addNewPhoto = createAsyncThunk(
   }
 );
 
+export const deletePhoto: any = createAsyncThunk(
+  "photo/deletePhoto",
+  async (data: PropsDeletePhoto, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await apiApp().deletePhoto(data.photoId);
+      if (res) {
+        dispatch(fetchPhotos({ type: data.type, order: data.path }));
+      }
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Ошибка, фотография не удалена");
+    }
+  }
+);
+
+export const saveChangeSortPhotos: any = createAsyncThunk("photo/saveChangeSortPhotos", async (newArr: IPhoto[], { rejectWithValue }) => {
+  try {
+    const res = apiApp().changeOrderPhoto(newArr);
+    return res.data;
+  } catch (e) {
+    return rejectWithValue("Ошибка, сортировка не удалась");
+  }
+});
+
 const initialState: PropsInitialStatePhotoSlice = {
   getPhotos: [],
   showPhotos: [],
@@ -53,6 +78,7 @@ const initialState: PropsInitialStatePhotoSlice = {
   error: "",
   openModalWithImage: false,
   dataForImageModal: "",
+  openChangeSortPhotos: false,
 };
 
 const photoSlice = createSlice({
@@ -93,6 +119,8 @@ const photoSlice = createSlice({
       state.showPhotos = countPhotos(randomN);
     },
     handlerSortPhotos: (state, action: PropsArrPhotos) => {
+      action.payload.sort((a: any, b: any) => a.order - b.order);
+
       const countSortPhotos = (arrItem: IPhoto[]): IPhoto[] => {
         if (window.innerWidth >= 1025) {
           return arrItem.slice(0, 16);
@@ -110,8 +138,33 @@ const photoSlice = createSlice({
       };
       state.showPhotos = countSortPhotos(action.payload);
     },
+
     handlerShowAddPhotos: (state, action: PropsArrPhotos) => {
       state.showPhotos = action.payload;
+    },
+    handlerOpenChangeSortPhotos: (state, action: { payload: boolean }) => {
+      state.openChangeSortPhotos = action.payload;
+    },
+    changeOrderPhoto: (state, action: { payload: { id: string; duration: string } }) => {
+      const arr = state.showPhotos;
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i]._id === action.payload.id) {
+          let tmp;
+          if (action.payload.duration.includes("down") && i !== arr.length - 1) {
+            tmp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = tmp;
+            break;
+          }
+          if (action.payload.duration.includes("up") && i !== 0) {
+            tmp = arr[i];
+            arr[i] = arr[i - 1];
+            arr[i - 1] = tmp;
+            break;
+          }
+        }
+      }
+      state.showPhotos = arr;
     },
   },
   extraReducers: (builder) => {
@@ -120,6 +173,7 @@ const photoSlice = createSlice({
       state.error = "";
     });
     builder.addCase(fetchPhotos.fulfilled, (state, action: { payload: IPhoto[] }): void => {
+      // console.log(action.payload)
       state.getPhotos = action.payload;
       state.error = "";
       state.loading = false;
@@ -138,5 +192,7 @@ export const {
   handlerDataImageForModal,
   handlerSortPhotos,
   handlerShowAddPhotos,
+  changeOrderPhoto,
+  handlerOpenChangeSortPhotos,
 } = photoSlice.actions;
 export default photoSlice.reducer;

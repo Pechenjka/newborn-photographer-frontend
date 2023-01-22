@@ -1,88 +1,67 @@
+@import "../../styles/vars";
+
 .popularPackets {
-  max-width: 1300px;
   margin: 50px auto;
   &__title {
-    position: relative;
     width: 100%;
-    font-size: 30px;
-    font-family: "MarckScript-Regular", sans-serif;
+    font-size: 28px;
     font-weight: normal;
     text-align: left;
-    padding: 0 40px;
-    &_edit {
-      font-size: 20px;
-    }
+    color: $TextColorBrownDark;
+    display: inline;
   }
-  &__titleSpan {
-    position: absolute;
-    top: 0;
-    transform: translate(55px, 10px);
-    display: block;
-    font-size: 70px;
-    color: #504E4E33;
-    font-weight: bold;
-    &_edit {
-      font-size: 40px;
-    }
+  &__container {
+    margin: 20px auto 0;
+    width: 100%;
   }
   &__packets {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
     grid-gap: 30px;
-    max-width: 1300px;
-    margin: 50px auto 40px;
-    padding: 0 40px;
+    max-width: 1360px;
     list-style: none;
-    &_edit {
-      grid-template-columns: 1fr;
-      margin: 40px 0 0;
-    }
+    margin: 0 auto;
   }
-  &_edit {
-    max-width: 250px;
-    width: 100%;
+}
+
+@media screen and (max-width: 1440px) {
+  .popularPackets {
+    &__container {
+      padding: 0 40px;
+    }
   }
 }
 
 @media screen and (max-width: 1024px) {
   .popularPackets {
-    margin: auto;
     max-width: 100%;
-    &__packets {
-      padding: 0 40px;
-      grid-gap: 20px;
-      &_edit {
-        grid-template-columns: repeat(3, 1fr);
-        margin: 50px 0 0;
-      }
+    &__container {
+      margin: 20px auto 30px;
     }
-    &_edit {
-      margin-bottom: 50px;
+    &__packets {
+      grid-gap: 20px;
+      margin: 0;
     }
     &__title {
-      &_edit {
-        font-size: 30px;
-      }
-    }
-    &__titleSpan {
-      font-size: 50px;
-      transform: translate(55px, 15px);
-      &_edit {
-        font-size: 50px;
-      }
+      position: static;
+      width: max-content;
+      margin: 0 auto;
+      color: $TextColorBrownDark;
     }
   }
 }
 
 @media screen and (max-width: 776px) {
   .popularPackets {
-    &__packets {
+    &__container {
       padding: 0 20px;
-      grid-gap: 20px;
     }
-    &_edit {
-      margin-bottom: 30px;
+    &__title {
+      font-size: 24px;
+    }
+    &__packets {
+      grid-gap: 20px;
     }
   }
 }
@@ -93,24 +72,18 @@
     &__packets {
       grid-gap: 15px;
     }
-    &__title {
-      &_edit {
-        font-size: 30px;
-      }
-    }
-    &__titleSpan {
-      transform: translate(55px, 20px);
-      font-size: 50px;
-      &_edit {
-        font-size: 50px;
-      }
-    }
   }
 }
 
 @media screen and (max-width: 460px) {
   .popularPackets {
-    max-width: 60%;
+    max-width: calc(100% - 40px);
+    &__container {
+      padding: 0;
+    }
+    &__title {
+      font-size: 20px;
+    }
     &__packets {
       padding: 0;
       grid-template-columns: 1fr;

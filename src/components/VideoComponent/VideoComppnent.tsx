@@ -8,10 +8,8 @@ export interface PropsVideo {
 }
 
 export const VideoComponent: React.FC<PropsVideo> = ({ link, title, poster }) => {
-
   return (
     <>
-      <h3 className={Styles.videoComponent__title}>{title}</h3>
       <video
         className={Styles.videoComponent__video}
         src={link}
@@ -19,6 +17,7 @@ export const VideoComponent: React.FC<PropsVideo> = ({ link, title, poster }) =>
         controlsList="nodownload"
         title={title}
         width="100%"
+        height='100%'
         poster={poster}
       />
     </>

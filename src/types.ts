@@ -1,6 +1,5 @@
 import React from "react";
 import { TypeFieldComponent } from "./components/MyTextField";
-import { RouteComponentProps } from "react-router-dom";
 
 export interface PropsPayLoadSendEmail {
   data: {
@@ -18,13 +17,14 @@ export interface PropsPayLoadGetInTouch {
 
 //Photo
 export interface PropsInitialStatePhotoSlice {
-  getPhotos: IPhoto[];
+  getPhotos: IPhoto[] | [];
   showPhotos: IPhoto[];
   categoryPhotosBtn: string | null;
   loading: boolean;
   error: string | undefined;
   openModalWithImage: boolean;
   dataForImageModal: string;
+  openChangeSortPhotos: boolean;
 }
 export interface PropsArrPhotos {
   payload: IPhoto[];
@@ -36,6 +36,7 @@ export interface IPhoto {
   type: string;
   image: string;
   _id: string;
+  order: number;
   createdAt: string;
 }
 export interface IPhotosCategoryInMainPage {
@@ -57,25 +58,46 @@ export interface PropsPhotos {
 export interface PropsPhoto {
   image: IPhoto;
   photoPostPage: string;
-  setRef: any;
+  setRef?: any;
+  variants?: any;
+  handleDeletePhoto: (photoId: string, arrPhoto: IPhoto[]) => any;
+  handleChangeOrderPhoto: (currentPhoto: IPhoto, duration: string) => void;
+  showPhotos: IPhoto[];
 }
+export interface PropsDeletePhoto {
+  photoId: string;
+  type: string;
+  path: string;
+}
+
+// export interface PropsChangeOrderPhoto {
+//   photoId: string;
+//   type: string;
+//   duration: string;
+//   newOrder: number;
+// }
 
 //Route
 export interface IRoute {
-  component: React.FC;
-  path: string | Array<string>;
+  index?: boolean;
+  component: any;
+  path: string;
+  subPath?: Array<string>;
   name: string;
-  isAdmin: boolean;
-  isAuth: boolean;
+  isAdmin?: boolean;
+  isAuth?: boolean;
   protectRouteBasket?: boolean;
   withOutHeaderAndFooter?: boolean;
 }
 
+// export interface PropsProtectedRoute {
+//   component: React.ReactFragment
+//   authorization: boolean;
+//   path: string;
+// }
 export interface PropsProtectedRoute {
-  component: React.FC;
   authorization: boolean;
-  exact: boolean;
-  path: string;
+  children: any;
 }
 
 //Paket
@@ -125,6 +147,9 @@ export interface PropsPacketsInBasket {
 export interface PropsPackets {
   getPackets: IPacket[];
   editStyleForPrice?: boolean;
+  item: any;
+  container: any;
+  styleContainer: string;
 }
 export interface ICategory {
   title: string;
@@ -188,7 +213,7 @@ export interface ICreateUser {
 export interface ILoginUser {
   email: string;
   password: string;
-  history: RouteComponentProps["history"];
+  navigate: any;
 }
 export interface IRefreshTokenResponse {
   accessToken: string;
@@ -389,6 +414,30 @@ export interface IOrderFields {
   email: string;
   phone: string | undefined;
   text?: string;
+}
+
+export interface PropsDataTabs {
+  labelName: string;
+  id: string;
+  idContent: string;
+  getText: PropsText[];
+  defaultChecked: boolean;
+}
+
+export interface PropsText {
+  _id: string;
+  text: string;
+  typePhotoSession: string;
+}
+
+export interface PropsEditorComponent {
+  setContent: any;
+}
+
+export interface PropsArrTabs {
+  value: string;
+  title: string;
+  hidden?: boolean;
 }
 
 //enum

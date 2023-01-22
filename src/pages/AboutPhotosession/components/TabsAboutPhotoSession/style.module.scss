@@ -1,0 +1,144 @@
+@import "../../../../styles/vars";
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  &__radio {
+    display: none;
+  }
+  &__labelRadio {
+    order: 1; // Put the labels first
+    display: block;
+    cursor: pointer;
+    padding: 15px 20px;
+    text-align: center;
+    color: $TextColorGray-1;
+    box-shadow: 0 -20px 70px $BoxShadowColorGray-1;
+    background: $BackgroundColorGray-1;
+  }
+  &__content {
+    order: 99; // Put the tabs last
+    flex-grow: 1;
+    width: 100%;
+    display: none;
+    padding: 30px;
+  }
+  &__radio:checked + &__labelRadio {
+    background: transparent;
+    color: $TextColorBrownDark;
+    top: 0;
+  }
+  &__radio:checked + &__labelRadio + &__content {
+    display: block;
+    box-shadow: 0 20px 40px $BoxShadowColorGray-1;
+  }
+  &__blockText {
+    width: 100%;
+  }
+  &__noteContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 0 0;
+    position: relative;
+  }
+
+  &__noteButton {
+    border: none;
+    background: url("../../../../../src/images/icon-note-editor-text.png") no-repeat center;
+    background-size: contain;
+    width: 48px;
+    height: 48px;
+    &:hover {
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: $BackgroundColorGray-2;
+    }
+  }
+  &__note {
+    width: 300px;
+    padding: 10px;
+    background-color: $BackgroundColorWhite;
+    position: absolute;
+    content: "";
+    display: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 10px;
+    border-radius: 10px;
+    transform: translate(-100%, -100%);
+    left: 0;
+    top: 50%;
+    z-index: 100;
+    &_open {
+      display: grid;
+    }
+  }
+  &__coverContainerNote {
+    position: fixed;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    &_open {
+      z-index: 99;
+      background-color: rgba(0, 0, 0, 0.05);
+      display: block;
+    }
+  }
+  &__textContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 0;
+    &:first-of-type {
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tabs {
+    &__content {
+      position: relative;
+      z-index: 1;
+    }
+    &__radio:checked + &__labelRadio + &__content {
+      box-shadow: none;
+      border-top: 1px solid $BorderColorGray-1;
+    }
+
+    &__labelRadio {
+      box-shadow: none;
+      transform: translateY(1px);
+    }
+    &__radio:checked + &__labelRadio {
+      z-index: 10;
+      border-top: 1px solid $BorderColorGray-1;
+      border-left: 1px solid $BorderColorGray-1;
+      border-right: 1px solid $BorderColorGray-1;
+      border-bottom: 1px solid $backgroundColorPage;
+    }
+  }
+}
+
+@media screen and (max-width: 574px) {
+  .tabs {
+    &__labelRadio {
+      width: min-content;
+      flex-grow: 1;
+      padding: 15px 20px;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .tabs {
+    &__content {
+      padding: 30px 20px;
+    }
+  }
+}

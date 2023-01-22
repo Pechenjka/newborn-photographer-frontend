@@ -4,7 +4,12 @@ import { useLocation } from "react-router-dom";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import Photos from "../../components/Photos/Photos";
 import { photosCategoryInGallery } from "../../utils/config";
-import { fetchPhotos, handlerShowAddPhotos } from "../../redux/Reducers/photoSlice";
+import {
+  fetchPhotos,
+  handlerShowAddPhotos,
+  handlerOpenChangeSortPhotos,
+  saveChangeSortPhotos,
+} from "../../redux/Reducers/photoSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IPhoto, IPhotosCategoryInGallery, PhotoPostPage } from "../../types";
 import { Button } from "../../components/Button";
@@ -14,7 +19,8 @@ import { MetaData } from "../../helpers/MetaData";
 const PhotoGallery: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-  const { showPhotos, getPhotos, loading, error } = useAppSelector((state) => state.photos);
+  const { showPhotos, getPhotos, loading, error, openChangeSortPhotos } = useAppSelector((state) => state.photos);
+  const { user } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     photosCategoryInGallery.some((item: IPhotosCategoryInGallery) => {
@@ -43,21 +49,34 @@ const PhotoGallery: React.FC = () => {
 
   const handlerHideButton = showPhotos.length === getPhotos.length;
 
+  const handleChangeSortPhotos = (): void => {
+    if (!openChangeSortPhotos) {
+      dispatch(handlerOpenChangeSortPhotos(true));
+    } else {
+      dispatch(saveChangeSortPhotos(showPhotos));
+      dispatch(handlerOpenChangeSortPhotos(false));
+    }
+  };
+
   return (
     <Fragment>
       <MetaData
-        title={`Галерея фотографий ${photosCategoryInGallery.filter(item => pathname.includes(item.type) && item.title)[0].title.toLowerCase()} с авторской обработкой`}
-        description="Оставляю памятные мгновения Вам и Вашим близким на всю жизнь."
-        canonicalLink={`https://alenalobacheva.net${pathname}/`}
+        title={`Галерея фотографий - ${photosCategoryInGallery
+          .filter((item) => pathname.includes(item.type) && item.title)[0]
+          .title.toLowerCase()} | Семейный фотограф в Москве Алена Лобачева`}
+        description={`Аторская обработка снимков - ${photosCategoryInGallery
+          .filter((item) => pathname.includes(item.type) && item.title)[0]
+          .title.toLowerCase()}. Оставляю памятные мгновения Вам и Вашим близким на всю жизнь.`}
+        canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <section className="photoGallery" id="photoGallery">
         <BackgroundImage />
         {photosCategoryInGallery.map((item: IPhotosCategoryInGallery, index: number) => {
           return (
             pathname.includes(item.type) && (
-              <h2 className="photoGallery__title" key={index}>
+              <h1 className="photoGallery__title" key={index}>
                 {item.title}
-              </h2>
+              </h1>
             )
           );
         })}
@@ -66,7 +85,14 @@ const PhotoGallery: React.FC = () => {
             <PreLoader />
           </div>
         ) : (
-          <Photos photoPostPage={PhotoPostPage.photoGalleryPage} />
+          <>
+            {user.role.includes("ADMIN") && (
+              <Button styleButton="ping" type="button" onClick={handleChangeSortPhotos}>
+                {!openChangeSortPhotos ? "Изменить последовательность фотографий" : "Сохранить"}
+              </Button>
+            )}
+            <Photos photoPostPage={PhotoPostPage.photoGalleryPage} />
+          </>
         )}
         {error && <p>{error}</p>}
         <Button styleButton="ping" onClick={handlerClickAddPhotos} type="button" hide={handlerHideButton}>

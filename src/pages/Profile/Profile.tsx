@@ -2,7 +2,7 @@ import Styles from "./style.module.scss";
 import React, { Fragment, useEffect } from "react";
 import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import { Button } from "../../components/Button";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logOut, updateUser } from "../../redux/Reducers/userSlice";
 import { IUserProfile } from "../../types";
@@ -15,7 +15,7 @@ import { validationSchemaUserInProfile } from "../../validationForms";
 
 export const Profile: React.FC = () => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { user, loading } = useAppSelector((state) => state.user);
   const { meOrders, error } = useAppSelector((state) => state.order);
 
@@ -24,7 +24,7 @@ export const Profile: React.FC = () => {
     if (jwt) localStorage.removeItem("token");
     dispatch(logOut());
     dispatch(deleteMeOrders());
-    history.push("/");
+    navigate("/");
   };
 
   useEffect(() => {

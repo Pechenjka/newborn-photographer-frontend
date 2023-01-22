@@ -5,6 +5,7 @@ import {
   PropsAddNewPhoto,
   PropsPayLoadGetInTouch,
   PropsPayLoadSendEmail,
+  PropsText,
 } from "../types";
 import $api from "./apiCreate";
 import { AxiosResponse } from "axios";
@@ -18,6 +19,12 @@ export const apiApp = (): {
   uploadPhoto: any;
   getInTouch: any;
   newsLetter: any;
+  createTextOnPage: any;
+  editTextOnPage: any;
+  getTextOnPage: any;
+  deleteTextBlock: any;
+  deletePhoto: any;
+  changeOrderPhoto: any;
 } => {
   return {
     createPacket: async (data: IPacket): Promise<AxiosResponse<IPacket>> => {
@@ -52,6 +59,16 @@ export const apiApp = (): {
       return await $api.get(`/mediaContent/gallery/${path}`);
     },
 
+    deletePhoto: async (dataId: string): Promise<void> => {
+      return await $api.delete(`/mediaContent/gallery/${dataId}`);
+    },
+
+    changeOrderPhoto: async (data: IPhoto[]): Promise<any> => {
+      return await $api.put("/mediaContent/gallery/changeOrder", {
+        newArr: data,
+      });
+    },
+
     uploadPhoto: async (data: PropsAddNewPhoto): Promise<AxiosResponse<IPhoto>> => {
       return await $api.post("/mediaContent/gallery", {
         image: data.image,
@@ -72,6 +89,18 @@ export const apiApp = (): {
       return await $api.post("/contacts/newsLetter", {
         email: data.email,
       });
+    },
+    createTextOnPage: async (data: { text: string; typePhotoSession: string }): Promise<AxiosResponse<PropsText>> => {
+      return await $api.post("/editor/createTextOnPage", { text: data.text, typePhotoSession: data.typePhotoSession });
+    },
+    getTextOnPage: async (): Promise<AxiosResponse<PropsText[]>> => {
+      return await $api.get("/editor");
+    },
+    editTextOnPage: async (data: { _id: string; text: string }): Promise<any> => {
+      return await $api.patch(`/editor/${data._id}`, { text: data.text });
+    },
+    deleteTextBlock: async (dataId: string): Promise<any> => {
+      return await $api.delete(`/editor/${dataId}`);
     },
   };
 };

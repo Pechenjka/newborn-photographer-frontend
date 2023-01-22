@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import Styles from "./style.module.scss";
 
 type TypeButton = "button" | "submit";
-export type TypeStyleButton =  "ping" | 'brown' | 'transparent';
+export type TypeStyleButton =  "ping" | 'brown' | 'transparent' | 'simply';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ interface ButtonProps {
   icon?: string;
   disabled?: boolean;
   active?: boolean;
-  onClick?: () => void;
+  onClick?: any;
   editStyle?: string;
   edit?: boolean;
   type: TypeButton;

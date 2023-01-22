@@ -53,6 +53,7 @@ export const links: ILink[] = [
         pathSelect: "/photo-products",
         type: "photo-products"
       },
+      { name: "Подготовка к съемке", pathSelect: "/aboutPhotosession", type: "aboutPhotosession" },
       { name: "Обо мне", pathSelect: "/aboutMe", type: "aboutMe" },
       { name: "Контакты", pathSelect: "/contacts", type: "contacts" },
     ],
@@ -107,7 +108,7 @@ export const tableBooks: ITablesPhotoProducts[] = [
       { size: "15х15", printQuality: "Матовая / шелк", price: "4000 / 5000" },
       { size: "20х20", printQuality: "Матовая / шелк", price: "6000 / 7500" },
       { size: "25х25", printQuality: "Матовая / шелк", price: "8000 / 9000" },
-      { size: "30х30", printQuality: "Матовая / шелк", price: "9500 / 10500" },
+      { size: "30х30", printQuality: "Матовая / шелк", price: "9500 / 11000" },
     ],
   },
 ];
@@ -138,13 +139,6 @@ export const tableTabletsWithPassport: ITablesPhotoProducts[] = [
 
 export const photosCategoryInMainPage: IPhotosCategoryInMainPage[] = [
   {
-    name: "Все фотографии",
-    type: null,
-    onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string | null) => void, event: React.MouseEvent) =>
-      handlerClick(event, null),
-    id: Math.random().toString(16).slice(2),
-  },
-  {
     name: "Новорожденные",
     type: "newborn",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
@@ -163,6 +157,13 @@ export const photosCategoryInMainPage: IPhotosCategoryInMainPage[] = [
     type: "family",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
       handlerClick(event, "family"),
+    id: Math.random().toString(16).slice(2),
+  },
+  {
+    name: "Все фотографии",
+    type: null,
+    onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string | null) => void, event: React.MouseEvent) =>
+      handlerClick(event, null),
     id: Math.random().toString(16).slice(2),
   },
 ];

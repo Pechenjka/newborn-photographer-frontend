@@ -18,20 +18,23 @@ import { FormOrder } from "../pages/Basket/components/FormOrder";
 import { OrderList } from "../pages/Admin/components/OrderList";
 import { SendOnEmailActivateLink } from "../components/SendOnEmailActivateLink";
 import { PasswordChange } from "../components/PasswordChange";
+import { AboutPhotoSession } from "../pages/AboutPhotosession";
+import { EditorPage } from "../components/EditorPage";
 
 export const routes: IRoute[] = [
-  { component: Main, path: "/", name: "main", isAdmin: false, isAuth: false },
-  { component: AboutMe, path: "/aboutMe", name: "aboutMe", isAdmin: false, isAuth: false },
+  { component: Main, path: "", name: "main", isAdmin: false, isAuth: false, index: true },
+  { component: AboutMe, path: "aboutMe", name: "aboutMe", isAdmin: false, isAuth: false },
   {
     component: PhotoGallery,
-    path: [
-      "/photoGallery/newborn",
-      "/photoGallery/pregnancy",
-      "/photoGallery/baby",
-      "/photoGallery/family",
-      "/photoGallery/woman",
-      "/photoGallery/discharge",
-      "/photoGallery/christening",
+    path: "photoGallery",
+    subPath: [
+      "photoGallery/newborn",
+      "photoGallery/pregnancy",
+      "photoGallery/baby",
+      "photoGallery/family",
+      "photoGallery/woman",
+      "photoGallery/discharge",
+      "photoGallery/christening",
     ],
     name: "photoGallery",
     isAdmin: false,
@@ -39,27 +42,28 @@ export const routes: IRoute[] = [
   },
   {
     component: Prices,
-    path: [
-      "/prices/newborn",
-      "/prices/pregnancy",
-      "/prices/baby",
-      "/prices/family",
-      "/prices/woman",
-      "/prices/discharge-christening",
+    path: "prices",
+    subPath: [
+      "prices/newborn",
+      "prices/pregnancy",
+      "prices/baby",
+      "prices/family",
+      "prices/woman",
+      "prices/discharge-christening",
     ],
     name: "prices",
     isAdmin: false,
     isAuth: false,
   },
-  { component: Contacts, path: "/contacts", name: "contacts", isAdmin: false, isAuth: false },
-  { component: Basket, path: "/basket", name: "basket", isAdmin: false, isAuth: false, protectRouteBasket: true },
-  { component: PhotoProducts, path: "/photo-products", name: "photo-products", isAdmin: false, isAuth: false },
-  { component: NotFound, path: "/not-found", name: "not-found", isAdmin: false, isAuth: false },
-  { component: Login, path: "/signin", name: "signin", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
-  { component: Register, path: "/signup", name: "signup", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
+  { component: Contacts, path: "contacts", name: "contacts", isAdmin: false, isAuth: false },
+  { component: Basket, path: "basket", name: "basket", isAdmin: false, isAuth: false, protectRouteBasket: true },
+  { component: PhotoProducts, path: "photo-products", name: "photo-products", isAdmin: false, isAuth: false },
+  { component: NotFound, path: "not-found", name: "not-found", isAdmin: false, isAuth: false },
+  { component: Login, path: "signin", name: "signin", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
+  { component: Register, path: "signup", name: "signup", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
   {
     component: SendOnEmailActivateLink,
-    path: "/forgot",
+    path: "forgot",
     name: "forgot",
     isAdmin: false,
     isAuth: false,
@@ -67,31 +71,39 @@ export const routes: IRoute[] = [
   },
   {
     component: PasswordChange,
-    path: "/passwordChange/:id",
+    path: "passwordChange/:id",
     name: "passwordChange",
     isAdmin: false,
     isAuth: false,
     withOutHeaderAndFooter: true,
   },
+  {
+    component: AboutPhotoSession,
+    path: "aboutPhotosession",
+    name: "aboutPhotosession",
+    isAdmin: false,
+    isAuth: false,
+  },
+  { component: FormOrder, path: "/checkout", name: "checkout", isAdmin: false, isAuth: false },
 ];
 
 export const ProtectRoutes = [
-  { component: Admin, path: "/admin", name: "adminName", isAdmin: true, isAuth: false },
-  { component: Profile, path: "/profile", name: "profile", isAdmin: false, isAuth: true },
-  { component: FormOrder, path: "/checkout", name: "checkout", isAdmin: false, isAuth: false },
+  { component: Admin, path: "admin", name: "adminName", isAdmin: true, isAuth: false },
+  { component: Profile, path: "profile", name: "profile", isAdmin: false, isAuth: true },
+  { component: EditorPage, path: "editor", name: "editor", isAdmin: true, isAuth: false },
 ];
 
 export const subRoutes = [
   {
     component: PacketWithDetailsDescription,
-    path: "/prices/packets/:id",
+    path: "prices/packets/:id",
     name: "paket",
     isAdmin: false,
     isAuth: false,
   },
-  { component: AddNewPacket, path: "/admin/addNewPacket", name: "addNewPacket", isAdmin: true, isAuth: false },
-  { component: AddNewPhoto, path: "/admin/addNewPhoto", name: "addNewPhoto", isAdmin: true, isAuth: false },
-  { component: OrderList, path: "/admin/orderList", name: "orderList", isAdmin: true, isAuth: false },
+  { component: AddNewPacket, path: "admin/addNewPacket", name: "addNewPacket", isAdmin: true, isAuth: false },
+  { component: AddNewPhoto, path: "admin/addNewPhoto", name: "addNewPhoto", isAdmin: true, isAuth: false },
+  { component: OrderList, path: "admin/orderList", name: "orderList", isAdmin: true, isAuth: false },
 ];
 
 export const allRoutes = [...routes, ...ProtectRoutes, ...subRoutes];

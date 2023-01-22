@@ -4,7 +4,7 @@
   width: 100%;
   padding: 10px 15px;
   transition: all 0.3s ease;
-  color: $ButtonTextColor;
+  color: $ButtonTextColorWhite;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -20,7 +20,7 @@
   }
   &__ping {
     width: max-content;
-    background-color: $ButtonColor;
+    background-color: $ButtonColorPing;
     padding: 10px 35px;
     font-size: 15px;
     height: 37px;
@@ -31,6 +31,12 @@
       background-color: $ButtonDisabledColor;
       &:hover {
         background-color: $ButtonDisabledColor;
+      }
+    }
+    &_green {
+      background-color: $TextColorGreen-1;
+      &:hover {
+        background-color: $TextColorGreen-2;
       }
     }
     &_buttonFormContact {
@@ -78,14 +84,17 @@
     &_contactMeButton {
       margin: 20px auto 0;
     }
+    &_editorButton {
+      margin: 30px auto 0;
+    }
   }
 
   &__brown {
-    color: $TextColor;
-    background-color: rgba(121, 85, 61, 0.3);
+    color: $TextColorBrownDark;
+    background-color: $BackgroundColorBrown-1;
     justify-content: center;
     &:hover {
-      background-color: rgba(121, 85, 61, 0.5);
+      background-color: $BackgroundColorBrown-2;
     }
     &_disabled {
       background-color: $ButtonDisabledColor;
@@ -99,16 +108,23 @@
     }
   }
 
+  &__simply {
+    justify-content: center;
+    color: $TextColorBlack;
+    &:hover {
+      background-color: transparent;
+    }
+  }
   &__transparent {
     background-color: transparent;
     width: max-content;
-    color: #79553d;
+    color: $TextColorBrownDark;
     margin-top: 20px;
-    border: 1px solid #79553d;
+    border: 1px solid $BorderColorBrown-1;
     &:hover {
       background-color: transparent;
-      color: #79553D7F;
-      border: 1px solid #79553D7F;
+      color: $TextColorBrown-2;
+      border: 1px solid $BorderColorBrown-3;
     }
     &_disabled {
       display: none;

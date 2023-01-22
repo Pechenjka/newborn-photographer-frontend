@@ -20,7 +20,6 @@
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "html-to-draftjs": "^1.5.0",
-    "husky": "^6.0.0",
     "prettier": "^2.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -69,11 +68,6 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "react-snap": "^1.23.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate, } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { useAppSelector } from "../redux/hooks";
 import { allRoutes } from "./config";
@@ -24,8 +24,10 @@ export const RouterComponent: React.FC = () => {
       <Route path="/" element={<Layout />}>
         {allRoutes.map((route: IRoute) => {
 
-          const path = Array.isArray(route.path)
-            ? route.path.filter((item: string) => item === pathname && item)[0]
+          const handleSubPath = Array.isArray(route.subPath)
+            ? route.subPath.filter((item: string) => {
+                return pathname.includes(item);
+              })[0]
             : route.path;
 
           const authorization = (route: IRoute): boolean => {
@@ -39,7 +41,7 @@ export const RouterComponent: React.FC = () => {
 
           return protectedRoutes ? (
             <Route
-              path={path}
+              path={route.path}
               key={route.name}
               element={
                 <ProtectedRoute authorization={authorization(route)}>
@@ -48,17 +50,11 @@ export const RouterComponent: React.FC = () => {
               }
             />
           ) : (
-            <Route
-              index={route?.index}
-              path={typeof route.path ? route.path : ""}
-              key={route.name}
-              element={
-                Array.isArray(route.path) ? <Route path={path} element={<route.component />} /> : <route.component />
-              }
-            />
+            <Route index={route?.index} path={handleSubPath} key={route.path} element={<route.component />} />
           );
         })}
       </Route>
+      <Route path="*" element={<Navigate to="not-found" />} />
     </Routes>
   );
 };

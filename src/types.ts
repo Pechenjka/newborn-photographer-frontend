@@ -84,8 +84,8 @@ export interface IRoute {
   path: string;
   subPath?: Array<string>;
   name: string;
-  isAdmin: boolean;
-  isAuth: boolean;
+  isAdmin?: boolean;
+  isAuth?: boolean;
   protectRouteBasket?: boolean;
   withOutHeaderAndFooter?: boolean;
 }

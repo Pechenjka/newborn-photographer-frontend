@@ -11,7 +11,7 @@ import {
   saveChangeSortPhotos,
 } from "../../redux/Reducers/photoSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { IPhoto, IPhotosCategoryInGallery, PhotoPostPage } from "../../types";
+import { IPhoto, PhotoPostPage } from "../../types";
 import { Button } from "../../components/Button";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import { MetaData } from "../../helpers/MetaData";
@@ -23,9 +23,9 @@ const PhotoGallery: React.FC = () => {
   const { user } = useAppSelector((state) => state.user);
 
   useEffect(() => {
-    photosCategoryInGallery.some((item: IPhotosCategoryInGallery) => {
-      if (pathname.includes(item.type)) {
-        dispatch(fetchPhotos({ type: item.type, order: "sort" }));
+    photosCategoryInGallery.some((item: string) => {
+      if (pathname.includes(item)) {
+        dispatch(fetchPhotos({ type: item, order: "sort" }));
       }
     });
   }, [pathname]);
@@ -61,21 +61,22 @@ const PhotoGallery: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title={`Галерея фотографий - ${photosCategoryInGallery
-          .filter((item) => pathname.includes(item.type) && item.title)[0]
-          .title.toLowerCase()} | Семейный фотограф в Москве Алена Лобачева`}
-        description={`Аторская обработка снимков - ${photosCategoryInGallery
-          .filter((item) => pathname.includes(item.type) && item.title)[0]
-          .title.toLowerCase()}. Оставляю памятные мгновения Вам и Вашим близким на всю жизнь.`}
+        title={`Photo gallery - ${photosCategoryInGallery.filter(
+          (item) => pathname.includes(item) && item
+        )} | Family photographer in New York Alena Lobacheva`}
+        description={`Author's retouch - ${photosCategoryInGallery.filter(
+          (item) => pathname.includes(item) && item
+        )}. Save beautiful moments for the hole life.`}
         canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <section className="photoGallery" id="photoGallery">
         <BackgroundImage />
-        {photosCategoryInGallery.map((item: IPhotosCategoryInGallery, index: number) => {
+        {photosCategoryInGallery.map((item: string, index: number) => {
+          const title = item.split("").slice(1).join("");
           return (
-            pathname.includes(item.type) && (
+            pathname.includes(item) && (
               <h1 className="photoGallery__title" key={index}>
-                {item.title}
+                {item[0].toUpperCase() + title}
               </h1>
             )
           );

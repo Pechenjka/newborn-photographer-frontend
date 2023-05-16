@@ -10,7 +10,7 @@ import image4 from "../images/slider/slider-four.webp";
 import imageMobile4 from "../images/slider/mobile/slide-mobile-4.webp";
 import image5 from "../images/slider/slider-five.webp";
 import imageMobile5 from "../images/slider/mobile/slide-mobile-5.webp";
-import { IArrSlides, ILink, IPhotosCategoryInGallery, IPhotosCategoryInMainPage, ITablesPhotoProducts } from "../types";
+import { IArrSlides, ILink, IPhotosCategoryInMainPage, ITablesPhotoProducts } from "../types";
 
 export const arrSlides: IArrSlides[] = [
   { desktop: image1, mobile: imageMobile1 },
@@ -60,35 +60,14 @@ export const links: ILink[] = [
   },
 ];
 
-export const photosCategoryInGallery: IPhotosCategoryInGallery[] = [
-  {
-    title: "Новорожденные",
-    type: "newborn",
-  },
-  {
-    title: "В ожидании чуда",
-    type: "pregnancy",
-  },
-  {
-    title: "Малыши до 1 года",
-    type: "baby",
-  },
-  {
-    title: "Семейная фотоссесия",
-    type: "family",
-  },
-  {
-    title: "Woman съемка",
-    type: "woman",
-  },
-  {
-    title: "Выписка из роддома",
-    type: "discharge",
-  },
-  {
-    title: "Крещение",
-    type: "christening",
-  },
+export const photosCategoryInGallery: string[] = [
+  "newborn",
+  "pregnancy",
+  "baby",
+  "family",
+  "woman",
+  "discharge",
+  "christening",
 ];
 
 export const booksAccessories: Array<string> = [

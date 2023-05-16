@@ -13,8 +13,8 @@ const Contacts: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title="Мои контакты | Фотограф новорожденных в Москве Алена Лобачева"
-        description="Есть вопросы по выбору фотосесиии? Вы всегда можете связаться со мной."
+        title="My contacts | Newborn photographer in New York Alena Lobacheva"
+        description="Do you have question about photo session? Here you can always be in touch with me."
         canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <BackgroundImage />

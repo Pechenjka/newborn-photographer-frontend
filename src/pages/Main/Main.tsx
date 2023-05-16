@@ -19,8 +19,8 @@ export const Main: React.FC = () => {
     <Fragment>
       <main className="main">
         <MetaData
-          title="Фотограф новорожденных в Москве Алена Лобачева"
-          description="Профессиональная фотосессия новорожденных в студии и на дому, экслюзивные локации, авторская обработка снимков, помощь в подборе образов, творческий подход к фотосессии."
+          title="Newborn photographer in New York Alena Lobacheva"
+          description="Professional newborn photo shoot, author's retouching, assistance with preparation for the photo session."
           canonicalLink="https://alenalobacheva.net/"
         />
         <SliderComponent />

@@ -46,11 +46,6 @@ export interface IPhotosCategoryInMainPage {
   id: string;
 }
 
-export interface IPhotosCategoryInGallery {
-  title: string;
-  type: string;
-}
-
 export interface PropsPhotos {
   photoPostPage: string;
 }

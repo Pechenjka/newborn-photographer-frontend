@@ -30,11 +30,11 @@ const Prices: React.FC = () => {
   const { container, item } = framerMotionPhotosAndPackets();
 
   const allType = {
-    newborn: "фотосессию новорожденного",
-    baby: "фотосессию малышей до 1 года",
-    family: "семейную фотосессию",
-    "discharge-christening": "фотосессию выписка из роддома и крещение",
-    woman: "женскую фотосессию и съемку для контента",
+    newborn: "photo session newborn",
+    baby: "photo session baby under 1 years",
+    family: "family photo session",
+    "discharge-christening": "photo session discharge and christening",
+    woman: "woman photo session",
   };
 
   const handleTypePhotosession = (allType: any) => {
@@ -54,8 +54,8 @@ const Prices: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title={`Цены на ${typePhotosession} | Фотограф новорожденных в Москве Алена Лобачева`}
-        description={`Узнать стоимость и подобрать нужный пакет на  - ${typePhotosession}. `}
+        title={`Prices on ${typePhotosession} | Photographer newborn Alena Lobacheva`}
+        description={`Information regarding prices and conditions - ${typePhotosession}. `}
         canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <BackgroundImage />

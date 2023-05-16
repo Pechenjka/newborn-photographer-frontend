@@ -10,8 +10,8 @@ export const AboutMe: React.FC = () => {
   return (
     <Fragment>
       <MetaData
-        title="О том, как я стала фотографом новорожденных | Профессиональный фотограф новорожденных Алена Лобачева"
-        description="Я, профессиональный фотограф новорожденных. Вместе со мной, вы тщательно подготовись к фотосессии: подберем одежду, выберем локацию по вашим интересам."
+        title="How I became a Newborn Photographer | Professional newborn photographer Alena Lobacheva"
+        description="I am a professional family photographer. Together with me we will get you ready for the photo shoot: choose closes, location for your convenience."
         canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
       <BackgroundImage />

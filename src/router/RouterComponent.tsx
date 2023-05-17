@@ -10,6 +10,7 @@ export const RouterComponent: React.FC = () => {
   const { pathname } = useLocation();
   const { auth } = useAppSelector((state) => state.user);
   const { basketIsNotEmpty } = useAppSelector((state) => state.packets);
+  //temporary
   const staff = true;
 
   useEffect(() => {

@@ -48,11 +48,11 @@ export const links: ILink[] = [
     name: "",
     logo: navbarLogo,
     select: [
-      {
-        name: "Фотопродукция",
-        pathSelect: "/photo-products",
-        type: "photo-products"
-      },
+      // {
+      //   name: "Фотопродукция",
+      //   pathSelect: "/photo-products",
+      //   type: "photo-products"
+      // },
       { name: "Подготовка к съемке", pathSelect: "/aboutPhotosession", type: "aboutPhotosession" },
       { name: "Обо мне", pathSelect: "/aboutMe", type: "aboutMe" },
       { name: "Контакты", pathSelect: "/contacts", type: "contacts" },

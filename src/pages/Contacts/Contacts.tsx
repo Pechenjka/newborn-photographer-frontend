@@ -6,10 +6,11 @@ import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import MyContacts from "../../components/MyContacts/MyContacts";
 import { useLocation } from "react-router-dom";
 import { MetaData } from "../../helpers/MetaData";
+import { useTranslation } from "react-i18next";
 
 const Contacts: React.FC = () => {
   const { pathname } = useLocation();
-
+  const { t } = useTranslation();
   return (
     <Fragment>
       <MetaData
@@ -19,10 +20,10 @@ const Contacts: React.FC = () => {
       />
       <BackgroundImage />
       <section className="contacts">
-        <h1 className='contacts__title'>Мои контакты</h1>
+        <h1 className="contacts__title">{t("contacts title")}</h1>
         <MyContacts />
         <SocialLinks />
-        <ContactMeForm title="Напишите мне" />
+        <ContactMeForm title={t("contactMeForm title")} />
       </section>
     </Fragment>
   );

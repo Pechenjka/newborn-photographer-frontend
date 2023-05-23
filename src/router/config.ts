@@ -57,10 +57,10 @@ export const routes: IRoute[] = [
   },
   { component: Contacts, path: "contacts", name: "contacts", isAdmin: false, isAuth: false },
   { component: Basket, path: "basket", name: "basket", isAdmin: false, isAuth: false, protectRouteBasket: true },
-  // { component: PhotoProducts, path: "photo-products", name: "photo-products", isAdmin: false, isAuth: false },
+  { component: PhotoProducts, path: "photo-products", name: "photo-products", isAdmin: false, isAuth: false },
   { component: NotFound, path: "not-found", name: "not-found", isAdmin: false, isAuth: false },
-  { component: Login, path: "signin", name: "signin", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
-  { component: Register, path: "signup", name: "signup", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
+  //{ component: Login, path: "signin", name: "signin", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
+ // { component: Register, path: "signup", name: "signup", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
   {
     component: SendOnEmailActivateLink,
     path: "forgot",
@@ -77,19 +77,19 @@ export const routes: IRoute[] = [
     isAuth: false,
     withOutHeaderAndFooter: true,
   },
-  {
-    component: AboutPhotoSession,
-    path: "aboutPhotosession",
-    name: "aboutPhotosession",
-    isAdmin: false,
-    isAuth: false,
-  },
+  // {
+  //   component: AboutPhotoSession,
+  //   path: "aboutPhotosession",
+  //   name: "aboutPhotosession",
+  //   isAdmin: false,
+  //   isAuth: false,
+  // },
   { component: FormOrder, path: "/checkout", name: "checkout", isAdmin: false, isAuth: false },
 ];
 
 export const ProtectRoutes = [
   { component: Admin, path: "admin", name: "adminName", isAdmin: true, isAuth: false },
-  { component: Profile, path: "profile", name: "profile", isAdmin: false, isAuth: true },
+  //{ component: Profile, path: "profile", name: "profile", isAdmin: false, isAuth: true },
   { component: EditorPage, path: "editor", name: "editor", isAdmin: true, isAuth: false },
 ];
 

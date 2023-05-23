@@ -2,11 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Header.scss";
 import NavMenu from "./components/NavMenu/NavMenu";
 import LogoMain from "../../../components/LogoMain/LogoMain";
+import { useTranslation } from "react-i18next";
+import { useAppDispatch } from "../../../redux/hooks";
+
 
 const Header: React.FC = () => {
   const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(false);
   const navRef = useRef<any>(null);
-
+  // const { i18n } = useTranslation();
+  // const dispatch = useAppDispatch();
   //Изменение цвета header при прокрутки страницы
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +26,11 @@ const Header: React.FC = () => {
     };
   }, []);
 
+  // //change language
+  // const onclickChangeLanguage = (language: string) => {
+  //   language === "ru" ? dispatch(handleVisible(true)) : dispatch(handleVisible(false));
+  //   return i18n.changeLanguage(language);
+  // };
 
   //Обработчик открытия закрытия бургер-меню
   const handlerOpenAndCloseBurgerMenu = (): void => {
@@ -49,6 +58,10 @@ const Header: React.FC = () => {
           <span></span>
         </div>
         <NavMenu handlerOpenAndCloseBurgerMenu={handlerOpenAndCloseBurgerMenu} openBurgerMenu={openBurgerMenu} />
+        {/*<button className={"header__buttonChangeLanguage, header__buttonChangeLanguage_active"} onClick={() => onclickChangeLanguage("en")}>*/}
+        {/*  en*/}
+        {/*</button>*/}
+        {/*<button className={"header__buttonChangeLanguage, header__buttonChangeLanguage_active"} onClick={() => onclickChangeLanguage("ru")}>ru</button>*/}
       </div>
     </header>
   );

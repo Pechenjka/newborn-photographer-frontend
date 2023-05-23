@@ -149,6 +149,7 @@ export interface PropsPackets {
 export interface ICategory {
   title: string;
   nameRU: string;
+  nameEN: string;
   _id: string;
 }
 
@@ -357,6 +358,7 @@ export interface PropsInitialStateAppSlice {
   displayPricePackets: IPacket[];
   confirmationSendEmail: boolean;
   errorSendEmail: boolean;
+  language: string
 }
 
 export interface PropsMyTextField {

@@ -7,6 +7,7 @@ import { sendMessageGetInTouch } from "../../redux/Reducers/appSlice";
 import { MyTextField } from "../MyTextField";
 import { validationSchemaContactWithMe } from "../../validationForms";
 import { ShowInfoToolTip } from "../ShowInfoToolTip";
+import { useTranslation } from "react-i18next";
 
 const initialValues: IOrderFields = {
   name: "",
@@ -18,6 +19,7 @@ const initialValues: IOrderFields = {
 const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
   const dispatch = useAppDispatch();
   const { loading, confirmationGetInTouch, errorGetInTouch } = useAppSelector((state) => state.app);
+  const { t } = useTranslation();
 
   const handlerSubmitGetInTouch = (values: { name: string; email: string; phone: string; text: string }): void => {
     dispatch(sendMessageGetInTouch({ data: values }));
@@ -28,8 +30,8 @@ const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
       <h2 className="contactMeForm__title">{title}</h2>
       <ShowInfoToolTip
         error={errorGetInTouch}
-        textErrorMessage="Ошибка, отправить сообщение не получилось, попробуйте позже"
-        textConfirmMessage="Ваше письмо успешно отправлено!, Мы свяжемся с вами в ближайшее время"
+        textErrorMessage={t("contactMeForm textErrorMessage")}
+        textConfirmMessage={t("contactMeForm textConfirmMessage")}
         confirmation={confirmationGetInTouch}
       />
       <FormikFormComponent
@@ -37,7 +39,7 @@ const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
         validationSchema={validationSchemaContactWithMe}
         onSubmit={handlerSubmitGetInTouch}
         buttonProps={{
-          title: "Отправить сообщение",
+          title: `${t("contactMeForm btn")}`,
           style: "ping",
           onDirty: false,
           edit: true,
@@ -45,10 +47,10 @@ const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
         }}
         loading={loading}
       >
-        <MyTextField nameLabel="Имя" type="text" name="name" component="input" id="name" />
-        <MyTextField nameLabel="Email" type="email" name="email" component="input" id="email" />
-        <MyTextField nameLabel="Телефон" type="phone" name="phone" component="input" id="phone" />
-        <MyTextField nameLabel="Ваше сообщение" type="text" name="text" component="textarea" id="text" />
+        <MyTextField nameLabel={t("contactMeForm name")} type="text" name="name" component="input" id="name" />
+        <MyTextField nameLabel={t("contactMeForm email")} type="email" name="email" component="input" id="email" />
+        <MyTextField nameLabel={t("contactMeForm phone")} type="phone" name="phone" component="input" id="phone" />
+        <MyTextField nameLabel={t("contactMeForm message")} type="text" name="text" component="textarea" id="text" />
       </FormikFormComponent>
     </div>
   );

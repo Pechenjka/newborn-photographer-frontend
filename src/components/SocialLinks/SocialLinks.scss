@@ -16,9 +16,14 @@
     &_whatsApp {
       background: url("../../images/whatsApp-icon(background-brown).gif") no-repeat center;
       background-size: contain;
+      margin-left: 15px;
     }
     &_telegram {
       background: url("../../images/telegram-icon(background-brown).svg") no-repeat center;
+      background-size: contain;
+    }
+    &_instagram {
+      background: url("../../images/instagram-icon(background-brown).svg") no-repeat center;
       background-size: contain;
     }
     &:hover {

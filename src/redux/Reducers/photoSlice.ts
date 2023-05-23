@@ -29,7 +29,7 @@ export const fetchPhotos = createAsyncThunk(
       }
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, не удалось загрузить фотографии!");
+      return rejectWithValue("Error, the photos were not loaded!");
     }
   }
 );
@@ -41,7 +41,7 @@ export const addNewPhoto = createAsyncThunk(
       const res = await apiApp().uploadPhoto(data);
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, не удалось загрузить фотографию!");
+      return rejectWithValue("Error, the photo was not loaded!");
     }
   }
 );
@@ -56,7 +56,7 @@ export const deletePhoto: any = createAsyncThunk(
       }
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, фотография не удалена");
+      return rejectWithValue("Error, the photo was not delete");
     }
   }
 );
@@ -66,7 +66,7 @@ export const saveChangeSortPhotos: any = createAsyncThunk("photo/saveChangeSortP
     const res = apiApp().changeOrderPhoto(newArr);
     return res.data;
   } catch (e) {
-    return rejectWithValue("Ошибка, сортировка не удалась");
+    return rejectWithValue("Error, the sort was not a happen");
   }
 });
 

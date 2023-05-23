@@ -7,7 +7,7 @@ export const createPacket = createAsyncThunk("packet/createPacket", async (data:
     const res = await apiApp().createPacket(data);
     return res.data;
   } catch (e) {
-    return rejectWithValue("Ошибка, не удалось создать пакет!");
+    return rejectWithValue("Error, the new package has not been created!");
   }
 });
 
@@ -18,7 +18,7 @@ export const getPacketWithDetailsDescription = createAsyncThunk(
       const res = await apiApp().getPacketWithDetailsDescription(id);
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, подробные данные пакета не получены");
+      return rejectWithValue("Error, the data of package has not been get");
     }
   }
 );
@@ -28,7 +28,7 @@ export const getPacketsCategories = createAsyncThunk("packet/getPacketsCategorie
     const res = await apiApp().getPacketsCategories();
     return res.data;
   } catch (e) {
-    return rejectWithValue("Ошибка, не удалось загрузить категории пакетов!");
+    return rejectWithValue("Error, categories package has not been get!");
   }
 });
 
@@ -40,7 +40,7 @@ export const getPacketsPinned = createAsyncThunk(
 
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, не удалось загрузить популярные пакеты!");
+      return rejectWithValue("Error, the popular package has not been uploaded!");
     }
   }
 );
@@ -52,7 +52,7 @@ export const getArrPackets = createAsyncThunk(
       const res = await apiApp().getArrPackets(`/?photosessionType=${arg.photosessionType}`);
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, не удалось загрузить пакеты!");
+      return rejectWithValue("Error, the package has not been uploaded!");
     }
   }
 );

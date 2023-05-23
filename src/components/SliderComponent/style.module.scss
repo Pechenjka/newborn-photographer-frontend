@@ -70,15 +70,22 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 1s;
-    &::before {
-      content: "Привет!";
-      display: inline-block;
+    &_span {
       font-size: 35px;
-      font-weight: 700;
-      background: -webkit-linear-gradient(#ff9696, #ffe89e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+        font-weight: 700;
+        background: -webkit-linear-gradient(#ff9696, #ffe89e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
+    //&::before {
+    //  content: "Привет!";
+    //  display: inline-block;
+    //  font-size: 35px;
+    //  font-weight: 700;
+    //  background: -webkit-linear-gradient(#ff9696, #ffe89e);
+    //  -webkit-background-clip: text;
+    //  -webkit-text-fill-color: transparent;
+    //}
   }
   &__welcomeDescription {
     margin: 10px 0 0;
@@ -173,9 +180,12 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     &__welcomeTitle {
       font-size: 40px;
       font-weight: 700;
-      &::before {
+      &_span {
         font-size: 30px;
       }
+      //&::before {
+      //  font-size: 30px;
+      //}
     }
     &__welcomeDescription {
       font-size: 15px;
@@ -198,9 +208,12 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     height: 550px;
     &__welcomeTitle {
       font-size: 30px;
-      &::before {
+      &_span {
         font-size: 20px;
       }
+      //&::before {
+      //  font-size: 20px;
+      //}
     }
     &__welcomeDescription {
       margin: 0;
@@ -224,9 +237,12 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     height: 400px;
     &__welcomeTitle {
       font-size: 25px;
-      &::before {
+      &_span {
         font-size: 18px;
       }
+      //&::before {
+      //  font-size: 18px;
+      //}
     }
     &__welcomeDescription {
       font-size: 12px;

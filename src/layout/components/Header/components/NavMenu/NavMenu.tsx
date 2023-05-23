@@ -1,20 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./NavMenu.scss";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { links } from "../../../../../utils/config";
 import { useDisabledScroll } from "../../../../../hooks/useDisabledScroll";
-import { useAppSelector } from "../../../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 import { ILink, ISubLink, PropsNavMenu } from "../../../../../types";
 import { Button } from "../../../../../components/Button";
 import logoUser from "../../../../../images/user.webp";
 import cx from "classnames/bind";
+import { handleSetLanguage } from "../../../../../redux/Reducers/appSlice";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
   const { pathname } = useLocation();
   const { handlerDisabledScroll } = useDisabledScroll;
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { auth, user } = useAppSelector((state) => state.user);
+  const { language } = useAppSelector((state) => state.app);
   const navigate = useNavigate();
+
+  const { t, i18n } = useTranslation();
+  const dispatch = useAppDispatch();
+  const [activeLanguage, setActiveLanguage] = useState("en");
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
@@ -55,6 +63,22 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
 
   const pathHiddenMenu = ["/aboutMe", "/contacts", "/photo-products"];
 
+  //change language
+  const onclickChangeLanguage = (setLanguage: string) => {
+    // if(language !== setLanguage) {
+    // setActiveLanguage(setLanguage);
+    dispatch(handleSetLanguage(setLanguage));
+    localStorage.setItem("language", setLanguage);
+    // language === "ru" ? dispatch(handleVisible(true)) : dispatch(handleVisible(false));
+    return i18n.changeLanguage(setLanguage);
+    // }
+  };
+  // useEffect(() => {
+  //   if(i18next.language !== language ) {
+  //     dispatch(handleSetLanguage(language));
+  //   }
+  // }, []);
+
   //Обработчик клика по ссылке меню в мобильной версии
   const handleClickLinkMobileVersion = (linkActive: ILink): void => {
     const links = document.querySelectorAll(".navigation__link-arrow") as NodeListOf<Element>;
@@ -74,8 +98,6 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
       });
     }
   };
-
-  //console.log(cx("styles", `styles_${isActive}`));
 
   return (
     <nav
@@ -107,7 +129,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                       <span></span>
                     </div>
                   ) : (
-                    item.name
+                    <span> {t(`${item.name}`)}</span>
                   )}
                 </div>
               ) : (
@@ -123,7 +145,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                   to={item.path ? item.path : ""}
                   onClick={handleClickLink}
                 >
-                  {item.name}
+                  {t(`${item.name}`)}
                 </NavLink>
               )}
               {item.select && (
@@ -139,7 +161,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                           key={el.name}
                           onClick={handleClickDropdownLink}
                         >
-                          {el.name}
+                          {t(`${el.name}`)}
                         </NavLink>
                       );
                     })}
@@ -157,10 +179,11 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
               editStyle="buttonUser"
               buttonWithIcon
               icon={logoUser}
-              onClick={handleClickAuthorization}
+              //onClick={"#"}
+              // onClick={handleClickAuthorization}
               // onClick={adminRole ? () => history.push("/admin") : handleClickAuthorization}
             >
-              {user.name.length ? <span className="navigation__textUserBtn">{user.name}</span> : "Войти"}
+              {user.name.length ? <span className="navigation__textUserBtn">{user.name}</span> : "On repair"}
             </Button>
           </div>
         </li>
@@ -175,11 +198,31 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                 {packetInBasket.length > 0 ? (
                   <span className="navigation__basket_notEmpty ">{packetInBasket.length}</span>
                 ) : (
-                  <div className="navigation__basketTooltip navigation__tooltip_active">Ваша корзина пуста</div>
+                  <div className="navigation__basketTooltip navigation__tooltip_active">{t("basket is empty")}</div>
                 )}
               </div>
             </div>
           )}
+        </li>
+        <li className="navigation__container-link">
+          <button
+            className={`navigation__buttonChangeLanguage ${
+              language === "en" ? "navigation__buttonChangeLanguage_active" : ""
+            }`}
+            type="button"
+            onClick={() => onclickChangeLanguage("en")}
+          >
+            en
+          </button>
+          <button
+            className={`navigation__buttonChangeLanguage ${
+              language === "ru" ? "navigation__buttonChangeLanguage_active" : ""
+            }`}
+            type="button"
+            onClick={() => onclickChangeLanguage("ru")}
+          >
+            ru
+          </button>
         </li>
       </ul>
     </nav>

@@ -7,12 +7,18 @@ import { getPacketsCategories, handlerAddPacketInBasket } from "../../redux/Redu
 import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 import { getTextOnPage } from "../../redux/Reducers/editorSlice";
 import { RouterComponent } from "../../router";
+import { handleSetLanguage } from "../../redux/Reducers/appSlice";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { packetInBasket } = useAppSelector((state) => state.packets);
+
+  useEffect(() => {
+    const activeLang = localStorage.getItem("language");
+    activeLang && dispatch(handleSetLanguage(activeLang));
+  }, []);
 
   useEffect(() => {
     const jwt = localStorage.getItem("token");

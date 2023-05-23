@@ -12,6 +12,7 @@ import { framerMotionPhotosAndPackets } from "../../helpers/framerMotion";
 const Prices: React.FC = () => {
   const dispatch = useAppDispatch();
   const { getPackets, getPacketsCategories, loading, error } = useAppSelector((state) => state.packets);
+  const { language } = useAppSelector((state) => state.app);
   const [nameCategory, setNameCategory] = useState("");
   const { pathname } = useLocation();
   const [typePhotosession, setTypePhotosession] = useState<string>("");
@@ -21,11 +22,11 @@ const Prices: React.FC = () => {
       getPacketsCategories.map((category) => {
         if (pathname.includes(category.title)) {
           dispatch(getArrPackets({ photosessionType: category.title }));
-          setNameCategory(category.nameRU);
+          setNameCategory(language.includes("ru") ? category.nameRU : category.nameEN);
         }
       });
     }
-  }, [pathname, getPacketsCategories, dispatch]);
+  }, [pathname, getPacketsCategories, dispatch, language]);
 
   const { container, item } = framerMotionPhotosAndPackets();
 

@@ -21,6 +21,7 @@ const PhotoGallery: React.FC = () => {
   const { pathname } = useLocation();
   const { showPhotos, getPhotos, loading, error, openChangeSortPhotos } = useAppSelector((state) => state.photos);
   const { user } = useAppSelector((state) => state.user);
+  const { language } = useAppSelector((state) => state.app);
 
   useEffect(() => {
     photosCategoryInGallery.some((item: string) => {

@@ -24,7 +24,6 @@ export const RouterComponent: React.FC = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         {allRoutes.map((route: IRoute) => {
-
           const handleSubPath = Array.isArray(route.subPath)
             ? route.subPath.filter((item: string) => {
                 return pathname.includes(item);

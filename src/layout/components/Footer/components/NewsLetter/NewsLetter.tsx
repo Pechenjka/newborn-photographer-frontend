@@ -5,10 +5,11 @@ import useFormWithValidation from "../../../../../hooks/useForm";
 import { sendEmail } from "../../../../../redux/Reducers/appSlice";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 import { ShowInfoToolTip } from "../../../../../components/ShowInfoToolTip";
+import {useTranslation} from "react-i18next";
 
 const NewsLetter: React.FC = () => {
   const dispatch = useAppDispatch();
-
+  const { t } = useTranslation();
   const { errorSendEmail, confirmationSendEmail } = useAppSelector((state) => state.app);
   const { values, isValid, resetForm, handleChange } = useFormWithValidation();
 
@@ -31,8 +32,9 @@ const NewsLetter: React.FC = () => {
             />
           ) : (
             <label className="newsLetter__form-label">
-              Интересна информация <br />
-              об акциях и проектах?
+              {t("footer subscribe")}
+              {/*Интересна информация <br />*/}
+              {/*об акциях и проектах?*/}
             </label>
           )}
           <input
@@ -58,7 +60,7 @@ const NewsLetter: React.FC = () => {
             }`}
             id="email-error"
           >
-            Пример: example@gmail.com
+            Example: qwery@gmail.com
           </span>
         </fieldset>
       </form>

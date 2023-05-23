@@ -5,11 +5,12 @@ import PopularPackets from "../../components/PopularPackets/PopularPackets";
 import { SliderComponent } from "../../components/SliderComponent";
 import { MetaData } from "../../helpers/MetaData";
 import { AboutNewborn } from "./components/AboutNewborn";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getPacketsPinned } from "../../redux/Reducers/packetSlice";
 
 export const Main: React.FC = () => {
   const dispatch = useAppDispatch();
+  const { language } = useAppSelector((state) => state.app);
 
   useEffect(() => {
     dispatch(getPacketsPinned({ pinned: true }));
@@ -25,7 +26,7 @@ export const Main: React.FC = () => {
         />
         <SliderComponent />
         <PhotoGalleryOfTheMainPage />
-        <AboutNewborn />
+        {language === 'ru' && <AboutNewborn />}
         <PopularPackets editStyleForPrice={window.innerWidth < 768 && true} />
       </main>
     </Fragment>

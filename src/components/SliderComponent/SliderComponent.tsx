@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Styles from "./style.module.scss";
 import { Pagination, Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,11 +11,16 @@ import { IArrSlides } from "../../types";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../redux/hooks";
 
 export const SliderComponent: React.FC = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const LinkScroll = Scroll.Link;
+  const { language } = useAppSelector((state) => state.app);
+
+  const { t } = useTranslation();
 
   const handleChangeSlide = arrSlides.map((item: IArrSlides): string => {
     if (window.innerWidth <= 768 && item.mobile) {
@@ -28,6 +33,8 @@ export const SliderComponent: React.FC = () => {
   const cx = classNames.bind(Styles);
   const stylePrevBtn = cx("swiperBtn", "swiperBtn_prev");
   const styleNextBtn = cx("swiperBtn", "swiperBtn_next");
+
+
 
   return (
     <div className={Styles.slideShow}>
@@ -64,7 +71,8 @@ export const SliderComponent: React.FC = () => {
               transition={{ duration: 0.7 }}
               className={Styles.slideShow__welcomeTitle}
             >
-              <br /> Я Алена Лобачева
+              <span className={Styles.slideShow__welcomeTitle_span}>{t("mainPage hello")}</span>
+              <br /> {t("mainPage nameAuthor")}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, x: -30 }}
@@ -72,25 +80,27 @@ export const SliderComponent: React.FC = () => {
               transition={{ duration: 0.7 }}
               className={Styles.slideShow__welcomeDescription}
             >
-              Профессиональный фотограф новорожденных.
+              {t("mainPage aboutMe 1 part")}
               <br />
-              Знаю, как оставить на память самые ценные <br /> и неповторимые моменты вашей жизни
+              {t("mainPage aboutMe 2 part")} <br /> {t("mainPage aboutMe 3 part")}
             </motion.p>
             <Link className={Styles.slideShow__welcomeLink} to="/contacts">
-              Мои контакты
+              {t("mainPage My contacts")}
             </Link>
           </div>
           <div className={Styles.slideShow__linkAboutNewbornContainer}>
-            <LinkScroll
-              className={Styles.slideShow__linkAboutNewborn}
-              to="aboutNewborn"
-              spy={true}
-              smooth={true}
-              offset={-100}
-              duration={1000}
-            >
-              О фотосесии новорожденного в видеоформате
-            </LinkScroll>
+            {language === 'ru' && (
+              <LinkScroll
+                className={Styles.slideShow__linkAboutNewborn}
+                to="aboutNewborn"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={1000}
+              >
+                О фотосесии новорожденного в видеоформате
+              </LinkScroll>
+            )}
           </div>
         </div>
         <div className={Styles.slideShow__imageContainer}>

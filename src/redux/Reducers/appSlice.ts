@@ -9,6 +9,7 @@ const initialState: PropsInitialStateAppSlice = {
   displayPricePackets: [],
   confirmationSendEmail: false,
   errorSendEmail: false,
+  language: "ru",
 };
 
 export const sendEmail = createAsyncThunk("app/sendEmail", async ({ data }: PropsPayLoadSendEmail, { dispatch }) => {
@@ -50,6 +51,9 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
+    handleSetLanguage: (state, action: { payload: string }) => {
+      state.language = action.payload;
+    },
     handlerConfirmationSendEmail: (state, action: PropsBoolean): void => {
       state.confirmationSendEmail = action.payload;
     },
@@ -65,7 +69,6 @@ const appSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-
     builder.addCase(sendMessageGetInTouch.pending, (state): void => {
       state.loading = true;
     });
@@ -83,6 +86,7 @@ export const {
   handlerErrorSendEmail,
   handlerConfirmationGetInTouch,
   handlerErrorGetInTouch,
+  handleSetLanguage
 } = appSlice.actions;
 
 export default appSlice.reducer;

@@ -26,8 +26,8 @@ export const Main: React.FC = () => {
         />
         <SliderComponent />
         <PhotoGalleryOfTheMainPage />
-        {language === 'ru' && <AboutNewborn />}
-        <PopularPackets editStyleForPrice={window.innerWidth < 768 && true} />
+        {language === "ru" && <AboutNewborn />}
+        {/*<PopularPackets editStyleForPrice={window.innerWidth < 768 && true} />*/}
       </main>
     </Fragment>
   );

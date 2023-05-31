@@ -6,6 +6,7 @@ import classNames from "classnames/bind";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { handlerAddPacketInBasket } from "../../../../redux/Reducers/packetSlice";
 import { motion } from "framer-motion";
+import {useTranslation} from "react-i18next";
 
 export interface PropsPacket {
   packet: IPacket;
@@ -18,7 +19,7 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, variants }) 
   const navigate = useNavigate();
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { user } = useAppSelector((state) => state.user);
-
+const {t} = useTranslation()
   const showPacketInBasket = packetInBasket.some((item: IPacket) => item._id === packet._id);
 
   const handlerClickAddPacketInBasket = (itemData: IPacket) => {
@@ -49,7 +50,7 @@ const Packet: React.FC<PropsPacket> = ({ packet, editStyleForPrice, variants }) 
         )}
       </div>
       <Link className={classNameLink} to={`/prices/packets/${packet._id}`} onClick={handlerClickOnImagePacket}>
-        Пакет {packet.namePacket} _ <span className={Styles.packet__price}>{packet.price}р</span>
+        {t("package")} {packet.namePacket} _ <span className={Styles.packet__price}>{packet.price}р</span>
       </Link>
     </motion.li>
   );

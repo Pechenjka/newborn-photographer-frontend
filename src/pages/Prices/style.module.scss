@@ -12,7 +12,7 @@
   &__packets {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 40px;
     margin: 0 auto 50px;
     padding: 0 40px;
@@ -21,10 +21,17 @@
   }
   &__title {
     font-size: 24px;
-    font-weight: 400;
+    //font-weight: 400;
     grid-column: 1/-1;
     margin: 30px auto;
     color: $TextColorBrownDark;
+    font-weight: bold;
+  }
+  &_caption {
+    text-align: left;
+    //padding: 0 40px;
+    max-width: 950px;
+    margin: auto;
   }
 }
 

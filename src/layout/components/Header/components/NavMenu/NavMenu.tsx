@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./NavMenu.scss";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { links } from "../../../../../utils/config";
@@ -10,7 +10,6 @@ import logoUser from "../../../../../images/user.webp";
 import cx from "classnames/bind";
 import { handleSetLanguage } from "../../../../../redux/Reducers/appSlice";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 
 const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
   const { pathname } = useLocation();
@@ -22,7 +21,6 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
 
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
-  const [activeLanguage, setActiveLanguage] = useState("en");
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
@@ -65,19 +63,10 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
 
   //change language
   const onclickChangeLanguage = (setLanguage: string) => {
-    // if(language !== setLanguage) {
-    // setActiveLanguage(setLanguage);
     dispatch(handleSetLanguage(setLanguage));
-    localStorage.setItem("language", setLanguage);
-    // language === "ru" ? dispatch(handleVisible(true)) : dispatch(handleVisible(false));
     return i18n.changeLanguage(setLanguage);
     // }
   };
-  // useEffect(() => {
-  //   if(i18next.language !== language ) {
-  //     dispatch(handleSetLanguage(language));
-  //   }
-  // }, []);
 
   //Обработчик клика по ссылке меню в мобильной версии
   const handleClickLinkMobileVersion = (linkActive: ILink): void => {
@@ -179,11 +168,12 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
               editStyle="buttonUser"
               buttonWithIcon
               icon={logoUser}
+              disabled={true}
               //onClick={"#"}
               // onClick={handleClickAuthorization}
               // onClick={adminRole ? () => history.push("/admin") : handleClickAuthorization}
             >
-              {user.name.length ? <span className="navigation__textUserBtn">{user.name}</span> : "On repair"}
+              {user.name.length ? <span className="navigation__textUserBtn">{user.name}</span> : "Profile"}
             </Button>
           </div>
         </li>

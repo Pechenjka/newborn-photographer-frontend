@@ -1,6 +1,7 @@
 import React from "react";
 import Styles from "./style.module.scss";
 import { IPacketInOrder } from "../../../../../../../../types";
+import { useTranslation } from "react-i18next";
 
 export interface PropsOrderData {
   orderData: IPacketInOrder[];
@@ -8,6 +9,7 @@ export interface PropsOrderData {
 }
 
 export const OrderData: React.FC<PropsOrderData> = ({ orderData, orderInMyProfile }) => {
+  const { t } = useTranslation();
   return (
     <ul className={Styles.orderData}>
       {orderData.map((packet, index) => {
@@ -15,13 +17,13 @@ export const OrderData: React.FC<PropsOrderData> = ({ orderData, orderInMyProfil
           <li className={Styles.orderData__packet} key={packet.namePacket}>
             <ul className={Styles.orderData__containerPacket}>
               <li className={Styles.orderData__describePacket}>
-                Пакет: <span className={Styles.orderData__describePacket_span}>{packet.namePacket}</span>
+                {t("cart table order package")}: <span className={Styles.orderData__describePacket_span}>{packet.namePacket}</span>
               </li>
               <li className={Styles.orderData__describePacket}>
-                Тип фотосессии: <span className={Styles.orderData__describePacket_span}>{packet.photosessionType}</span>
+                {t("cart table order category")}: <span className={Styles.orderData__describePacket_span}>{packet.photosessionType}</span>
               </li>
               <li className={Styles.orderData__describePacket}>
-                Цена: <span className={Styles.orderData__describePacket_span}>{packet.price}р</span>
+                {t("cart table order cost")}: <span className={Styles.orderData__describePacket_span}>{packet.price}</span>
               </li>
               {orderInMyProfile && (
                 <li className={Styles.orderData__describePacket}>

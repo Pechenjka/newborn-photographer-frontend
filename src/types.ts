@@ -25,6 +25,7 @@ export interface PropsInitialStatePhotoSlice {
   openModalWithImage: boolean;
   dataForImageModal: string;
   openChangeSortPhotos: boolean;
+  photoCategories: ICategory[]
 }
 export interface PropsArrPhotos {
   payload: IPhoto[];
@@ -112,7 +113,7 @@ export interface PropsInitialStatePacketSlice {
   getPackets: IPacket[];
   getPinnedPackets: IPacket[];
   packetWithDetailsDescription: IPacket | null;
-  getPacketsCategories: ICategory[];
+  packetsCategories: ICategory[];
   packetInBasket: IPacket[];
   basketIsNotEmpty: boolean;
 }
@@ -129,6 +130,8 @@ export interface IPacket {
   imageDescription: string;
   imageDescriptionMobile: string;
   description: string;
+  descriptionEN: string;
+  getFromPhotosessionEN: string;
   _id: string;
   createdAt: string;
 }

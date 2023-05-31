@@ -72,7 +72,7 @@ const initialState: PropsInitialStatePacketSlice = {
   },
   getPackets: [],
   getPinnedPackets: [],
-  getPacketsCategories: [],
+  packetsCategories: [],
   packetWithDetailsDescription: null,
   packetInBasket: [],
   basketIsNotEmpty: false,
@@ -134,7 +134,7 @@ export const packetSlice = createSlice({
       state.error.packets = action.payload;
     });
     builder.addCase(getPacketsCategories.fulfilled, (state, action: { payload: ICategory[] }) => {
-      state.getPacketsCategories = action.payload;
+      state.packetsCategories = action.payload;
     });
     builder.addCase(getPacketsPinned.pending, (state) => {
       state.loading.getPacketsPinned = true;

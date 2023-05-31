@@ -9,7 +9,7 @@ const initialState: PropsInitialStateAppSlice = {
   displayPricePackets: [],
   confirmationSendEmail: false,
   errorSendEmail: false,
-  language: "ru",
+  language: "en",
 };
 
 export const sendEmail = createAsyncThunk("app/sendEmail", async ({ data }: PropsPayLoadSendEmail, { dispatch }) => {

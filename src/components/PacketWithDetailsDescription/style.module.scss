@@ -17,7 +17,8 @@
     flex-wrap: wrap;
   }
   &__image {
-    max-height: 500px;
+    //max-height: 500px;
+    max-height: 400px;
     box-shadow: 0 10px 40px rgba(0, 1, 0, 0.4);
     border-radius: 10px;
   }
@@ -33,13 +34,14 @@
     flex-shrink: 1;
     font-size: 35px;
     margin-bottom: 50px;
-    font-weight: bold;
+    //font-weight: bold;
+    font-weight: 400;
     color: #79553d;
   }
   &__price {
-    font-size: 25px;
+    font-size: 35px;
     margin-bottom: 20px;
-    font-weight: bold;
+    //font-weight: bold;
     color: #ff9696;
   }
   &__getFromPhotosession {
@@ -52,6 +54,7 @@
     white-space: pre-wrap;
     font-weight: normal;
     padding-left: 20px;
+    margin-bottom: 30px;
     &_item {
       margin-top: 5px;
     }
@@ -67,7 +70,9 @@
     }
   }
   &__containerDescription {
-    margin-top: 50px;
+    color: #606060;
+
+    //margin-top: 50px;
   }
   &__titleDescription {
     font-size: 20px;
@@ -76,14 +81,16 @@
     color: #79553d;
   }
   &__containerListDescription {
-    box-shadow: 0 0 20px rgba(128, 128, 128, 0.2);
-    padding: 40px;
+    //box-shadow: 0 0 20px rgba(128, 128, 128, 0.2);
+    //padding: 40px;
     text-align: left;
-    border-radius: 10px;
+    //border-radius: 10px;
+    margin-bottom: 30px;
   }
   &__descriptionItem {
     margin-top: 5px;
     clear: left;
+    list-style: none;
   }
   &__itemListContainer {
     list-style-type: circle;
@@ -139,6 +146,10 @@
 @media screen and (max-width: 560px) {
   .packetDetails {
     padding: 0 10px;
+
+    &__price {
+      font-size: 25px;
+    }
     &__aboutPacket {
       margin: 50px auto 0;
       padding: 0 20px;

@@ -3,7 +3,7 @@ import "./App.scss";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
-import { getPacketsCategories, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
+import { handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 import { getTextOnPage } from "../../redux/Reducers/editorSlice";
 import { RouterComponent } from "../../router";
@@ -16,9 +16,14 @@ const App: React.FC = () => {
   const { packetInBasket } = useAppSelector((state) => state.packets);
 
   useEffect(() => {
-    const activeLang = localStorage.getItem("language");
+    const activeLang = localStorage.i18nextLng
     activeLang && dispatch(handleSetLanguage(activeLang));
   }, []);
+
+  // useEffect(() => {
+  //   const activeLang = sessionStorage.getItem("language");
+  //   activeLang && dispatch(handleSetLanguage(activeLang));
+  // }, []);
 
   useEffect(() => {
     const jwt = localStorage.getItem("token");
@@ -30,7 +35,6 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(getPacketsCategories());
     dispatch(getTextOnPage());
   }, []);
 

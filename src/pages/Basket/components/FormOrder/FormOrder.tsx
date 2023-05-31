@@ -11,11 +11,12 @@ import { Order } from "./components/Order";
 import { handleConfirmSendOrder, newOrder } from "../../../../redux/Reducers/orderSlice";
 import MessageToTheUser from "../../../../components/MessageToTheUser/MessageToTheUser";
 import { validationSchemaOrderForm } from "../../../../validationForms";
+import { useTranslation } from "react-i18next";
 
 export const FormOrder: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
+  const { t } = useTranslation();
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { user } = useAppSelector((state) => state.user);
   const { loading, error, confirmSendOrder } = useAppSelector((state) => state.order);
@@ -62,23 +63,23 @@ export const FormOrder: React.FC = () => {
       <BackgroundImage />
       <section className={Styles.formOrder}>
         {confirmSendOrder ? (
-          <MessageToTheUser title="Заказ отправлен" onClose={handleClick} />
+          <MessageToTheUser title={t("checkout order")} onClose={handleClick} />
         ) : (
           <Fragment>
             <div className={Styles.formOrder__containerHeader}>
               <Link className={Styles.formOrder__linkBack} to="/basket">
-                Вернуться в корзину
+                {t("checkout order back in cart")}
               </Link>
-              <h3 className={Styles.formOrder__formTitle}>Оформление заказа</h3>
+              <h3 className={Styles.formOrder__formTitle}>{t("checkout order title")}</h3>
             </div>
             <div className={Styles.formOrder__containerOrder}>
-              <Order orderData={packetsInOrder} title="Заказ" />
+              <Order orderData={packetsInOrder} title={`${t("order table title")}`} />
             </div>
             {error.newOrder ? (
               <p className={Styles.formOrder__formDescription_error}>{error.newOrder}</p>
             ) : (
               <p className={Styles.formOrder__formDescription}>
-                Для оформления заказа, укажите ваши контактные данные!
+                {t("checkout order contacts")}
               </p>
             )}
 
@@ -88,7 +89,7 @@ export const FormOrder: React.FC = () => {
               onSubmit={handleSubmit}
               buttonProps={{
                 style: "ping",
-                title: "Отправить заказ",
+                title: `${t("checkout order form submit btn")}`,
                 editStyle: "buttonSubmitOrder",
                 edit: true,
               }}
@@ -96,7 +97,7 @@ export const FormOrder: React.FC = () => {
               loading={loading.newOrder}
             >
               <MyTextField
-                nameLabel="Имя"
+                nameLabel={`${t("checkout order form name field")}`}
                 type="text"
                 name="name"
                 component="input"
@@ -105,7 +106,7 @@ export const FormOrder: React.FC = () => {
                 editStyleField="nameOrder"
               />
               <MyTextField
-                nameLabel="Email"
+                nameLabel={`${t("checkout order form email field")}`}
                 type="email"
                 name="email"
                 component="input"
@@ -114,7 +115,7 @@ export const FormOrder: React.FC = () => {
                 editStyleField="emailOrder"
               />
               <MyTextField
-                nameLabel="Телефон"
+                nameLabel={`${t("checkout order form phone field")}`}
                 type="phone"
                 name="phone"
                 component="input"
@@ -123,14 +124,14 @@ export const FormOrder: React.FC = () => {
                 editStyleField="telOrder"
               />
               <MyTextField
-                nameLabel="Сообщение"
+                nameLabel={`${t("checkout order form message field")}`}
                 type="text"
                 name="text"
                 component="textarea"
                 id="text"
                 editStyleContainer="textOrder"
                 editStyleField="textOrder"
-                placeholder="Здесь можно написать комментарий к заказу"
+                placeholder={`${t("checkout order comments by order")}`}
               />
             </FormikFormComponent>
           </Fragment>

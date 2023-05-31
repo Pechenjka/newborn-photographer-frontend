@@ -6,7 +6,7 @@ import {
   PropsBoolean,
   PropsRandomPhotos,
   PropsAddNewPhoto,
-  PropsDeletePhoto,
+  PropsDeletePhoto, ICategory,
 } from "../../types";
 
 import { apiApp } from "../../utils/apiApp";
@@ -33,6 +33,15 @@ export const fetchPhotos = createAsyncThunk(
     }
   }
 );
+export const getPhotoCategories = createAsyncThunk("photo/getPhotoCategories", async (_, { rejectWithValue }) => {
+  try {
+    const res = await apiApp().getPhotoCategories();
+    console.log(res.data)
+    return res.data;
+  } catch (e) {
+    return rejectWithValue("Error, photo category has not been get!");
+  }
+});
 
 export const addNewPhoto = createAsyncThunk(
   "photo/addNewPhoto",
@@ -61,14 +70,17 @@ export const deletePhoto: any = createAsyncThunk(
   }
 );
 
-export const saveChangeSortPhotos: any = createAsyncThunk("photo/saveChangeSortPhotos", async (newArr: IPhoto[], { rejectWithValue }) => {
-  try {
-    const res = apiApp().changeOrderPhoto(newArr);
-    return res.data;
-  } catch (e) {
-    return rejectWithValue("Error, the sort was not a happen");
+export const saveChangeSortPhotos: any = createAsyncThunk(
+  "photo/saveChangeSortPhotos",
+  async (newArr: IPhoto[], { rejectWithValue }) => {
+    try {
+      const res = apiApp().changeOrderPhoto(newArr);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Error, the sort was not a happen");
+    }
   }
-});
+);
 
 const initialState: PropsInitialStatePhotoSlice = {
   getPhotos: [],
@@ -79,6 +91,7 @@ const initialState: PropsInitialStatePhotoSlice = {
   openModalWithImage: false,
   dataForImageModal: "",
   openChangeSortPhotos: false,
+  photoCategories: []
 };
 
 const photoSlice = createSlice({
@@ -173,7 +186,6 @@ const photoSlice = createSlice({
       state.error = "";
     });
     builder.addCase(fetchPhotos.fulfilled, (state, action: { payload: IPhoto[] }): void => {
-      // console.log(action.payload)
       state.getPhotos = action.payload;
       state.error = "";
       state.loading = false;
@@ -181,6 +193,9 @@ const photoSlice = createSlice({
     builder.addCase(fetchPhotos.rejected, (state, action: { payload: any }): void => {
       state.loading = false;
       state.error = action.payload;
+    });
+    builder.addCase(getPhotoCategories.fulfilled, (state, action: { payload: ICategory[] }) => {
+      state.photoCategories = action.payload;
     });
   },
 });

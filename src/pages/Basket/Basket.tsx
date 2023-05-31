@@ -7,11 +7,13 @@ import { handlerBasketIsNotEmpty, handlerDeletePacketFromBasket } from "../../re
 import { Button } from "../../components/Button";
 import PacketsInBasket from "./components/PacketsInBasket/PacketsInBasket";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Basket: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { packetInBasket } = useAppSelector((state) => state.packets);
+  const { t } = useTranslation();
 
   const handlerClickDeletePacketFromBasket = (id: string) => {
     const arr = JSON.parse(sessionStorage.getItem("packetsInBasket") as string);
@@ -36,15 +38,15 @@ const Basket: React.FC = () => {
         ) : (
           <div className={Styles.basket__wrapperTable}>
             <PacketsInBasket onClickDeletePacket={handlerClickDeletePacketFromBasket} packetInBasket={packetInBasket} />
-              <Button
-                styleButton="ping"
-                editStyle="buttonBasket"
-                edit
-                type="button"
-                onClick={() => navigate("/checkout")}
-              >
-                Продолжить оформление заказа
-              </Button>
+            <Button
+              styleButton="ping"
+              editStyle="buttonBasket"
+              edit
+              type="button"
+              onClick={() => navigate("/checkout")}
+            >
+              {t("continue checkout")}
+            </Button>
           </div>
         )}
       </div>

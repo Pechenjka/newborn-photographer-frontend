@@ -25,6 +25,7 @@ export const apiApp = (): {
   deleteTextBlock: any;
   deletePhoto: any;
   changeOrderPhoto: any;
+  getPhotoCategories: any
 } => {
   return {
     createPacket: async (data: IPacket): Promise<AxiosResponse<IPacket>> => {
@@ -50,7 +51,9 @@ export const apiApp = (): {
     getPacketsCategories: async (): Promise<AxiosResponse<ICategory[]>> => {
       return await $api.get("/categories");
     },
-
+    getPhotoCategories: async (): Promise<AxiosResponse<ICategory[]>> => {
+      return await $api.get("/mediaContent/categories");
+    },
     getPacketWithDetailsDescription: async (id: string): Promise<AxiosResponse<IPacket[]>> => {
       return await $api.get(`/packets/${id}`);
     },

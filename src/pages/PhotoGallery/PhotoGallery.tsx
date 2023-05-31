@@ -9,20 +9,24 @@ import {
   handlerShowAddPhotos,
   handlerOpenChangeSortPhotos,
   saveChangeSortPhotos,
+  getPhotoCategories,
 } from "../../redux/Reducers/photoSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { IPhoto, PhotoPostPage } from "../../types";
+import { ICategory, IPhoto, PhotoPostPage } from "../../types";
 import { Button } from "../../components/Button";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import { MetaData } from "../../helpers/MetaData";
+import { useTranslation } from "react-i18next";
 
 const PhotoGallery: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-  const { showPhotos, getPhotos, loading, error, openChangeSortPhotos } = useAppSelector((state) => state.photos);
+  const { showPhotos, getPhotos, loading, error, openChangeSortPhotos, photoCategories } = useAppSelector(
+    (state) => state.photos
+  );
   const { user } = useAppSelector((state) => state.user);
   const { language } = useAppSelector((state) => state.app);
-
+  const { t } = useTranslation();
   useEffect(() => {
     photosCategoryInGallery.some((item: string) => {
       if (pathname.includes(item)) {
@@ -30,6 +34,10 @@ const PhotoGallery: React.FC = () => {
       }
     });
   }, [pathname]);
+
+  useEffect(() => {
+    dispatch(getPhotoCategories());
+  }, []);
 
   const addPhotos = (photos: IPhoto[]): IPhoto[] => {
     if (window.innerWidth >= 1025) {
@@ -72,16 +80,25 @@ const PhotoGallery: React.FC = () => {
       />
       <section className="photoGallery" id="photoGallery">
         <BackgroundImage />
-        {photosCategoryInGallery.map((item: string, index: number) => {
-          const title = item.split("").slice(1).join("");
+        {photoCategories.map((item: ICategory, index: number) => {
           return (
-            pathname.includes(item) && (
+            pathname.includes(item.title) && (
               <h1 className="photoGallery__title" key={index}>
-                {item[0].toUpperCase() + title}
+                {language === "en" ? item.nameEN : item.nameRU}
               </h1>
             )
           );
         })}
+        {/*{photosCategoryInGallery.map((item: string, index: number) => {*/}
+        {/*  const title = item.split("").slice(1).join("");*/}
+        {/*  return (*/}
+        {/*    pathname.includes(item) && (*/}
+        {/*      <h1 className="photoGallery__title" key={index}>*/}
+        {/*        {item[0].toUpperCase() + title}*/}
+        {/*      </h1>*/}
+        {/*    )*/}
+        {/*  );*/}
+        {/*})}*/}
         {loading ? (
           <div style={{ height: "1000px" }}>
             <PreLoader />
@@ -98,7 +115,7 @@ const PhotoGallery: React.FC = () => {
         )}
         {error && <p>{error}</p>}
         <Button styleButton="ping" onClick={handlerClickAddPhotos} type="button" hide={handlerHideButton}>
-          Показать больше
+          {t("photo gallery btn more")}
         </Button>
       </section>
     </Fragment>

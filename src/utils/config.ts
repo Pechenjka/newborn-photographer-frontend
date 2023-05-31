@@ -40,19 +40,19 @@ export const links: ILink[] = [
       { name: "navSubLink newborn", pathSelect: "/prices/newborn", type: "newborn" },
       { name: "navSubLink baby", pathSelect: "/prices/baby", type: "baby" },
       { name: "navSubLink family", pathSelect: "/prices/family", type: "family" },
-      { name: "navSubLink woman", pathSelect: "/prices/woman", type: "woman" },
-      { name: "navSubLink discharge and christening", pathSelect: "/prices/discharge-christening", type: "discharge-christening" },
+      // { name: "navSubLink woman", pathSelect: "/prices/woman", type: "woman" },
+      // { name: "navSubLink discharge and christening", pathSelect: "/prices/discharge-christening", type: "discharge-christening" },
     ],
   },
   {
     name: "",
     logo: navbarLogo,
     select: [
-      {
-        name: "Фотопродукция",
-        pathSelect: "/photo-products",
-        type: "photo-products"
-      },
+      // {
+      //   name: "Фотопродукция",
+      //   pathSelect: "/photo-products",
+      //   type: "photo-products"
+      // },
       // { name: "navSubLink prepare at photo session", pathSelect: "/aboutPhotosession", type: "aboutPhotosession" },
       { name: "navSubLink about Me", pathSelect: "/aboutMe", type: "aboutMe" },
       { name: "navSubLink contacts", pathSelect: "/contacts", type: "contacts" },

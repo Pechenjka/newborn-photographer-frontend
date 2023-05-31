@@ -213,12 +213,9 @@ $colorLinksInBurgerMenu: #696554;
         width: 100%;
       }
     }
-    //&:first-of-type {
-    //  max-width: max-content;
-    //}
-    //&:last-of-type {
-    //  max-width: max-content;
-    //}
+    &:last-of-type {
+      max-width: min-content;
+    }
     &:hover {
       color: $colorLinksHover;
       transform: translateX(5px);
@@ -264,6 +261,7 @@ $colorLinksInBurgerMenu: #696554;
     background-color: white;
     border-radius: 10px;
     color: #797878;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
   &__tooltip {
     transition: transform 0.4s;
@@ -381,6 +379,18 @@ $colorLinksInBurgerMenu: #696554;
     background-color: $colorBackgroundBluerBurgerMenu;
     margin: 0;
     transition: opacity 0.4s ease-in;
+    &__buttonChangeLanguage {
+      background-color: rgba(87, 87, 87, 0.1);
+      border-radius: 5px;
+      color: black;
+      &:hover {
+       // background-color: transparent;
+      }
+      &_active {
+        background-color: rgba(49, 46, 46, 0.2);
+      }
+    }
+
     &__burgerMenu_active {
       opacity: 1;
       visibility: visible;

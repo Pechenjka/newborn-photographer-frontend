@@ -34,8 +34,6 @@ export const SliderComponent: React.FC = () => {
   const stylePrevBtn = cx("swiperBtn", "swiperBtn_prev");
   const styleNextBtn = cx("swiperBtn", "swiperBtn_next");
 
-
-
   return (
     <div className={Styles.slideShow}>
       <Swiper
@@ -89,7 +87,7 @@ export const SliderComponent: React.FC = () => {
             </Link>
           </div>
           <div className={Styles.slideShow__linkAboutNewbornContainer}>
-            {language === 'ru' && (
+            {language === "ru" && (
               <LinkScroll
                 className={Styles.slideShow__linkAboutNewborn}
                 to="aboutNewborn"

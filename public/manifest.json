@@ -1,15 +1,58 @@
 {
-  "name": "Alena Lobacheva",
-  "short_name": "Alena Lobacheva",
+  "name": "Alena Lobacheva Photography",
+  "short_name": "ALPh",
   "icons": [
+    {
+      "src": "favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
     {
       "src": "android-chrome-192x192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-180x180.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-16x16.png",
+      "sizes": "16x16",
       "type": "image/png"
     }
   ],
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#fffcec"
+  "background_color": "#fffcecff",
+  "description": "Professional photographer in NYC, specializing in newborn, family, and maternity photography.",
+  "lang": "en-US",
+  "meta_tags": {
+    "keywords": "newborn photography NYC, family photographer, pregnancy photographer, newborn photography near me, newborn baby NYC, family photo shoot, photographer, newborn photography, christening, New York photographer, professional photographer NYC"
+  },
+  "sitemap": "/sitemap.xml",
+  "structured_data": {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Alena Lobacheva Photography",
+    "url": "https://alenalobacheva.com",
+    "logo": "https://alenalobacheva.com/favicon-512x512.png",
+    "description": "Professional photographer in NYC, specializing in newborn, family, baby and maternity photography.",
+    "sameAs": [
+      "https://www.instagram.com/lobachevaphotography/",
+      "https://www.facebook.com/Alen4ikLobacheva?mibextid=9R9pXO"
+    ]
+  }
 }

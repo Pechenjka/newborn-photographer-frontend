@@ -1,0 +1,102 @@
+$colorBackgroundOverlay: rgba(0, 0, 0, 0.4);
+$colorLinksHover: #c69b6b;
+$colorLinkUser: #ff9696;
+$colorTextOverlay: white;
+
+.instagram {
+  max-width: 1440px;
+  margin: 50px auto 0;
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+  &__user {
+    font-size: 20px;
+    color: $colorLinkUser;
+    max-width: max-content;
+    font-weight: 500;
+    line-height: 23px;
+    text-decoration: none;
+    transition: all 0.4s;
+    &:hover {
+      color: $colorLinksHover;
+    }
+  }
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 250px;
+    column-gap: 10px;
+    width: 100%;
+    list-style: none;
+    padding: 0 40px;
+    margin: 30px 0 0;
+  }
+}
+
+@media screen and (max-width: 1369px) {
+  .instagram {
+    &__container {
+      grid-template-rows: 232px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .instagram {
+    &__container {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 233px;
+      padding: 0 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .instagram {
+    &__container {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 175px;
+      padding: 0 20px;
+    }
+    &__title {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0 0 10px;
+    }
+    &__user {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .instagram {
+    &__container {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 176px;
+      padding: 0 10px;
+    }
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .instagram {
+    &__container {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 192px;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .instagram {
+    &__container {
+      grid-template-rows: 145px;
+    }
+    &__user {
+      font-size: 16px;
+    }
+  }
+}

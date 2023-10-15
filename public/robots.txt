@@ -1,5 +1,12 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /basket
+Disallow: /checkout
+Disallow: /admin
+Disallow: /profile
+Disallow: /signin
+Disallow: /signup
+Disallow: /aboutPhotosession
+Disallow: /*?
 
-sitemap: https://alenalobacheva.net/sitemap.xml
+sitemap: https://alenalobacheva.com/sitemap.xml

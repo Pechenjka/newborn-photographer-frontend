@@ -6,6 +6,10 @@ $colorTextOverlay: white;
 .instagram {
   max-width: 1440px;
   margin: 50px auto 0;
+  &__swiper {
+    height: 100%;
+    margin-top: 20px;
+  }
   &__title {
     font-size: 22px;
     font-weight: 700;
@@ -19,6 +23,7 @@ $colorTextOverlay: white;
     line-height: 23px;
     text-decoration: none;
     transition: all 0.4s;
+    margin-bottom: 15px;
     &:hover {
       color: $colorLinksHover;
     }

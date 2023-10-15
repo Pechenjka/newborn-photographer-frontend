@@ -1,5 +1,5 @@
 import Style from "./style.module.scss";
-import React from "react";
+import React, { useRef } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { useTranslation } from "react-i18next";
 import { animationScaleAndOpacity } from "../../helpers/framerMotion";
@@ -7,25 +7,29 @@ import { PostComponent } from "./components/PostComponent";
 import { motion } from "framer-motion";
 import { useWindowResize } from "../../hooks/useWindowResize";
 import { PostInstagramProfile } from "../../types";
+import { Navigation, Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/scss";
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
 
 export const Instagram: React.FC = () => {
   const { error, instagramProfile } = useAppSelector((state) => state.app);
   const { t } = useTranslation();
   const { width } = useWindowResize();
 
+  const navigationPrevRef = useRef(null);
+  const navigationNextRef = useRef(null);
+
+  const countIns: any = () => {
+    if (width > 1024) return 5;
+    if (width >= 768) return 4;
+    if (width > 414) return 3;
+    if (width >= 320) return 2;
+  };
+
   const handleViewPostInstagram: any = (posts: PostInstagramProfile[]) => {
-    if (width > 1024) {
-      return posts.slice(0, 5);
-    }
-    if (width >= 768) {
-      return posts.slice(0, 4);
-    }
-    if (width > 414) {
-      return posts.slice(0, 3);
-    }
-    if (width >= 320) {
-      return posts.slice(0, 2);
-    }
+    return posts.slice(0, 10);
   };
 
   return (
@@ -46,11 +50,42 @@ export const Instagram: React.FC = () => {
       {error.instagram ? (
         <p>{error.instagram}</p>
       ) : (
-        <ul className={Style.instagram__container}>
-          {handleViewPostInstagram(instagramProfile).map((post: PostInstagramProfile) => {
-            return <PostComponent post={post} key={post.id} />;
-          })}
-        </ul>
+        <Swiper
+          grabCursor={true}
+          freeMode={true}
+          speed={5000}
+          loop={true}
+          slidesPerView={countIns()}
+          spaceBetween={10}
+          autoplay={{
+            stopOnLastSlide: false,
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          navigation={{
+            prevEl: navigationPrevRef.current,
+            nextEl: navigationNextRef.current,
+          }}
+          onBeforeInit={(swiper) => {
+            // @ts-ignore
+            swiper.params.navigation.prevEl = navigationPrevRef.current;
+            // @ts-ignore
+            swiper.params.navigation.nextEl = navigationNextRef.current;
+          }}
+          modules={[Autoplay, Navigation]}
+          className={Style.instagram__swiper}
+        >
+          <ul className={Style.instagram__container}>
+            {handleViewPostInstagram(instagramProfile).map((post: PostInstagramProfile) => {
+              return (
+                <SwiperSlide key={post.id}>
+                  <PostComponent post={post} />
+                </SwiperSlide>
+              );
+            })}
+          </ul>
+        </Swiper>
       )}
     </motion.div>
   );

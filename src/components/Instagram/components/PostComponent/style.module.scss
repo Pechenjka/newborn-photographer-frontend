@@ -7,11 +7,14 @@ $colorTextOverlay: white;
   display: block;
   object-fit: cover;
   width: 100%;
-  height: 100%;
   border-radius: 5px;
   &__container {
     position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
     max-height: 100%;
+    animation: fade-in 0.5s
+    cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
   }
   &__container &__overlay {
     position: absolute;
@@ -67,5 +70,15 @@ $colorTextOverlay: white;
     &__caption {
       font-size: 12px;
     }
+  }
+}
+
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

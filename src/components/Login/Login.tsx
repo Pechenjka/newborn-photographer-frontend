@@ -7,12 +7,14 @@ import { useNavigate } from "react-router-dom";
 import { useDisabledScroll } from "../../hooks/useDisabledScroll";
 import { validationSchemaLogin } from "../../validationForms";
 import { ILoginUser, PropsLogin } from "../../types";
+import { useTranslation } from "react-i18next";
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { handlerDisabledScroll } = useDisabledScroll;
   const { error, loading, showError } = useAppSelector((state) => state.user);
+  const { t } = useTranslation();
 
   useEffect(() => {
     handlerDisabledScroll(false);
@@ -27,25 +29,24 @@ export const Login: React.FC = () => {
     dispatch(login({ ...data, navigate }));
   };
 
-  // console.log(error, loading)
-
   return (
     <AuthForm
-      titleAuthorization="Войти в личный кабинет"
-      textQuestion="Ещё не зарегистрированы?"
-      textAnswer="Зарегестрироваться"
-      pathOnAnotherAuthorization="/signup"
+      titleAuthorization={t("login_title")}
+      // textQuestion="Ещё не зарегистрированы?"
+      // textAnswer="Зарегестрироваться"
+      // pathOnAnotherAuthorization="/signup"
       initialValues={initialValues}
       validationSchema={validationSchemaLogin}
-      textButton="Войти"
+      textButton={t("login_submit_button")}
       handleSubmit={handleSubmit}
       error={error}
       loading={loading.login}
       showError={showError}
+      showLinkForgotPassword={false}
     >
       <MyTextField nameLabel="Email" type="email" name="email" component="input" id="email" />
       <MyTextField
-        nameLabel="Пароль"
+        nameLabel="Password"
         type="password"
         name="password"
         component="input"

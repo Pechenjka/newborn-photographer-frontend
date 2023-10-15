@@ -8,6 +8,8 @@ import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 import { getTextOnPage } from "../../redux/Reducers/editorSlice";
 import { RouterComponent } from "../../router";
 import { handleSetLanguage } from "../../redux/Reducers/appSlice";
+import i18next from "i18next";
+import { ScrollUp } from "../ScrollUp";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,14 +18,14 @@ const App: React.FC = () => {
   const { packetInBasket } = useAppSelector((state) => state.packets);
 
   useEffect(() => {
-    const activeLang = localStorage.i18nextLng
-    activeLang && dispatch(handleSetLanguage(activeLang));
-  }, []);
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
-  // useEffect(() => {
-  //   const activeLang = sessionStorage.getItem("language");
-  //   activeLang && dispatch(handleSetLanguage(activeLang));
-  // }, []);
+  useEffect(() => {
+    const activeLang = sessionStorage.getItem("lng") as string;
+    activeLang && dispatch(handleSetLanguage(activeLang));
+    i18next.changeLanguage(activeLang).then((res) => res);
+  }, []);
 
   useEffect(() => {
     const jwt = localStorage.getItem("token");
@@ -52,6 +54,7 @@ const App: React.FC = () => {
     <div className="page">
       <RouterComponent />
       <PopupWithImage />
+      <ScrollUp />
     </div>
   );
 };

@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 const Footer: React.FC = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
-  const showMyContacts = pathname.includes("contacts");
+  const showMyContacts = pathname.includes("contact");
 
   return (
     <footer className="footer">
@@ -30,9 +30,6 @@ const Footer: React.FC = () => {
           </p>
           <p className={`footer__copyright-text ${showMyContacts ? "footer__copyright-text_edit" : ""}`}>
             {t("footer copyright")}
-          </p>
-          <p className={`footer__poweredBy-text ${showMyContacts ? "footer__poweredBy-text_edit" : ""} `}>
-            Powered by Petr Lobachev
           </p>
         </div>
       </div>

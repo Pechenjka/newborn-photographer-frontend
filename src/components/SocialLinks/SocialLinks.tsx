@@ -5,6 +5,7 @@ import InstagramIcon from "../../images/instagram-icon.svg";
 import WhatsAppIcon from "../../images/whatsApp-icon.svg";
 import FacebookIcon from "../../images/facebook-icon.svg";
 import YoutubeIcon from "../../images/youtube-icon.svg";
+import TiktokIcon from "../../images/tiktok-icon.svg";
 
 const SocialLinks: React.FC = () => {
   return (
@@ -37,6 +38,15 @@ const SocialLinks: React.FC = () => {
           title="instagram"
         >
           <img className="socialLinks__item-social-networksImg" src={InstagramIcon} alt="instagram" />
+        </a>
+        <a
+          className="socialLinks__item-social-networks socialLinks__item-social-networks_tiktok"
+          href="https://www.tiktok.com/@lobachevaphotography/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="tiktok"
+        >
+          <img className="socialLinks__item-social-networksImg" src={TiktokIcon} alt="tiktok" />
         </a>
         <a
           className="socialLinks__item-social-networks socialLinks__item-social-networks_facebook"

@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import "./PhotoProducts.scss";
-import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import bookImage from "../../images/photo-products/book.webp";
 import photoCanvas from "../../images/photo-products/photo-сanvases.webp";
 import photoTablets from "../../images/photo-products/tablets-with-passport.webp";
@@ -20,7 +19,6 @@ const PhotoProducts: React.FC = () => {
         description="In addition to the photo session you can order a photo book of any format, photo canvas, tablet with passe-partout, photo box, and many other"
         canonicalLink={`https://alenalobacheva.net${pathname}`}
       />
-      <BackgroundImage />
       <section className="photoProducts">
         <div className="photoProducts__item photoProducts__item-books books-accessories ">
           <h3 className="photoProducts__title">Фотокниги</h3>

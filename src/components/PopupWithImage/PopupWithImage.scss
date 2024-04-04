@@ -7,6 +7,7 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
     left: 50%;
     transform: translate(-50%, -48%);
   }
+
   &__image {
     display: block;
     position: relative;
@@ -14,6 +15,7 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
     max-height: 80vh;
     border-radius: 10px;
   }
+
   &__closeBtn {
     background: url("../../images/close_popup-icon.svg") no-repeat center transparent;
     background-size: cover;
@@ -26,6 +28,7 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
     padding: 0;
     outline: none;
     transition: opacity 0.4s;
+
     &:hover {
       cursor: pointer;
       opacity: 0.6;
@@ -46,6 +49,7 @@ $colorBackgroundPopup: rgba(0, 0, 0, 0.8);
     &__image {
       max-width: 90vw;
     }
+
     &__closeBtn {
       top: -40px;
       right: 0;

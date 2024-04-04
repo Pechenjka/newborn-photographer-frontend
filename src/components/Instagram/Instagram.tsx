@@ -76,7 +76,7 @@ export const Instagram: React.FC = () => {
           modules={[Autoplay, Navigation]}
           className={Style.instagram__swiper}
         >
-          <ul className={Style.instagram__container}>
+          <div className={Style.instagram__container}>
             {handleViewPostInstagram(instagramProfile).map((post: PostInstagramProfile) => {
               return (
                 <SwiperSlide key={post.id}>
@@ -84,7 +84,7 @@ export const Instagram: React.FC = () => {
                 </SwiperSlide>
               );
             })}
-          </ul>
+          </div>
         </Swiper>
       )}
     </motion.div>

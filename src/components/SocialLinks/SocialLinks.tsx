@@ -18,17 +18,16 @@ const SocialLinks: React.FC = () => {
           rel="noopener noreferrer"
           title="whatsApp"
         >
-          <img className="socialLinks__item-social-networksImg" src={WhatsAppIcon} alt="whatsApp" />
+          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={WhatsAppIcon} alt="whatsApp" />
         </a>
         <a
           className="socialLinks__item-social-networks socialLinks__item-social-networks_telegram"
-          //href="https://t.me/@alenchik_berry"
           href="tg://resolve?domain=@alenchik_berry"
           target="_blank"
           rel="noopener noreferrer"
           title="telegram"
         >
-          <img className="socialLinks__item-social-networksImg" src={TelegramIcon} alt="telegram" />
+          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={TelegramIcon} alt="telegram" />
         </a>
         <a
           className="socialLinks__item-social-networks socialLinks__item-social-networks_instagram"
@@ -37,7 +36,7 @@ const SocialLinks: React.FC = () => {
           rel="noopener noreferrer"
           title="instagram"
         >
-          <img className="socialLinks__item-social-networksImg" src={InstagramIcon} alt="instagram" />
+          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={InstagramIcon} alt="instagram" />
         </a>
         <a
           className="socialLinks__item-social-networks socialLinks__item-social-networks_tiktok"
@@ -46,7 +45,7 @@ const SocialLinks: React.FC = () => {
           rel="noopener noreferrer"
           title="tiktok"
         >
-          <img className="socialLinks__item-social-networksImg" src={TiktokIcon} alt="tiktok" />
+          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={TiktokIcon} alt="tiktok" />
         </a>
         <a
           className="socialLinks__item-social-networks socialLinks__item-social-networks_facebook"
@@ -55,7 +54,7 @@ const SocialLinks: React.FC = () => {
           rel="noopener noreferrer"
           title="facebook"
         >
-          <img className="socialLinks__item-social-networksImg" src={FacebookIcon} alt="facebook" />
+          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={FacebookIcon} alt="facebook" />
         </a>
         <a
           className="socialLinks__item-social-networks socialLinks__item-social-networks_youtube"
@@ -64,7 +63,7 @@ const SocialLinks: React.FC = () => {
           rel="noopener noreferrer"
           title="youtube"
         >
-          <img className="socialLinks__item-social-networksImg" src={YoutubeIcon} alt="youtube" />
+          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={YoutubeIcon} alt="youtube" />
         </a>
       </div>
     </div>

@@ -5,18 +5,21 @@ $colorLink: rgba(255, 150, 150, 1);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   &__title {
     font-style: normal;
     font-weight: normal;
     font-size: 140px;
     margin: 100px 0 0;
   }
+
   &__description {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     margin: 0;
   }
+
   &__link {
     font-style: normal;
     font-weight: normal;
@@ -26,6 +29,7 @@ $colorLink: rgba(255, 150, 150, 1);
     text-decoration: none;
     color: $colorLink;
     transition: all 0.4s;
+
     &:hover {
       opacity: 0.8;
     }

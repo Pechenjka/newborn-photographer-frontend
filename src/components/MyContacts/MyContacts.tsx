@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const MyContacts: React.FC = () => {
   const { pathname } = useLocation();
-  const myContactsEdit = pathname === "/contacts" ? "myContacts__edit" : "";
+  const myContactsEdit = pathname === "/contact" ? "myContacts__edit" : "";
   const { t } = useTranslation();
 
   return (
@@ -13,16 +13,25 @@ const MyContacts: React.FC = () => {
       <ul className="myContacts__container">
         <li className="myContacts__item-container">
           <span className="myContacts__icon myContacts__icon_place" />
-          <p className={`myContacts__text ${myContactsEdit}`}>{t("footer my contacts place")}</p>
+          <a
+            className={`myContacts__link myContacts__text ${myContactsEdit}`}
+            href="https://www.google.com/maps/search/?api=1&query=New+York,+NY"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="New York map"
+          >
+            {t("footer my contacts place")}{" "}
+          </a>
         </li>
         <li className="myContacts__item-container">
           <span className="myContacts__icon myContacts__icon_email" />
           <a
             className={`myContacts__link myContacts__email ${myContactsEdit}`}
-            href="https://e.mail.ru/compose/?to=newbornphoto_lobacheva@mail.ru"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=lobachevaphotography@gmail.com"
             target="_blank"
-          >
-            newbornphoto_lobacheva@mail.ru
+            rel="noopener noreferrer"
+            title="email"
+          > lobachevaphotography@gmail.com
           </a>
         </li>
         <li className="myContacts__item-container">
@@ -30,14 +39,22 @@ const MyContacts: React.FC = () => {
           <a
             className={`myContacts__link myContacts__phone ${myContactsEdit}`}
             href="tel:+1-516-468-4837"
-            target="_blank"
+            title="phone"
           >
             +1-516-468-4837
           </a>
         </li>
         <li className="myContacts__item-container">
           <span className="myContacts__icon myContacts__icon_instagram" />
-          <p className={`myContacts__link myContacts__instagram ${myContactsEdit}`}>@newbornphoto_lobacheva</p>
+          <a
+            className={`myContacts__link myContacts__instagram ${myContactsEdit}`}
+            href="https://www.instagram.com/lobachevaphotography/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="profile of Alena Lobacheva in Instagram"
+          >
+            @lobachevaphotography
+          </a>
         </li>
       </ul>
     </div>

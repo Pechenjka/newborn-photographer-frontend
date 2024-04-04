@@ -45,7 +45,7 @@ const ContactMeForm: React.FC<PropsContactMeForm> = ({ title }) => {
           edit: true,
           editStyle: "contactMeButton",
         }}
-        loading={loading}
+        loading={loading.sendMessageGetInTouch}
       >
         <MyTextField nameLabel={t("contactMeForm name")} type="text" name="name" component="input" id="name" />
         <MyTextField nameLabel={t("contactMeForm email")} type="email" name="email" component="input" id="email" />

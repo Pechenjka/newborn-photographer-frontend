@@ -1,6 +1,6 @@
 $colorBackground: rgba(0, 0, 0, 0.4);
 $colorBackgroundScroll: rgba(0, 0, 0, 0.8);
-$colorIconBurgerMenu: rgba(255,252,236,1);
+$colorIconBurgerMenu: rgba(255, 252, 236, 1);
 
 .header {
   position: fixed;
@@ -12,28 +12,34 @@ $colorIconBurgerMenu: rgba(255,252,236,1);
   background-color: $colorBackground;
   z-index: 20;
   transition: all 1s;
+
   &__changeColor {
     background-color: $colorBackgroundScroll;
   }
+
   &__logo {
     width: 200px;
     margin: auto 50px;
     z-index: 1;
+
     &:nth-of-type(2) {
       margin-bottom: 7px;
       margin-left: 20px;
     }
   }
+
   &__container {
     display: flex;
     max-width: 1440px;
     margin: 0 auto;
     height: 100%;
   }
+
   &__burger-icon {
     display: none;
     visibility: hidden;
   }
+
   &__buttonChangeLanguage {
 
   }
@@ -47,13 +53,14 @@ $colorIconBurgerMenu: rgba(255,252,236,1);
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1279px) {
   .header {
     &__container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     &__burger-icon {
       z-index: 1;
       display: block;
@@ -62,9 +69,11 @@ $colorIconBurgerMenu: rgba(255,252,236,1);
       width: 30px;
       position: relative;
       margin-right: 30px;
+
       &:hover {
         cursor: pointer;
       }
+
       & span {
         position: absolute;
         top: 50%;
@@ -75,6 +84,7 @@ $colorIconBurgerMenu: rgba(255,252,236,1);
         width: 100%;
         background-color: $colorIconBurgerMenu;
       }
+
       &::before {
         content: "";
         position: absolute;
@@ -85,6 +95,7 @@ $colorIconBurgerMenu: rgba(255,252,236,1);
         background-color: $colorIconBurgerMenu;
         transition: all 0.3s ease-in;
       }
+
       &::after {
         content: "";
         position: absolute;
@@ -95,14 +106,17 @@ $colorIconBurgerMenu: rgba(255,252,236,1);
         background-color: $colorIconBurgerMenu;
         transition: all 0.3s ease-in;
       }
+
       &_close {
         & span {
           transform: translateX(0) scale(0);
         }
+
         &::before {
           top: 50%;
           transform: rotate(45deg) translate(0, -50%);
         }
+
         &::after {
           bottom: 50%;
           transform: rotate(-45deg) translate(0, 50%);

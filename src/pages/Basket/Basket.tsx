@@ -1,7 +1,6 @@
 import Styles from "./style.module.scss";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import { IPacket } from "../../types";
 import { handlerBasketIsNotEmpty, handlerDeletePacketFromBasket } from "../../redux/Reducers/packetSlice";
 import { Button } from "../../components/Button";
@@ -31,7 +30,6 @@ const Basket: React.FC = () => {
 
   return (
     <div className={Styles.basket}>
-      <BackgroundImage />
       <div className={Styles.basket__container}>
         {!packetInBasket.length ? (
           <p className={Styles.basket__notPackets}>Ваша корзина пуста</p>

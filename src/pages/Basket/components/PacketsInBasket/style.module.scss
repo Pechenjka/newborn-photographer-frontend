@@ -4,6 +4,7 @@
   &__title {
     font-size: 25px;
     color: #ff9696;
+
     &_span {
       font-family: "MarckScript-Regular", sans-serif;
       padding-left: 15px;
@@ -11,6 +12,7 @@
       font-size: 60px;
     }
   }
+
   &__table {
     margin: 30px auto;
     width: 100%;
@@ -18,46 +20,58 @@
     border-collapse: collapse;
     table-layout: fixed;
   }
+
   &__tableHeader {
     padding: 20px 0;
     font-size: 14px;
     font-weight: 500;
+
     &:last-of-type {
       border-bottom-right-radius: 5px;
       border-top-right-radius: 5px;
     }
+
     &:first-of-type {
       border-bottom-left-radius: 5px;
       border-top-left-radius: 5px;
     }
   }
+
   &__tableHeaderContainer {
     background-color: $BackgroundColorHeaderTable;
     border: none;
   }
+
   &__tableRowContainer {
     width: 100%;
+
     &:nth-child(2n) {
       background-color: $BackgroundColorRowTable;
     }
   }
+
   &__tableRow {
-    padding: 10px 15px;
+    padding: 20px 10px;
     font-size: 14px;
     font-weight: 400;
+    overflow-wrap: anywhere;
+
     &:last-of-type {
       border-bottom-right-radius: 5px;
       border-top-right-radius: 5px;
     }
+
     &:first-of-type {
       border-bottom-left-radius: 5px;
       border-top-left-radius: 5px;
     }
   }
+
   &__image {
     max-width: 100px;
     width: 100%;
   }
+
   &__buttonDeletePacket {
     width: 25px;
     height: 25px;
@@ -73,6 +87,7 @@
   .packetsInBasket {
     &__title {
       font-size: 20px;
+
       &_span {
         font-size: 45px;
       }
@@ -84,14 +99,17 @@
   .packetsInBasket {
     &__title {
       font-size: 18px;
+
       &_span {
         font-size: 35px;
       }
     }
+
     &__tableHeader {
       padding: 15px 0;
       font-size: 12px;
     }
+
     &__tableRow {
       padding: 10px 15px;
       font-size: 12px;
@@ -105,6 +123,7 @@
       padding: 15px 0;
       font-size: 11px;
     }
+
     &__tableRow {
       padding: 15px 10px;
       font-size: 11px;
@@ -117,6 +136,7 @@
     &__tableHeader {
       font-size: 10px;
     }
+
     &__tableRow {
       padding: 15px 5px;
       font-size: 11px;

@@ -3,9 +3,9 @@ $ButtonHoverColor: #ff969699;
 $ButtonColorPing: #ff9696;
 $ButtonDisabledColor: #c9c1c182;
 $ButtonTextColorWhite: #ffffffff;
-$TextColorBrownDark: #79553d;
+$TextColorBrownDark: rgb(121, 85, 61);
 $TextColorBlack: #000000ff;
-$TextColorGray-1: #797878e5;
+$TextColorGray-1: rgba(121, 120, 120, 1);
 $TextColorBrown-2: #79553d7f;
 $TextColorGreen-1: #0080007f;
 $TextColorGreen-2: #00800099;
@@ -25,7 +25,7 @@ $colorBackgroundScroll: rgba(0, 0, 0, 0.8);
 $colorIconBurgerMenu: rgba(255, 252, 236, 1);
 
 //Box-shadow
-$BoxShadowColorGray-1: #00000019;
+$BoxShadowColorGray-1: rgba(0, 0, 0, 0.3);
 
 //Border colors
 $BorderColorGray-1: #00000033;

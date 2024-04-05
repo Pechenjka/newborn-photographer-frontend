@@ -7,12 +7,12 @@ import PreLoader from "../PreLoader/PreLoader";
 
 export interface PropsAdminFrom {
   initialValues: {};
-  validationSchema: {};
+  validationSchema?: {};
   onSubmit: (values: any) => void;
   children: React.ReactNode;
   buttonProps: { title: string; style: TypeStyleButton; editStyle?: string; edit?: boolean; onDirty?: boolean };
   styleForm?: string;
-  loading: boolean;
+  loading?: boolean;
   error?: string;
 }
 
@@ -24,7 +24,6 @@ export const FormikFormComponent: React.FC<PropsAdminFrom> = ({
   buttonProps,
   styleForm,
   loading,
-  error,
 }) => {
   const cx = classNames.bind(Styles);
   const formStyles = cx("form", `form__${styleForm}`);

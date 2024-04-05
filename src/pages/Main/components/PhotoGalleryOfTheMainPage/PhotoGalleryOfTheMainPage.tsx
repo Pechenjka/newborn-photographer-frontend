@@ -7,11 +7,13 @@ import { photosCategoryInMainPage } from "../../../../utils/config";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { IPhotosCategoryInMainPage, PhotoPostPage } from "../../../../types";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { animationLinksOnMainPage } from "../../../../helpers/framerMotion";
 
 const PhotoGalleryOfTheMainPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { loading, error, categoryPhotosBtn } = useAppSelector((state) => state.photos);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     dispatch(fetchPhotos({ type: "newborn", order: "random" }));
@@ -25,21 +27,34 @@ const PhotoGalleryOfTheMainPage: React.FC = () => {
 
   return (
     <section className="gallery">
-      <ul className="gallery__list-title">
-        {photosCategoryInMainPage.map((item: IPhotosCategoryInMainPage) => {
+      <motion.ul
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.02, once: true }}
+        className={`gallery__list-title ${i18n.language === "ru" && "gallery__list-title_ru"}`}
+      >
+        {photosCategoryInMainPage.map((item: IPhotosCategoryInMainPage, index) => {
           return (
-            <li className="gallery__title-element" key={item.id}>
+            <motion.li
+              custom={index + 1}
+              variants={animationLinksOnMainPage}
+              className={`gallery__title-element ${i18n.language === "ru" && "gallery__title-element_ru"}`}
+              key={item.id}
+            >
               <button
                 type="button"
                 className={`gallery__title-link ${item.type === categoryPhotosBtn ? "gallery__title-link_active" : ""}`}
                 onClick={(event) => item.onClick(handlerClick, event)}
+                title={`${
+                  item.type !== null && item.name.indexOf(item.type) ? item.type + " " + "photography" : "all photos"
+                }`}
               >
                 {t(`${item.name}`)}
               </button>
-            </li>
+            </motion.li>
           );
         })}
-      </ul>
+      </motion.ul>
       {loading ? (
         <div style={{ height: "1000px", margin: "100px auto" }}>
           <PreLoader />

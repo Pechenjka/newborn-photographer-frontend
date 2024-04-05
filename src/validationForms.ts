@@ -113,3 +113,7 @@ export const validationSchemaNewPhoto = Yup.object().shape({
   image: Yup.string().required("Image is required"),
   type: Yup.string().required("Type`s photo is required"),
 });
+
+export const validationSchemaArticlePhoto = Yup.object().shape({
+  image: Yup.string().required("Image is required"),
+});

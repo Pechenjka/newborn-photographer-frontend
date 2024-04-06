@@ -1,23 +1,28 @@
 import React from "react";
 import navbarLogo from "../images/navbar-menu.webp";
-import image1 from "../images/slider/slider-one.webp";
-import imageMobile1 from "../images/slider/mobile/slide-mobile-1.webp";
-import image2 from "../images/slider/slider-two.webp";
-import imageMobile2 from "../images/slider/mobile/slide-mobile-2.webp";
-import image3 from "../images/slider/slider-three.webp";
-import imageMobile3 from "../images/slider/mobile/slide-mobile-3.webp";
-import image4 from "../images/slider/slider-four.webp";
-import imageMobile4 from "../images/slider/mobile/slide-mobile-4.webp";
-import image5 from "../images/slider/slider-five.webp";
-import imageMobile5 from "../images/slider/mobile/slide-mobile-5.webp";
 import { IArrSlides, ILink, IPhotosCategoryInMainPage, ITablesPhotoProducts } from "../types";
 
 export const arrSlides: IArrSlides[] = [
-  { desktop: image1, mobile: imageMobile1 },
-  { desktop: image2, mobile: imageMobile2 },
-  { desktop: image3, mobile: imageMobile3 },
-  { desktop: image4, mobile: imageMobile4 },
-  { desktop: image5, mobile: imageMobile5 },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-1.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-1.webp",
+  },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-2.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-2.webp",
+  },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-3.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-3.webp",
+  },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-4.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-4.webp",
+  },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-5.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-5.webp",
+  },
 ];
 
 export const links: ILink[] = [
@@ -25,27 +30,62 @@ export const links: ILink[] = [
   {
     name: "navLink photo gallery",
     select: [
-      { name: "navLink newborn", pathSelect: "/photoGallery/newborn", type: "newborn" },
-      { name: "navLink pregnancy", pathSelect: "/photoGallery/pregnancy", type: "pregnancy" },
-      { name: "navLink baby", pathSelect: "/photoGallery/baby", type: "baby" },
-      { name: "navLink family", pathSelect: "/photoGallery/family", type: "family" },
-      { name: "navLink woman", pathSelect: "/photoGallery/woman", type: "woman" },
-      { name: "navLink discharge", pathSelect: "/photoGallery/discharge", type: "discharge" },
-      { name: "navLink christening", pathSelect: "/photoGallery/christening", type: "christening" },
+      {
+        name: "navLink newborn",
+        pathSelect: "/gallery/newborn",
+        type: "newborn",
+        title: "Newborn Photography Gallery",
+      },
+      {
+        name: "navLink maternity",
+        pathSelect: "/gallery/maternity",
+        type: "maternity",
+        title: "Maternity Photography Gallery",
+      },
+      { name: "navLink baby", pathSelect: "/gallery/baby", type: "baby", title: "Baby Photography Gallery" },
+      { name: "navLink family", pathSelect: "/gallery/family", type: "family", title: "Family Photography Gallery" },
+      { name: "navLink woman", pathSelect: "/gallery/woman", type: "woman", title: "Woman Photography Gallery" },
+      {
+        name: "navLink discharge",
+        pathSelect: "/gallery/discharge",
+        type: "discharge",
+        title: "Discharge Photography Gallery",
+      },
+      {
+        name: "navLink christening",
+        pathSelect: "/gallery/christening",
+        type: "christening",
+        title: "Christening Photography Gallery",
+      },
     ],
   },
   {
     name: "navLink prices and services",
     select: [
-      { name: "navSubLink newborn", pathSelect: "/prices/newborn", type: "newborn" },
-      { name: "navSubLink baby", pathSelect: "/prices/baby", type: "baby" },
-      { name: "navSubLink family", pathSelect: "/prices/family", type: "family" },
+      {
+        name: "navSubLink newborn",
+        pathSelect: "/prices/newborn",
+        type: "newborn",
+        title: "Newborn Photography Pricing",
+      },
+      { name: "navSubLink baby", pathSelect: "/prices/baby", type: "baby", title: "Baby Photography Pricing" },
+      {
+        name: "navSubLink family and pregnancy",
+        pathSelect: "/prices/family",
+        type: "family",
+        title: "Family Photography Pricing",
+      },
       // { name: "navSubLink woman", pathSelect: "/prices/woman", type: "woman" },
-      // { name: "navSubLink discharge and christening", pathSelect: "/prices/discharge-christening", type: "discharge-christening" },
+      {
+        name: "navSubLink christening",
+        pathSelect: "/prices/christening",
+        type: "christening",
+        title: "Christening Photography Pricing",
+      },
     ],
   },
   {
-    name: "",
+    name: "navLink information",
     logo: navbarLogo,
     select: [
       // {
@@ -53,16 +93,22 @@ export const links: ILink[] = [
       //   pathSelect: "/photo-products",
       //   type: "photo-products"
       // },
-      // { name: "navSubLink prepare at photo session", pathSelect: "/aboutPhotosession", type: "aboutPhotosession" },
-      { name: "navSubLink about Me", pathSelect: "/aboutMe", type: "aboutMe" },
-      { name: "navSubLink contacts", pathSelect: "/contacts", type: "contacts" },
+      {
+        name: "navSubLink prepare at photo session",
+        pathSelect: "/session-information",
+        type: "session-information",
+        title: "Session information",
+      },
+      { name: "Blog", pathSelect: "/blog", type: "blog", title: "Blog" },
+      { name: "navSubLink about Me", pathSelect: "/about", type: "about", title: "About me" },
     ],
   },
+  { name: "navSubLink contacts", path: "/contact" },
 ];
 
 export const photosCategoryInGallery: string[] = [
   "newborn",
-  "pregnancy",
+  "maternity",
   "baby",
   "family",
   "woman",

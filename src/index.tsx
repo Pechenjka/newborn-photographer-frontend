@@ -6,18 +6,24 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
-
+import PreLoader from "./components/PreLoader/PreLoader";
 import "./18n";
 
 const container = document.getElementById("root") as HTMLElement;
 
-const hydrateRoot = (component: any, rootElementId: HTMLElement) => {
-  createRoot(rootElementId).render(
+const hydrateRoot = (component: React.ReactElement) => {
+  createRoot(container).render(
     <BrowserRouter>
       <Provider store={store}>
         <HelmetProvider>
-          <Suspense fallback={<div>Loading...</div>}>
-            <StrictMode>{component}</StrictMode>
+          <Suspense
+            fallback={
+              <div style={{ margin: "100px 50px" }}>
+                <PreLoader />
+              </div>
+            }
+          >
+            {component}
           </Suspense>
         </HelmetProvider>
       </Provider>
@@ -25,4 +31,4 @@ const hydrateRoot = (component: any, rootElementId: HTMLElement) => {
   );
 };
 
-hydrateRoot(<App />, container);
+hydrateRoot(<App />);

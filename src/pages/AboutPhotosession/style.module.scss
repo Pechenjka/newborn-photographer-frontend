@@ -2,28 +2,21 @@
 
 .aboutPhotoSession {
   width: 100%;
+
   &__container {
-    max-width: 1440px;
-    margin: 40px auto;
-    padding: 0 40px;
+    max-width: 100%;
+    margin: 40px auto 0;
   }
+
   &__textContainer {
     display: flex;
   }
+
   &__title {
     font-size: 27px;
     font-weight: normal;
     color: $TextColorBrownDark;
     margin: 0 0 50px;
-  }
-  &__linkOnEditor {
-    display: block;
-    width: max-content;
-    margin: 40px auto 0;
-    text-decoration: none;
-    padding: 10px;
-    background-color: $ButtonColorPing;
-    color: $ButtonTextColorWhite;
   }
 }
 
@@ -32,6 +25,25 @@
     &__container {
       padding: 0;
     }
+
+    &__title {
+      font-size: 25px;
+      padding: 0 30px;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .aboutPhotoSession {
+    &__title {
+      font-size: 23px;
+    }
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .aboutPhotoSession {
     &__title {
       font-size: 20px;
     }

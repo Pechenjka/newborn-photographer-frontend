@@ -8,14 +8,15 @@ $colorTextOverlay: white;
   object-fit: cover;
   width: 100%;
   border-radius: 5px;
+
   &__container {
     position: relative;
     aspect-ratio: 1 / 1;
     overflow: hidden;
     max-height: 100%;
-    animation: fade-in 0.5s
-    cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+    animation: fade-in 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
   }
+
   &__container &__overlay {
     position: absolute;
     top: 0;
@@ -26,6 +27,7 @@ $colorTextOverlay: white;
     opacity: 0;
     transition: all 0.4s;
   }
+
   &__urlImage {
     display: block;
     object-fit: cover;
@@ -33,6 +35,7 @@ $colorTextOverlay: white;
     height: 100%;
     border-radius: 5px;
   }
+
   &__overlay {
     display: flex;
     flex-direction: column;
@@ -41,11 +44,13 @@ $colorTextOverlay: white;
     align-items: center;
     text-decoration: none;
   }
+
   &__overlayIcon {
     background: url("../../../../images/instagram-icon(white).svg") center no-repeat;
     width: 30px;
     height: 30px;
   }
+
   &__caption {
     color: $colorTextOverlay;
     margin-top: 10px;
@@ -65,6 +70,7 @@ $colorTextOverlay: white;
     }
   }
 }
+
 @media screen and (max-width: 320px) {
   .instagramPost {
     &__caption {

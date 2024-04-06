@@ -11,7 +11,9 @@ export const newOrder = createAsyncThunk("order/newOrder", async (data: INewOrde
     }
     return res.data;
   } catch (e) {
-    return rejectWithValue("Ошибка, не удалось отправить заказ, ведутся технические работы. В ближайшее время сможете отправить заказ")
+    return rejectWithValue(
+      "Ошибка, не удалось отправить заказ, ведутся технические работы. В ближайшее время сможете отправить заказ"
+    );
   }
 });
 
@@ -49,9 +51,9 @@ const initialState: PropsInitialStateOrderSlice = {
     getMeOrders: false,
   },
   error: {
-    newOrder: '',
-    getOrders: '',
-    getMeOrders: '',
+    newOrder: "",
+    getOrders: "",
+    getMeOrders: "",
   },
 };
 

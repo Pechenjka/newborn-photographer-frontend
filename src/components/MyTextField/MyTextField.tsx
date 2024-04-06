@@ -42,7 +42,7 @@ export const MyTextField: React.FC<PropsMyTextField> = ({
           {nameLabel}
         </label>
       )}
-      <Field className={classNameField} {...field} {...props} as={component} placeholder={placeholder}>
+      <Field className={classNameField} {...field} {...props} as={component} placeholder={placeholder} >
         {options &&
           options.map((option) => (
             <option key={option.title} value={option.value} hidden={option.hidden}>

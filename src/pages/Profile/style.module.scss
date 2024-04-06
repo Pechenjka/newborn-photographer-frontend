@@ -3,15 +3,18 @@
   flex-direction: column;
   align-items: center;
   margin: 50px 0;
+
   &__title {
     font-size: 28px;
     font-weight: bold;
   }
+
   &__container {
     margin: 30px 0;
     width: 100%;
     max-width: 600px;
   }
+
   &__cardContainer {
     list-style: none;
     border-radius: 10px;
@@ -22,12 +25,15 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
   &__cardItem {
     color: #797878;
     margin-bottom: 5px;
+
     &:last-of-type {
       margin-bottom: 0;
     }
+
     &_span {
       color: #262626;
       margin-left: 10px;

@@ -11,7 +11,7 @@ export const PostComponent: React.FC<PropsPostComponent> = ({ post }) => {
   const { width } = useWindowResize();
 
   return (
-    <li className={Style.instagramPost__container}>
+    <div className={Style.instagramPost__container}>
       <img className={Style.instagramPost__urlImage} src={post.media_url} alt="instagram post" />
       <a
         className={Style.instagramPost__overlay}
@@ -23,6 +23,6 @@ export const PostComponent: React.FC<PropsPostComponent> = ({ post }) => {
         <div className={Style.instagramPost__overlayIcon} />
         {width > 767 && <p className={Style.instagramPost__caption}>{post.username}</p>}
       </a>
-    </li>
+    </div>
   );
 };

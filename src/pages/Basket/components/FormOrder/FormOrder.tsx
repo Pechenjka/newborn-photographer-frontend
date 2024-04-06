@@ -5,13 +5,13 @@ import { MyTextField } from "../../../../components/MyTextField";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 import { FormikFormComponent } from "../../../../components/FormikFormComponent";
-import { Link } from "react-router-dom";
-import BackgroundImage from "../../../../components/BackgroundImage/BackgroundImage";
 import { Order } from "./components/Order";
 import { handleConfirmSendOrder, newOrder } from "../../../../redux/Reducers/orderSlice";
 import MessageToTheUser from "../../../../components/MessageToTheUser/MessageToTheUser";
 import { validationSchemaOrderForm } from "../../../../validationForms";
 import { useTranslation } from "react-i18next";
+import Spinner from "../../../../components/Spinner/Spinner";
+import { BackLink } from "../../../../components/BackLink";
 
 export const FormOrder: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -60,27 +60,27 @@ export const FormOrder: React.FC = () => {
 
   return (
     <Fragment>
-      <BackgroundImage />
       <section className={Styles.formOrder}>
-        {confirmSendOrder ? (
+        {confirmSendOrder && !loading.newOrder ? (
           <MessageToTheUser title={t("checkout order")} onClose={handleClick} />
         ) : (
           <Fragment>
             <div className={Styles.formOrder__containerHeader}>
-              <Link className={Styles.formOrder__linkBack} to="/basket">
-                {t("checkout order back in cart")}
-              </Link>
+              <BackLink linkName={t("checkout order back in cart")} path={navigate(-1)} />
               <h3 className={Styles.formOrder__formTitle}>{t("checkout order title")}</h3>
             </div>
             <div className={Styles.formOrder__containerOrder}>
               <Order orderData={packetsInOrder} title={`${t("order table title")}`} />
             </div>
+            {loading.newOrder && (
+              <div style={{ margin: "20px auto" }}>
+                <Spinner />
+              </div>
+            )}
             {error.newOrder ? (
               <p className={Styles.formOrder__formDescription_error}>{error.newOrder}</p>
             ) : (
-              <p className={Styles.formOrder__formDescription}>
-                {t("checkout order contacts")}
-              </p>
+              <p className={Styles.formOrder__formDescription}>{t("checkout order contacts")}</p>
             )}
 
             <FormikFormComponent

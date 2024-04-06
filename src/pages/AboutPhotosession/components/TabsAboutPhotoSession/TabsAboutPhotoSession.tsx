@@ -6,37 +6,27 @@ import { PropsDataTabs, PropsText } from "../../../../types";
 import { Button } from "../../../../components/Button";
 import { deleteTextBlock, handlerEditNote, handlerEditTextBlock } from "../../../../redux/Reducers/editorSlice";
 import { useDisabledScroll } from "../../../../hooks/useDisabledScroll";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { MetaData } from "../../../../helpers/MetaData";
+import JsonLd from "../../../../helpers/JsonLD";
 
-export const TabsAboutPhotoSession: React.FC = () => {
+export interface PropsTabsAboutPhotoSession {
+  session: PropsDataTabs;
+}
+
+export const TabsAboutPhotoSession: React.FC<PropsTabsAboutPhotoSession> = ({ session }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { aboutPhotoSession, error, loading, textBlock, editNote } = useAppSelector((state) => state.editor);
+  const { pathname } = useLocation();
+  const { error, textBlock } = useAppSelector((state) => state.editor);
   const { user } = useAppSelector((state) => state.user);
   const [openNote, setOpenNote] = useState<boolean>(false);
   const { handlerDisabledScroll } = useDisabledScroll;
-
   const cx = classNames.bind(Styles);
+
   const StyleCoverContainerNote = cx("tabs__coverContainerNote", {
     tabs__coverContainerNote_open: openNote,
   });
-
-  const dataTabs: PropsDataTabs[] = [
-    {
-      labelName: "Фотосессия новорожденного",
-      id: "tab-btn-1",
-      idContent: "content-1",
-      getText: aboutPhotoSession.newborn,
-      defaultChecked: true,
-    },
-    {
-      labelName: "Семейная фотосессия",
-      id: "tab-btn-2",
-      idContent: "content-2",
-      getText: aboutPhotoSession.family,
-      defaultChecked: false,
-    },
-  ];
 
   useEffect(() => {
     handlerDisabledScroll(openNote);
@@ -65,55 +55,124 @@ export const TabsAboutPhotoSession: React.FC = () => {
     navigate("/editor");
   };
 
+  const webPageDataSession = {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": `https://alenalobacheva.com${pathname}#webpage-${session.labelName}`,
+    name: session.metaTitle,
+    description: session.metaDescription,
+    image: "https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp",
+    url: `https://alenalobacheva.com${pathname}`,
+    potentialAction: {
+      "@type": "ReadAction",
+    },
+  };
+
+  const localBusinessDataSession = {
+    "@context": "http://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `https://alenalobacheva.com${pathname}#localbusiness-${session.labelName}`,
+    name: session.metaTitle,
+    description: session.metaDescription,
+    image: session.metaImage,
+    url: `https://alenalobacheva.com${pathname}`,
+    telephone: "+1-516-468-4837",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "New York", // Город
+      addressRegion: "NY", // Штат или регион
+      addressCountry: "US", // Страна
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+1-516-468-4837", // Ваш номер телефона
+      contactType: "customer support", // Тип контактной информации
+    },
+    geo: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: "40.4251", // Широта вашего местоположения
+        longitude: "74.0021", // Долгота вашего местоположения
+      },
+      geoRadius: "200.0", // Радиус области в километрах (примерно)
+    },
+
+    sameAs: [
+      "https://www.instagram.com/lobachevaphotography/",
+      "https://www.facebook.com/Alen4ikLobacheva?mibextid=9R9pXO",
+      "https://www.tiktok.com/@lobachevaphotography/",
+    ],
+  };
+
+  const serviceDataSession = {
+    "@context": "http://schema.org",
+    "@type": "Service",
+    "@id": `https://alenalobacheva.com${pathname}#service-${session.labelName}`,
+    name: session.metaTitle,
+    description: session.metaDescription,
+    serviceType: "Photography",
+    areaServed: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: "40.4251",
+        longitude: "74.0021",
+      },
+      geoRadius: "200.0",
+    },
+  };
+  console.log(session.getText)
   return (
-    <ul className={Styles.tabs}>
-      {dataTabs.map((item: PropsDataTabs) => {
-        return (
-          <Fragment key={item.id}>
-            <input
-              className={Styles.tabs__radio}
-              type="radio"
-              name="tab"
-              id={item.id}
-              defaultChecked={item.defaultChecked}
-            />
-            <label className={Styles.tabs__labelRadio} htmlFor={item.id}>
-              {item.labelName}
-            </label>
-            <div className={Styles.tabs__content} id={item.idContent}>
-              {error.getTextsAboutPhotoSession ? (
-                <p>{error.getTextsAboutPhotoSession}</p>
-              ) : (
-                item.getText?.map((el: PropsText, index: number) => {
-                  const showTabs = textBlock?._id === el._id;
-                  return (
-                    <div className={Styles.tabs__textContainer} key={index}>
-                      <div className={Styles.tabs__blockText} dangerouslySetInnerHTML={{ __html: el.text }} />
-                      {user.role.includes("ADMIN") && (
-                        <div className={Styles.tabs__noteContainer}>
-                          <button
-                            className={Styles.tabs__noteButton}
-                            onClick={() => handlerOpenNoteTextBlock(item.getText, el._id)}
-                          />
-                          <div className={StyleCoverContainerNote} onClick={handlerCloseNoteTextBlock} />
-                          <div className={`${Styles.tabs__note} ${showTabs && Styles.tabs__note_open}`}>
-                            <Button styleButton="simply" type="button" onClick={handleEditTextBlock}>
-                              Редактировать
-                            </Button>
-                            <Button styleButton="simply" type="button" onClick={() => handlerDeleteTExtBlock(el._id)}>
-                              Удалить блок
-                            </Button>
-                          </div>
-                        </div>
-                      )}
+    <div className={Styles.tabs}>
+      <JsonLd data={webPageDataSession} />
+      <JsonLd data={localBusinessDataSession} />
+      <JsonLd data={serviceDataSession} />
+      <MetaData
+        title={session.metaTitle}
+        description={session.metaDescription}
+        canonicalLink={`https://alenalobacheva.com${pathname}`}
+        imageAltOG={session.metaImage}
+        imageOG={session.metaImage}
+        titleOG={session.metaTitle}
+        descriptionOG={session.metaDescription}
+      />
+      <h1 className={Styles.tabs__title}>{`What you need to know for a ${session.nameSession} photo shoot`}</h1>
+      <Fragment key={session.id}>
+        <input className={Styles.tabs__radio} type="radio" name="tab" id={session.id} defaultChecked={true} />
+        <label className={Styles.tabs__labelRadio} htmlFor={session.id} />
+        <div className={Styles.tabs__content} id={session.idContent}>
+          {error.getTextsAboutPhotoSession ? (
+            <p>{error.getTextsAboutPhotoSession}</p>
+          ) : (
+            session.getText?.map((el: PropsText, index: number) => {
+              const showTabs = textBlock?._id === el._id;
+              return (
+                <div className={Styles.tabs__textContainer} key={index}>
+                  <div className={Styles.tabs__blockText} dangerouslySetInnerHTML={{ __html: el.text }} />
+                  {user.role.includes("ADMIN") && (
+                    <div className={Styles.tabs__noteContainer}>
+                      <button
+                        className={Styles.tabs__noteButton}
+                        onClick={() => handlerOpenNoteTextBlock(session.getText, el._id)}
+                      />
+                      <div className={StyleCoverContainerNote} onClick={handlerCloseNoteTextBlock} />
+                      <div className={`${Styles.tabs__note} ${showTabs && Styles.tabs__note_open}`}>
+                        <Button styleButton="simply" type="button" onClick={handleEditTextBlock}>
+                          Редактировать
+                        </Button>
+                        <Button styleButton="simply" type="button" onClick={() => handlerDeleteTExtBlock(el._id)}>
+                          Удалить блок
+                        </Button>
+                      </div>
                     </div>
-                  );
-                })
-              )}
-            </div>
-          </Fragment>
-        );
-      })}
-    </ul>
+                  )}
+                </div>
+              );
+            })
+          )}
+        </div>
+      </Fragment>
+    </div>
   );
 };

@@ -1,9 +1,9 @@
 import "./PhotoGallery.scss";
 import React, { Fragment, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import Photos from "../../components/Photos/Photos";
 import { photosCategoryInGallery } from "../../utils/config";
+import { motion } from "framer-motion";
 import {
   fetchPhotos,
   handlerShowAddPhotos,
@@ -17,16 +17,21 @@ import { Button } from "../../components/Button";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import { MetaData } from "../../helpers/MetaData";
 import { useTranslation } from "react-i18next";
+import { animationTitleCategory } from "../../helpers/framerMotion";
+import JsonLd from "../../helpers/JsonLD";
+import { useWindowResize } from "../../hooks/useWindowResize";
 
 const PhotoGallery: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  const { width } = useWindowResize();
   const { showPhotos, getPhotos, loading, error, openChangeSortPhotos, photoCategories } = useAppSelector(
     (state) => state.photos
   );
   const { user } = useAppSelector((state) => state.user);
   const { language } = useAppSelector((state) => state.app);
   const { t } = useTranslation();
+
   useEffect(() => {
     photosCategoryInGallery.some((item: string) => {
       if (pathname.includes(item)) {
@@ -40,13 +45,13 @@ const PhotoGallery: React.FC = () => {
   }, []);
 
   const addPhotos = (photos: IPhoto[]): IPhoto[] => {
-    if (window.innerWidth >= 1025) {
+    if (width >= 1025) {
       return getPhotos.slice(0, photos.length + 4);
     }
-    if (window.innerWidth >= 769) {
+    if (width >= 769) {
       return getPhotos.slice(0, photos.length + 3);
     }
-    if (window.innerWidth >= 320) {
+    if (width >= 320) {
       return getPhotos.slice(0, photos.length + 2);
     }
     return getPhotos;
@@ -67,38 +72,98 @@ const PhotoGallery: React.FC = () => {
     }
   };
 
+  const typePhoto: string = photosCategoryInGallery.filter((item) => pathname.includes(item) && item).join("");
+
+  const webPageDataGallery = {
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": `https://alenalobacheva.com${pathname}#webpage-gallery`,
+    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)
+    } Photographer in NYC`,
+    description: `Magic of ${
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)
+    } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)} session today`,
+    image: `https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`,
+    url: `https://alenalobacheva.com${pathname}`,
+    potentialAction: {
+      "@type": "ReadAction",
+    },
+  };
+
+  const localBusinessDataGallery = {
+    "@context": "http://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `https://alenalobacheva.com${pathname}#localbusiness-gallery`,
+    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)
+    } Photographer in NYC`,
+    description: `Magic of ${
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)
+    } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)} session today`,
+    image: `https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`,
+    url: `https://alenalobacheva.com${pathname}`,
+    telephone: "+1-516-468-4837",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "New York", // Город
+      addressRegion: "NY", // Штат или регион
+      addressCountry: "US", // Страна
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+1-516-468-4837", // Ваш номер телефона
+      contactType: "customer support", // Тип контактной информации
+    },
+    geo: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: "40.4251", // Широта вашего местоположения
+        longitude: "74.0021", // Долгота вашего местоположения
+      },
+      geoRadius: "200.0", // Радиус области в километрах (примерно)
+    },
+    sameAs: [
+      "https://www.instagram.com/lobachevaphotography/",
+      "https://www.facebook.com/Alen4ikLobacheva?mibextid=9R9pXO",
+      "https://www.tiktok.com/@lobachevaphotography/",
+    ],
+  };
+
   return (
     <Fragment>
+      <JsonLd data={webPageDataGallery} />
+      <JsonLd data={localBusinessDataGallery} />
       <MetaData
-        title={`Photo gallery - ${photosCategoryInGallery.filter(
-          (item) => pathname.includes(item) && item
-        )} | Family photographer in New York Alena Lobacheva`}
-        description={`Author's retouch - ${photosCategoryInGallery.filter(
-          (item) => pathname.includes(item) && item
-        )}. Save beautiful moments for the hole life.`}
-        canonicalLink={`https://alenalobacheva.net${pathname}`}
+        title={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography | Alena Lobacheva Photographer NYC`}
+      description={`Magic of ${
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)
+    } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)}  session today`}
+        canonicalLink={`https://alenalobacheva.com${pathname}`}
+        imageOG={`https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`}
+        imageAltOG={`${typePhoto} photography`}
+        titleOG={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+          typePhoto[0].toUpperCase() + typePhoto.slice(1)
+        } Photographer in NYC`}
+        descriptionOG={`Magic of ${
+          typePhoto[0].toUpperCase() + typePhoto.slice(1)
+        } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
+          typePhoto[0].toUpperCase() + typePhoto.slice(1)}  session today`}
       />
-      <section className="photoGallery" id="photoGallery">
-        <BackgroundImage />
+      <motion.section className="photoGallery" id="photoGallery" initial="hidden" animate="visible">
         {photoCategories.map((item: ICategory, index: number) => {
           return (
             pathname.includes(item.title) && (
-              <h1 className="photoGallery__title" key={index}>
-                {language === "en" ? item.nameEN : item.nameRU}
-              </h1>
+              <motion.h1 variants={animationTitleCategory} className="photoGallery__title" key={index}>
+                {`${language === "en" ? item.nameEN : item.nameRU} ${language === "en" ? "photography" : ""}`}
+              </motion.h1>
             )
           );
         })}
-        {/*{photosCategoryInGallery.map((item: string, index: number) => {*/}
-        {/*  const title = item.split("").slice(1).join("");*/}
-        {/*  return (*/}
-        {/*    pathname.includes(item) && (*/}
-        {/*      <h1 className="photoGallery__title" key={index}>*/}
-        {/*        {item[0].toUpperCase() + title}*/}
-        {/*      </h1>*/}
-        {/*    )*/}
-        {/*  );*/}
-        {/*})}*/}
         {loading ? (
           <div style={{ height: "1000px" }}>
             <PreLoader />
@@ -110,14 +175,18 @@ const PhotoGallery: React.FC = () => {
                 {!openChangeSortPhotos ? "Изменить последовательность фотографий" : "Сохранить"}
               </Button>
             )}
-            <Photos photoPostPage={PhotoPostPage.photoGalleryPage} />
+            {showPhotos?.length > 0 && (
+              <Photos
+                onClick={handlerClickAddPhotos}
+                hide={handlerHideButton}
+                photoPostPage={PhotoPostPage.photoGalleryPage}
+                buttonName={t("photo gallery btn more")}
+              />
+            )}
           </>
         )}
         {error && <p>{error}</p>}
-        <Button styleButton="ping" onClick={handlerClickAddPhotos} type="button" hide={handlerHideButton}>
-          {t("photo gallery btn more")}
-        </Button>
-      </section>
+      </motion.section>
     </Fragment>
   );
 };

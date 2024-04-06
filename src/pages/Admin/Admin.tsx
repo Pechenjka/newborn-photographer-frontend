@@ -11,12 +11,13 @@ export const Admin: React.FC = () => {
   const linksListAdmin: ILinkListAdmin[] = [
     { title: "Добавить новый пакет", path: `${pathname}/addNewPacket` },
     { title: "Добавить фотографию в фотогалерею", path: `${pathname}/addNewPhoto` },
-    { title: "Список заказов", path: `${pathname}/orderList` },
+    { title: "Add new article in the blog", path: `${pathname}/article-in-blog` },
+    // { title: "Список заказов", path: `${pathname}/orderList` },
   ];
 
   return (
     <div className={Styles.admin}>
-      <AdminContainer title="Админка" linkBack={{ title: "Вернуться на сайт", link: "/" }}>
+      <AdminContainer title="Admin-panel" linkBack={{ title: "Вернуться на сайт", link: "/" }}>
         <LinkList links={linksListAdmin} />
       </AdminContainer>
     </div>

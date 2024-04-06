@@ -1,80 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+  <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
-<url>
-  <loc>https://alenalobacheva.com/</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/photoGallery/newborn</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/photoGallery/pregnancy</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/photoGallery/baby</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/photoGallery/family</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/photoGallery/woman</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/photoGallery/discharge</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/photoGallery/christening</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/prices/newborn</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/prices/baby</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/prices/family</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
   <url>
-    <loc>https://alenalobacheva.com/prices/christening</loc>
-    <lastmod>2023-05-31T17:03:20+00:00</lastmod>
+    <loc>https://alenalobacheva.com</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/gallery/newborn</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
     <priority>0.80</priority>
   </url>
-<url>
-  <loc>https://alenalobacheva.com/aboutMe</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://alenalobacheva.com/contact</loc>
-  <lastmod>2023-05-31T17:03:20+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
+  <url>
+    <loc>https://alenalobacheva.com/gallery/maternity</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/gallery/baby</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/gallery/family</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/gallery/woman</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/gallery/discharge</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/gallery/christening</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/prices/newborn</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/prices/baby</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/prices/family</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/prices/christening</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/about</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/contact</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/session-information</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/newborn-session</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/family-session</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/blog</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/fall-session-in-fort-tryon-park-nyc</loc>
+    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/blog/how-to-avoid-anxiety-and-worries-during-a-newborn-photoshoot</loc>
+    <lastmod>2024-02-22T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://alenalobacheva.com/blog/what-to-do-if-the-baby-does-not-sleep</loc>
+    <lastmod>2024-03-22T03:38:31+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
 </urlset>

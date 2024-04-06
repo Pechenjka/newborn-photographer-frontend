@@ -7,9 +7,8 @@ import { handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 import { getTextOnPage } from "../../redux/Reducers/editorSlice";
 import { RouterComponent } from "../../router";
-import { handleSetLanguage } from "../../redux/Reducers/appSlice";
-import i18next from "i18next";
 import { ScrollUp } from "../ScrollUp";
+import { fetchArticlesUrl, fetchBlogArticles } from "../../redux/Reducers/blogSlice";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,9 +21,11 @@ const App: React.FC = () => {
   }, [pathname]);
 
   useEffect(() => {
-    const activeLang = sessionStorage.getItem("lng") as string;
-    activeLang && dispatch(handleSetLanguage(activeLang));
-    i18next.changeLanguage(activeLang).then((res) => res);
+    dispatch(fetchArticlesUrl());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchBlogArticles());
   }, []);
 
   useEffect(() => {

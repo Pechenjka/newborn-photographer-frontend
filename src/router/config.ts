@@ -7,11 +7,11 @@ import PhotoGallery from "../pages/PhotoGallery/PhotoGallery";
 import Prices from "../pages/Prices/Prices";
 import Contacts from "../pages/Contacts/Contacts";
 import Basket from "../pages/Basket/Basket";
-import { PacketWithDetailsDescription } from "../components/PacketWithDetailsDescription";
-import PhotoProducts from "../pages/PhotoProducts/PhotoProducts";
+//import { PacketWithDetailsDescription } from "../components/PacketWithDetailsDescription";
+//import PhotoProducts from "../pages/PhotoProducts/PhotoProducts";
 import NotFound from "../pages/NotFound/NotFound";
 import { Login } from "../components/Login";
-import { Register } from "../components/Register";
+//import { Register } from "../components/Register";
 import { IRoute } from "../types";
 import { AddNewPhoto } from "../pages/Admin/components/AddNewPhoto";
 import { FormOrder } from "../pages/Basket/components/FormOrder";
@@ -20,23 +20,27 @@ import { SendOnEmailActivateLink } from "../components/SendOnEmailActivateLink";
 import { PasswordChange } from "../components/PasswordChange";
 import { AboutPhotoSession } from "../pages/AboutPhotosession";
 import { EditorPage } from "../components/EditorPage";
+import { PhotoSessionDetails } from "../pages/AboutPhotosession/components/PhotoSessionDetails";
+import { Blog } from "../pages/Blog";
+import { AddArticleInBlog } from "../pages/Admin/components/AddArticleInBlog";
+import { BlogArticleDetails } from "../pages/Blog/components/BlogArticleDetails";
 
 export const routes: IRoute[] = [
   { component: Main, path: "", name: "main", isAdmin: false, isAuth: false, index: true },
-  { component: AboutMe, path: "aboutMe", name: "aboutMe", isAdmin: false, isAuth: false },
+  { component: AboutMe, path: "about", name: "about", isAdmin: false, isAuth: false },
   {
     component: PhotoGallery,
-    path: "photoGallery",
+    path: "gallery",
     subPath: [
-      "photoGallery/newborn",
-      "photoGallery/pregnancy",
-      "photoGallery/baby",
-      "photoGallery/family",
-      "photoGallery/woman",
-      "photoGallery/discharge",
-      "photoGallery/christening",
+      "gallery/newborn",
+      "gallery/maternity",
+      "gallery/baby",
+      "gallery/family",
+      "gallery/woman",
+      "gallery/discharge",
+      "gallery/christening",
     ],
-    name: "photoGallery",
+    name: "gallery",
     isAdmin: false,
     isAuth: false,
   },
@@ -49,18 +53,18 @@ export const routes: IRoute[] = [
       "prices/baby",
       "prices/family",
       // "prices/woman",
-      // "prices/discharge-christening",
+      "prices/christening",
     ],
     name: "prices",
     isAdmin: false,
     isAuth: false,
   },
-  { component: Contacts, path: "contacts", name: "contacts", isAdmin: false, isAuth: false },
+  { component: Contacts, path: "contact", name: "contact", isAdmin: false, isAuth: false },
   { component: Basket, path: "basket", name: "basket", isAdmin: false, isAuth: false, protectRouteBasket: true },
   // { component: PhotoProducts, path: "photo-products", name: "photo-products", isAdmin: false, isAuth: false },
-  { component: NotFound, path: "not-found", name: "not-found", isAdmin: false, isAuth: false },
-  //{ component: Login, path: "signin", name: "signin", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
- // { component: Register, path: "signup", name: "signup", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
+
+  { component: Login, path: "signin", name: "signin", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
+  // { component: Register, path: "signup", name: "signup", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },
   {
     component: SendOnEmailActivateLink,
     path: "forgot",
@@ -77,28 +81,58 @@ export const routes: IRoute[] = [
     isAuth: false,
     withOutHeaderAndFooter: true,
   },
-  // {
-  //   component: AboutPhotoSession,
-  //   path: "aboutPhotosession",
-  //   name: "aboutPhotosession",
-  //   isAdmin: false,
-  //   isAuth: false,
-  // },
-  { component: FormOrder, path: "/checkout", name: "checkout", isAdmin: false, isAuth: false },
+  {
+    component: AboutPhotoSession,
+    path: "session-information",
+    name: "session-information",
+    isAdmin: false,
+    isAuth: false,
+  },
+  {
+    component: PhotoSessionDetails,
+    path: "newborn-session",
+    name: "newborn-session",
+    isAdmin: false,
+    isAuth: false,
+  },
+  {
+    component: PhotoSessionDetails,
+    path: "family-session",
+    name: "family-session",
+    isAdmin: false,
+    isAuth: false,
+  },
+  {
+    component: BlogArticleDetails,
+    path: "blog/:url",
+    name: "articleDetail",
+    isAdmin: false,
+    isAuth: false,
+  },
+  {
+    component: Blog,
+    path: "blog",
+    name: "blog",
+    isAdmin: false,
+    isAuth: false,
+  },
+
+  { component: FormOrder, path: "checkout", name: "checkout", isAdmin: false, isAuth: false },
+  { component: NotFound, path: "not-found", name: "not-found", isAdmin: false, isAuth: false },
 ];
 
 export const ProtectRoutes = [
   { component: Admin, path: "admin", name: "adminName", isAdmin: true, isAuth: false },
-  //{ component: Profile, path: "profile", name: "profile", isAdmin: false, isAuth: true },
+  { component: Profile, path: "profile", name: "profile", isAdmin: false, isAuth: true },
   { component: EditorPage, path: "editor", name: "editor", isAdmin: true, isAuth: false },
 ];
 
 export const subRoutes = [
   {
-    component: PacketWithDetailsDescription,
-    path: "prices/packets/:id",
-    name: "paket",
-    isAdmin: false,
+    component: AddArticleInBlog,
+    path: "admin/article-in-blog",
+    name: "AddArticleInBlog",
+    isAdmin: true,
     isAuth: false,
   },
   { component: AddNewPacket, path: "admin/addNewPacket", name: "addNewPacket", isAdmin: true, isAuth: false },

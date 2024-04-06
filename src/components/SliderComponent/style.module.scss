@@ -18,7 +18,6 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
   height: 100px;
   z-index: 10;
   cursor: pointer;
-
   position: absolute;
   top: 50%;
   transform: translateY(-50px);
@@ -28,13 +27,16 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
   color: $colorArrow;
   border-radius: 20px;
   transition: all 0.3s;
+
   &:hover {
     background-color: $colorBackgroundArrowHover;
     color: $colorArrowHover;
   }
+
   &_prev {
     left: 100px;
   }
+
   &_next {
     right: 100px;
   }
@@ -45,6 +47,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
   height: 640px;
   width: 100%;
   box-sizing: border-box;
+
   &__welcomeContainer {
     display: flex;
     position: absolute;
@@ -57,9 +60,11 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     transform: translateX(-50%);
     z-index: 10;
   }
+
   &__aboutMeContainer {
     text-align: left;
   }
+
   &__welcomeTitle {
     display: block;
     width: max-content;
@@ -70,26 +75,20 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: all 1s;
+
     &_span {
       font-size: 35px;
-        font-weight: 700;
-        background: -webkit-linear-gradient(#ff9696, #ffe89e);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      background: -webkit-linear-gradient(#ff9696, #ffe89e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    //&::before {
-    //  content: "Привет!";
-    //  display: inline-block;
-    //  font-size: 35px;
-    //  font-weight: 700;
-    //  background: -webkit-linear-gradient(#ff9696, #ffe89e);
-    //  -webkit-background-clip: text;
-    //  -webkit-text-fill-color: transparent;
-    //}
   }
+
   &__welcomeDescription {
     margin: 10px 0 0;
     width: max-content;
+    max-width: 100%;
     font-size: 16px;
     line-height: 19px;
     font-weight: 400;
@@ -97,6 +96,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     transition: all 1s 0.4s;
     color: $colorText;
   }
+
   &__welcomeLink {
     display: flex;
     justify-content: center;
@@ -113,6 +113,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     color: $colorText;
     transition: transform 1s 0.6s, opacity 1s 0.6s, background 0.6s;
     text-decoration: none;
+
     &:hover {
       cursor: pointer;
       background-color: $colorBackgroundLinkHover;
@@ -136,6 +137,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     width: 100%;
     height: 100%;
   }
+
   &__linkAboutNewbornContainer {
     display: flex;
     justify-content: end;
@@ -143,6 +145,7 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     width: 100%;
     text-align: end;
   }
+
   &__linkAboutNewborn {
     height: max-content;
     animation: animationLinkAboutNewborn 2.5s infinite;
@@ -152,13 +155,14 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     background-color: #ff9696;
     padding: 10px;
     border-radius: 15px;
+
     &:hover {
       cursor: pointer;
     }
   }
 }
 
-@media screen and(max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .slideShow {
     &__linkAboutNewborn {
       max-width: min-content;
@@ -169,24 +173,26 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
   }
 }
 
-@media screen and(max-width: 768px) {
+@media screen and (max-width: 768px) {
   .slideShow {
     height: 650px;
+
     &__welcomeContainer {
       padding: 0 20px;
     }
+
     &__aboutMeContainer {
     }
+
     &__welcomeTitle {
       font-size: 40px;
       font-weight: 700;
+
       &_span {
         font-size: 30px;
       }
-      //&::before {
-      //  font-size: 30px;
-      //}
     }
+
     &__welcomeDescription {
       font-size: 15px;
     }
@@ -194,37 +200,41 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
   .swiperBtn {
     border-radius: 0;
     background-color: transparent;
+
     &_prev {
       left: 20px;
     }
+
     &_next {
       right: 20px;
     }
   }
 }
 
-@media screen and(max-width: 568px) {
+@media screen and (max-width: 568px) {
   .slideShow {
     height: 550px;
+
     &__welcomeTitle {
       font-size: 30px;
+
       &_span {
         font-size: 20px;
       }
-      //&::before {
-      //  font-size: 20px;
-      //}
     }
+
     &__welcomeDescription {
       margin: 0;
       font-size: 14px;
     }
+
     &__welcomeLink {
       width: 100px;
       height: 35px;
-      font-size: 12px;
+      font-size: 13px;
       border-radius: 10px;
     }
+
     &__linkAboutNewborn {
       font-size: 12px;
       border-radius: 10px;
@@ -232,26 +242,37 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
   }
 }
 
-@media screen and(max-width: 474px) {
+@media screen and (max-width: 500px) {
   .slideShow {
-    height: 400px;
-    &__welcomeTitle {
-      font-size: 25px;
-      &_span {
-        font-size: 18px;
-      }
-      //&::before {
-      //  font-size: 18px;
-      //}
-    }
     &__welcomeDescription {
       font-size: 12px;
       line-height: 15px;
     }
+
+  }
+
+}
+
+@media screen and (max-width: 474px) {
+  .slideShow {
+    height: 400px;
+
+    &__welcomeTitle {
+      font-size: 25px;
+
+      &_span {
+        font-size: 18px;
+      }
+    }
+
+    &__welcomeDescription {
+      width: 80%;
+    }
+
     &__welcomeLink {
       width: 90px;
-      font-size: 11px;
     }
+
     &__linkAboutNewborn {
       font-size: 11px;
     }
@@ -260,21 +281,25 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
     &_prev {
       left: 0;
     }
+
     &_next {
       right: 0;
     }
   }
 }
 
-@media screen and(max-width: 443px) {
+@media screen and (max-width: 443px) {
   .slideShow {
     height: 480px;
+
     &__welcomeContainer {
       flex-direction: column;
     }
+
     &__linkAboutNewbornContainer {
       justify-content: flex-start;
     }
+
     &__linkAboutNewborn {
       max-width: max-content;
       margin-top: 10px;
@@ -282,14 +307,16 @@ $colorArrowHover: rgba(255, 255, 255, 0.9);
   }
 }
 
-@media screen and(max-width: 413px) {
+@media screen and (max-width: 413px) {
   .slideShow {
     &__aboutMeContainer {
       display: block;
     }
+
     &__welcomeDescription {
       margin: 5px 0 0;
     }
+
     &__welcomeLink {
       margin: 8px auto 0 0;
     }

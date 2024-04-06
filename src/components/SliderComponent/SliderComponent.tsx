@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Styles from "./style.module.scss";
 import { Pagination, Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.scss";
-import "swiper/modules/navigation/navigation.scss";
-import "swiper/modules/pagination/pagination.scss";
+import "swiper/scss";
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
 import * as Scroll from "react-scroll";
 import { arrSlides } from "../../utils/config";
 import { IArrSlides } from "../../types";
@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../redux/hooks";
+import { useWindowResize } from "../../hooks/useWindowResize";
 
 export const SliderComponent: React.FC = () => {
   const navigationPrevRef = useRef(null);
@@ -21,9 +22,10 @@ export const SliderComponent: React.FC = () => {
   const { language } = useAppSelector((state) => state.app);
 
   const { t } = useTranslation();
+  const { width } = useWindowResize();
 
   const handleChangeSlide = arrSlides.map((item: IArrSlides): string => {
-    if (window.innerWidth <= 768 && item.mobile) {
+    if (width <= 768 && item.mobile) {
       return item.mobile;
     } else {
       return item.desktop;
@@ -72,7 +74,7 @@ export const SliderComponent: React.FC = () => {
               <span className={Styles.slideShow__welcomeTitle_span}>{t("mainPage hello")}</span>
               <br /> {t("mainPage nameAuthor")}
             </motion.h1>
-            <motion.p
+            <motion.h2
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
@@ -81,8 +83,8 @@ export const SliderComponent: React.FC = () => {
               {t("mainPage aboutMe 1 part")}
               <br />
               {t("mainPage aboutMe 2 part")} <br /> {t("mainPage aboutMe 3 part")}
-            </motion.p>
-            <Link className={Styles.slideShow__welcomeLink} to="/contacts">
+            </motion.h2>
+            <Link className={Styles.slideShow__welcomeLink} to="/contact" title="contact">
               {t("mainPage My contacts")}
             </Link>
           </div>
@@ -111,16 +113,17 @@ export const SliderComponent: React.FC = () => {
                   transition={{ duration: 0.7 }}
                   className={Styles.slideShow__image}
                   src={slide}
-                  alt={`${index + 1}`}
+                  alt={`photography newborn - ${index + 1} slide`}
+                  title={`photography newborn - ${index + 1} slide`}
                 />
               </SwiperSlide>
             );
           })}
         </div>
-        <button className={stylePrevBtn} ref={navigationPrevRef}>
+        <button className={stylePrevBtn} ref={navigationPrevRef} title="prev slide">
           &#10094;
         </button>
-        <button className={styleNextBtn} ref={navigationNextRef}>
+        <button className={styleNextBtn} ref={navigationNextRef} title="next slide">
           &#10095;
         </button>
       </Swiper>

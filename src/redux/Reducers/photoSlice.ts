@@ -6,7 +6,8 @@ import {
   PropsBoolean,
   PropsRandomPhotos,
   PropsAddNewPhoto,
-  PropsDeletePhoto, ICategory,
+  PropsDeletePhoto,
+  ICategory,
 } from "../../types";
 
 import { apiApp } from "../../utils/apiApp";
@@ -36,7 +37,6 @@ export const fetchPhotos = createAsyncThunk(
 export const getPhotoCategories = createAsyncThunk("photo/getPhotoCategories", async (_, { rejectWithValue }) => {
   try {
     const res = await apiApp().getPhotoCategories();
-    console.log(res.data)
     return res.data;
   } catch (e) {
     return rejectWithValue("Error, photo category has not been get!");
@@ -45,7 +45,7 @@ export const getPhotoCategories = createAsyncThunk("photo/getPhotoCategories", a
 
 export const addNewPhoto = createAsyncThunk(
   "photo/addNewPhoto",
-  async (data: PropsAddNewPhoto, { rejectWithValue }) => {
+  async (data: { type: string; image: string; order: number }, { rejectWithValue }) => {
     try {
       const res = await apiApp().uploadPhoto(data);
       return res.data;
@@ -91,7 +91,7 @@ const initialState: PropsInitialStatePhotoSlice = {
   openModalWithImage: false,
   dataForImageModal: "",
   openChangeSortPhotos: false,
-  photoCategories: []
+  photoCategories: [],
 };
 
 const photoSlice = createSlice({
@@ -114,25 +114,28 @@ const photoSlice = createSlice({
         randomN = [...randomN, action.payload.arr[randomIndex]];
         action.payload.arr.splice(randomIndex, 1);
       }
+
       const countPhotos = (arrItem: IPhoto[]): IPhoto[] => {
         if (window.innerWidth >= 1025) {
           return arrItem.slice(0, 12);
         }
         if (window.innerWidth > 768) {
-          return arrItem.slice(0, 9);
+          return arrItem.slice(0, 10);
         }
         if (window.innerWidth > 568) {
           return arrItem.slice(0, 8);
         }
         if (window.innerWidth >= 320) {
-          return arrItem.slice(0, 5);
+          return arrItem.slice(0, 6);
         }
         return arrItem;
       };
       state.showPhotos = countPhotos(randomN);
     },
     handlerSortPhotos: (state, action: PropsArrPhotos) => {
-      action.payload.sort((a: any, b: any) => a.order - b.order);
+      // console.log(action.payload)
+      const sortArr = action.payload.sort((a: any, b: any) => (a.order > b.order ? -1 : 0));
+      // sortArr.sort((a: any, b: any) => b.order - a.order);
 
       const countSortPhotos = (arrItem: IPhoto[]): IPhoto[] => {
         if (window.innerWidth >= 1025) {
@@ -145,11 +148,11 @@ const photoSlice = createSlice({
           return arrItem.slice(0, 8);
         }
         if (window.innerWidth >= 320) {
-          return arrItem.slice(0, 5);
+          return arrItem.slice(0, 6);
         }
         return arrItem;
       };
-      state.showPhotos = countSortPhotos(action.payload);
+      state.showPhotos = countSortPhotos(sortArr);
     },
 
     handlerShowAddPhotos: (state, action: PropsArrPhotos) => {

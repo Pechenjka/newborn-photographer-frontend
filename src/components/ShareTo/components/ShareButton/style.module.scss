@@ -1,0 +1,10 @@
+.shareArticle {
+  &__link {
+    display: block;
+  }
+
+  &__pinterest {
+    display: block;
+    object-fit: contain;
+  }
+}

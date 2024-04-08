@@ -1,94 +1,119 @@
 import React from "react";
 import navbarLogo from "../images/navbar-menu.webp";
-import image1 from "../images/slider/slider-one.webp";
-import imageMobile1 from "../images/slider/mobile/slide-mobile-1.webp";
-import image2 from "../images/slider/slider-two.webp";
-import imageMobile2 from "../images/slider/mobile/slide-mobile-2.webp";
-import image3 from "../images/slider/slider-three.webp";
-import imageMobile3 from "../images/slider/mobile/slide-mobile-3.webp";
-import image4 from "../images/slider/slider-four.webp";
-import imageMobile4 from "../images/slider/mobile/slide-mobile-4.webp";
-import image5 from "../images/slider/slider-five.webp";
-import imageMobile5 from "../images/slider/mobile/slide-mobile-5.webp";
-import { IArrSlides, ILink, IPhotosCategoryInGallery, IPhotosCategoryInMainPage, ITablesPhotoProducts } from "../types";
+import { IArrSlides, ILink, IPhotosCategoryInMainPage, ITablesPhotoProducts } from "../types";
 
 export const arrSlides: IArrSlides[] = [
-  { desktop: image1, mobile: imageMobile1 },
-  { desktop: image2, mobile: imageMobile2 },
-  { desktop: image3, mobile: imageMobile3 },
-  { desktop: image4, mobile: imageMobile4 },
-  { desktop: image5, mobile: imageMobile5 },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-1.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-1.webp",
+  },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-2.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-2.webp",
+  },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-3.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-3.webp",
+  },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-4.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-4.webp",
+  },
+  {
+    desktop: "https://cdn.alenalobacheva.com/staticPhotos/slider/desktop/slide-desktop-5.webp",
+    mobile: "https://cdn.alenalobacheva.com/staticPhotos/slider/mobile/slide-mobile-5.webp",
+  },
 ];
 
 export const links: ILink[] = [
-  { name: "Главная", path: "/" },
+  { name: "navLink main", path: "/" },
   {
-    name: "Фотогалерея",
-    select: [
-      { name: "Новорожденные", pathSelect: "/photoGallery/newborn", type: "newborn" },
-      { name: "В ожидании чуда", pathSelect: "/photoGallery/pregnancy", type: "pregnancy" },
-      { name: "Малыши до 1 года", pathSelect: "/photoGallery/baby", type: "baby" },
-      { name: "Семейная фотоссесия", pathSelect: "/photoGallery/family", type: "family" },
-      { name: "Woman фотосъемка", pathSelect: "/photoGallery/woman", type: "woman" },
-      { name: "Выписка из роддома", pathSelect: "/photoGallery/discharge", type: "discharge" },
-      { name: "Крещение", pathSelect: "/photoGallery/christening", type: "christening" },
-    ],
-  },
-  {
-    name: "Услуги и цены",
-    select: [
-      { name: "Новорожденные", pathSelect: "/prices/newborn", type: "newborn" },
-      { name: "Малыши до 1 года", pathSelect: "/prices/baby", type: "baby" },
-      { name: "Семейная фотоссесия", pathSelect: "/prices/family", type: "family" },
-      { name: "Woman фотосъемка", pathSelect: "/prices/woman", type: "woman" },
-      { name: "Выписка и крещение", pathSelect: "/prices/discharge-christening", type: "discharge-christening" },
-    ],
-  },
-  {
-    name: "",
-    logo: navbarLogo,
+    name: "navLink photo gallery",
     select: [
       {
-        name: "Фотопродукция",
-        pathSelect: "/photo-products",
-        type: "photo-products"
+        name: "navLink newborn",
+        pathSelect: "/gallery/newborn",
+        type: "newborn",
+        title: "Newborn Photography Gallery",
       },
-      { name: "Подготовка к съемке", pathSelect: "/aboutPhotosession", type: "aboutPhotosession" },
-      { name: "Обо мне", pathSelect: "/aboutMe", type: "aboutMe" },
-      { name: "Контакты", pathSelect: "/contacts", type: "contacts" },
+      {
+        name: "navLink maternity",
+        pathSelect: "/gallery/maternity",
+        type: "maternity",
+        title: "Maternity Photography Gallery",
+      },
+      { name: "navLink baby", pathSelect: "/gallery/baby", type: "baby", title: "Baby Photography Gallery" },
+      { name: "navLink family", pathSelect: "/gallery/family", type: "family", title: "Family Photography Gallery" },
+      { name: "navLink woman", pathSelect: "/gallery/woman", type: "woman", title: "Woman Photography Gallery" },
+      {
+        name: "navLink discharge",
+        pathSelect: "/gallery/discharge",
+        type: "discharge",
+        title: "Discharge Photography Gallery",
+      },
+      {
+        name: "navLink christening",
+        pathSelect: "/gallery/christening",
+        type: "christening",
+        title: "Christening Photography Gallery",
+      },
     ],
   },
+  {
+    name: "navLink prices and services",
+    select: [
+      {
+        name: "navSubLink newborn",
+        pathSelect: "/prices/newborn",
+        type: "newborn",
+        title: "Newborn Photography Pricing",
+      },
+      { name: "navSubLink baby", pathSelect: "/prices/baby", type: "baby", title: "Baby Photography Pricing" },
+      {
+        name: "navSubLink family and pregnancy",
+        pathSelect: "/prices/family",
+        type: "family",
+        title: "Family Photography Pricing",
+      },
+      // { name: "navSubLink woman", pathSelect: "/prices/woman", type: "woman" },
+      {
+        name: "navSubLink christening",
+        pathSelect: "/prices/christening",
+        type: "christening",
+        title: "Christening Photography Pricing",
+      },
+    ],
+  },
+  {
+    name: "navLink information",
+    logo: navbarLogo,
+    select: [
+      // {
+      //   name: "Фотопродукция",
+      //   pathSelect: "/photo-products",
+      //   type: "photo-products"
+      // },
+      {
+        name: "navSubLink prepare at photo session",
+        pathSelect: "/session-information",
+        type: "session-information",
+        title: "Session information",
+      },
+      { name: "Blog", pathSelect: "/blog", type: "blog", title: "Blog" },
+      { name: "navSubLink about Me", pathSelect: "/about", type: "about", title: "About me" },
+    ],
+  },
+  { name: "navSubLink contacts", path: "/contact" },
 ];
 
-export const photosCategoryInGallery: IPhotosCategoryInGallery[] = [
-  {
-    title: "Новорожденные",
-    type: "newborn",
-  },
-  {
-    title: "В ожидании чуда",
-    type: "pregnancy",
-  },
-  {
-    title: "Малыши до 1 года",
-    type: "baby",
-  },
-  {
-    title: "Семейная фотоссесия",
-    type: "family",
-  },
-  {
-    title: "Woman съемка",
-    type: "woman",
-  },
-  {
-    title: "Выписка из роддома",
-    type: "discharge",
-  },
-  {
-    title: "Крещение",
-    type: "christening",
-  },
+export const photosCategoryInGallery: string[] = [
+  "newborn",
+  "maternity",
+  "baby",
+  "family",
+  "woman",
+  "discharge",
+  "christening",
 ];
 
 export const booksAccessories: Array<string> = [
@@ -139,28 +164,28 @@ export const tableTabletsWithPassport: ITablesPhotoProducts[] = [
 
 export const photosCategoryInMainPage: IPhotosCategoryInMainPage[] = [
   {
-    name: "Новорожденные",
+    name: "photosCategory newborn",
     type: "newborn",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
       handlerClick(event, "newborn"),
     id: Math.random().toString(16).slice(2),
   },
   {
-    name: "Малыши",
+    name: "photosCategory baby",
     type: "baby",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
       handlerClick(event, "baby"),
     id: Math.random().toString(16).slice(2),
   },
   {
-    name: "Семейные",
+    name: "photosCategory family",
     type: "family",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
       handlerClick(event, "family"),
     id: Math.random().toString(16).slice(2),
   },
   {
-    name: "Все фотографии",
+    name: "photosCategory all",
     type: null,
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string | null) => void, event: React.MouseEvent) =>
       handlerClick(event, null),

@@ -5,11 +5,13 @@ import useFormWithValidation from "../../../../../hooks/useForm";
 import { sendEmail } from "../../../../../redux/Reducers/appSlice";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 import { ShowInfoToolTip } from "../../../../../components/ShowInfoToolTip";
+import { useTranslation } from "react-i18next";
+import Spinner from "../../../../../components/Spinner/Spinner";
 
 const NewsLetter: React.FC = () => {
   const dispatch = useAppDispatch();
-
-  const { errorSendEmail, confirmationSendEmail } = useAppSelector((state) => state.app);
+  const { t } = useTranslation();
+  const { errorSendEmail, confirmationSendEmail, loading } = useAppSelector((state) => state.app);
   const { values, isValid, resetForm, handleChange } = useFormWithValidation();
 
   const handlerSubmit = (evt: React.FormEvent): void => {
@@ -26,14 +28,16 @@ const NewsLetter: React.FC = () => {
             <ShowInfoToolTip
               confirmation={confirmationSendEmail}
               error={errorSendEmail}
-              textConfirmMessage="Подписка оформлена"
-              textErrorMessage="Произошла ошибка на сервере, попробуйте позже"
+              textConfirmMessage={t("footer infoToolTip subscribe confirm")}
+              textErrorMessage={t("footer infoToolTip subscribe error")}
             />
           ) : (
-            <label className="newsLetter__form-label">
-              Интересна информация <br />
-              об акциях и проектах?
-            </label>
+            <label className="newsLetter__form-label">{t("footer subscribe")}</label>
+          )}
+          {loading.sendEmail && (
+            <div style={{ margin: "20px auto" }}>
+              <Spinner />
+            </div>
           )}
           <input
             className="newsLetter__form-input"
@@ -50,7 +54,12 @@ const NewsLetter: React.FC = () => {
             type="submit"
             disabled={!isValid}
           >
-            <img className="newsLetter__form-button_icon" src={newsLetterButtonIcon} alt="лого кнопки" />
+            <img
+              className="newsLetter__form-button_icon"
+              src={newsLetterButtonIcon}
+              alt="send email"
+              title="send email"
+            />
           </button>
           <span
             className={`newsLetter__form-span ${
@@ -58,7 +67,7 @@ const NewsLetter: React.FC = () => {
             }`}
             id="email-error"
           >
-            Пример: example@gmail.com
+            Example: qwery@gmail.com
           </span>
         </fieldset>
       </form>

@@ -1,20 +1,24 @@
 import React, { useEffect } from "react";
 import "./NavMenu.scss";
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { links } from "../../../../../utils/config";
 import { useDisabledScroll } from "../../../../../hooks/useDisabledScroll";
 import { useAppSelector } from "../../../../../redux/hooks";
 import { ILink, ISubLink, PropsNavMenu } from "../../../../../types";
 import { Button } from "../../../../../components/Button";
 import logoUser from "../../../../../images/user.webp";
-import cx from "classnames/bind";
+import cx from "classnames";
+import { useTranslation } from "react-i18next";
+import { useWindowResize } from "../../../../../hooks/useWindowResize";
 
 const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
-  const { pathname } = useLocation();
   const { handlerDisabledScroll } = useDisabledScroll;
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { auth, user } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
+
+  const { t, i18n } = useTranslation();
+  const { width } = useWindowResize();
 
   useEffect(() => {
     handlerDisabledScroll(openBurgerMenu);
@@ -22,21 +26,21 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
 
   //Обработчик клика по ссылке подменю
   const handleClickDropdownLink = (): void => {
-    if (window.innerWidth <= 1024) {
+    if (width <= 1279) {
       handlerOpenAndCloseBurgerMenu();
     }
   };
 
   //Обработчик клика по ссылке меню
   const handleClickLink = (): void => {
-    if (window.innerWidth <= 1024) {
+    if (width <= 1279) {
       handlerOpenAndCloseBurgerMenu();
     }
   };
 
-  //Обработчик клика по кнопке профиля
+  // Обработчик клика по кнопке профиля
   const handleClickAuthorization = (): void => {
-    if (window.innerWidth <= 1024) {
+    if (width <= 1279) {
       handlerOpenAndCloseBurgerMenu();
     }
     navigate(auth ? "/profile" : "/signin");
@@ -46,20 +50,20 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
   const handleClickFromBasket = (event: React.MouseEvent): void => {
     if (packetInBasket.length) {
       navigate("/basket");
-      if (window.innerWidth <= 1024) {
+      if (width <= 1279) {
         handlerOpenAndCloseBurgerMenu();
       }
     }
     event.stopPropagation();
   };
 
-  const pathHiddenMenu = ["/aboutMe", "/contacts", "/photo-products"];
+  // const pathHiddenMenu = ["/aboutMe", "/contact", "/photo-products"];
 
   //Обработчик клика по ссылке меню в мобильной версии
   const handleClickLinkMobileVersion = (linkActive: ILink): void => {
     const links = document.querySelectorAll(".navigation__link-arrow") as NodeListOf<Element>;
     const containerWithSubLinks = document.querySelectorAll(".navigation__subLinks-container") as NodeListOf<Element>;
-    if (window.innerWidth <= 1024) {
+    if (width <= 1279) {
       links.forEach((link: Element) => {
         if (link.textContent === linkActive.name) {
           link.classList.toggle("subLinks__active");
@@ -75,8 +79,6 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
     }
   };
 
-  //console.log(cx("styles", `styles_${isActive}`));
-
   return (
     <nav
       className={`navigation ${openBurgerMenu ? "navigation__burgerMenu_active" : ""}`}
@@ -91,24 +93,10 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
             <li className="navigation__container-link navigation__view-lists-links" key={item.name}>
               {item.select ? (
                 <div
-                  className={`navigation__link  ${
-                    (item.select && !item.logo) || (window.innerWidth < 1024 && item.logo)
-                      ? "navigation__link-arrow"
-                      : ""
-                  }`}
+                  className={`navigation__link  ${item.select ? "navigation__link-arrow" : ""}`}
                   onClick={() => handleClickLinkMobileVersion(item)}
                 >
-                  {item.logo ? (
-                    <div
-                      className={`navigation__link-logo ${
-                        pathHiddenMenu.indexOf(pathname) > -1 ? "navigation__link-logo_active" : ""
-                      }`}
-                    >
-                      <span></span>
-                    </div>
-                  ) : (
-                    item.name
-                  )}
+                  <span> {t(`${item.name}`)}</span>
                 </div>
               ) : (
                 <NavLink
@@ -121,9 +109,10 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                   }
                   end
                   to={item.path ? item.path : ""}
+                  title={`${t(`${item.name}`)}`}
                   onClick={handleClickLink}
                 >
-                  {item.name}
+                  {t(`${item.name}`)}
                 </NavLink>
               )}
               {item.select && (
@@ -138,8 +127,9 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                           to={el.pathSelect}
                           key={el.name}
                           onClick={handleClickDropdownLink}
+                          title={el.title}
                         >
-                          {el.name}
+                          {t(`${el.name}`)}
                         </NavLink>
                       );
                     })}
@@ -157,17 +147,19 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
               editStyle="buttonUser"
               buttonWithIcon
               icon={logoUser}
+              // disabled={true}
+              // onClick={"#"}
               onClick={handleClickAuthorization}
               // onClick={adminRole ? () => history.push("/admin") : handleClickAuthorization}
             >
-              {user.name.length ? <span className="navigation__textUserBtn">{user.name}</span> : "Войти"}
+              {user.name.length ? <span className="navigation__textUserBtn">{user.name}</span> : "Profile"}
             </Button>
           </div>
         </li>
         <li className="navigation__container-link">
           {user.role.includes("ADMIN") ? (
             <Link className="navigation__adminPanel" to="/admin">
-              Админ-панель
+              Admin-panel
             </Link>
           ) : (
             <div>
@@ -175,7 +167,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                 {packetInBasket.length > 0 ? (
                   <span className="navigation__basket_notEmpty ">{packetInBasket.length}</span>
                 ) : (
-                  <div className="navigation__basketTooltip navigation__tooltip_active">Ваша корзина пуста</div>
+                  <div className="navigation__basketTooltip navigation__tooltip_active">{t("basket is empty")}</div>
                 )}
               </div>
             </div>

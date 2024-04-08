@@ -1,0 +1,20 @@
+.shareTo {
+  &__title {
+    color: #79553d;
+  }
+
+  &__listIcons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 5px;
+  }
+
+  &__iconsContainer {
+    margin-right: 10px;
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+

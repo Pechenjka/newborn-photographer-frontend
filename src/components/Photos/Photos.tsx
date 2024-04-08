@@ -4,12 +4,13 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { IPhoto, PhotoPostPage, PropsPhotos } from "../../types";
 import Photo from "./components/Photo/Photo";
 import classNames from "classnames/bind";
-import { motion } from "framer-motion";
-import { framerMotionPhotosAndPackets } from "../../helpers/framerMotion";
 import { changeOrderPhoto, deletePhoto } from "../../redux/Reducers/photoSlice";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { MButton } from "../Button";
+import { animationBtnMorePhotos, framerMotionPhotosAndPackets } from "../../helpers/framerMotion";
 
-const Photos: React.FC<PropsPhotos> = ({ photoPostPage }) => {
+const Photos: React.FC<PropsPhotos> = ({ photoPostPage, onClick, hide, buttonName }) => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const { showPhotos, categoryPhotosBtn } = useAppSelector((state) => state.photos);
@@ -31,28 +32,38 @@ const Photos: React.FC<PropsPhotos> = ({ photoPostPage }) => {
     );
   };
 
-  const handleChangeOrderPhoto = (currentPhoto: IPhoto, duration: string): void => {
-    dispatch(
-      changeOrderPhoto({ id: currentPhoto._id, duration })
-    );
-  };
+
+
+  // const handleChangeOrderPhoto = (currentPhoto: IPhoto, duration: string): void => {
+  //   dispatch(changeOrderPhoto({ id: currentPhoto._id, duration }));
+  // };
+
 
   return (
-    <motion.ul className={styleContainPhotos} variants={container} initial="hidden" animate="show">
-      {showPhotos.map((image: IPhoto) => {
-        return (
-          <Photo
-            image={image}
-            photoPostPage={photoPostPage}
-            key={image._id}
-            variants={item}
-            handleDeletePhoto={handleDeletePhoto}
-            handleChangeOrderPhoto={handleChangeOrderPhoto}
-            showPhotos={showPhotos}
-          />
-        );
-      })}
-    </motion.ul>
+    <>
+      <motion.ul className={styleContainPhotos} variants={container} initial="hidden" animate="show">
+        {showPhotos.map((image: IPhoto) => {
+          return (
+            <Photo
+              image={image}
+              photoPostPage={photoPostPage}
+              key={image._id}
+              variants={item}
+              handleDeletePhoto={handleDeletePhoto}
+              // handleChangeOrderPhoto={handleChangeOrderPhoto}
+              showPhotos={showPhotos}
+            />
+          );
+        })}
+      </motion.ul>
+      {photoPostPage.includes("photoGallery") && (
+        <motion.div initial="hidden" whileInView="visible" viewport={{ amount: 0.1 }}>
+          <MButton variants={animationBtnMorePhotos} styleButton="ping" onClick={onClick} type="button" hide={hide}>
+            {buttonName}
+          </MButton>
+        </motion.div>
+      )}
+    </>
   );
 };
 

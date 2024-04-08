@@ -1,8 +1,11 @@
 import "./Table.scss";
 import React from "react";
-import {IProduct, ITable, ITablesPhotoProducts} from "../../../../types";
+import { IProduct, ITable, ITablesPhotoProducts } from "../../../../types";
+import { useLocation } from "react-router-dom";
 
 const Table: React.FC<ITable> = ({ table }) => {
+  const { pathname } = useLocation();
+
   return (
     <table className="table">
       <thead>
@@ -25,13 +28,13 @@ const Table: React.FC<ITable> = ({ table }) => {
         {table.map((item: ITablesPhotoProducts) => {
           if (item.product) {
             return item.product.map((el: IProduct, index: number) => {
-              return (
+              return el.type && pathname.includes(el.type) ? (
                 <tr className="table__row-container" key={index}>
                   <th className="table__row">{el.size}</th>
                   {el.printQuality && <th className="table__row">{el.printQuality}</th>}
                   <th className="table__row">{el.price}</th>
                 </tr>
-              );
+              ) : null;
             });
           }
           return item.product;

@@ -21,8 +21,8 @@ export const EditorComponent: React.FC<PropsEditorComponent> = ({ setContent }) 
     const blocksFromHtml = htmlToDraft(textBlock);
     const { contentBlocks, entityMap } = blocksFromHtml;
     const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-    const editorState = EditorState.createWithContent(contentState);
-    setEditorState(editorState);
+    const newEditorState = EditorState.createWithContent(contentState);
+    setEditorState(newEditorState);
   };
 
   useEffect(() => {

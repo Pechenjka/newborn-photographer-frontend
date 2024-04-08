@@ -2,23 +2,30 @@ import React, { useRef } from "react";
 import Styles from "./style.module.scss";
 import { Pagination, Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/swiper.scss";
-import "swiper/modules/navigation/navigation.scss";
-import "swiper/modules/pagination/pagination.scss";
+import "swiper/scss";
+import "swiper/scss/navigation";
+import "swiper/scss/pagination";
 import * as Scroll from "react-scroll";
 import { arrSlides } from "../../utils/config";
 import { IArrSlides } from "../../types";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useAppSelector } from "../../redux/hooks";
+import { useWindowResize } from "../../hooks/useWindowResize";
 
 export const SliderComponent: React.FC = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const LinkScroll = Scroll.Link;
+  const { language } = useAppSelector((state) => state.app);
+
+  const { t } = useTranslation();
+  const { width } = useWindowResize();
 
   const handleChangeSlide = arrSlides.map((item: IArrSlides): string => {
-    if (window.innerWidth <= 768 && item.mobile) {
+    if (width <= 768 && item.mobile) {
       return item.mobile;
     } else {
       return item.desktop;
@@ -64,33 +71,36 @@ export const SliderComponent: React.FC = () => {
               transition={{ duration: 0.7 }}
               className={Styles.slideShow__welcomeTitle}
             >
-              <br /> Я Алена Лобачева
+              <span className={Styles.slideShow__welcomeTitle_span}>{t("mainPage hello")}</span>
+              <br /> {t("mainPage nameAuthor")}
             </motion.h1>
-            <motion.p
+            <motion.h2
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
               className={Styles.slideShow__welcomeDescription}
             >
-              Профессиональный фотограф новорожденных.
+              {t("mainPage aboutMe 1 part")}
               <br />
-              Знаю, как оставить на память самые ценные <br /> и неповторимые моменты вашей жизни
-            </motion.p>
-            <Link className={Styles.slideShow__welcomeLink} to="/contacts">
-              Мои контакты
+              {t("mainPage aboutMe 2 part")} <br /> {t("mainPage aboutMe 3 part")}
+            </motion.h2>
+            <Link className={Styles.slideShow__welcomeLink} to="/contact" title="contact">
+              {t("mainPage My contacts")}
             </Link>
           </div>
           <div className={Styles.slideShow__linkAboutNewbornContainer}>
-            <LinkScroll
-              className={Styles.slideShow__linkAboutNewborn}
-              to="aboutNewborn"
-              spy={true}
-              smooth={true}
-              offset={-100}
-              duration={1000}
-            >
-              О фотосесии новорожденного в видеоформате
-            </LinkScroll>
+            {language === "ru" && (
+              <LinkScroll
+                className={Styles.slideShow__linkAboutNewborn}
+                to="aboutNewborn"
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={1000}
+              >
+                О фотосесии новорожденного в видеоформате
+              </LinkScroll>
+            )}
           </div>
         </div>
         <div className={Styles.slideShow__imageContainer}>
@@ -103,16 +113,17 @@ export const SliderComponent: React.FC = () => {
                   transition={{ duration: 0.7 }}
                   className={Styles.slideShow__image}
                   src={slide}
-                  alt={`${index + 1}`}
+                  alt={`photography newborn - ${index + 1} slide`}
+                  title={`photography newborn - ${index + 1} slide`}
                 />
               </SwiperSlide>
             );
           })}
         </div>
-        <button className={stylePrevBtn} ref={navigationPrevRef}>
+        <button className={stylePrevBtn} ref={navigationPrevRef} title="prev slide">
           &#10094;
         </button>
-        <button className={styleNextBtn} ref={navigationNextRef}>
+        <button className={styleNextBtn} ref={navigationNextRef} title="next slide">
           &#10095;
         </button>
       </Swiper>

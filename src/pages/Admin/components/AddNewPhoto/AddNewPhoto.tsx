@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AdminContainer } from "../AdminContainer";
 import { MyTextField } from "../../../../components/MyTextField";
 import { FormikFormComponent } from "../../../../components/FormikFormComponent";
-import {useAppDispatch, useAppSelector} from "../../../../redux/hooks";
-import { addNewPhoto } from "../../../../redux/Reducers/photoSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
+import { addNewPhoto, fetchPhotos } from "../../../../redux/Reducers/photoSlice";
 import { validationSchemaNewPhoto } from "../../../../validationForms";
 import { PropsAddNewPhoto } from "../../../../types";
 
 export const AddNewPhoto = () => {
   const dispatch = useAppDispatch();
-const { loading } = useAppSelector((state) => state.photos);
+  const { loading, getPhotos } = useAppSelector((state) => state.photos);
+  const [refresh, setRefresh] = useState<boolean>(true);
+
   const initialValues: PropsAddNewPhoto = {
     image: "",
     type: "",
+    order: null,
   };
 
   const arrOptions = [
@@ -26,8 +29,17 @@ const { loading } = useAppSelector((state) => state.photos);
     { value: "pregnancy", title: "pregnancy" },
   ];
 
-  const handlerSubmit = (values: PropsAddNewPhoto): void => {
-    dispatch(addNewPhoto(values));
+  useEffect(() => {
+    refresh && dispatch(fetchPhotos({ type: null, order: "sort" }));
+    setRefresh(false);
+  }, [refresh]);
+
+  const handlerSubmit = (values: { type: string; image: string }): void => {
+    const arrSameType = getPhotos.filter((item) => {
+      return item.type === values.type && item;
+    });
+    setRefresh(true);
+    dispatch(addNewPhoto({ type: values.type, image: values.image, order: arrSameType.length + 1 }));
   };
 
   return (

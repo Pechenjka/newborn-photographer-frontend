@@ -6,6 +6,7 @@ $colorLineBottomLinks: #c69b6b;
   max-width: 1440px;
   margin: 40px auto;
   padding: 0 40px;
+
   &__list-title {
     display: flex;
     list-style: none;
@@ -14,12 +15,15 @@ $colorLineBottomLinks: #c69b6b;
     padding: 0;
     margin: 0;
   }
+
   &__title-element {
     margin-right: 50px;
+
     &:last-of-type {
       margin-right: 0;
     }
   }
+
   &__title-link {
     position: relative;
     background-color: transparent;
@@ -29,10 +33,12 @@ $colorLineBottomLinks: #c69b6b;
     padding: 0;
     transition: all 0.4s;
     color: #000000ff;
+
     &:hover {
       cursor: pointer;
       color: $colorLinks;
     }
+
     &::after {
       content: "";
       position: absolute;
@@ -45,8 +51,10 @@ $colorLineBottomLinks: #c69b6b;
       transition: width 0.4s;
       z-index: 1;
     }
+
     &_active {
       color: $colorLinks;
+
       &::after {
         width: 100%;
       }
@@ -54,25 +62,41 @@ $colorLineBottomLinks: #c69b6b;
   }
 }
 
-@media screen and (max-width: 776px) {
+@media screen and (max-width: 1024px) {
   .gallery {
-    padding: 0 20px;
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gallery {
+    padding: 0 10px;
+
     &__title-element {
       margin-right: 30px;
+
       &:last-of-type {
         margin-right: 0;
       }
     }
-    &__title-link {
-      font-size: 18px;
-    }
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 650px) {
   .gallery {
-    &__title-link {
-      font-size: 16px;
+    &__list-title {
+      &_ru {
+        display: grid;
+        list-style: none;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+      }
+    }
+
+    &__title-element {
+      &_ru {
+        margin-right: 0;
+      }
     }
   }
 }
@@ -81,20 +105,33 @@ $colorLineBottomLinks: #c69b6b;
   .gallery {
     &__title-element {
       margin-right: 20px;
+
+      &_ru {
+        margin-right: 0;
+      }
     }
+
     &__title-link {
-      font-size: 14px;
+      font-size: 18px;
     }
   }
 }
 
 @media screen and (max-width: 460px) {
   .gallery {
+    &__title-link {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .gallery {
     &__title-element {
-      flex-basis: 50%;
-      margin-right: 0;
-      &:nth-of-type(1n + 3) {
-        margin-top: 20px;
+      margin-right: auto;
+
+      &_ru {
+        margin-right: 0;
       }
     }
   }

@@ -16,10 +16,11 @@ const PopupWithImage: React.FC = () => {
   return (
     <Popup onClick={handleClosePopupWithImage} openPopup={openModalWithImage}>
       <div className="popup-image__container" onClick={(event) => event.stopPropagation()}>
-        <img className="popup-image__image" src={dataForImageModal} alt="фотография" />
+        <img className="popup-image__image" src={dataForImageModal} alt="image in the modal window" />
         <button
           className="popup-image__closeBtn"
-          aria-label="закрытие модального окна"
+          aria-label="close popup button"
+          title="close popup button"
           onClick={handleClosePopupWithImage}
         />
       </div>

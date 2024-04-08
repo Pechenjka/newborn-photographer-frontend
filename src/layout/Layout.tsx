@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import { useLocation, Outlet } from "react-router-dom";
 import { allRoutes } from "../router/config";
 import { IRoute } from "../types";
+import BackgroundImage from "../components/BackgroundImage/BackgroundImage";
 
 export const Layout: React.FC = () => {
   const { pathname } = useLocation();
@@ -15,6 +16,7 @@ export const Layout: React.FC = () => {
   return (
     <section style={{ width: "100%", height: "100%" }}>
       {!isAdminRoutes.includes(pathname) && <Header />}
+      {(!pathname.startsWith('/admin') && pathname !== '/' ) && <BackgroundImage/>}
       <Outlet />
       {!isAdminRoutes.includes(pathname) && <Footer />}
     </section>

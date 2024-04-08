@@ -44,17 +44,17 @@ export const EditorPage: React.FC = () => {
     } else {
       dispatch(createTextOnPage({ text: content, typePhotoSession }));
     }
-    navigate("/aboutPhotosession");
+    navigate(-1);
   };
-
+  console.log(typePhotoSession);
   const onChangeNamePage = (event: React.ChangeEvent<any>) => {
-    setTypePhotoSession(event.target.value);
-    setIsValid(event.target.closest("form").checkValidity());
+    setTypePhotoSession(event.currentTarget.value);
+    setIsValid(event.currentTarget.closest("form").checkValidity());
   };
 
   const handleClickBackBtn = (): void => {
     dispatch(handlerEditTextBlock({ text: "", typePhotoSession: "", _id: "" }));
-    navigate("/aboutPhotosession");
+    navigate(-1);
   };
 
   const arrTabs: PropsArrTabs[] = [

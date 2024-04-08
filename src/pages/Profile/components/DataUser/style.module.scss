@@ -5,10 +5,12 @@
     align-items: flex-start;
     width: 100%;
     margin: 0 auto 0;
+
     &:last-of-type {
       margin: 40px auto 0;
     }
   }
+
   &__cardTitle {
     margin-bottom: 20px;
     font-weight: normal;

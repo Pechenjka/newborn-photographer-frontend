@@ -1,6 +1,5 @@
 import Styles from "./style.module.scss";
 import React, { Fragment, useEffect } from "react";
-import BackgroundImage from "../../components/BackgroundImage/BackgroundImage";
 import { Button } from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -43,7 +42,6 @@ export const Profile: React.FC = () => {
 
   return (
     <Fragment>
-      <BackgroundImage />
       <section className={Styles.profile}>
         <h3 className={Styles.profile__title}>
           Привет, <span>{user.name}!</span>

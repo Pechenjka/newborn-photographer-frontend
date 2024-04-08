@@ -10,6 +10,7 @@ $ColorTextButton: white;
   grid-template-columns: 1fr;
   grid-row-gap: 30px;
   justify-items: center;
+
   &__photos-container {
     max-width: 1440px;
     margin: 0 auto;
@@ -21,17 +22,20 @@ $ColorTextButton: white;
     grid-auto-rows: 333px;
     grid-gap: 36px;
   }
+
   &__title {
-    margin: 0 auto 0;
+    margin: 30px auto 0;
     font-size: 24px;
     font-weight: 400;
     color: $TextColorBrownDark;
   }
+
   &__photo-wrapper {
     max-width: 100%;
     max-height: 100%;
     border-radius: 5px;
   }
+
   &__photo {
     object-fit: cover;
     width: 100%;

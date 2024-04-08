@@ -6,21 +6,26 @@
   background-color: white;
   margin: 50px auto;
   padding: 40px;
+
   &__title {
     color: #ff9696;
     margin-top: 20px;
   }
+
   &__container {
     padding: 20px 0;
     list-style: none;
   }
+
   &__text {
     padding: 5px;
   }
+
   &__backButton {
     color: #ff9696;
     text-decoration: none;
   }
+
   &__logo {
     max-width: 400px;
     width: 60%;

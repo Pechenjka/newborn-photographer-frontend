@@ -1,0 +1,30 @@
+@import "../../../../styles/vars";
+
+.photoSessionDetails {
+  padding: 30px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  &__linkOnEditor {
+    display: block;
+    width: max-content;
+    margin: 40px auto 0;
+    text-decoration: none;
+    padding: 10px;
+    background-color: $ButtonColorPing;
+    color: $ButtonTextColorWhite;
+  }
+}
+@media screen and (max-width: 415px) {
+  .photoSessionDetails {
+    padding: 30px 20px;
+  }
+}
+@media screen and (max-width: 374px) {
+  .photoSessionDetails {
+    &__linkBack {
+      margin-left: 20px;
+    }
+  }
+}

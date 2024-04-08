@@ -63,6 +63,7 @@ export interface PropsInitialStateEditor {
   };
   textBlock: PropsText;
   editNote: boolean;
+  active: string;
 }
 
 const initialState: PropsInitialStateEditor = {
@@ -84,12 +85,16 @@ const initialState: PropsInitialStateEditor = {
     _id: "",
   },
   editNote: false,
+  active: "",
 };
 
 export const editorSlice = createSlice({
   name: "editor",
   initialState,
   reducers: {
+    handleActiveAboutPhotoSession: (state, action) => {
+      state.active = action.payload;
+    },
     handlerEditTextBlock: (state, action: { payload: PropsText }) => {
       state.textBlock = action.payload;
     },
@@ -131,5 +136,5 @@ export const editorSlice = createSlice({
   },
 });
 
-export const { handlerEditTextBlock, handlerEditNote } = editorSlice.actions;
+export const { handleActiveAboutPhotoSession, handlerEditTextBlock, handlerEditNote } = editorSlice.actions;
 export default editorSlice.reducer;

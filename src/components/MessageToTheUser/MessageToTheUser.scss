@@ -5,6 +5,7 @@ $colorBoxShadowButton: #666363;
 
 .messageToTheUser {
   width: 100%;
+
   &__spinner {
     position: absolute;
     top: 50%;
@@ -12,25 +13,30 @@ $colorBoxShadowButton: #666363;
     transform: translate(-50%, -50%);
     background-color: transparent;
   }
+
   &__container {
     margin: 30px 0;
   }
+
   &__image {
     width: 50px;
     height: 50px;
   }
+
   &__title {
     font-size: 22px;
     font-weight: 500;
     text-align: center;
     margin-top: 20px;
   }
+
   &__text {
     font-size: 16px;
     font-weight: 400;
     text-align: center;
     margin-top: 10px;
   }
+
   &__button {
     width: 150px;
     height: 40px;
@@ -41,6 +47,7 @@ $colorBoxShadowButton: #666363;
     color: $colorTextButton;
     box-shadow: 0 1px 6px 0 $colorBoxShadowButton;
     transition: all 0.4s;
+
     &:hover {
       cursor: pointer;
       opacity: 0.8;
@@ -53,6 +60,7 @@ $colorBoxShadowButton: #666363;
     &__container {
       padding: 0 15px;
     }
+
     &__text {
       font-size: 16px;
       font-weight: 400;

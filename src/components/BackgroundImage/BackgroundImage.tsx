@@ -1,12 +1,8 @@
 import "./BackgroundImage.scss";
-import React, { Fragment } from "react";
+import React from "react";
 
-const BackgroundImage:React.FC = () => {
-  return (
-    <Fragment>
-      <div className="background-image" />
-    </Fragment>
-  );
-}
+const BackgroundImage: React.FC = () => {
+  return <div className="background-image" />;
+};
 
 export default BackgroundImage;

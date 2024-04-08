@@ -7,6 +7,7 @@ import {
   PropsRandomPhotos,
   PropsAddNewPhoto,
   PropsDeletePhoto,
+  ICategory,
 } from "../../types";
 
 import { apiApp } from "../../utils/apiApp";
@@ -29,19 +30,27 @@ export const fetchPhotos = createAsyncThunk(
       }
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, не удалось загрузить фотографии!");
+      return rejectWithValue("Error, the photos were not loaded!");
     }
   }
 );
+export const getPhotoCategories = createAsyncThunk("photo/getPhotoCategories", async (_, { rejectWithValue }) => {
+  try {
+    const res = await apiApp().getPhotoCategories();
+    return res.data;
+  } catch (e) {
+    return rejectWithValue("Error, photo category has not been get!");
+  }
+});
 
 export const addNewPhoto = createAsyncThunk(
   "photo/addNewPhoto",
-  async (data: PropsAddNewPhoto, { rejectWithValue }) => {
+  async (data: { type: string; image: string; order: number }, { rejectWithValue }) => {
     try {
       const res = await apiApp().uploadPhoto(data);
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, не удалось загрузить фотографию!");
+      return rejectWithValue("Error, the photo was not loaded!");
     }
   }
 );
@@ -56,19 +65,22 @@ export const deletePhoto: any = createAsyncThunk(
       }
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, фотография не удалена");
+      return rejectWithValue("Error, the photo was not delete");
     }
   }
 );
 
-export const saveChangeSortPhotos: any = createAsyncThunk("photo/saveChangeSortPhotos", async (newArr: IPhoto[], { rejectWithValue }) => {
-  try {
-    const res = apiApp().changeOrderPhoto(newArr);
-    return res.data;
-  } catch (e) {
-    return rejectWithValue("Ошибка, сортировка не удалась");
+export const saveChangeSortPhotos: any = createAsyncThunk(
+  "photo/saveChangeSortPhotos",
+  async (newArr: IPhoto[], { rejectWithValue }) => {
+    try {
+      const res = apiApp().changeOrderPhoto(newArr);
+      return res.data;
+    } catch (e) {
+      return rejectWithValue("Error, the sort was not a happen");
+    }
   }
-});
+);
 
 const initialState: PropsInitialStatePhotoSlice = {
   getPhotos: [],
@@ -79,6 +91,7 @@ const initialState: PropsInitialStatePhotoSlice = {
   openModalWithImage: false,
   dataForImageModal: "",
   openChangeSortPhotos: false,
+  photoCategories: [],
 };
 
 const photoSlice = createSlice({
@@ -101,25 +114,28 @@ const photoSlice = createSlice({
         randomN = [...randomN, action.payload.arr[randomIndex]];
         action.payload.arr.splice(randomIndex, 1);
       }
+
       const countPhotos = (arrItem: IPhoto[]): IPhoto[] => {
         if (window.innerWidth >= 1025) {
           return arrItem.slice(0, 12);
         }
         if (window.innerWidth > 768) {
-          return arrItem.slice(0, 9);
+          return arrItem.slice(0, 10);
         }
         if (window.innerWidth > 568) {
           return arrItem.slice(0, 8);
         }
         if (window.innerWidth >= 320) {
-          return arrItem.slice(0, 5);
+          return arrItem.slice(0, 6);
         }
         return arrItem;
       };
       state.showPhotos = countPhotos(randomN);
     },
     handlerSortPhotos: (state, action: PropsArrPhotos) => {
-      action.payload.sort((a: any, b: any) => a.order - b.order);
+      // console.log(action.payload)
+      const sortArr = action.payload.sort((a: any, b: any) => (a.order > b.order ? -1 : 0));
+      // sortArr.sort((a: any, b: any) => b.order - a.order);
 
       const countSortPhotos = (arrItem: IPhoto[]): IPhoto[] => {
         if (window.innerWidth >= 1025) {
@@ -132,11 +148,11 @@ const photoSlice = createSlice({
           return arrItem.slice(0, 8);
         }
         if (window.innerWidth >= 320) {
-          return arrItem.slice(0, 5);
+          return arrItem.slice(0, 6);
         }
         return arrItem;
       };
-      state.showPhotos = countSortPhotos(action.payload);
+      state.showPhotos = countSortPhotos(sortArr);
     },
 
     handlerShowAddPhotos: (state, action: PropsArrPhotos) => {
@@ -173,7 +189,6 @@ const photoSlice = createSlice({
       state.error = "";
     });
     builder.addCase(fetchPhotos.fulfilled, (state, action: { payload: IPhoto[] }): void => {
-      // console.log(action.payload)
       state.getPhotos = action.payload;
       state.error = "";
       state.loading = false;
@@ -181,6 +196,9 @@ const photoSlice = createSlice({
     builder.addCase(fetchPhotos.rejected, (state, action: { payload: any }): void => {
       state.loading = false;
       state.error = action.payload;
+    });
+    builder.addCase(getPhotoCategories.fulfilled, (state, action: { payload: ICategory[] }) => {
+      state.photoCategories = action.payload;
     });
   },
 });

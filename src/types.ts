@@ -6,6 +6,7 @@ export interface PropsPayLoadSendEmail {
     email?: string;
   };
 }
+
 export interface PropsPayLoadGetInTouch {
   data: {
     name: string;
@@ -25,13 +26,13 @@ export interface PropsInitialStatePhotoSlice {
   openModalWithImage: boolean;
   dataForImageModal: string;
   openChangeSortPhotos: boolean;
+  photoCategories: ICategory[];
 }
+
 export interface PropsArrPhotos {
   payload: IPhoto[];
 }
-export interface PropsPayloadString {
-  payload: string | null;
-}
+
 export interface IPhoto {
   type: string;
   image: string;
@@ -39,6 +40,7 @@ export interface IPhoto {
   order: number;
   createdAt: string;
 }
+
 export interface IPhotosCategoryInMainPage {
   name: string;
   type: string | null;
@@ -46,13 +48,11 @@ export interface IPhotosCategoryInMainPage {
   id: string;
 }
 
-export interface IPhotosCategoryInGallery {
-  title: string;
-  type: string;
-}
-
 export interface PropsPhotos {
   photoPostPage: string;
+  onClick?: any;
+  hide?: any;
+  buttonName?: string | null;
 }
 
 export interface PropsPhoto {
@@ -61,9 +61,10 @@ export interface PropsPhoto {
   setRef?: any;
   variants?: any;
   handleDeletePhoto: (photoId: string, arrPhoto: IPhoto[]) => any;
-  handleChangeOrderPhoto: (currentPhoto: IPhoto, duration: string) => void;
+  handleChangeOrderPhoto?: (currentPhoto: IPhoto, duration: string) => void;
   showPhotos: IPhoto[];
 }
+
 export interface PropsDeletePhoto {
   photoId: string;
   type: string;
@@ -95,6 +96,7 @@ export interface IRoute {
 //   authorization: boolean;
 //   path: string;
 // }
+
 export interface PropsProtectedRoute {
   authorization: boolean;
   children: any;
@@ -117,10 +119,11 @@ export interface PropsInitialStatePacketSlice {
   getPackets: IPacket[];
   getPinnedPackets: IPacket[];
   packetWithDetailsDescription: IPacket | null;
-  getPacketsCategories: ICategory[];
+  packetsCategories: ICategory[];
   packetInBasket: IPacket[];
   basketIsNotEmpty: boolean;
 }
+
 export interface IPacket {
   namePacket: string;
   countLocations: string;
@@ -134,16 +137,21 @@ export interface IPacket {
   imageDescription: string;
   imageDescriptionMobile: string;
   description: string;
+  descriptionEN: string;
+  getFromPhotosessionEN: string;
   _id: string;
   createdAt: string;
 }
+
 export interface PropsPopularPackets {
   editStyleForPrice?: boolean;
 }
+
 export interface PropsPacketsInBasket {
   packetInBasket: IPacket[];
   onClickDeletePacket: (id: string) => void;
 }
+
 export interface PropsPackets {
   getPackets: IPacket[];
   editStyleForPrice?: boolean;
@@ -151,9 +159,11 @@ export interface PropsPackets {
   container: any;
   styleContainer: string;
 }
+
 export interface ICategory {
   title: string;
   nameRU: string;
+  nameEN: string;
   _id: string;
 }
 
@@ -169,6 +179,7 @@ export interface IUser {
   role: string;
   orders?: Array<string>;
 }
+
 export interface PropsInitialStateUserSlice {
   user: IUser;
   auth: boolean;
@@ -186,6 +197,7 @@ export interface PropsInitialStateUserSlice {
   showError: boolean;
   passwordRecoveryEnabled: boolean;
 }
+
 export interface IUserProfile {
   name: string;
   email: string;
@@ -193,28 +205,33 @@ export interface IUserProfile {
   _id?: string;
   orders?: [];
 }
+
 export interface IUpdateUser {
   name?: string;
   email?: string;
   phone?: string;
   orders?: Array<string>;
 }
+
 export interface IUserResponse {
   accessToken: string;
   refreshToken: string;
   user: IUser;
 }
+
 export interface ICreateUser {
   name: string;
   email: string;
   password: string;
   role: string;
 }
+
 export interface ILoginUser {
   email: string;
   password: string;
   navigate: any;
 }
+
 export interface IRefreshTokenResponse {
   accessToken: string;
   refreshToken: string;
@@ -224,12 +241,14 @@ export interface PropsLogin {
   email: string;
   password: string;
 }
+
 export interface PropsRegister {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
+
 export interface PropsAuthForm {
   titleAuthorization: string;
   textQuestion?: string;
@@ -253,6 +272,7 @@ export interface IMeOrders {
   text: string;
   completed: boolean;
 }
+
 export interface IOrderData {
   orderNumber: string;
   text: string;
@@ -261,6 +281,7 @@ export interface IOrderData {
   completed: boolean;
   user: IUserProfile;
 }
+
 export interface INewOrder {
   orderNumber: string;
   text?: string;
@@ -270,12 +291,14 @@ export interface INewOrder {
   phone: string;
   // user: IUserProfile;
 }
+
 export interface IPacketInOrder {
   namePacket: string;
   photosessionType: string;
   price: string;
   link?: string;
 }
+
 export interface PropsInitialStateOrderSlice {
   dataOrders: IOrderData[];
   meOrders: Array<IMeOrders>;
@@ -291,6 +314,7 @@ export interface PropsInitialStateOrderSlice {
     getMeOrders: string;
   };
 }
+
 export interface PropsOrderCheckout {
   orderInMyProfile?: boolean;
   orderData: IPacketInOrder[];
@@ -308,10 +332,17 @@ export interface ILinkListAdmin {
   title: string;
   path: string;
 }
+
 export interface PropsAddNewPhoto {
   image: string;
   type: string;
+  order?: number | null;
 }
+
+export interface PropsAddNewArticle {
+  description: string;
+}
+
 export interface PropsAdminContainer {
   children: React.ReactNode;
   title: string;
@@ -354,14 +385,35 @@ export interface IProduct {
   size: string;
   printQuality?: string;
   price: string;
+  type?: string;
 }
+
 export interface PropsInitialStateAppSlice {
-  loading: boolean;
+  loading: {
+    sendMessageGetInTouch: boolean;
+    instagram: boolean;
+    sendEmail: boolean;
+  };
   confirmationGetInTouch: boolean;
   errorGetInTouch: boolean;
   displayPricePackets: IPacket[];
   confirmationSendEmail: boolean;
   errorSendEmail: boolean;
+  language: string;
+  error: {
+    instagram: string;
+  };
+  instagramProfile: PostInstagramProfile[];
+}
+
+export interface PostInstagramProfile {
+  caption: string;
+  id: string;
+  media_type: string;
+  media_url: string;
+  permalink: string;
+  timestamp: string;
+  username: string;
 }
 
 export interface PropsMyTextField {
@@ -378,8 +430,8 @@ export interface PropsMyTextField {
   select?: boolean;
   options?: Array<{ value: string; title: string; hidden?: boolean }>;
   placeholder?: string;
-}
 
+}
 export interface PropsBoolean {
   payload: boolean;
 }
@@ -402,6 +454,7 @@ export interface ISubLink {
   name: string;
   pathSelect: string;
   type?: string;
+  title: string;
 }
 
 export interface IArrSlides {
@@ -418,10 +471,13 @@ export interface IOrderFields {
 
 export interface PropsDataTabs {
   labelName: string;
+  nameSession: string;
   id: string;
   idContent: string;
   getText: PropsText[];
-  defaultChecked: boolean;
+  metaTitle: string;
+  metaDescription: string;
+  metaImage: string;
 }
 
 export interface PropsText {
@@ -438,6 +494,36 @@ export interface PropsArrTabs {
   value: string;
   title: string;
   hidden?: boolean;
+}
+
+//Blog
+export interface PropsInitialStateBlogSlice {
+  blogArticles: IBlogArticle[] | [];
+  articleDetails: IBlogArticle;
+  loading: {
+    getBlog: boolean;
+    getArticleDetail: boolean;
+    articlesURL: boolean;
+  };
+  error: {
+    getBlog: string;
+    getArticleDetail: string;
+    articlesURL: string;
+  };
+  articlesURL: [];
+}
+
+//BlogArticle
+export interface IBlogArticle {
+  title: string;
+  url: string;
+  imagePrev: string;
+  typePhotoSession: string;
+  createdAt: string;
+  details: {
+    images: Array<string>;
+    description: string;
+  };
 }
 
 //enum

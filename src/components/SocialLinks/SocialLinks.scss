@@ -2,6 +2,7 @@
   margin: 10px 0;
   width: 100%;
   overflow: hidden;
+
   &__container {
     display: flex;
     justify-content: center;
@@ -13,27 +14,26 @@
     height: 32px;
     margin: 0 15px 0 0;
     transition: all 0.4s;
-    &_whatsApp {
-      background: url("../../images/whatsApp-icon(background-brown).gif") no-repeat center;
-      background-size: contain;
-    }
-    &_telegram {
-      background: url("../../images/telegram-icon(background-brown).svg") no-repeat center;
-      background-size: contain;
-    }
+
     &:hover {
       opacity: 0.6;
     }
+
     &:last-of-type {
       margin: 0;
     }
   }
-}
 
+  &__item-social-networksImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
 
 @media screen and (max-width: 850px) {
   .socialLinks {
     margin: 20px 0 0;
   }
 }
-

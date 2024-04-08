@@ -5,6 +5,7 @@ import packetSlice from "./Reducers/packetSlice";
 import userSlice from "./Reducers/userSlice";
 import orderSlice from "./Reducers/orderSlice";
 import editorSlice from "./Reducers/editorSlice";
+import blogSlice from "./Reducers/blogSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     user: userSlice,
     order: orderSlice,
     editor: editorSlice,
+    blog: blogSlice,
   },
 });
 

@@ -1,58 +1,57 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { apiApp } from "../../utils/apiApp";
-import { ICategory, PropsInitialStatePacketSlice, IPacket, PropsBoolean } from "../../types";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {apiApp} from "../../utils/apiApp";
+import {ICategory, PropsInitialStatePacketSlice, IPacket, PropsBoolean} from "../../types";
 
-export const createPacket = createAsyncThunk("packet/createPacket", async (data: IPacket, { rejectWithValue }) => {
+export const createPacket = createAsyncThunk("packet/createPacket", async (data: IPacket, {rejectWithValue}) => {
   try {
     const res = await apiApp().createPacket(data);
     return res.data;
   } catch (e) {
-    return rejectWithValue("Ошибка, не удалось создать пакет!");
+    return rejectWithValue("Error, the new package has not been created!");
   }
 });
 
 export const getPacketWithDetailsDescription = createAsyncThunk(
   "packet/getPacketWIthDetailsDescription",
-  async (id: string, { rejectWithValue }) => {
+  async (id: string, {rejectWithValue}) => {
     try {
       const res = await apiApp().getPacketWithDetailsDescription(id);
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, подробные данные пакета не получены");
+      return rejectWithValue("Error, the data of package has not been get");
     }
   }
 );
 
-export const getPacketsCategories = createAsyncThunk("packet/getPacketsCategories", async (_, { rejectWithValue }) => {
+export const getPacketsCategories = createAsyncThunk("packet/getPacketsCategories", async (_, {rejectWithValue}) => {
   try {
     const res = await apiApp().getPacketsCategories();
     return res.data;
   } catch (e) {
-    return rejectWithValue("Ошибка, не удалось загрузить категории пакетов!");
+    return rejectWithValue("Error, categories package has not been get!");
   }
 });
 
 export const getPacketsPinned = createAsyncThunk(
   "packet/getPacketsPinned",
-  async (arg: { pinned: boolean }, { rejectWithValue }) => {
+  async (arg: { pinned: boolean }, {rejectWithValue}) => {
     try {
       const res = await apiApp().getArrPackets(`/?pinned=${arg.pinned}`);
-
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, не удалось загрузить популярные пакеты!");
+      return rejectWithValue("Error, the popular package has not been uploaded!");
     }
   }
 );
 
 export const getArrPackets = createAsyncThunk(
   "packet/getArrPackets",
-  async (arg: { photosessionType: string }, { rejectWithValue }) => {
+  async (arg: { photosessionType: string }, {rejectWithValue}) => {
     try {
       const res = await apiApp().getArrPackets(`/?photosessionType=${arg.photosessionType}`);
       return res.data;
     } catch (e) {
-      return rejectWithValue("Ошибка, не удалось загрузить пакеты!");
+      return rejectWithValue("Error, the package has not been uploaded!");
     }
   }
 );
@@ -72,7 +71,7 @@ const initialState: PropsInitialStatePacketSlice = {
   },
   getPackets: [],
   getPinnedPackets: [],
-  getPacketsCategories: [],
+  packetsCategories: [],
   packetWithDetailsDescription: null,
   packetInBasket: [],
   basketIsNotEmpty: false,
@@ -119,6 +118,9 @@ export const packetSlice = createSlice({
     handlerDeleteDetailsPacket(state, action: { payload: null }) {
       state.packetWithDetailsDescription = action.payload;
     },
+    handlerErrorGetArrPackets(state, action: { payload: string }) {
+      state.error.packets = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -131,10 +133,11 @@ export const packetSlice = createSlice({
     });
     builder.addCase(getArrPackets.rejected, (state, action: { payload: any }) => {
       state.loading.getArrPackets = false;
+      console.log(action.payload);
       state.error.packets = action.payload;
     });
     builder.addCase(getPacketsCategories.fulfilled, (state, action: { payload: ICategory[] }) => {
-      state.getPacketsCategories = action.payload;
+      state.packetsCategories = action.payload;
     });
     builder.addCase(getPacketsPinned.pending, (state) => {
       state.loading.getPacketsPinned = true;
@@ -175,7 +178,8 @@ export const {
   handlerAddPacketInBasket,
   handlerDeletePacketFromBasket,
   handlerBasketIsNotEmpty,
-  handlerDeleteDetailsPacket
+  handlerDeleteDetailsPacket,
+  handlerErrorGetArrPackets
 } = packetSlice.actions;
 
 export default packetSlice.reducer;

@@ -4,6 +4,7 @@ $colorTextOnThePageContacts: #c69b6b;
 
 .myContacts {
   min-width: 250px;
+
   &__container {
     list-style: none;
     display: flex;
@@ -15,6 +16,7 @@ $colorTextOnThePageContacts: #c69b6b;
     display: flex;
     align-items: center;
     margin: 0 auto 10px;
+
     &:last-of-type {
       margin-bottom: 0;
     }
@@ -24,6 +26,7 @@ $colorTextOnThePageContacts: #c69b6b;
     width: 15px;
     height: 15px;
     margin: 0 15px 0 0;
+
     &_place {
       background: url("../../images/place-icon(black).svg") no-repeat center;
       background-size: contain;
@@ -38,6 +41,7 @@ $colorTextOnThePageContacts: #c69b6b;
       background: url("../../images/phone-icon(black).svg") no-repeat center;
       background-size: contain;
     }
+
     &_instagram {
       background: url("../../images/instagram.svg") no-repeat center;
       background-size: contain;
@@ -60,10 +64,12 @@ $colorTextOnThePageContacts: #c69b6b;
     color: $colorText;
     text-decoration: none;
     transition: all 0.4s;
+
     &:hover {
       color: $colorLinksHover;
     }
   }
+
   &__edit {
     font-size: 18px;
     line-height: 24px;
@@ -76,14 +82,17 @@ $colorTextOnThePageContacts: #c69b6b;
     &__item-container {
       margin: 0 auto 10px;
     }
+
     &__text {
       font-size: 12px;
       line-height: 14px;
     }
+
     &__link {
       font-size: 12px;
       line-height: 14px;
     }
+
     &__edit {
       font-size: 18px;
       line-height: 24px;
@@ -96,14 +105,17 @@ $colorTextOnThePageContacts: #c69b6b;
     &__item-container {
       margin: 0 auto 15px;
     }
+
     &__text {
       font-size: 14px;
       line-height: 16px;
     }
+
     &__link {
       font-size: 14px;
       line-height: 16px;
     }
+
     &__edit {
       font-size: 18px;
       line-height: 24px;

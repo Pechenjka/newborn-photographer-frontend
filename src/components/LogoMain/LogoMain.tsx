@@ -1,15 +1,15 @@
 import React from "react";
-import photographer from "../../images/logo-header-photographer.webp";
+import logoPhotographer from "../../images/logo-header-photographer.webp";
 import { Link } from "react-router-dom";
 
 const LogoMain: React.FC = () => {
   return (
-    <Link to='/'>
+    <Link to="/" title="go to home page" aria-label="go to home page">
       <img
         className="mainLogo"
         style={{ width: "100%", height: "100%", display: "block" }}
-        src={photographer}
-        alt="logo-photographer"
+        src={logoPhotographer}
+        alt="logo photographer Alena Lobacheva"
       />
     </Link>
   );

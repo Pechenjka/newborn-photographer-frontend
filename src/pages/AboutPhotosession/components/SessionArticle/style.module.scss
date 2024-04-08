@@ -1,0 +1,152 @@
+@import "../../../../styles/vars";
+
+.sessionArticle {
+  position: relative;
+
+  &__containerText {
+    z-index: 3;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding: 30px; /* добавлено для примера, чтобы не перекрывать текстом верхнюю часть изображения */
+    width: 60%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__containerText-to-right {
+    left: 0;
+  }
+
+  &__container {
+    width: 100%;
+    height: 500px;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  &__coverImage {
+    z-index: 2;
+    background: linear-gradient(to left, $backgroundColorPage, rgba(255, 0, 0, 0)) no-repeat;
+    background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__coverImage-to-right {
+    background: linear-gradient(to right, $backgroundColorPage, rgba(255, 0, 0, 0)) no-repeat;
+  }
+
+  &__title {
+    color: $TextColorBrownDark;
+    font-weight: normal;
+    padding-bottom: 15px;
+  }
+
+  &__description {
+    color: $TextColorBrownDark;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  &__link {
+    margin-top: 20px;
+    padding: 10px 15px;
+    color: $TextColorBrownDark;
+    background-color: rgba(121, 120, 120, 0.2);
+    border-radius: 5px;
+    max-width: max-content;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(121, 120, 120, 0.4);
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .sessionArticle {
+    &__container {
+      height: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .sessionArticle {
+    &__container {
+      height: 300px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sessionArticle {
+    &__coverImage {
+      background: linear-gradient(to bottom, $backgroundColorPage, rgba(255, 0, 0, 0)) no-repeat;
+      background-size: 100% 60%;
+    }
+
+    &__image {
+      object-position: bottom;
+      max-height: 800px;
+    }
+
+    &__container {
+      height: max-content;
+    }
+
+    &__containerText {
+      top: 0;
+      transform: translateY(0);
+      width: 100%;
+      padding: 50px 30px;
+    }
+
+    &__containerText-to-right {
+      padding-top: 50px;
+    }
+  }
+}
+
+@media screen and (max-width: 514px) {
+  .sessionArticle {
+    &__containerText {
+      padding: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .sessionArticle {
+    &__image {
+      max-height: 900px;
+    }
+
+    &__title {
+      font-size: 23px;
+    }
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .sessionArticle {
+    &__containerText {
+      padding: 15px;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+  }
+}

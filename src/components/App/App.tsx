@@ -3,16 +3,30 @@ import "./App.scss";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import PopupWithImage from "../PopupWithImage/PopupWithImage";
-import { getPacketsCategories, handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
+import { handlerAddPacketInBasket } from "../../redux/Reducers/packetSlice";
 import { authorization, checkAuth } from "../../redux/Reducers/userSlice";
 import { getTextOnPage } from "../../redux/Reducers/editorSlice";
 import { RouterComponent } from "../../router";
+import { ScrollUp } from "../ScrollUp";
+import { fetchArticlesUrl, fetchBlogArticles } from "../../redux/Reducers/blogSlice";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { packetInBasket } = useAppSelector((state) => state.packets);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    dispatch(fetchArticlesUrl());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchBlogArticles());
+  }, []);
 
   useEffect(() => {
     const jwt = localStorage.getItem("token");
@@ -24,7 +38,6 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(getPacketsCategories());
     dispatch(getTextOnPage());
   }, []);
 
@@ -42,6 +55,7 @@ const App: React.FC = () => {
     <div className="page">
       <RouterComponent />
       <PopupWithImage />
+      <ScrollUp />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 @import "./src/styles/vars";
+
 $colorLinks: #ffffff;
 $colorLinksHover: #c69b6b;
 $colorLinksActive: #c69b6b;
@@ -14,6 +15,7 @@ $colorLinksInBurgerMenu: #696554;
   margin: 21px 50px auto auto;
   display: flex;
   max-width: 100%;
+
   &__list {
     &_links {
       display: flex;
@@ -24,29 +26,38 @@ $colorLinksInBurgerMenu: #696554;
       margin: auto 0 auto auto;
       min-width: 676px;
       width: 100%;
+      align-items: center;
     }
   }
+
   &__containerItem {
     &:first-of-type {
     }
   }
+
   &__containerLinks {
     display: flex;
     justify-content: center;
   }
+
   &__container-link {
+    align-self: flex-start;
     position: relative;
     min-width: max-content;
     display: flex;
     justify-content: flex-end;
     margin-left: 40px;
+    height: max-content;
+
     &:nth-of-type(1) {
       margin-left: 0;
     }
+
     &:nth-of-type(4) {
       margin-right: auto;
     }
   }
+
   &__link {
     position: relative;
     font-size: 16px;
@@ -55,9 +66,11 @@ $colorLinksInBurgerMenu: #696554;
     transition: all 0.4s;
     border-bottom: 10px solid transparent;
     margin-top: 5px;
+
     &:hover {
       color: $colorLinksHover;
     }
+
     &:after {
       content: "";
       position: absolute;
@@ -70,6 +83,7 @@ $colorLinksInBurgerMenu: #696554;
       transition: width 0.4s;
       z-index: 1;
     }
+
     &_active {
       &::after {
         width: 100%;
@@ -79,12 +93,14 @@ $colorLinksInBurgerMenu: #696554;
 
   &__view-lists-links {
     position: relative;
+
     &:hover &_active {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
   }
+
   &__link-arrow {
     &::before {
       content: "";
@@ -98,18 +114,22 @@ $colorLinksInBurgerMenu: #696554;
       border-bottom: 15px solid transparent;
       opacity: 1;
     }
+
     &:hover {
       cursor: default;
+
       &::before {
         background: url("../../../../../images/arrow-icon-hover.svg") no-repeat center;
         color: $colorLinksHover;
       }
     }
   }
+
   &__link-logo {
     height: 18px;
     width: 20px;
     position: relative;
+
     & span {
       position: absolute;
       top: 50%;
@@ -120,6 +140,7 @@ $colorLinksInBurgerMenu: #696554;
       width: 100%;
       background-color: $colorIconBurgerMenu;
     }
+
     &:before {
       content: "";
       position: absolute;
@@ -130,6 +151,7 @@ $colorLinksInBurgerMenu: #696554;
       background-color: $colorIconBurgerMenu;
       transition: all 0.2s ease-in;
     }
+
     &:after {
       content: "";
       position: absolute;
@@ -146,23 +168,28 @@ $colorLinksInBurgerMenu: #696554;
         width: 50%;
         background-color: $colorLinksHover;
       }
+
       &:before {
         width: 100%;
         background-color: $colorLinksHover;
       }
+
       &:after {
         height: 2px;
         width: 100%;
         background-color: $colorLinksHover;
       }
     }
+
     &_active {
       & span {
         background-color: $colorLinksHover;
       }
+
       &:before {
         background-color: $colorLinksHover;
       }
+
       &:after {
         background-color: $colorLinksHover;
       }
@@ -186,13 +213,15 @@ $colorLinksInBurgerMenu: #696554;
     opacity: 0;
     visibility: hidden;
   }
+
   &__sublink {
     position: relative;
     text-decoration: none;
     width: fit-content;
-    margin: 10px 0 10px 10px;
+    margin: 10px;
     color: $colorLinksSelector;
     transition: 0.8s transform;
+
     &:after {
       content: "";
       position: absolute;
@@ -205,29 +234,30 @@ $colorLinksInBurgerMenu: #696554;
       transition: width 0.4s;
       z-index: 5;
     }
+
     &_active {
       &::after {
         width: 100%;
       }
     }
-    &:first-of-type {
-      max-width: min-content;
-    }
-    &:last-of-type {
-      max-width: max-content;
-    }
+
+    //&:last-of-type {
+    //  max-width: min-content;
+    //}
     &:hover {
       color: $colorLinksHover;
       transform: translateX(5px);
     }
   }
+
   &__basket {
-    width: 22px;
-    height: 22px;
+    width: 27px;
+    height: 27px;
     transition: transform 0.4s;
     position: relative;
     background: url("../../../../../images/basket.png") no-repeat center;
     background-size: cover;
+
     &:hover {
       cursor: pointer;
     }
@@ -248,6 +278,7 @@ $colorLinksInBurgerMenu: #696554;
       justify-content: center;
     }
   }
+
   &__basketTooltip {
     opacity: 0;
     visibility: hidden;
@@ -261,9 +292,12 @@ $colorLinksInBurgerMenu: #696554;
     background-color: white;
     border-radius: 10px;
     color: #797878;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
+
   &__tooltip {
     transition: transform 0.4s;
+
     &:hover &_active {
       opacity: 1;
       visibility: visible;
@@ -277,20 +311,25 @@ $colorLinksInBurgerMenu: #696554;
     height: 16px;
     width: 20px;
     position: relative;
+
     &:hover {
       cursor: pointer;
+
       & span {
         transform: translate(0);
       }
+
       &::before {
         background-color: $colorLinksHover;
         transform: translate(-50%, 0);
       }
+
       &::after {
         transform: translate(-50%, 0);
         background-color: $colorLinksHover;
       }
     }
+
     & span {
       position: absolute;
       top: 50%;
@@ -300,6 +339,7 @@ $colorLinksInBurgerMenu: #696554;
       width: 75%;
       background-color: $colorIconBurgerMenu;
     }
+
     &:before {
       content: "";
       position: absolute;
@@ -310,6 +350,7 @@ $colorLinksInBurgerMenu: #696554;
       background-color: $colorIconBurgerMenu;
       transition: transform 0.3s ease-in;
     }
+
     &::after {
       content: "";
       position: absolute;
@@ -321,6 +362,7 @@ $colorLinksInBurgerMenu: #696554;
       transition: transform 0.3s ease-in;
     }
   }
+
   &__containerBtnUser {
     flex-grow: 1;
     display: flex;
@@ -329,20 +371,44 @@ $colorLinksInBurgerMenu: #696554;
 
     width: 120px;
   }
+
   &__textUserBtn {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   &__adminPanel {
     text-decoration: none;
     color: #ff9696;
     padding-top: 5px;
-
   }
+
+  //&__buttonChangeLanguage {
+  //  display: flex;
+  //  align-items: center;
+  //  justify-content: center;
+  //  border: none;
+  //  outline: none;
+  //  background-color: transparent;
+  //  padding: 5px;
+  //  margin-right: 5px;
+  //  color: white;
+  //  cursor: pointer;
+  //  transition: 0.3s ease;
+  //
+  //  &:last-of-type {
+  //    margin-right: 0;
+  //  }
+  //
+  //  &_active {
+  //    background-color: rgba(255, 255, 255, 0.2);
+  //    border-radius: 5px;
+  //  }
+  //}
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1279px) {
   .navigation {
     flex-direction: column;
     visibility: hidden;
@@ -355,10 +421,23 @@ $colorLinksInBurgerMenu: #696554;
     background-color: $colorBackgroundBluerBurgerMenu;
     margin: 0;
     transition: opacity 0.4s ease-in;
+
+    //&__buttonChangeLanguage {
+    //  background-color: rgba(87, 87, 87, 0.1);
+    //  border-radius: 5px;
+    //  margin-right: 10px;
+    //  color: black;
+    //
+    //  &_active {
+    //    background-color: rgba(49, 46, 46, 0.2);
+    //  }
+    //}
+
     &__burgerMenu_active {
       opacity: 1;
       visibility: visible;
     }
+
     &__list {
       &_links {
         display: flex;
@@ -373,9 +452,11 @@ $colorLinksInBurgerMenu: #696554;
         margin: auto auto auto 0;
       }
     }
+
     &__link-arrow {
       width: 100%;
       text-align: left;
+
       &::before {
         content: "";
         position: absolute;
@@ -386,6 +467,7 @@ $colorLinksInBurgerMenu: #696554;
         border-left: 5px solid transparent;
         border-top: 10px solid $colorLinksInBurgerMenu;
       }
+
       &:hover {
         &::before {
           background: none;
@@ -417,9 +499,11 @@ $colorLinksInBurgerMenu: #696554;
       z-index: 1;
       visibility: visible;
     }
+
     &__subLinks-container_active {
       display: flex;
     }
+
     &__sublink {
       color: $colorLinksInBurgerMenu;
     }
@@ -428,22 +512,27 @@ $colorLinksInBurgerMenu: #696554;
       & span {
         background-color: $colorLinksInBurgerMenu;
       }
+
       &:before {
         background-color: $colorLinksInBurgerMenu;
       }
+
       &:after {
         background-color: $colorLinksInBurgerMenu;
       }
     }
+
     &__basketTooltip {
       transform: translate(100%, 200%);
       background-color: transparent;
     }
+
     &__tooltip {
       &:hover &_active {
         transform: translate(100%, 130%);
       }
     }
+
     &__container-link {
       justify-content: flex-start;
       margin-left: 0;
@@ -451,22 +540,29 @@ $colorLinksInBurgerMenu: #696554;
       padding: 0 0 0 40px;
       margin-bottom: 20px;
       min-width: 100%;
+
       &:last-of-type {
         margin-bottom: 0;
+        margin-top: 80px;
       }
+
       &:nth-of-type(1) {
         margin-left: 0;
       }
+
       &:nth-of-type(4) {
         margin-left: 0;
       }
+
       &:nth-of-type(5) {
         margin-left: 0;
       }
+
       &:nth-of-type(6) {
         margin-left: 0;
       }
     }
+
     &__link {
       font-size: 18px;
       color: $colorLinksInBurgerMenu;
@@ -478,6 +574,7 @@ $colorLinksInBurgerMenu: #696554;
       background-color: $colorBackgroundContainerBurgerMenu;
       width: 50%;
     }
+
     &__basket {
       background: url("../../../../../images/basket-burgerMenu.png") no-repeat center;
       background-size: cover;
@@ -511,9 +608,11 @@ $colorLinksInBurgerMenu: #696554;
     &__list_links {
       width: 50%;
     }
+
     &__container-link {
       padding: 0 0 0 20px;
     }
+
     &__burgerMenu_active &__list_links {
       width: 70%;
     }
@@ -525,6 +624,7 @@ $colorLinksInBurgerMenu: #696554;
     &__list_links {
       width: 60%;
     }
+
     &__burgerMenu_active &__list_links {
       width: 80%;
     }

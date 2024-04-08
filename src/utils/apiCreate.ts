@@ -1,9 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { apiAuthorization } from "./apiAuth";
 
-const URL = "https://api.alenalobacheva.net";
-//const URL = "http://localhost:3005";
-const $api = axios.create({ withCredentials: true, baseURL: URL });
+const $api = axios.create({ withCredentials: true, baseURL: "https://api.alenalobacheva.com" });
+//const $api = axios.create({ withCredentials: true, baseURL: "http://localhost:3005" });
 
 $api.interceptors.request.use(async (config: AxiosRequestConfig) => {
   if (config.headers === undefined) {
@@ -26,7 +25,7 @@ $api.interceptors.response.use(
         localStorage.setItem("token", res.data.accessToken);
         return $api.request(originalRequest);
       } catch (e) {
-        console.log("Не авторизован");
+        console.log("Not authorized");
       }
     }
     return Promise.reject(error);

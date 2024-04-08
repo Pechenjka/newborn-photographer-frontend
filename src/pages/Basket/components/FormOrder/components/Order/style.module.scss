@@ -5,9 +5,11 @@
   width: 100%;
   margin-bottom: 30px;
   min-width: 350px;
+
   &_checkout {
     width: max-content;
   }
+
   &__title {
     background-color: rgba(80, 78, 78, 0.6);
     width: 100%;
@@ -17,6 +19,7 @@
     display: flex;
     justify-content: space-between;
   }
+
   &__packets {
     list-style: none;
     display: flex;
@@ -30,6 +33,7 @@
 @media screen and (max-width: 568px) {
   .order {
     width: 100%;
+
     &__title {
       font-size: 15px;
       padding: 15px;
@@ -40,10 +44,12 @@
 @media screen and (max-width: 414px) {
   .order {
     min-width: 260px;
+
     &__title {
       display: flex;
       flex-direction: column;
       color: rgba(51, 50, 50, 0.99);
+
       &_span {
         margin-top: 5px;
         color: white;

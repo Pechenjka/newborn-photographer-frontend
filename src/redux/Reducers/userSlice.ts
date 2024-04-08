@@ -31,9 +31,9 @@ export const login = createAsyncThunk("user/login", async (data: ILoginUser, { d
   } catch (error: any) {
     await dispatch(handlerError(true));
     if (error.response.status === 400) {
-      return rejectWithValue("Ошибка, не удалось авторизоваться, не правильный email или пароль");
+      return rejectWithValue("Error, incorrect password or email");
     }
-    return rejectWithValue("Ошибка, не удалось авторизоваться, попробуйте позже");
+    return rejectWithValue("Error, try to sign in later");
   }
 });
 
@@ -42,7 +42,6 @@ export const sendEmailForPasswordRecovery = createAsyncThunk(
   async (data: { email: string }, { rejectWithValue }) => {
     try {
       const res = await apiAuthorization().activatePasswordChange(data);
-      console.log(res.data);
       return res.data;
     } catch (e) {
       return rejectWithValue("Произошла ошибка");
@@ -106,7 +105,6 @@ export const updateUser = createAsyncThunk(
 export const passwordChange = createAsyncThunk(
   "user/passwordChange",
   async (data: { newPassword: string }, { rejectWithValue }) => {
-    console.log(data)
     try {
       const res = await apiAuthorization().passwordChange(data);
       return res.data;
@@ -116,14 +114,10 @@ export const passwordChange = createAsyncThunk(
   }
 );
 
-export const passwordChangeClosed = createAsyncThunk('user/passwordChangeClosed', async ()=> {
+export const passwordChangeClosed = createAsyncThunk("user/passwordChangeClosed", async () => {
   try {
-
-  } catch (e) {
-
-  }
-})
-
+  } catch (e) {}
+});
 
 const initialState: PropsInitialStateUserSlice = {
   user: {

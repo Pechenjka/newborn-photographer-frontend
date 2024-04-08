@@ -2,26 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Header.scss";
 import NavMenu from "./components/NavMenu/NavMenu";
 import LogoMain from "../../../components/LogoMain/LogoMain";
+import useScroll from "../../../hooks/useScroll";
 
 const Header: React.FC = () => {
   const [openBurgerMenu, setOpenBurgerMenu] = useState<boolean>(false);
   const navRef = useRef<any>(null);
+  const { handlerUseScroll } = useScroll();
 
-  //Изменение цвета header при прокрутки страницы
+  // Change color header after scroll
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.pageYOffset > 70) {
-        navRef.current.classList.add("header__changeColor");
-      } else {
-        navRef.current.classList.remove("header__changeColor");
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    handlerUseScroll({ addClass: "header__changeColor", removeClass: "header__changeColor", ref: navRef, px: 100 });
   }, []);
-
 
   //Обработчик открытия закрытия бургер-меню
   const handlerOpenAndCloseBurgerMenu = (): void => {
@@ -37,7 +28,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="header" ref={navRef}>
+    <header className="header" ref={navRef} id="header">
       <div className="header__container">
         <div className="header__logo">
           <LogoMain />

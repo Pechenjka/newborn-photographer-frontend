@@ -1,4 +1,7 @@
+import { AxiosResponse } from "axios";
+import $api from "./apiCreate";
 import {
+  IBlogArticle,
   ICategory,
   IPacket,
   IPhoto,
@@ -7,8 +10,6 @@ import {
   PropsPayLoadSendEmail,
   PropsText,
 } from "../types";
-import $api from "./apiCreate";
-import { AxiosResponse } from "axios";
 
 export const apiApp = (): {
   createPacket: any;
@@ -25,6 +26,12 @@ export const apiApp = (): {
   deleteTextBlock: any;
   deletePhoto: any;
   changeOrderPhoto: any;
+  getPhotoCategories: any;
+  getInstagramProfile: any;
+  getBlogArticles: any;
+  getArticleDetail: any;
+  getArticlesUrl: any;
+  createArticle: any;
 } => {
   return {
     createPacket: async (data: IPacket): Promise<AxiosResponse<IPacket>> => {
@@ -43,6 +50,9 @@ export const apiApp = (): {
       });
     },
 
+    getInstagramProfile: async () => {
+      return await $api.get("/mediaContent/instagram");
+    },
     getArrPackets: async (path: string): Promise<AxiosResponse<IPacket[]>> => {
       return await $api.get(`/packets/${path}`);
     },
@@ -50,7 +60,9 @@ export const apiApp = (): {
     getPacketsCategories: async (): Promise<AxiosResponse<ICategory[]>> => {
       return await $api.get("/categories");
     },
-
+    getPhotoCategories: async (): Promise<AxiosResponse<ICategory[]>> => {
+      return await $api.get("/mediaContent/categories");
+    },
     getPacketWithDetailsDescription: async (id: string): Promise<AxiosResponse<IPacket[]>> => {
       return await $api.get(`/packets/${id}`);
     },
@@ -59,6 +71,15 @@ export const apiApp = (): {
       return await $api.get(`/mediaContent/gallery/${path}`);
     },
 
+    getBlogArticles: async (): Promise<AxiosResponse<IBlogArticle[]>> => {
+      return await $api.get("/blog");
+    },
+    getArticleDetail: async (url: string): Promise<AxiosResponse<IBlogArticle>> => {
+      return await $api.get(`/blog/${url}`);
+    },
+    getArticlesUrl: async (url: string): Promise<AxiosResponse<IBlogArticle>> => {
+      return await $api.get(`/blog/${url}`);
+    },
     deletePhoto: async (dataId: string): Promise<void> => {
       return await $api.delete(`/mediaContent/gallery/${dataId}`);
     },
@@ -73,11 +94,12 @@ export const apiApp = (): {
       return await $api.post("/mediaContent/gallery", {
         image: data.image,
         type: data.type,
+        order: data.order,
       });
     },
 
     getInTouch: async ({ data }: PropsPayLoadGetInTouch): Promise<void> => {
-      return await $api.post("/contacts/getInTouch", {
+      return await $api.post("/contact/getInTouch", {
         name: data.name,
         email: data.email,
         tel: data.phone,
@@ -86,7 +108,7 @@ export const apiApp = (): {
     },
 
     newsLetter: async ({ data }: PropsPayLoadSendEmail): Promise<any> => {
-      return await $api.post("/contacts/newsLetter", {
+      return await $api.post("/contact/newsLetter", {
         email: data.email,
       });
     },
@@ -101,6 +123,19 @@ export const apiApp = (): {
     },
     deleteTextBlock: async (dataId: string): Promise<any> => {
       return await $api.delete(`/editor/${dataId}`);
+    },
+
+    createArticle: async (data: any): Promise<any> => {
+      return await $api.post("/blog/createArticle", {
+        title: data.title,
+        url: data.url,
+        imagePrev: data.imagePrev,
+        typePhotoSession: data.typePhotoSession,
+        details: {
+          images: data.details.images,
+          description: data.details.description,
+        },
+      });
     },
   };
 };

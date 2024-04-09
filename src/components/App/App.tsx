@@ -9,12 +9,17 @@ import { getTextOnPage } from "../../redux/Reducers/editorSlice";
 import { RouterComponent } from "../../router";
 import { ScrollUp } from "../ScrollUp";
 import { fetchArticlesUrl, fetchBlogArticles } from "../../redux/Reducers/blogSlice";
+import { handleGetInstagramProfile } from "../../redux/Reducers/appSlice";
 
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { packetInBasket } = useAppSelector((state) => state.packets);
+
+  useEffect(() => {
+    dispatch(handleGetInstagramProfile());
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

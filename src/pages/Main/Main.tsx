@@ -7,21 +7,12 @@ import { MetaData } from "../../helpers/MetaData";
 // import { AboutNewborn } from "./components/AboutNewborn";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 //import { getPacketsPinned } from "../../redux/Reducers/packetSlice";
-import { Instagram } from "../../components/Instagram";
-import { handleGetInstagramProfile } from "../../redux/Reducers/appSlice";
 import { ComparePhotos } from "../../components/ComparePhotos";
 import JsonLd from "../../helpers/JsonLD";
 import { InvestmentOnMainPage } from "./components/InvestmentOnMainPage";
 
 export const Main: React.FC = () => {
-  const dispatch = useAppDispatch();
   // const { language } = useAppSelector((state) => state.app);
-
-  useEffect(() => {
-    //  dispatch(getPacketsPinned({ pinned: true }));
-    dispatch(handleGetInstagramProfile());
-  }, []);
-
 
   const webSiteDataMain = {
     "@context": "http://schema.org",
@@ -105,7 +96,6 @@ export const Main: React.FC = () => {
         <PhotoGalleryOfTheMainPage />
         <InvestmentOnMainPage />
         <ComparePhotos />
-        <Instagram />
         {/*<PopularPackets editStyleForPrice={window.innerWidth < 768 && true} />*/}
       </main>
     </Fragment>

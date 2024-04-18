@@ -6,7 +6,6 @@ import { useWindowResize } from "../../hooks/useWindowResize";
 import classNames from "classnames/bind";
 import { motion } from "framer-motion";
 import { animationOpacityTransitionRightToLeft } from "../../helpers/framerMotion";
-import { useTranslation } from "react-i18next";
 
 export interface PropsArrRetouchPhotos {
   type: string;
@@ -18,25 +17,25 @@ export const ComparePhotos: React.FC = () => {
   const [typePhoto, setTypePhoto] = useState<{ newborn: boolean; family: boolean }>({ newborn: true, family: false });
   const [arrRetouchPhotos, setArrRetouchPhotos] = useState<PropsArrRetouchPhotos>({
     type: "newborn",
-    imageAfter: 'https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-after-newborn.jpg',
-    imageBefore: 'https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-before-newborn.jpg',
+    imageAfter: "https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-after-newborn.jpg",
+    imageBefore: "https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-before-newborn.jpg",
   });
 
   const { width } = useWindowResize();
   const cx = classNames.bind(Styles);
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   const ArrRetouchPhotos: PropsArrRetouchPhotos[] = [
     {
       type: "newborn",
-      imageAfter: 'https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-after-newborn.jpg',
-      imageBefore: 'https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-before-newborn.jpg',
+      imageAfter: "https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-after-newborn.jpg",
+      imageBefore: "https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-before-newborn.jpg",
     },
 
     {
       type: "family",
-      imageAfter: 'https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-after-family.webp',
-      imageBefore: 'https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-before-family.webp',
+      imageAfter: "https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-after-family.webp",
+      imageBefore: "https://cdn.alenalobacheva.com/staticPhotos/retouch/retouch-before-family.webp",
     },
   ];
 
@@ -68,7 +67,7 @@ export const ComparePhotos: React.FC = () => {
       whileInView="visible"
       viewport={{ amount: 0.2, once: true }}
     >
-      <h3 className={Styles.comparePhotos__title}>{t("image compare title")}</h3>
+      <h3 className={Styles.comparePhotos__title}>Author's retouching before and after</h3>
       <motion.div
         className={Styles.comparePhotos__container}
         variants={animationOpacityTransitionRightToLeft}

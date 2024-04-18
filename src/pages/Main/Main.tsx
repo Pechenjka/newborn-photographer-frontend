@@ -1,18 +1,15 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import "./Main.scss";
 import PhotoGalleryOfTheMainPage from "./components/PhotoGalleryOfTheMainPage/PhotoGalleryOfTheMainPage";
 // import PopularPackets from "../../components/PopularPackets/PopularPackets";
 import { SliderComponent } from "../../components/SliderComponent";
 import { MetaData } from "../../helpers/MetaData";
-// import { AboutNewborn } from "./components/AboutNewborn";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-//import { getPacketsPinned } from "../../redux/Reducers/packetSlice";
 import { ComparePhotos } from "../../components/ComparePhotos";
 import JsonLd from "../../helpers/JsonLD";
 import { InvestmentOnMainPage } from "./components/InvestmentOnMainPage";
 
 export const Main: React.FC = () => {
-  // const { language } = useAppSelector((state) => state.app);
+
 
   const webSiteDataMain = {
     "@context": "http://schema.org",

@@ -26,33 +26,33 @@ export const arrSlides: IArrSlides[] = [
 ];
 
 export const links: ILink[] = [
-  { name: "navLink main", path: "/" },
+  { name: "Home", path: "/" },
   {
-    name: "navLink photo gallery",
+    name: "Gallery",
     select: [
       {
-        name: "navLink newborn",
+        name: "Newborn",
         pathSelect: "/gallery/newborn",
         type: "newborn",
         title: "Newborn Photography Gallery",
       },
       {
-        name: "navLink maternity",
+        name: "Maternity",
         pathSelect: "/gallery/maternity",
         type: "maternity",
         title: "Maternity Photography Gallery",
       },
-      { name: "navLink baby", pathSelect: "/gallery/baby", type: "baby", title: "Baby Photography Gallery" },
-      { name: "navLink family", pathSelect: "/gallery/family", type: "family", title: "Family Photography Gallery" },
-      { name: "navLink woman", pathSelect: "/gallery/woman", type: "woman", title: "Woman Photography Gallery" },
+      { name: "Baby", pathSelect: "/gallery/baby", type: "baby", title: "Baby Photography Gallery" },
+      { name: "Family", pathSelect: "/gallery/family", type: "family", title: "Family Photography Gallery" },
+      { name: "Woman", pathSelect: "/gallery/woman", type: "woman", title: "Woman Photography Gallery" },
       {
-        name: "navLink discharge",
+        name: "Discharge",
         pathSelect: "/gallery/discharge",
         type: "discharge",
         title: "Discharge Photography Gallery",
       },
       {
-        name: "navLink christening",
+        name: "Christening",
         pathSelect: "/gallery/christening",
         type: "christening",
         title: "Christening Photography Gallery",
@@ -60,24 +60,24 @@ export const links: ILink[] = [
     ],
   },
   {
-    name: "navLink prices and services",
+    name: "Investment",
     select: [
       {
-        name: "navSubLink newborn",
+        name: "Newborn",
         pathSelect: "/prices/newborn",
         type: "newborn",
         title: "Newborn Photography Pricing",
       },
-      { name: "navSubLink baby", pathSelect: "/prices/baby", type: "baby", title: "Baby Photography Pricing" },
+      { name: "Baby", pathSelect: "/prices/baby", type: "baby", title: "Baby Photography Pricing" },
       {
-        name: "navSubLink family and pregnancy",
+        name: "Family & Maternity",
         pathSelect: "/prices/family",
         type: "family",
         title: "Family Photography Pricing",
       },
-      // { name: "navSubLink woman", pathSelect: "/prices/woman", type: "woman" },
+      // { name: "Woman", pathSelect: "/prices/woman", type: "woman" },
       {
-        name: "navSubLink christening",
+        name: "Christening",
         pathSelect: "/prices/christening",
         type: "christening",
         title: "Christening Photography Pricing",
@@ -85,7 +85,7 @@ export const links: ILink[] = [
     ],
   },
   {
-    name: "navLink information",
+    name: "Information",
     logo: navbarLogo,
     select: [
       // {
@@ -94,16 +94,16 @@ export const links: ILink[] = [
       //   type: "photo-products"
       // },
       {
-        name: "navSubLink prepare at photo session",
+        name: "Session information",
         pathSelect: "/session-information",
         type: "session-information",
         title: "Session information",
       },
       { name: "Blog", pathSelect: "/blog", type: "blog", title: "Blog" },
-      { name: "navSubLink about Me", pathSelect: "/about", type: "about", title: "About me" },
+      { name: "About Me", pathSelect: "/about", type: "about", title: "About me" },
     ],
   },
-  { name: "navSubLink contacts", path: "/contact" },
+  { name: "Contact", path: "/contact" },
 ];
 
 export const photosCategoryInGallery: string[] = [
@@ -164,28 +164,28 @@ export const tableTabletsWithPassport: ITablesPhotoProducts[] = [
 
 export const photosCategoryInMainPage: IPhotosCategoryInMainPage[] = [
   {
-    name: "photosCategory newborn",
+    name: "Newborn",
     type: "newborn",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
       handlerClick(event, "newborn"),
     id: Math.random().toString(16).slice(2),
   },
   {
-    name: "photosCategory baby",
+    name: "Baby",
     type: "baby",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
       handlerClick(event, "baby"),
     id: Math.random().toString(16).slice(2),
   },
   {
-    name: "photosCategory family",
+    name: "Family",
     type: "family",
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string) => void, event: React.MouseEvent) =>
       handlerClick(event, "family"),
     id: Math.random().toString(16).slice(2),
   },
   {
-    name: "photosCategory all",
+    name: "All photos",
     type: null,
     onClick: (handlerClick: (event: React.MouseEvent, typePhotos: string | null) => void, event: React.MouseEvent) =>
       handlerClick(event, null),

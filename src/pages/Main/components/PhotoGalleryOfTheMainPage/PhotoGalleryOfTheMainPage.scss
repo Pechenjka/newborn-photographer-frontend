@@ -82,33 +82,10 @@ $colorLineBottomLinks: #c69b6b;
   }
 }
 
-@media screen and (max-width: 650px) {
-  .gallery {
-    &__list-title {
-      &_ru {
-        display: grid;
-        list-style: none;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
-      }
-    }
-
-    &__title-element {
-      &_ru {
-        margin-right: 0;
-      }
-    }
-  }
-}
-
 @media screen and (max-width: 568px) {
   .gallery {
     &__title-element {
       margin-right: 20px;
-
-      &_ru {
-        margin-right: 0;
-      }
     }
 
     &__title-link {
@@ -129,10 +106,6 @@ $colorLineBottomLinks: #c69b6b;
   .gallery {
     &__title-element {
       margin-right: auto;
-
-      &_ru {
-        margin-right: 0;
-      }
     }
   }
 }

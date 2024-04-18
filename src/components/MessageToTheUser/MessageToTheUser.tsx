@@ -2,11 +2,9 @@ import React from "react";
 import "./MessageToTheUser.scss";
 import iconChecked from "../../images/icon-checked.svg";
 import { PropsMessageToTheUser } from "../../types";
-import {useTranslation} from "react-i18next";
 
 const MessageToTheUser: React.FC<PropsMessageToTheUser> = (props) => {
-  const {t} = useTranslation()
-  const { title, text = `${t("message to user order")}`, icon = iconChecked, onClose } = props;
+  const { title, text = 'We will get you responsible ASAP', icon = iconChecked, onClose } = props;
 
   return (
     <div className="messageToTheUser">

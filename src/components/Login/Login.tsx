@@ -7,15 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { useDisabledScroll } from "../../hooks/useDisabledScroll";
 import { validationSchemaLogin } from "../../validationForms";
 import { ILoginUser, PropsLogin } from "../../types";
-import { useTranslation } from "react-i18next";
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { handlerDisabledScroll } = useDisabledScroll;
   const { error, loading, showError } = useAppSelector((state) => state.user);
-  const { t } = useTranslation();
-
   useEffect(() => {
     handlerDisabledScroll(false);
   }, []);
@@ -31,13 +28,13 @@ export const Login: React.FC = () => {
 
   return (
     <AuthForm
-      titleAuthorization={t("login_title")}
+      titleAuthorization="Sign in"
       // textQuestion="Ещё не зарегистрированы?"
       // textAnswer="Зарегестрироваться"
       // pathOnAnotherAuthorization="/signup"
       initialValues={initialValues}
       validationSchema={validationSchemaLogin}
-      textButton={t("login_submit_button")}
+      textButton="Continue"
       handleSubmit={handleSubmit}
       error={error}
       loading={loading.login}

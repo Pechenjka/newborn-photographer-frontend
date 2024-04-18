@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { animationInvestmentOnMainPage } from "../../../../helpers/framerMotion";
-import { useTranslation } from "react-i18next";
 
 export interface PhotoSession {
   name: string;
@@ -12,7 +11,6 @@ export interface PhotoSession {
 }
 
 export const InvestmentOnMainPage: React.FC = () => {
-  const { t } = useTranslation();
 
   const packages: PhotoSession[] = [
     { name: "Newborn", link: "newborn", image: 'https://cdn.alenalobacheva.com/staticPhotos/images-of-links-on-main-page/newborn.webp' },
@@ -25,8 +23,8 @@ export const InvestmentOnMainPage: React.FC = () => {
 
   return (
     <section className={Styles.investmentOnMainPage}>
-      <h3 className={Styles.investmentOnMainPage__title}>{t("investmentOnMainPage title")}</h3>
-      <h4 className={Styles.investmentOnMainPage__description}>{t("investmentOnMainPage description")}</h4>
+      <h3 className={Styles.investmentOnMainPage__title}>Photo sessions</h3>
+      <h4 className={Styles.investmentOnMainPage__description}>You can choose and book one of the session you are looking for</h4>
       <motion.ul
         className={Styles.investmentOnMainPage__containerPackages}
         initial="hidden"

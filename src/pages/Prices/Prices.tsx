@@ -9,7 +9,6 @@ import { MetaData } from "../../helpers/MetaData";
 import { framerMotionPhotosAndPackets, hiddenAndScale, hiddenUnderLine } from "../../helpers/framerMotion";
 import { ICategory } from "../../types";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import { useWindowResize } from "../../hooks/useWindowResize";
 import JsonLd from "../../helpers/JsonLD";
 import NoteImportantPrices from "./components/NoteImportantPrices";
@@ -17,10 +16,8 @@ import NoteImportantPrices from "./components/NoteImportantPrices";
 const Prices: React.FC = () => {
   const dispatch = useAppDispatch();
   const { getPackets, packetsCategories, loading, error } = useAppSelector((state) => state.packets);
-  const { language } = useAppSelector((state) => state.app);
   const { pathname } = useLocation();
   const [typePhotosession, setTypePhotosession] = useState<string>("");
-  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getPacketsCategories());
@@ -152,7 +149,7 @@ const Prices: React.FC = () => {
           return (
             pathname.includes(item.title) && (
               <motion.h1 variants={hiddenAndScale} custom={1} className={Styles.prices__title} key={index}>
-                {`${language === "en" ? item.nameEN : item.nameRU} ${t("pricing Title")}`}
+                {item.nameEN}
               </motion.h1>
             )
           );
@@ -165,11 +162,11 @@ const Prices: React.FC = () => {
           />
         )}
         {/*important message*/}
-        {typePhotosession === "newborn" && (
-          <p className={Styles.prices__importantMessage}>
-            For newborn sessions occurs from March, 20 up to April, 10 there is a DISCOUNT for all packages 20%
-          </p>
-        )}
+        {/*{typePhotosession === "newborn" && (*/}
+        {/*  <p className={Styles.prices__importantMessage}>*/}
+        {/*    For newborn sessions occurs from March, 20 up to April, 10 there is a DISCOUNT for all packages 20%*/}
+        {/*  </p>*/}
+        {/*)}*/}
         <div className={Styles.prices__container}>
           {loading.getArrPackets ? (
             <div style={{ gridColumn: "1/-1", marginTop: "50px" }}>

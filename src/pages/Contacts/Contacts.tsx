@@ -5,20 +5,19 @@ import SocialLinks from "../../components/SocialLinks/SocialLinks";
 import MyContacts from "../../components/MyContacts/MyContacts";
 import { useLocation } from "react-router-dom";
 import { MetaData } from "../../helpers/MetaData";
-import { useTranslation }  from "react-i18next";
 import logoPhotographer from "../../images/logo-header-photographer.webp";
 import JsonLd from "../../helpers/JsonLD";
 
 const Contacts: React.FC = () => {
   const { pathname } = useLocation();
-  const { t } = useTranslation();
 
   const webPageDataContacts = {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-contactMe`,
     name: "Contact Alena Lobacheva | NYC Newborn Photographer",
-    description: "Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome",
+    description:
+      "Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome",
     image: "https://cdn.alenalobacheva.com/gallery/family/family-imageOG.webp",
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -78,8 +77,8 @@ const Contacts: React.FC = () => {
       />
       <section className="contacts">
         <h1 className="contacts__title">
-          {t("contacts title1")} <br />
-          <span className="contacts__title_span">{t("contacts title2")}</span>
+          Contact <br />
+          <span className="contacts__title_span">Schedule your photo session today</span>
         </h1>
         <img
           className="contacts__logoAuth"
@@ -91,7 +90,7 @@ const Contacts: React.FC = () => {
         />
         <MyContacts />
         <SocialLinks />
-        <ContactMeForm title={t("contactMeForm title")} />
+        <ContactMeForm title="Get In Touch With Me" />
       </section>
     </Fragment>
   );

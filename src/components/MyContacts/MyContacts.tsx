@@ -1,12 +1,10 @@
 import "./MyContacts.scss";
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 const MyContacts: React.FC = () => {
   const { pathname } = useLocation();
   const myContactsEdit = pathname === "/contact" ? "myContacts__edit" : "";
-  const { t } = useTranslation();
 
   return (
     <div className="myContacts">
@@ -20,7 +18,7 @@ const MyContacts: React.FC = () => {
             rel="noopener noreferrer"
             title="New York map"
           >
-            {t("footer my contacts place")}{" "}
+            New York, NY.
           </a>
         </li>
         <li className="myContacts__item-container">

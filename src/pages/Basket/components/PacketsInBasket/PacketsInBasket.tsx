@@ -2,11 +2,9 @@ import Styles from "./style.module.scss";
 import React from "react";
 import { IPacket, PropsPacketsInBasket } from "../../../../types";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 const PacketsInBasket: React.FC<PropsPacketsInBasket> = ({ packetInBasket, onClickDeletePacket }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const handleDeletePackets = (packetId: string): void => {
     onClickDeletePacket(packetId);
@@ -14,14 +12,14 @@ const PacketsInBasket: React.FC<PropsPacketsInBasket> = ({ packetInBasket, onCli
   };
 
   const titleBasket = () =>
-    (packetInBasket.length === 1 && `${t("cart count unit 1")}`) ||
-    (packetInBasket.length <= 4 && `${t("cart count unit 2-4")}`) ||
-    (packetInBasket.length > 4 && `${t("cart count unit > 4")}`);
+    (packetInBasket.length === 1 && "package") ||
+    (packetInBasket.length <= 4 && "packages") ||
+    (packetInBasket.length > 4 && "packages");
 
   return (
     <div className={Styles.packetsInBasket}>
       <h3 className={Styles.packetsInBasket__title}>
-        {t("cart in cart")}:{" "}
+        In cart
         <span className={Styles.packetsInBasket__title_span}>
           {packetInBasket.length} {titleBasket()}
         </span>
@@ -29,11 +27,11 @@ const PacketsInBasket: React.FC<PropsPacketsInBasket> = ({ packetInBasket, onCli
       <table className={Styles.packetsInBasket__table}>
         <thead>
           <tr className={Styles.packetsInBasket__tableHeaderContainer}>
-            <th className={Styles.packetsInBasket__tableHeader}>{t("cart delete unit from cart")}</th>
-            <th className={Styles.packetsInBasket__tableHeader}>{t("cart table order package")}</th>
-            <th className={Styles.packetsInBasket__tableHeader}>{t("cart table order name")}</th>
-            <th className={Styles.packetsInBasket__tableHeader}>{t("cart table order category")}</th>
-            <th className={Styles.packetsInBasket__tableHeader}>{t("cart table order cost")}</th>
+            <th className={Styles.packetsInBasket__tableHeader}>Delete from the cart</th>
+            <th className={Styles.packetsInBasket__tableHeader}>Package</th>
+            <th className={Styles.packetsInBasket__tableHeader}>Name</th>
+            <th className={Styles.packetsInBasket__tableHeader}>Category</th>
+            <th className={Styles.packetsInBasket__tableHeader}>Cost, $</th>
           </tr>
         </thead>
         <tbody>

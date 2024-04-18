@@ -8,7 +8,6 @@ import { ILink, ISubLink, PropsNavMenu } from "../../../../../types";
 import { Button } from "../../../../../components/Button";
 import logoUser from "../../../../../images/user.webp";
 import cx from "classnames";
-import { useTranslation } from "react-i18next";
 import { useWindowResize } from "../../../../../hooks/useWindowResize";
 
 const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBurgerMenu }) => {
@@ -16,8 +15,6 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { auth, user } = useAppSelector((state) => state.user);
   const navigate = useNavigate();
-
-  const { t, i18n } = useTranslation();
   const { width } = useWindowResize();
 
   useEffect(() => {
@@ -96,7 +93,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                   className={`navigation__link  ${item.select ? "navigation__link-arrow" : ""}`}
                   onClick={() => handleClickLinkMobileVersion(item)}
                 >
-                  <span> {t(`${item.name}`)}</span>
+                  <span> {item.name}</span>
                 </div>
               ) : (
                 <NavLink
@@ -109,10 +106,10 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                   }
                   end
                   to={item.path ? item.path : ""}
-                  title={`${t(`${item.name}`)}`}
+                  title={item.name}
                   onClick={handleClickLink}
                 >
-                  {t(`${item.name}`)}
+                  {item.name}
                 </NavLink>
               )}
               {item.select && (
@@ -129,7 +126,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                           onClick={handleClickDropdownLink}
                           title={el.title}
                         >
-                          {t(`${el.name}`)}
+                          {el.name}
                         </NavLink>
                       );
                     })}
@@ -167,7 +164,7 @@ const NavMenu: React.FC<PropsNavMenu> = ({ handlerOpenAndCloseBurgerMenu, openBu
                 {packetInBasket.length > 0 ? (
                   <span className="navigation__basket_notEmpty ">{packetInBasket.length}</span>
                 ) : (
-                  <div className="navigation__basketTooltip navigation__tooltip_active">{t("basket is empty")}</div>
+                  <div className="navigation__basketTooltip navigation__tooltip_active">Your cart is empty</div>
                 )}
               </div>
             </div>

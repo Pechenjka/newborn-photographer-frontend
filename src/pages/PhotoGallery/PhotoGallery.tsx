@@ -16,7 +16,6 @@ import { ICategory, IPhoto, PhotoPostPage } from "../../types";
 import { Button } from "../../components/Button";
 import PreLoader from "../../components/PreLoader/PreLoader";
 import { MetaData } from "../../helpers/MetaData";
-import { useTranslation } from "react-i18next";
 import { animationTitleCategory } from "../../helpers/framerMotion";
 import JsonLd from "../../helpers/JsonLD";
 import { useWindowResize } from "../../hooks/useWindowResize";
@@ -29,8 +28,6 @@ const PhotoGallery: React.FC = () => {
     (state) => state.photos
   );
   const { user } = useAppSelector((state) => state.user);
-  const { language } = useAppSelector((state) => state.app);
-  const { t } = useTranslation();
 
   useEffect(() => {
     photosCategoryInGallery.some((item: string) => {
@@ -84,7 +81,8 @@ const PhotoGallery: React.FC = () => {
     description: `Magic of ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
     } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
-      typePhoto[0].toUpperCase() + typePhoto.slice(1)} session today`,
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)
+    } session today`,
     image: `https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`,
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -102,7 +100,8 @@ const PhotoGallery: React.FC = () => {
     description: `Magic of ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
     } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
-      typePhoto[0].toUpperCase() + typePhoto.slice(1)} session today`,
+      typePhoto[0].toUpperCase() + typePhoto.slice(1)
+    } session today`,
     image: `https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`,
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
@@ -139,10 +138,11 @@ const PhotoGallery: React.FC = () => {
       <JsonLd data={localBusinessDataGallery} />
       <MetaData
         title={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography | Alena Lobacheva Photographer NYC`}
-      description={`Magic of ${
-      typePhoto[0].toUpperCase() + typePhoto.slice(1)
-    } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
-      typePhoto[0].toUpperCase() + typePhoto.slice(1)}  session today`}
+        description={`Magic of ${
+          typePhoto[0].toUpperCase() + typePhoto.slice(1)
+        } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
+          typePhoto[0].toUpperCase() + typePhoto.slice(1)
+        }  session today`}
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageOG={`https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`}
         imageAltOG={`${typePhoto} photography`}
@@ -152,14 +152,15 @@ const PhotoGallery: React.FC = () => {
         descriptionOG={`Magic of ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
         } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
-          typePhoto[0].toUpperCase() + typePhoto.slice(1)}  session today`}
+          typePhoto[0].toUpperCase() + typePhoto.slice(1)
+        }  session today`}
       />
       <motion.section className="photoGallery" id="photoGallery" initial="hidden" animate="visible">
         {photoCategories.map((item: ICategory, index: number) => {
           return (
             pathname.includes(item.title) && (
               <motion.h1 variants={animationTitleCategory} className="photoGallery__title" key={index}>
-                {`${language === "en" ? item.nameEN : item.nameRU} ${language === "en" ? "photography" : ""}`}
+                {item.nameEN}
               </motion.h1>
             )
           );
@@ -180,7 +181,7 @@ const PhotoGallery: React.FC = () => {
                 onClick={handlerClickAddPhotos}
                 hide={handlerHideButton}
                 photoPostPage={PhotoPostPage.photoGalleryPage}
-                buttonName={t("photo gallery btn more")}
+                buttonName="Show more photos"
               />
             )}
           </>

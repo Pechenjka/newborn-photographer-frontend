@@ -5,12 +5,10 @@ import useFormWithValidation from "../../../../../hooks/useForm";
 import { sendEmail } from "../../../../../redux/Reducers/appSlice";
 import { useAppDispatch, useAppSelector } from "../../../../../redux/hooks";
 import { ShowInfoToolTip } from "../../../../../components/ShowInfoToolTip";
-import { useTranslation } from "react-i18next";
 import Spinner from "../../../../../components/Spinner/Spinner";
 
 const NewsLetter: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
   const { errorSendEmail, confirmationSendEmail, loading } = useAppSelector((state) => state.app);
   const { values, isValid, resetForm, handleChange } = useFormWithValidation();
 
@@ -28,11 +26,11 @@ const NewsLetter: React.FC = () => {
             <ShowInfoToolTip
               confirmation={confirmationSendEmail}
               error={errorSendEmail}
-              textConfirmMessage={t("footer infoToolTip subscribe confirm")}
-              textErrorMessage={t("footer infoToolTip subscribe error")}
+              textConfirmMessage='Subscribed'
+              textErrorMessage='An error has occurred on the server. Try again later'
             />
           ) : (
-            <label className="newsLetter__form-label">{t("footer subscribe")}</label>
+            <label className="newsLetter__form-label">Have you interesting about promo actions or projects?</label>
           )}
           {loading.sendEmail && (
             <div style={{ margin: "20px auto" }}>

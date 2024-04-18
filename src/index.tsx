@@ -7,7 +7,6 @@ import { store } from "./redux/store";
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import PreLoader from "./components/PreLoader/PreLoader";
-import "./18n";
 
 const container = document.getElementById("root") as HTMLElement;
 

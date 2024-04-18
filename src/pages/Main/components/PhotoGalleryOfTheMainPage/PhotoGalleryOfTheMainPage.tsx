@@ -6,14 +6,12 @@ import { fetchPhotos, handlerActiveCategoryPhotosBtn } from "../../../../redux/R
 import { photosCategoryInMainPage } from "../../../../utils/config";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { IPhotosCategoryInMainPage, PhotoPostPage } from "../../../../types";
-import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { animationLinksOnMainPage } from "../../../../helpers/framerMotion";
 
 const PhotoGalleryOfTheMainPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { loading, error, categoryPhotosBtn } = useAppSelector((state) => state.photos);
-  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     dispatch(fetchPhotos({ type: "newborn", order: "random" }));
@@ -31,14 +29,14 @@ const PhotoGalleryOfTheMainPage: React.FC = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ amount: 0.02, once: true }}
-        className={`gallery__list-title ${i18n.language === "ru" && "gallery__list-title_ru"}`}
+        className='gallery__list-title'
       >
         {photosCategoryInMainPage.map((item: IPhotosCategoryInMainPage, index) => {
           return (
             <motion.li
               custom={index + 1}
               variants={animationLinksOnMainPage}
-              className={`gallery__title-element ${i18n.language === "ru" && "gallery__title-element_ru"}`}
+              className='gallery__title-element'
               key={item.id}
             >
               <button
@@ -49,7 +47,7 @@ const PhotoGalleryOfTheMainPage: React.FC = () => {
                   item.type !== null && item.name.indexOf(item.type) ? item.type + " " + "photography" : "all photos"
                 }`}
               >
-                {t(`${item.name}`)}
+                {item.name}
               </button>
             </motion.li>
           );

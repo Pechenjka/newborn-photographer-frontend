@@ -5,23 +5,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
-import * as Scroll from "react-scroll";
 import { arrSlides } from "../../utils/config";
 import { IArrSlides } from "../../types";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../redux/hooks";
 import { useWindowResize } from "../../hooks/useWindowResize";
 
 export const SliderComponent: React.FC = () => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
-  const LinkScroll = Scroll.Link;
-  const { language } = useAppSelector((state) => state.app);
-
-  const { t } = useTranslation();
   const { width } = useWindowResize();
 
   const handleChangeSlide = arrSlides.map((item: IArrSlides): string => {
@@ -71,8 +64,8 @@ export const SliderComponent: React.FC = () => {
               transition={{ duration: 0.7 }}
               className={Styles.slideShow__welcomeTitle}
             >
-              <span className={Styles.slideShow__welcomeTitle_span}>{t("mainPage hello")}</span>
-              <br /> {t("mainPage nameAuthor")}
+              <span className={Styles.slideShow__welcomeTitle_span}>Hello</span>
+              <br /> I'm Alena Lobacheva
             </motion.h1>
             <motion.h2
               initial={{ opacity: 0, x: -30 }}
@@ -80,28 +73,16 @@ export const SliderComponent: React.FC = () => {
               transition={{ duration: 0.7 }}
               className={Styles.slideShow__welcomeDescription}
             >
-              {t("mainPage aboutMe 1 part")}
+              Professional Newborn Photographer.
               <br />
-              {t("mainPage aboutMe 2 part")} <br /> {t("mainPage aboutMe 3 part")}
+              I help people to save the best moments, feelings, emotions for a long time" <br /> to catch the moment
+              which will never repeat and happen again.
             </motion.h2>
             <Link className={Styles.slideShow__welcomeLink} to="/contact" title="contact">
-              {t("mainPage My contacts")}
+              Contact
             </Link>
           </div>
-          <div className={Styles.slideShow__linkAboutNewbornContainer}>
-            {language === "ru" && (
-              <LinkScroll
-                className={Styles.slideShow__linkAboutNewborn}
-                to="aboutNewborn"
-                spy={true}
-                smooth={true}
-                offset={-100}
-                duration={1000}
-              >
-                О фотосесии новорожденного в видеоформате
-              </LinkScroll>
-            )}
-          </div>
+          <div className={Styles.slideShow__linkAboutNewbornContainer}/>
         </div>
         <div className={Styles.slideShow__imageContainer}>
           {handleChangeSlide.map((slide: string, index: number) => {

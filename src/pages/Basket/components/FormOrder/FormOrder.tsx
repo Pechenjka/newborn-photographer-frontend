@@ -9,14 +9,12 @@ import { Order } from "./components/Order";
 import { handleConfirmSendOrder, newOrder } from "../../../../redux/Reducers/orderSlice";
 import MessageToTheUser from "../../../../components/MessageToTheUser/MessageToTheUser";
 import { validationSchemaOrderForm } from "../../../../validationForms";
-import { useTranslation } from "react-i18next";
 import Spinner from "../../../../components/Spinner/Spinner";
 import { BackLink } from "../../../../components/BackLink";
 
 export const FormOrder: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { t } = useTranslation();
   const { packetInBasket } = useAppSelector((state) => state.packets);
   const { user } = useAppSelector((state) => state.user);
   const { loading, error, confirmSendOrder } = useAppSelector((state) => state.order);
@@ -62,15 +60,15 @@ export const FormOrder: React.FC = () => {
     <Fragment>
       <section className={Styles.formOrder}>
         {confirmSendOrder && !loading.newOrder ? (
-          <MessageToTheUser title={t("checkout order")} onClose={handleClick} />
+          <MessageToTheUser title='The order has been sent' onClose={handleClick} />
         ) : (
           <Fragment>
             <div className={Styles.formOrder__containerHeader}>
-              <BackLink linkName={t("checkout order back in cart")} path={navigate(-1)} />
-              <h3 className={Styles.formOrder__formTitle}>{t("checkout order title")}</h3>
+              <BackLink linkName='Back to cart' path={navigate(-1)} />
+              <h3 className={Styles.formOrder__formTitle}>Checkout order</h3>
             </div>
             <div className={Styles.formOrder__containerOrder}>
-              <Order orderData={packetsInOrder} title={`${t("order table title")}`} />
+              <Order orderData={packetsInOrder} title='Order' />
             </div>
             {loading.newOrder && (
               <div style={{ margin: "20px auto" }}>
@@ -80,7 +78,7 @@ export const FormOrder: React.FC = () => {
             {error.newOrder ? (
               <p className={Styles.formOrder__formDescription_error}>{error.newOrder}</p>
             ) : (
-              <p className={Styles.formOrder__formDescription}>{t("checkout order contacts")}</p>
+              <p className={Styles.formOrder__formDescription}>For checkout order, leave your contact!</p>
             )}
 
             <FormikFormComponent
@@ -89,7 +87,7 @@ export const FormOrder: React.FC = () => {
               onSubmit={handleSubmit}
               buttonProps={{
                 style: "ping",
-                title: `${t("checkout order form submit btn")}`,
+                title: 'Send order',
                 editStyle: "buttonSubmitOrder",
                 edit: true,
               }}
@@ -97,7 +95,7 @@ export const FormOrder: React.FC = () => {
               loading={loading.newOrder}
             >
               <MyTextField
-                nameLabel={`${t("checkout order form name field")}`}
+                nameLabel='Name'
                 type="text"
                 name="name"
                 component="input"
@@ -106,7 +104,7 @@ export const FormOrder: React.FC = () => {
                 editStyleField="nameOrder"
               />
               <MyTextField
-                nameLabel={`${t("checkout order form email field")}`}
+                nameLabel='Email'
                 type="email"
                 name="email"
                 component="input"
@@ -115,7 +113,7 @@ export const FormOrder: React.FC = () => {
                 editStyleField="emailOrder"
               />
               <MyTextField
-                nameLabel={`${t("checkout order form phone field")}`}
+                nameLabel='Phone'
                 type="phone"
                 name="phone"
                 component="input"
@@ -124,14 +122,14 @@ export const FormOrder: React.FC = () => {
                 editStyleField="telOrder"
               />
               <MyTextField
-                nameLabel={`${t("checkout order form message field")}`}
+                nameLabel='Message'
                 type="text"
                 name="text"
                 component="textarea"
                 id="text"
                 editStyleContainer="textOrder"
                 editStyleField="textOrder"
-                placeholder={`${t("checkout order comments by order")}`}
+                placeholder='Here you are write message for me'
               />
             </FormikFormComponent>
           </Fragment>

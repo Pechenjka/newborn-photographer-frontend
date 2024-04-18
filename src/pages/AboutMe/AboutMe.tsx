@@ -2,12 +2,10 @@ import "./AboutMe.scss";
 import React, { Fragment } from "react";
 import { useLocation } from "react-router-dom";
 import { MetaData } from "../../helpers/MetaData";
-import { useTranslation } from "react-i18next";
 import JsonLd from "../../helpers/JsonLD";
 
 export const AboutMe: React.FC = () => {
   const { pathname } = useLocation();
-  const { t } = useTranslation();
 
   const webPageDataAboutMe = {
     "@context": "http://schema.org",
@@ -81,13 +79,13 @@ export const AboutMe: React.FC = () => {
             alt="photographer Alena Lobacheva"
             title="photographer Alena Lobacheva"
           />
-          <h1 className="aboutMe__title">{t("aboutMe title")}</h1>
+          <h1 className="aboutMe__title">About Me</h1>
           <div className="aboutMe__text-container">
-            <p className="aboutMe__text">{t("aboutMe part1")}</p>
-            <p className="aboutMe__text">{t("aboutMe part2")}</p>
-            <p className="aboutMe__text">{t("aboutMe part3")}</p>
-            <p className="aboutMe__text">{t("aboutMe part4")}</p>
-            <p className="aboutMe__text">{t("aboutMe part5")}</p>
+            <p className="aboutMe__text">My name is Alena Lobacheva and I am a professional newborn photographer.</p>
+            <p className="aboutMe__text">Thank you for visiting  my site. I am very pleased that you paid attention to my work ♥.</p>
+            <p className="aboutMe__text">I am a mother of a wonderful boy, who inspired me to take the shoots of newborn babies. Many thanks to him for this, because I am the happiest mother and I have the best job ever in the world!</p>
+            <p className="aboutMe__text">I have more than seven years experience of working with babies. Every child has its own character and for all of them I can find the own approach. They are still so small, but each has its own great personality).</p>
+            <p className="aboutMe__text">And no matter what the baby is, we always find a common language with each other, and the whole family gets inexpressible pleasure from the shooting process, and mothers are guaranteed to become owners of unique pictures for a long memory for themselves and their loved ones. Such shots are priceless, and I will be happy to capture your emotions filled with long-awaited happiness, love, caress and warmth of your tender embrace.</p>
           </div>
         </div>
       </section>

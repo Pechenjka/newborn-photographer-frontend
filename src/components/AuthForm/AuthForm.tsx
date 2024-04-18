@@ -9,7 +9,6 @@ import Spinner from "../Spinner/Spinner";
 import InfoToolTip from "../InfoToolTip/InfoToolTip";
 import { useAppDispatch } from "../../redux/hooks";
 import { handlerError } from "../../redux/Reducers/userSlice";
-import { useTranslation } from "react-i18next";
 
 const AuthForm: React.FC<PropsAuthForm> = ({
   titleAuthorization,
@@ -27,7 +26,6 @@ const AuthForm: React.FC<PropsAuthForm> = ({
   showLinkForgotPassword = true,
 }) => {
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
   useEffect(() => {
     setTimeout(() => {
       if (showError) {
@@ -73,14 +71,16 @@ const AuthForm: React.FC<PropsAuthForm> = ({
           );
         }}
       </Formik>
-      { textQuestion?.length && <p className={Styles.auth__question}>
-        {textQuestion}
-        <Link className={Styles.auth__question_linkToAnotherAuthorisation} to={pathOnAnotherAuthorization || ""}>
-          {textAnswer}
-        </Link>
-      </p> }
+      {textQuestion?.length && (
+        <p className={Styles.auth__question}>
+          {textQuestion}
+          <Link className={Styles.auth__question_linkToAnotherAuthorisation} to={pathOnAnotherAuthorization || ""}>
+            {textAnswer}
+          </Link>
+        </p>
+      )}
       <Link className={Styles.auth__linkToMainPage} to="/">
-        {t("login_submit_go_back")}
+        Go back to home page
       </Link>
     </div>
   );

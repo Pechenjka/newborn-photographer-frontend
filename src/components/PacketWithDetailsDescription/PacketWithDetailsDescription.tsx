@@ -7,7 +7,6 @@ import { Button } from "../Button";
 import PreLoader from "../PreLoader/PreLoader";
 import { IPacket } from "../../types";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import { useWindowResize } from "../../hooks/useWindowResize";
 import * as Scroll from "react-scroll";
 
@@ -18,11 +17,8 @@ export interface PropsPacketWithDetails {
 export const PacketWithDetailsDescription: React.FC<PropsPacketWithDetails> = ({ packet }) => {
   const dispatch = useAppDispatch();
   const { loading, error, packetInBasket } = useAppSelector((state) => state.packets);
-  const { language } = useAppSelector((state) => state.app);
   const [showGoToBasket, setShowGoToBasket] = useState<boolean>(false);
-
   const navigate = useNavigate();
-  const { t } = useTranslation();
   const { width } = useWindowResize();
   const LinkScroll = Scroll.Link;
 
@@ -73,7 +69,7 @@ export const PacketWithDetailsDescription: React.FC<PropsPacketWithDetails> = ({
                 <p className={Styles.packetDetails__price}>$ {packet.price}</p>
                 <div className={Styles.packetDetails__containerDescription}>
                   <ul className={Styles.packetDetails__containerListDescription}>
-                    {(language === "en" ? packet.descriptionEN : packet.description).split("\n").map((str, i) => (
+                    {packet.descriptionEN.split("\n").map((str, i) => (
                       <li className={Styles.packetDetails__descriptionItem} key={i}>
                         {str}
                       </li>
@@ -88,22 +84,20 @@ export const PacketWithDetailsDescription: React.FC<PropsPacketWithDetails> = ({
                       smooth={true}
                       offset={-100}
                       duration={1000}
-                      title='Important information about photo session'
+                      title="Important information about photo session"
                     >
                       on the link
                     </LinkScroll>
                   </p>
                 </div>
                 <div className={Styles.packetDetails__getFromPhotosession}>
-                  <span className={Styles.packetDetails__getFromPhotosession_title}>{t("what you get")}</span>
+                  <span className={Styles.packetDetails__getFromPhotosession_title}>What You Get</span>
                   <ul className={Styles.packetDetails__getFromPhotosessionList}>
-                    {(language === "en" ? packet.getFromPhotosessionEN : packet.getFromPhotosession)
-                      .split("\n")
-                      .map((str, i) => (
-                        <li className={Styles.packetDetails__getFromPhotosessionList_item} key={i}>
-                          {str}
-                        </li>
-                      ))}
+                    {packet.getFromPhotosessionEN.split("\n").map((str, i) => (
+                      <li className={Styles.packetDetails__getFromPhotosessionList_item} key={i}>
+                        {str}
+                      </li>
+                    ))}
                   </ul>
                   <Button
                     styleButton="ping"
@@ -114,9 +108,11 @@ export const PacketWithDetailsDescription: React.FC<PropsPacketWithDetails> = ({
                       showGoToBasket ? () => navigate("/basket") : () => handlerClickAddPacketInTheBasket(packet)
                     }
                   >
-                    {showGoToBasket ? `${t("go to order")}` : `${t("add package to cart")}`}
+                    {showGoToBasket ? "Go to order" : "Add package to cart"}
                   </Button>
-                  {showGoToBasket && <p className={Styles.packetDetails__alreadyInBasket}>{t("btn add cart")}</p>}
+                  {showGoToBasket && (
+                    <p className={Styles.packetDetails__alreadyInBasket}>This package is already in the cart</p>
+                  )}
                 </div>
               </motion.div>
             </div>

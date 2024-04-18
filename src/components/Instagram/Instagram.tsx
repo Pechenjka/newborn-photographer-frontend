@@ -1,7 +1,6 @@
 import Style from "./style.module.scss";
 import React, { useRef } from "react";
 import { useAppSelector } from "../../redux/hooks";
-import { useTranslation } from "react-i18next";
 import { animationScaleAndOpacity } from "../../helpers/framerMotion";
 import { PostComponent } from "./components/PostComponent";
 import { motion } from "framer-motion";
@@ -15,7 +14,6 @@ import "swiper/scss/pagination";
 
 export const Instagram: React.FC = () => {
   const { error, instagramProfile } = useAppSelector((state) => state.app);
-  const { t } = useTranslation();
   const { width } = useWindowResize();
 
   const navigationPrevRef = useRef(null);
@@ -34,7 +32,7 @@ export const Instagram: React.FC = () => {
 
   return (
     <motion.div className={Style.instagram} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-      <h3 className={Style.instagram__title}>{t("instagram title")}</h3>
+      <h3 className={Style.instagram__title}>Follow me on instagram</h3>
       <motion.a
         className={Style.instagram__user}
         href="https://www.instagram.com/lobachevaphotography/"

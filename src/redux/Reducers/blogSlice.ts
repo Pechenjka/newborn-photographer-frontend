@@ -34,9 +34,7 @@ export const fetchBlogArticles = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       const res = await apiApp().getBlogArticles();
-      console.log(res);
       const sortData = res.data.sort((a: any, b: any) => b.createdAt.localeCompare(a.createdAt));
-      console.log("sortData", sortData);
       return sortData;
     } catch (e) {
       return rejectWithValue("Error, the articles was not loaded!");

@@ -15,7 +15,7 @@ const Contacts: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-contactMe`,
-    name: "Contact Alena Lobacheva | NYC Newborn Photographer",
+    name: "Contact Alena Lobacheva | Cleveland, Solon, Newborn Photographer",
     description:
       "Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome",
     image: "https://cdn.alenalobacheva.com/gallery/family/family-imageOG.webp",
@@ -29,16 +29,16 @@ const Contacts: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-contactMe`,
-    name: "Contact Alena Lobacheva | NYC Newborn Photographer",
+    name: "Contact Alena Lobacheva | Cleveland, Solon, Newborn Photographer",
     description:
-      "Professional photographer in NYC, newborn photography, family photography, baby photography, maternity photography.",
+      "Professional photographer in OHIO, newborn photography, family photography, baby photography, maternity photography.",
     image: "https://cdn.alenalobacheva.com/gallery/family/family19.webp",
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
+      addressLocality: "Solon", // Город
+      addressRegion: "OH", // Штат или регион
       addressCountry: "US", // Страна
     },
     contactPoint: {
@@ -50,8 +50,8 @@ const Contacts: React.FC = () => {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "41.379748941510286", // Широта вашего местоположения
+        longitude: "-81.43406290994038", // Долгота вашего местоположения
       },
       geoRadius: "200.0", // Радиус области в километрах (примерно)
     },
@@ -67,12 +67,12 @@ const Contacts: React.FC = () => {
       <JsonLd data={webPageDataContacts} />
       <JsonLd data={localBusinessDataContacts} />
       <MetaData
-        title="Contact Alena Lobacheva | NYC Newborn Photographer"
+        title="Contact Alena Lobacheva | Cleveland, OHIO, Newborn Photographer"
         description="Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome"
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageOG="https://cdn.alenalobacheva.com/gallery/family/family19.webp"
         imageAltOG="Family Photography"
-        titleOG="Contact Alena Lobacheva | NYC Newborn Photographer"
+        titleOG="Contact Alena Lobacheva | Cleveland, OHIO, Newborn Photographer"
         descriptionOG="Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome"
       />
       <section className="contacts">

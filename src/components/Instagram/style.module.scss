@@ -23,7 +23,9 @@ $colorTextOverlay: white;
     line-height: 23px;
     text-decoration: none;
     transition: all 0.4s;
-    margin-bottom: 15px;
+    display: block;
+    padding-bottom: 15px;
+    margin: auto;
     &:hover {
       color: $colorLinksHover;
     }

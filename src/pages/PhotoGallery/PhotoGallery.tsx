@@ -75,9 +75,9 @@ const PhotoGallery: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-gallery`,
-    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography OH | Alena Lobacheva - ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
-    } Photographer in NYC`,
+    } Photographer in Solon`,
     description: `Magic of ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
     } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
@@ -94,9 +94,9 @@ const PhotoGallery: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-gallery`,
-    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography OH | Alena Lobacheva - ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
-    } Photographer in NYC`,
+    } Photographer in Solon`,
     description: `Magic of ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
     } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
@@ -107,8 +107,8 @@ const PhotoGallery: React.FC = () => {
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
+      addressLocality: "Solon", // Город
+      addressRegion: "OH", // Штат или регион
       addressCountry: "US", // Страна
     },
     contactPoint: {
@@ -120,8 +120,8 @@ const PhotoGallery: React.FC = () => {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "41.379748941510286", // Широта вашего местоположения
+        longitude: "-81.43406290994038", // Долгота вашего местоположения
       },
       geoRadius: "200.0", // Радиус области в километрах (примерно)
     },
@@ -137,7 +137,7 @@ const PhotoGallery: React.FC = () => {
       <JsonLd data={webPageDataGallery} />
       <JsonLd data={localBusinessDataGallery} />
       <MetaData
-        title={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography | Alena Lobacheva Photographer NYC`}
+        title={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography | Alena Lobacheva Photographer Columbus`}
         description={`Magic of ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
         } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
@@ -146,9 +146,9 @@ const PhotoGallery: React.FC = () => {
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageOG={`https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`}
         imageAltOG={`${typePhoto} photography`}
-        titleOG={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+        titleOG={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography OH | Alena Lobacheva - ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
-        } Photographer in NYC`}
+        } Photographer in Columbus`}
         descriptionOG={`Magic of ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
         } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${

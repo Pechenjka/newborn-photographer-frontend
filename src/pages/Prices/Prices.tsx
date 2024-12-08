@@ -66,8 +66,8 @@ const Prices: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-prices`,
-    name: `Prices for ${UpOneLetterPhotoSession} photography | NYC ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
-    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in NYC`,
+    name: `Prices for ${UpOneLetterPhotoSession} photography | Cleveland ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
+    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in OHIO`,
     image: `https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`,
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -80,14 +80,14 @@ const Prices: React.FC = () => {
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-prices`,
     name: `NYC ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
-    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in NYC`,
+    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in OHIO`,
     image: `https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`,
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
+      addressLocality: "Solon", // Город
+      addressRegion: "OH", // Штат или регион
       addressCountry: "US", // Страна
     },
     contactPoint: {
@@ -99,8 +99,8 @@ const Prices: React.FC = () => {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "41.379748941510286", // Широта вашего местоположения
+        longitude: "-81.43406290994038", // Долгота вашего местоположения
       },
       geoRadius: "200.0", // Радиус области в километрах (примерно)
     },
@@ -117,14 +117,14 @@ const Prices: React.FC = () => {
     "@type": "Service",
     "@id": `https://alenalobacheva.com${pathname}#service-prices`,
     name: `${UpOneLetterPhotoSession} Photography Sessions`,
-    description: `Offering professional ${UpOneLetterPhotoSession} Photography sessions in New York City.`,
+    description: `Offering professional ${UpOneLetterPhotoSession} Photography sessions in Cleveland, Solon, Columbus, Pittsburgh, NYC.`,
     serviceType: "Photography",
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251",
-        longitude: "74.0021",
+        latitude: "41.379748941510286",
+        longitude: "-81.43406290994038",
       },
       geoRadius: "200.0",
     },
@@ -137,12 +137,12 @@ const Prices: React.FC = () => {
       <JsonLd data={serviceDataPrices} />
       <MetaData
         title={`Prices for ${UpOneLetterPhotoSession} Photography`}
-        description={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in NYC`}
+        description={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Cleveland, Solon`}
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageAltOG={`${UpOneLetterPhotoSession} Photography`}
         imageOG={`https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`}
         titleOG={`Prices for ${UpOneLetterPhotoSession} Photography`}
-        descriptionOG={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in NYC`}
+        descriptionOG={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Cleveland, Solon`}
       />
       <motion.section className={Styles.prices} initial="hidden" animate="visible">
         {packetsCategories.map((item: ICategory, index: number) => {

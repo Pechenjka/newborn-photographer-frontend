@@ -13,6 +13,18 @@ const MyContacts: React.FC = () => {
           <span className="myContacts__icon myContacts__icon_place" />
           <a
             className={`myContacts__link myContacts__text ${myContactsEdit}`}
+            href="https://www.google.com/maps/search/?api=1&query=Solon,+OH"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Solon map"
+          >
+            Cleveland (Solon), OH.
+          </a>
+        </li>
+        <li className="myContacts__item-container">
+          <span className="myContacts__icon myContacts__icon_place" />
+          <a
+            className={`myContacts__link myContacts__text ${myContactsEdit}`}
             href="https://www.google.com/maps/search/?api=1&query=New+York,+NY"
             target="_blank"
             rel="noopener noreferrer"

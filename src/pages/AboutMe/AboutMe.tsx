@@ -11,9 +11,9 @@ export const AboutMe: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-about`,
-    name: "Professional Newborn Photographer in NY | Alena Lobacheva",
+    name: "Professional Newborn Photographer in  Cleveland, Columbus, Solon | Alena Lobacheva",
     description:
-      "I'm a Newborn, Family and Baby Photographer in New York City. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location",
+      "I'm a Newborn, Family and Baby Photographer in Cleveland, Solon, Columbus. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location",
     image: "https://cdn.alenalobacheva.com/staticPhotos/aboutMe-image.webp",
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -25,16 +25,16 @@ export const AboutMe: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-about`,
-    name: "Newborn Photographer in NYC, Alena Lobacheva",
+    name: "Newborn Photographer in Cleveland, Columbus, Solon, Alena Lobacheva",
     description:
-      "I'm a Newborn, Family and Baby Photographer in New York City. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location",
+      "I'm a Newborn, Family and Baby Photographer in Cleveland. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location",
     image: "https://cdn.alenalobacheva.com/staticPhotos/aboutMe-image.webp",
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
+      addressLocality: "Solon", // Город
+      addressRegion: "OH", // Штат или регион
       addressCountry: "US", // Страна
     },
     contactPoint: {
@@ -46,8 +46,8 @@ export const AboutMe: React.FC = () => {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "41.379748941510286", // Широта вашего местоположения
+        longitude: "-81.43406290994038", // Долгота вашего местоположения
       },
       geoRadius: "200.0", // Радиус области в километрах (примерно)
     },
@@ -63,13 +63,13 @@ export const AboutMe: React.FC = () => {
       <JsonLd data={webPageDataAboutMe}/>
       <JsonLd data={localBusinessDataAboutMe}/>
       <MetaData
-        title="Professional Newborn Photographer in NY | Alena Lobacheva"
-        description="I'm a Newborn, Family and Baby Photographer in New York City. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location"
+        title="Professional Newborn Photographer in OHIO, NY | Alena Lobacheva"
+        description="I'm a Newborn, Family and Baby Photographer in Cleveland, Pittsburgh. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location"
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageOG="https://cdn.alenalobacheva.com/staticPhotos/aboutMe-image.webp"
         imageAltOG="photography Alena Lobacheva"
-        titleOG="Professional Newborn Photographer in NY | Alena Lobacheva"
-        descriptionOG="I'm a Newborn, Family and Baby Photographer in New York City. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location"
+        titleOG="Professional Newborn Photographer in OHIO, NY | Alena Lobacheva"
+        descriptionOG="I'm a Newborn, Family and Baby Photographer in Cleveland. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location"
       />
       <section className="aboutMe">
         <div className="aboutMe__container">

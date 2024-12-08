@@ -76,6 +76,7 @@ export const Instagram: React.FC = () => {
         >
           <div className={Style.instagram__container}>
             {handleViewPostInstagram(instagramProfile).map((post: PostInstagramProfile) => {
+              console.log(post);
               return (
                 <SwiperSlide key={post.id}>
                   <PostComponent post={post} />

@@ -15,14 +15,14 @@ const NoteImportantPrices: React.FC = () => {
     { title: ["Package", "Cost,$"] },
     {
       product: [
-        { size: "lifestyle", price: "600", type: "newborn" },
-        { size: "Newborn Wrapped", price: "700", type: "newborn" },
-        { size: "Newborn light", price: "800", type: "newborn" },
-        { size: "Newborn Standard", price: "1000", type: "newborn" },
-        { size: "Newborn Premium", price: "1500", type: "newborn" },
-        { size: "Baby and sitter session", price: "600", type: "baby" },
-        { size: "Family & Maternity", price: "600", type: "family" },
-        { size: "Christening", price: "600", type: "christening" },
+        { size: "lifestyle", price: "550", type: "newborn" },
+        { size: "Newborn Wrapped", price: "600", type: "newborn" },
+        { size: "Newborn light", price: "700", type: "newborn" },
+        { size: "Newborn Standard", price: "850", type: "newborn" },
+        { size: "Newborn Premium", price: "1200", type: "newborn" },
+        { size: "Baby and sitter session", price: "550", type: "baby" },
+        { size: "Family & Maternity", price: "550", type: "family" },
+        { size: "Christening", price: "550", type: "christening" },
       ],
     },
   ];

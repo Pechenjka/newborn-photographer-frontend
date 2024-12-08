@@ -39,7 +39,7 @@ export const AboutPhotoSession: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-aboutSessions`,
-    name: "How to be ready for a session | Alena Lobacheva Photography, NY",
+    name: "How to be ready for a session | Alena Lobacheva Photography, NY, OHIO",
     description: "This guide includes all necessary information regarding the preparation for the photo session",
     image: "https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp",
     url: `https://alenalobacheva.com${pathname}`,
@@ -59,8 +59,8 @@ export const AboutPhotoSession: React.FC = () => {
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
+      addressLocality: "Solon", // Город
+      addressRegion: "OH", // Штат или регион
       addressCountry: "US", // Страна
     },
     contactPoint: {
@@ -72,8 +72,8 @@ export const AboutPhotoSession: React.FC = () => {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "41.379748941510286", // Широта вашего местоположения
+        longitude: "-81.43406290994038", // Долгота вашего местоположения
       },
       geoRadius: "200.0", // Радиус области в километрах (примерно)
     },
@@ -97,8 +97,8 @@ export const AboutPhotoSession: React.FC = () => {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251",
-        longitude: "74.0021",
+        latitude: "41.379748941510286",
+        longitude: "-81.43406290994038",
       },
       geoRadius: "200.0",
     },

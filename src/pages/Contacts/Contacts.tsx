@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { MetaData } from "../../helpers/MetaData";
 import logoPhotographer from "../../images/logo-header-photographer.webp";
 import JsonLd from "../../helpers/JsonLD";
+import { Map } from "../../components/Map";
 
 const Contacts: React.FC = () => {
   const { pathname } = useLocation();
@@ -91,6 +92,7 @@ const Contacts: React.FC = () => {
         <MyContacts />
         <SocialLinks />
         <ContactMeForm title="Get In Touch With Me" />
+        <Map />
       </section>
     </Fragment>
   );

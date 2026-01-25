@@ -29,6 +29,16 @@ const PhotoGallery: React.FC = () => {
   );
   const { user } = useAppSelector((state) => state.user);
 
+  const categoryHeadings: Record<string, string> = {
+    newborn: "Precious Newborn Photography Moments You’ll Always Treasure",
+    maternity: "Beautiful Maternity Photography to Celebrate Motherhood",
+    baby: "Adorable Baby Photography That Captures Every Sweet Detail",
+    family: "Heartwarming Family Photo Sessions Filled with Joy and Love",
+    woman: "Empowering and Elegant Woman Photography Gallery",
+    discharge: "Emotional Discharge Photography for Your Baby’s First Days",
+    christening: "Christening Photography That Captures Sacred and Joyful Moments",
+  };
+
   useEffect(() => {
     photosCategoryInGallery.some((item: string) => {
       if (pathname.includes(item)) {
@@ -159,8 +169,8 @@ const PhotoGallery: React.FC = () => {
         {photoCategories.map((item: ICategory, index: number) => {
           return (
             pathname.includes(item.title) && (
-              <motion.h1 variants={animationTitleCategory} className="photoGallery__title" key={index}>
-                {item.nameEN}
+              <motion.h1 variants={animationTitleCategory} className="photoGallery__title">
+                {categoryHeadings[typePhoto.toLowerCase()] || "Photography Gallery"}
               </motion.h1>
             )
           );

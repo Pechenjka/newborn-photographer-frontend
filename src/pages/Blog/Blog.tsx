@@ -17,7 +17,7 @@ export const Blog: React.FC = () => {
     "@id": `https://alenalobacheva.com${pathname}#blog`,
     name: "Blog | Alena Lobacheva Photography",
     description:
-      "In my blog, discover tips for capturing newborns, babies, families, maternity, and christenings. I'll share the best locations.",
+      "Expert tips for newborn, family, maternity, and christening photography in Charlotte, Ballantyne, SouthPark, Weddington & Indian Land — best locations & advice.",
     image: "https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp",
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -31,29 +31,29 @@ export const Blog: React.FC = () => {
     "@id": `https://alenalobacheva.com${pathname}#blog`,
     name: "Blog | Alena Lobacheva Photography",
     description:
-      "In my blog, discover tips for capturing newborns, babies, families, maternity, and christenings. I'll share the best locations.",
+      "Expert tips for newborn, family, maternity, and christening photography in Charlotte, Ballantyne, SouthPark, Weddington & Indian Land — best locations & advice.",
     image: "https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp",
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Solon", // Город
-      addressRegion: "OH", // Штат или регион
-      addressCountry: "US", // Страна
+      addressLocality: "Charlotte",
+      addressRegion: "NC",
+      addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-516-468-4837", // Ваш номер телефона
-      contactType: "customer support", // Тип контактной информации
+      telephone: "+1-516-468-4837",
+      contactType: "customer support",
     },
     geo: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "41.379748941510286", // Широта вашего местоположения
-        longitude: "-81.43406290994038", // Долгота вашего местоположения
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0", // Радиус области в километрах (примерно)
+      geoRadius: "50.0",
     },
 
     sameAs: [
@@ -70,16 +70,16 @@ export const Blog: React.FC = () => {
     "@id": `https://alenalobacheva.com${pathname}#blog`,
     name: "Blog | Alena Lobacheva Photography",
     description:
-      "In my blog, discover tips for capturing newborns, babies, families, maternity, and christenings. I'll share the best locations.",
+      "Expert tips for newborn, family, maternity, and christening photography in Charlotte, Ballantyne, SouthPark, Weddington & Indian Land — best locations & advice.",
     serviceType: "Photography",
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "41.379748941510286",
-        longitude: "-81.43406290994038",
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0",
+      geoRadius: "50.0",
     },
   };
 
@@ -107,15 +107,15 @@ export const Blog: React.FC = () => {
       <JsonLd data={serviceDataBlog} />
       <MetaData
         title="Blog | Alena Lobacheva Photography"
-        description="In my blog, discover tips for capturing newborns, babies, families, maternity, and christenings. I'll share the best locations."
+        description="Expert tips for newborn, family, maternity, and christening photography in Charlotte, Ballantyne, SouthPark, Weddington & Indian Land — best locations & advice."
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageAltOG="blog photography"
         imageOG="https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp"
         titleOG="Blog | Alena Lobacheva Photography"
-        descriptionOG="In my blog, discover tips for capturing newborns, babies, families, maternity, and christenings. I'll share the best locations."
+        descriptionOG="Expert tips for newborn, family, maternity, and christening photography in Charlotte, Ballantyne, SouthPark, Weddington & Indian Land — best locations & advice."
       />
       <div className={Styles.blog}>
-        <h1 className={Styles.blog__title}>Blog</h1>
+        <h1 className={Styles.blog__title}>Photography Blog: Newborn, Family, Maternity & Baby Tips</h1>
         <BlogArticles />
       </div>
     </Fragment>

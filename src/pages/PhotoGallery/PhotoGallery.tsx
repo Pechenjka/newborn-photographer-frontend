@@ -75,9 +75,9 @@ const PhotoGallery: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-gallery`,
-    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography OH | Alena Lobacheva - ${
+    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NC | Alena Lobacheva - ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
-    } Photographer in Solon`,
+    } Photographer in Charlotte`,
     description: `Magic of ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
     } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
@@ -94,9 +94,9 @@ const PhotoGallery: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-gallery`,
-    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography OH | Alena Lobacheva - ${
+    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NC | Alena Lobacheva - ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
-    } Photographer in Solon`,
+    } Photographer in Charlotte`,
     description: `Magic of ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
     } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
@@ -107,23 +107,23 @@ const PhotoGallery: React.FC = () => {
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Solon", // Город
-      addressRegion: "OH", // Штат или регион
-      addressCountry: "US", // Страна
+      addressLocality: "Charlotte",
+      addressRegion: "NC",
+      addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-516-468-4837", // Ваш номер телефона
-      contactType: "customer support", // Тип контактной информации
+      telephone: "+1-516-468-4837",
+      contactType: "customer support",
     },
     geo: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "41.379748941510286", // Широта вашего местоположения
-        longitude: "-81.43406290994038", // Долгота вашего местоположения
+        latitude: "35.2271", // Charlotte, NC
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0", // Радиус области в километрах (примерно)
+      geoRadius: "200.0",
     },
     sameAs: [
       "https://www.instagram.com/lobachevaphotography/",
@@ -137,23 +137,23 @@ const PhotoGallery: React.FC = () => {
       <JsonLd data={webPageDataGallery} />
       <JsonLd data={localBusinessDataGallery} />
       <MetaData
-        title={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography | Alena Lobacheva Photographer Columbus`}
+        title={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography | Alena Lobacheva Photographer Charlotte`}
         description={`Magic of ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
         } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
-        }  session today`}
+        } session today`}
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageOG={`https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`}
         imageAltOG={`${typePhoto} photography`}
-        titleOG={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography OH | Alena Lobacheva - ${
+        titleOG={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NC | Alena Lobacheva - ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
-        } Photographer in Columbus`}
+        } Photographer in Charlotte`}
         descriptionOG={`Magic of ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
         } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
-        }  session today`}
+        } session today`}
       />
       <motion.section className="photoGallery" id="photoGallery" initial="hidden" animate="visible">
         {photoCategories.map((item: ICategory, index: number) => {

@@ -11,9 +11,9 @@ export const AboutMe: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-about`,
-    name: "Professional Newborn Photographer in  Cleveland, Columbus, Solon | Alena Lobacheva",
+    name: "Professional Newborn Photographer in Charlotte & Ballantyne | Alena Lobacheva",
     description:
-      "I'm a Newborn, Family and Baby Photographer in Cleveland, Solon, Columbus. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location",
+      "I'm a Newborn, Family and Baby Photographer serving Charlotte, Ballantyne, SouthPark, Myers Park, Weddington, and Indian Land. Let's prepare your perfect photo shoot together.",
     image: "https://cdn.alenalobacheva.com/staticPhotos/aboutMe-image.webp",
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -25,31 +25,31 @@ export const AboutMe: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-about`,
-    name: "Newborn Photographer in Cleveland, Columbus, Solon, Alena Lobacheva",
+    name: "Newborn Photographer in Charlotte, Ballantyne, SouthPark, Myers Park | Alena Lobacheva",
     description:
-      "I'm a Newborn, Family and Baby Photographer in Cleveland. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location",
+      "Professional Newborn and Family Photographer serving Charlotte and surrounding affluent neighborhoods: Ballantyne, SouthPark, Myers Park, Weddington, Indian Land.",
     image: "https://cdn.alenalobacheva.com/staticPhotos/aboutMe-image.webp",
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Solon", // Город
-      addressRegion: "OH", // Штат или регион
-      addressCountry: "US", // Страна
+      addressLocality: "Charlotte",
+      addressRegion: "NC",
+      addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-516-468-4837", // Ваш номер телефона
-      contactType: "customer support", // Тип контактной информации
+      telephone: "+1-516-468-4837",
+      contactType: "customer support",
     },
     geo: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "41.379748941510286", // Широта вашего местоположения
-        longitude: "-81.43406290994038", // Долгота вашего местоположения
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0", // Радиус области в километрах (примерно)
+      geoRadius: "30.0",
     },
     sameAs: [
       "https://www.instagram.com/lobachevaphotography/",
@@ -60,32 +60,55 @@ export const AboutMe: React.FC = () => {
 
   return (
     <Fragment>
-      <JsonLd data={webPageDataAboutMe}/>
-      <JsonLd data={localBusinessDataAboutMe}/>
+      <JsonLd data={webPageDataAboutMe} />
+      <JsonLd data={localBusinessDataAboutMe} />
       <MetaData
-        title="Professional Newborn Photographer in OHIO, NY | Alena Lobacheva"
-        description="I'm a Newborn, Family and Baby Photographer in Cleveland, Pittsburgh. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location"
+        title="Newborn Photographer in Charlotte & Ballantyne | Alena Lobacheva"
+        description="Newborn and family photographer serving Charlotte, Ballantyne, SouthPark, Myers Park, Weddington, Indian Land. Book your photo session today."
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageOG="https://cdn.alenalobacheva.com/staticPhotos/aboutMe-image.webp"
         imageAltOG="photography Alena Lobacheva"
-        titleOG="Professional Newborn Photographer in OHIO, NY | Alena Lobacheva"
-        descriptionOG="I'm a Newborn, Family and Baby Photographer in Cleveland. Let's prepare for your Photo Shoot together: choose the perfect outfits and a convenient location"
+        titleOG="Newborn Photographer in Charlotte & Ballantyne | Alena Lobacheva"
+        descriptionOG="Professional newborn and family photography in Charlotte and nearby affluent neighborhoods. Let's create your perfect photo shoot."
       />
       <section className="aboutMe">
         <div className="aboutMe__container">
           <img
-            src='https://cdn.alenalobacheva.com/staticPhotos/aboutMe-image.webp'
+            src="https://cdn.alenalobacheva.com/staticPhotos/aboutMe-image.webp"
             className="aboutMe__image"
             alt="photographer Alena Lobacheva"
             title="photographer Alena Lobacheva"
           />
           <h1 className="aboutMe__title">About Me</h1>
           <div className="aboutMe__text-container">
-            <p className="aboutMe__text">My name is Alena Lobacheva and I am a professional newborn photographer.</p>
-            <p className="aboutMe__text">Thank you for visiting  my site. I am very pleased that you paid attention to my work ♥.</p>
-            <p className="aboutMe__text">I am a mother of a wonderful boy, who inspired me to take the shoots of newborn babies. Many thanks to him for this, because I am the happiest mother and I have the best job ever in the world!</p>
-            <p className="aboutMe__text">I have more than seven years experience of working with babies. Every child has its own character and for all of them I can find the own approach. They are still so small, but each has its own great personality).</p>
-            <p className="aboutMe__text">And no matter what the baby is, we always find a common language with each other, and the whole family gets inexpressible pleasure from the shooting process, and mothers are guaranteed to become owners of unique pictures for a long memory for themselves and their loved ones. Such shots are priceless, and I will be happy to capture your emotions filled with long-awaited happiness, love, caress and warmth of your tender embrace.</p>
+            <p className="aboutMe__text">
+              My name is Alena Lobacheva and I am a professional newborn
+              photographer.
+            </p>
+            <p className="aboutMe__text">
+              Thank you for visiting my site. I am very pleased that you paid
+              attention to my work ♥.
+            </p>
+            <p className="aboutMe__text">
+              I am a mother of a wonderful boy, who inspired me to take the
+              shoots of newborn babies. Many thanks to him for this, because I
+              am the happiest mother and I have the best job ever in the world!
+            </p>
+            <p className="aboutMe__text">
+              I have more than seven years experience of working with babies.
+              Every child has its own character and for all of them I can find
+              the own approach. They are still so small, but each has its own
+              great personality).
+            </p>
+            <p className="aboutMe__text">
+              And no matter what the baby is, we always find a common language
+              with each other, and the whole family gets inexpressible pleasure
+              from the shooting process, and mothers are guaranteed to become
+              owners of unique pictures for a long memory for themselves and
+              their loved ones. Such shots are priceless, and I will be happy
+              to capture your emotions filled with long-awaited happiness,
+              love, caress and warmth of your tender embrace.
+            </p>
           </div>
         </div>
       </section>

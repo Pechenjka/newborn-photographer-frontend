@@ -4,7 +4,10 @@ $colorTextOnThePageContacts: #c69b6b;
 
 .myContacts {
   min-width: 250px;
-
+  &__seo-text {
+    margin: 30px 20px;
+    color: #c69b6b;
+  }
   &__container {
     list-style: none;
     display: flex;

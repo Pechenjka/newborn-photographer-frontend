@@ -66,8 +66,8 @@ const Prices: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-prices`,
-    name: `Prices for ${UpOneLetterPhotoSession} photography | Cleveland ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
-    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in OHIO`,
+    name: `Prices for ${UpOneLetterPhotoSession} photography | Charlotte ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
+    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in North Carolina.`,
     image: `https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`,
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -79,32 +79,31 @@ const Prices: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-prices`,
-    name: `NYC ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
-    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in OHIO`,
+    name: `Charlotte ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
+    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Charlotte, NC.`,
     image: `https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`,
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Solon", // Город
-      addressRegion: "OH", // Штат или регион
-      addressCountry: "US", // Страна
+      addressLocality: "Charlotte",
+      addressRegion: "NC",
+      addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-516-468-4837", // Ваш номер телефона
-      contactType: "customer support", // Тип контактной информации
+      telephone: "+1-516-468-4837",
+      contactType: "customer support",
     },
     geo: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "41.379748941510286", // Широта вашего местоположения
-        longitude: "-81.43406290994038", // Долгота вашего местоположения
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0", // Радиус области в километрах (примерно)
+      geoRadius: "200.0",
     },
-
     sameAs: [
       "https://www.instagram.com/lobachevaphotography/",
       "https://www.facebook.com/Alen4ikLobacheva?mibextid=9R9pXO",
@@ -117,14 +116,14 @@ const Prices: React.FC = () => {
     "@type": "Service",
     "@id": `https://alenalobacheva.com${pathname}#service-prices`,
     name: `${UpOneLetterPhotoSession} Photography Sessions`,
-    description: `Offering professional ${UpOneLetterPhotoSession} Photography sessions in Cleveland, Solon, Columbus, Pittsburgh, NYC.`,
+    description: `Offering professional ${UpOneLetterPhotoSession} Photography sessions in Charlotte, Huntersville, Ballantyne, Weddington.`,
     serviceType: "Photography",
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "41.379748941510286",
-        longitude: "-81.43406290994038",
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
       geoRadius: "200.0",
     },

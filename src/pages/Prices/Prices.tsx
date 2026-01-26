@@ -34,6 +34,7 @@ const Prices: React.FC = () => {
       dispatch(handlerErrorGetArrPackets("Error, the package has not been uploaded!"));
     }
   }, [pathname, packetsCategories, dispatch]);
+
   const { width } = useWindowResize();
   const { container, item } = framerMotionPhotosAndPackets();
 
@@ -129,6 +130,13 @@ const Prices: React.FC = () => {
     },
   };
 
+  const pricingTitles:Record<string, string> = {
+    Newborn: "Newborn Photography Pricing and Session Packages",
+    Baby: "Baby Photography Session Pricing and Packages",
+    Family: "Family and Maternity Photography Packages and Pricing",
+    Christening: "Christening Photography Prices and Booking Information",
+  };
+  
   return (
     <Fragment>
       <JsonLd data={webPageDataPrices} />
@@ -145,10 +153,25 @@ const Prices: React.FC = () => {
       />
       <motion.section className={Styles.prices} initial="hidden" animate="visible">
         {packetsCategories.map((item: ICategory, index: number) => {
+          const key =
+            item.nameEN === "Family & Maternity"
+              ? "Family"
+              : item.nameEN;
+
+          const matchedTitle = pricingTitles[key as keyof typeof pricingTitles];
+
+          const pathMatches =
+            item.title && pathname.includes(item.title.toLowerCase());
+
           return (
-            pathname.includes(item.title) && (
-              <motion.h1 variants={hiddenAndScale} custom={1} className={Styles.prices__title} key={index}>
-                {item.nameEN}
+            pathMatches && matchedTitle && (
+              <motion.h1
+                variants={hiddenAndScale}
+                custom={1}
+                className={Styles.prices__title}
+                key={index}
+              >
+                {matchedTitle}
               </motion.h1>
             )
           );
@@ -160,12 +183,6 @@ const Prices: React.FC = () => {
             custom={{ delay: 2, widthFull: width > 567 ? 500 : 320 }}
           />
         )}
-        {/*important message*/}
-        {/*{typePhotosession === "newborn" && (*/}
-        {/*  <p className={Styles.prices__importantMessage}>*/}
-        {/*    For newborn sessions occurs from March, 20 up to April, 10 there is a DISCOUNT for all packages 20%*/}
-        {/*  </p>*/}
-        {/*)}*/}
         <div className={Styles.prices__container}>
           {loading.getArrPackets ? (
             <div style={{ gridColumn: "1/-1", marginTop: "50px" }}>

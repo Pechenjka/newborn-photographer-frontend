@@ -136,7 +136,7 @@ const Prices: React.FC = () => {
     Family: "Family and Maternity Photography Packages and Pricing",
     Christening: "Christening Photography Prices and Booking Information",
   };
-  
+
   return (
     <Fragment>
       <JsonLd data={webPageDataPrices} />
@@ -144,12 +144,12 @@ const Prices: React.FC = () => {
       <JsonLd data={serviceDataPrices} />
       <MetaData
         title={`Prices for ${UpOneLetterPhotoSession} Photography`}
-        description={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Cleveland, Solon`}
+        description={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Charlotte, NC`}
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageAltOG={`${UpOneLetterPhotoSession} Photography`}
         imageOG={`https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`}
         titleOG={`Prices for ${UpOneLetterPhotoSession} Photography`}
-        descriptionOG={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Cleveland, Solon`}
+        descriptionOG={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Charlotte, NC`}
       />
       <motion.section className={Styles.prices} initial="hidden" animate="visible">
         {packetsCategories.map((item: ICategory, index: number) => {

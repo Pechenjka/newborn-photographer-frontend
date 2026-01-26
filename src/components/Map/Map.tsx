@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import Styles from "./style.module.scss";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 
@@ -9,181 +9,69 @@ export const Map: React.FC = () => {
   };
 
   const center = {
-    lat: 41.3898, // Latitude of Solon, Ohio
-    lng: -81.4415, // Longitude of Solon, Ohio
+    lat: 35.2271, // Charlotte latitude
+    lng: -80.8431, // Charlotte longitude
   };
 
-  const standardMapStyle = [
-    {
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#ebe3cd"
-        }
-      ]
+  const bounds = {
+    north: 35.47,
+    south: 34.98,
+    west: -81.05,
+    east: -80.55,
+  };
+
+  const mapOptions = {
+    restriction: {
+      latLngBounds: bounds,
+      strictBounds: false,
     },
-    {
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#523735"
-        }
-      ]
-    },
-    {
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#f5f1e6"
-        }
-      ]
-    },
-    {
-      "featureType": "administrative",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#a7a6a6"
-        }
-      ]
-    },
-    {
-      "featureType": "administrative",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#2c2b2b"
-        }
-      ]
-    },
-    {
-      "featureType": "administrative.country",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#3c3a3a"
-        }
-      ]
-    },
-    {
-      "featureType": "landscape",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#f9f5eb"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#f0f0f0"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#93817c"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#d8cfc4"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#7b7b7b"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#f1e8c6"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#5e5b5b"
-        }
-      ]
-    },
-    {
-      "featureType": "transit",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#e4e9e3"
-        }
-      ]
-    },
-    {
-      "featureType": "transit.station",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#868686"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#b9d3c2"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#92998d"
-        }
-      ]
-    }
-  ];
+    styles: [
+      {
+        featureType: "all",
+        elementType: "labels",
+        stylers: [{ visibility: "on" }],
+      },
+      {
+        featureType: "poi.business",
+        elementType: "all",
+        stylers: [{ visibility: "on" }],
+      },
+      {
+        featureType: "poi",
+        elementType: "all",
+        stylers: [{ visibility: "on" }],
+      },
+      {
+        featureType: "landscape.man_made",
+        elementType: "geometry",
+        stylers: [{ visibility: "on" }],
+      },
+      {
+        featureType: "transit",
+        elementType: "all",
+        stylers: [{ visibility: "on" }],
+      },
+    ],
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: true,
+    zoomControl: true,
+    language: "en",
+  };
 
   return (
     <div className={Styles.container}>
-      <LoadScript googleMapsApiKey="AIzaSyAANSyYeHI4ZrwS5I4aiSyjnojCMKxap58">
+      <h3 className={Styles.container__mapTitle}>Location</h3>
+      <LoadScript
+        googleMapsApiKey="AIzaSyAANSyYeHI4ZrwS5I4aiSyjnojCMKxap58"
+        language="en"
+        region="US"
+      >
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={12}
-          options={{
-            styles: standardMapStyle, // Apply the light map style
-          }}
+          zoom={11}
+          options={mapOptions}
         />
       </LoadScript>
     </div>

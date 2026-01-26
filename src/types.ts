@@ -531,3 +531,10 @@ export enum PhotoPostPage {
   mainPage = "main",
   photoGalleryPage = "photoGallery",
 }
+
+export interface SocialLink {
+  name: string;
+  href: string;
+  icon: string;
+  aria: string;
+}

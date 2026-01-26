@@ -6,65 +6,64 @@ import WhatsAppIcon from "../../images/whatsApp-icon.svg";
 import FacebookIcon from "../../images/facebook-icon.svg";
 import YoutubeIcon from "../../images/youtube-icon.svg";
 import TiktokIcon from "../../images/tiktok-icon.svg";
+import { SocialLink } from "../../types";
+
+const socialLinks: SocialLink[] = [
+  {
+    name: "WhatsApp",
+    href: "https://wa.me/15164684837",
+    icon: WhatsAppIcon,
+    aria: "Open WhatsApp",
+  },
+  {
+    name: "Telegram",
+    href: "tg://resolve?domain=@alenchik_berry",
+    icon: TelegramIcon,
+    aria: "Open Telegram",
+  },
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/lobachevaphotography/",
+    icon: InstagramIcon,
+    aria: "Open Instagram",
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@lobachevaphotography/",
+    icon: TiktokIcon,
+    aria: "Open TikTok",
+  },
+  {
+    name: "Facebook",
+    href: "https://www.facebook.com/Alen4ikLobacheva?mibextid=9R9pXO",
+    icon: FacebookIcon,
+    aria: "Open Facebook",
+  },
+  {
+    name: "YouTube",
+    href: "https://www.youtube.com/channel/UCUn6A0QHTBpfN-_VAuOQZ5g",
+    icon: YoutubeIcon,
+    aria: "Open YouTube",
+  },
+];
 
 const SocialLinks: React.FC = () => {
   return (
     <div className="socialLinks">
       <div className="socialLinks__container">
-        <a
-          className="socialLinks__item-social-networks socialLinks__item-social-networks_whatsApp"
-          href="https://wa.me/15164684837"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="whatsApp"
-        >
-          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={WhatsAppIcon} alt="whatsApp" />
-        </a>
-        <a
-          className="socialLinks__item-social-networks socialLinks__item-social-networks_telegram"
-          href="tg://resolve?domain=@alenchik_berry"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="telegram"
-        >
-          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={TelegramIcon} alt="telegram" />
-        </a>
-        <a
-          className="socialLinks__item-social-networks socialLinks__item-social-networks_instagram"
-          href="https://www.instagram.com/lobachevaphotography/"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="instagram"
-        >
-          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={InstagramIcon} alt="instagram" />
-        </a>
-        <a
-          className="socialLinks__item-social-networks socialLinks__item-social-networks_tiktok"
-          href="https://www.tiktok.com/@lobachevaphotography/"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="tiktok"
-        >
-          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={TiktokIcon} alt="tiktok" />
-        </a>
-        <a
-          className="socialLinks__item-social-networks socialLinks__item-social-networks_facebook"
-          href="https://www.facebook.com/Alen4ikLobacheva?mibextid=9R9pXO"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="facebook"
-        >
-          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={FacebookIcon} alt="facebook" />
-        </a>
-        <a
-          className="socialLinks__item-social-networks socialLinks__item-social-networks_youtube"
-          href="https://www.youtube.com/channel/UCUn6A0QHTBpfN-_VAuOQZ5g"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="youtube"
-        >
-          <img className="socialLinks__item-social-networksImg" width='32' height='32' src={YoutubeIcon} alt="youtube" />
-        </a>
+        {socialLinks.map(({ name, href, icon, aria }) => (
+          <a
+            key={name}
+            className={`socialLinks__item-social-networks socialLinks__item-social-networks_${name.toLowerCase()}`}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            title={name}
+            aria-label={aria}
+          >
+            <img className="socialLinks__item-social-networksImg" src={icon} alt={name} />
+          </a>
+        ))}
       </div>
     </div>
   );

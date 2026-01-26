@@ -166,10 +166,13 @@ const PhotoGallery: React.FC = () => {
         } session today`}
       />
       <motion.section className="photoGallery" id="photoGallery" initial="hidden" animate="visible">
-        {photoCategories.map((item: ICategory, index: number) => {
+        {photoCategories.map((item: ICategory) => {
           return (
             pathname.includes(item.title) && (
-              <motion.h1 variants={animationTitleCategory} className="photoGallery__title">
+              <motion.h1
+                variants={animationTitleCategory}
+                className="photoGallery__title"
+                key={item.title}>
                 {categoryHeadings[typePhoto.toLowerCase()] || "Photography Gallery"}
               </motion.h1>
             )

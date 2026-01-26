@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom";
 
 const MyContacts: React.FC = () => {
   const { pathname } = useLocation();
-  const myContactsEdit = pathname === "/contact" ? "myContacts__edit" : "";
+  const isContactPage = pathname === "/contact";
+  const myContactsEdit = isContactPage ? "myContacts__edit" : "";
 
   return (
     <div className="myContacts">
@@ -63,6 +64,15 @@ const MyContacts: React.FC = () => {
           </a>
         </li>
       </ul>
+      {isContactPage && (
+        <div className="myContacts__seo-text">
+          <p style={{ maxWidth: "1000px", margin: "auto" }}>
+            Based in Charlotte, North Carolina, I offer lifestyle, family, maternity, and portrait photography sessions
+            across the Charlotte metro area including Ballantyne, Matthews, Indian Land, and Huntersville. Let’s capture
+            your story.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

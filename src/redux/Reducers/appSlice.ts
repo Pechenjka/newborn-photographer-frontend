@@ -31,7 +31,7 @@ export const handleGetInstagramProfile = createAsyncThunk("app/getInstagramProfi
     const res = await apiApp().getInstagramProfile();
     return res.data;
   } catch (e) {
-    return rejectWithValue("Error, instagram profile has not been get");
+    return rejectWithValue("Oops, we're already working on it");
   }
 });
 
@@ -98,6 +98,7 @@ const appSlice = createSlice({
     });
     builder.addCase(handleGetInstagramProfile.fulfilled, (state, action: { payload: any }) => {
       state.loading.instagram = false;
+      // state.instagramProfile = action.payload.data;
       state.instagramProfile = action.payload.data.filter((post: PostInstagramProfile) => post.media_type !== "VIDEO");
     });
     builder.addCase(sendMessageGetInTouch.pending, (state): void => {

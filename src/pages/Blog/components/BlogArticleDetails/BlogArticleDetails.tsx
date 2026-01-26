@@ -51,8 +51,8 @@ export const BlogArticleDetails: React.FC = () => {
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
+      addressLocality: "Solon", // Город
+      addressRegion: "OH", // Штат или регион
       addressCountry: "US", // Страна
     },
     contactPoint: {
@@ -64,8 +64,8 @@ export const BlogArticleDetails: React.FC = () => {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "41.379748941510286", // Широта вашего местоположения
+        longitude: "-81.43406290994038", // Долгота вашего местоположения
       },
       geoRadius: "200.0", // Радиус области в километрах (примерно)
     },
@@ -89,8 +89,8 @@ export const BlogArticleDetails: React.FC = () => {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251",
-        longitude: "74.0021",
+        latitude: "41.379748941510286",
+        longitude: "-81.43406290994038",
       },
       geoRadius: "200.0",
     },

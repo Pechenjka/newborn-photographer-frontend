@@ -34,6 +34,7 @@ const Prices: React.FC = () => {
       dispatch(handlerErrorGetArrPackets("Error, the package has not been uploaded!"));
     }
   }, [pathname, packetsCategories, dispatch]);
+
   const { width } = useWindowResize();
   const { container, item } = framerMotionPhotosAndPackets();
 
@@ -66,8 +67,8 @@ const Prices: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-prices`,
-    name: `Prices for ${UpOneLetterPhotoSession} photography | NYC ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
-    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in NYC`,
+    name: `Prices for ${UpOneLetterPhotoSession} photography | Charlotte ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
+    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in North Carolina.`,
     image: `https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`,
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -79,32 +80,31 @@ const Prices: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-prices`,
-    name: `NYC ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
-    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in NYC`,
+    name: `Charlotte ${UpOneLetterPhotoSession} Photographer, Alena Lobacheva`,
+    description: `Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Charlotte, NC.`,
     image: `https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`,
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
-      addressCountry: "US", // Страна
+      addressLocality: "Charlotte",
+      addressRegion: "NC",
+      addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-516-468-4837", // Ваш номер телефона
-      contactType: "customer support", // Тип контактной информации
+      telephone: "+1-516-468-4837",
+      contactType: "customer support",
     },
     geo: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0", // Радиус области в километрах (примерно)
+      geoRadius: "200.0",
     },
-
     sameAs: [
       "https://www.instagram.com/lobachevaphotography/",
       "https://www.facebook.com/Alen4ikLobacheva?mibextid=9R9pXO",
@@ -117,17 +117,24 @@ const Prices: React.FC = () => {
     "@type": "Service",
     "@id": `https://alenalobacheva.com${pathname}#service-prices`,
     name: `${UpOneLetterPhotoSession} Photography Sessions`,
-    description: `Offering professional ${UpOneLetterPhotoSession} Photography sessions in New York City.`,
+    description: `Offering professional ${UpOneLetterPhotoSession} Photography sessions in Charlotte, Huntersville, Ballantyne, Weddington.`,
     serviceType: "Photography",
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251",
-        longitude: "74.0021",
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
       geoRadius: "200.0",
     },
+  };
+
+  const pricingTitles:Record<string, string> = {
+    Newborn: "Newborn Photography Pricing and Session Packages",
+    Baby: "Baby Photography Session Pricing and Packages",
+    Family: "Family and Maternity Photography Packages and Pricing",
+    Christening: "Christening Photography Prices and Booking Information",
   };
 
   return (
@@ -137,19 +144,34 @@ const Prices: React.FC = () => {
       <JsonLd data={serviceDataPrices} />
       <MetaData
         title={`Prices for ${UpOneLetterPhotoSession} Photography`}
-        description={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in NYC`}
+        description={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Charlotte, NC`}
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageAltOG={`${UpOneLetterPhotoSession} Photography`}
         imageOG={`https://cdn.alenalobacheva.com/gallery/${typePhotosession}/${typePhotosession}3.webp`}
         titleOG={`Prices for ${UpOneLetterPhotoSession} Photography`}
-        descriptionOG={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in NYC`}
+        descriptionOG={`Discover the investment details for ${UpOneLetterPhotoSession} Photography: explore prices, packages, and conditions. Book your session with Alena Lobacheva Photography in Charlotte, NC`}
       />
       <motion.section className={Styles.prices} initial="hidden" animate="visible">
         {packetsCategories.map((item: ICategory, index: number) => {
+          const key =
+            item.nameEN === "Family & Maternity"
+              ? "Family"
+              : item.nameEN;
+
+          const matchedTitle = pricingTitles[key as keyof typeof pricingTitles];
+
+          const pathMatches =
+            item.title && pathname.includes(item.title.toLowerCase());
+
           return (
-            pathname.includes(item.title) && (
-              <motion.h1 variants={hiddenAndScale} custom={1} className={Styles.prices__title} key={index}>
-                {item.nameEN}
+            pathMatches && matchedTitle && (
+              <motion.h1
+                variants={hiddenAndScale}
+                custom={1}
+                className={Styles.prices__title}
+                key={index}
+              >
+                {matchedTitle}
               </motion.h1>
             )
           );
@@ -161,12 +183,6 @@ const Prices: React.FC = () => {
             custom={{ delay: 2, widthFull: width > 567 ? 500 : 320 }}
           />
         )}
-        {/*important message*/}
-        {/*{typePhotosession === "newborn" && (*/}
-        {/*  <p className={Styles.prices__importantMessage}>*/}
-        {/*    For newborn sessions occurs from March, 20 up to April, 10 there is a DISCOUNT for all packages 20%*/}
-        {/*  </p>*/}
-        {/*)}*/}
         <div className={Styles.prices__container}>
           {loading.getArrPackets ? (
             <div style={{ gridColumn: "1/-1", marginTop: "50px" }}>

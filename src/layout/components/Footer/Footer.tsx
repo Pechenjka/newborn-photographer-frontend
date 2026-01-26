@@ -3,7 +3,7 @@ import "./Footer.scss";
 import NewsLetter from "./components/NewsLetter/NewsLetter";
 import MyContacts from "../../../components/MyContacts/MyContacts";
 import SocialLinks from "../../../components/SocialLinks/SocialLinks";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Footer: React.FC = () => {
   const { pathname } = useLocation();
@@ -27,18 +27,20 @@ const Footer: React.FC = () => {
             Alena Lobacheva Photography.
           </p>
           <p className={`footer__copyright-text ${showMyContacts ? "footer__copyright-text_edit" : ""}`}>
-            NYC Newborn Baby Family Maternity Photographer.
+            Newborn, Baby, Family & Maternity Photographer | Charlotte, NC
           </p>
           <p className={`footer__copyright-text ${showMyContacts ? "footer__copyright-text_edit" : ""}`}>
             All rights reserved.
           </p>
-          <Link
+          <a
             className={`footer__copyright-link ${showMyContacts ? "footer__copyright-link_edit" : ""}`}
-            title="sitemap"
-            to="https://alenalobacheva.com/sitemap.xml"
+            title="Go to sitemap"
+            href="https://alenalobacheva.com/sitemap.xml"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Sitemap
-          </Link>
+          </a>
         </div>
       </div>
     </footer>

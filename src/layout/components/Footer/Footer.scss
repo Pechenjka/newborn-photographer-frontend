@@ -15,7 +15,7 @@ $colorDemarcationLine: #79553d;
     width: max-content;
     display: grid;
     grid-template-columns: repeat(3, 390px);
-    grid-template-rows: 130px;
+    //grid-template-rows: 130px;
 
     &::before {
       content: "";

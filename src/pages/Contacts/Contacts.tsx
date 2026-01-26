@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import { MetaData } from "../../helpers/MetaData";
 import logoPhotographer from "../../images/logo-header-photographer.webp";
 import JsonLd from "../../helpers/JsonLD";
+import { Map } from "../../components/Map";
 
 const Contacts: React.FC = () => {
   const { pathname } = useLocation();
@@ -15,9 +16,10 @@ const Contacts: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-contactMe`,
-    name: "Contact Alena Lobacheva | NYC Newborn Photographer",
+    name:
+      "Alena Lobacheva Photography | Charlotte, NC Newborn Photographer",
     description:
-      "Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome",
+      "Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome.",
     image: "https://cdn.alenalobacheva.com/gallery/family/family-imageOG.webp",
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -29,31 +31,44 @@ const Contacts: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-contactMe`,
-    name: "Contact Alena Lobacheva | NYC Newborn Photographer",
+    areaServed: [
+      { "@type": "Place", name: "Charlotte, NC" },
+      { "@type": "Place", name: "Ballantyne, NC" },
+      { "@type": "Place", name: "South Charlotte, NC" },
+      { "@type": "Place", name: "Weddington, NC" },
+      { "@type": "Place", name: "Fort Mill, SC" },
+      { "@type": "Place", name: "Raleigh, NC" },
+      { "@type": "Place", name: "Greensboro, NC" },
+      { "@type": "Place", name: "Columbia, SC" },
+      { "@type": "Place", name: "Greenville, SC" },
+      { "@type": "Place", name: "Atlanta, GA" },
+    ],
+    name:
+      "Alena Lobacheva Photography | Charlotte, NC Newborn & Family Photographer", // 75 символов
     description:
-      "Professional photographer in NYC, newborn photography, family photography, baby photography, maternity photography.",
+      "Professional newborn, maternity, baby, and family photographer based in Charlotte, NC. Serving families in Ballantyne, South Charlotte, Weddington, Fort Mill, and surrounding areas.", // 198 символов
     image: "https://cdn.alenalobacheva.com/gallery/family/family19.webp",
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
-      addressCountry: "US", // Страна
+      addressLocality: "Charlotte",
+      addressRegion: "NC",
+      addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-516-468-4837", // Ваш номер телефона
-      contactType: "customer support", // Тип контактной информации
+      telephone: "+1-516-468-4837",
+      contactType: "customer support",
     },
     geo: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0", // Радиус области в километрах (примерно)
+      geoRadius: "640.0",
     },
     sameAs: [
       "https://www.instagram.com/lobachevaphotography/",
@@ -67,13 +82,13 @@ const Contacts: React.FC = () => {
       <JsonLd data={webPageDataContacts} />
       <JsonLd data={localBusinessDataContacts} />
       <MetaData
-        title="Contact Alena Lobacheva | NYC Newborn Photographer"
-        description="Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome"
+        title="Alena Lobacheva Photography | Charlotte, NC Newborn Photographer"
+        description="Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome."
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageOG="https://cdn.alenalobacheva.com/gallery/family/family19.webp"
         imageAltOG="Family Photography"
-        titleOG="Contact Alena Lobacheva | NYC Newborn Photographer"
-        descriptionOG="Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome"
+        titleOG="Alena Lobacheva Photography | Charlotte, NC Newborn Photographer"
+        descriptionOG="Have questions about a photo session? Stay in touch with me here at Alena Lobacheva Photography. Your queries are always welcome."
       />
       <section className="contacts">
         <h1 className="contacts__title">
@@ -91,6 +106,7 @@ const Contacts: React.FC = () => {
         <MyContacts />
         <SocialLinks />
         <ContactMeForm title="Get In Touch With Me" />
+        <Map />
       </section>
     </Fragment>
   );

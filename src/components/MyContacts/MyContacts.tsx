@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom";
 
 const MyContacts: React.FC = () => {
   const { pathname } = useLocation();
-  const myContactsEdit = pathname === "/contact" ? "myContacts__edit" : "";
+  const isContactPage = pathname === "/contact";
+  const myContactsEdit = isContactPage ? "myContacts__edit" : "";
 
   return (
     <div className="myContacts">
@@ -13,35 +14,42 @@ const MyContacts: React.FC = () => {
           <span className="myContacts__icon myContacts__icon_place" />
           <a
             className={`myContacts__link myContacts__text ${myContactsEdit}`}
-            href="https://www.google.com/maps/search/?api=1&query=New+York,+NY"
+            href="https://www.google.com/maps/place/Charlotte,+NC/"
             target="_blank"
             rel="noopener noreferrer"
-            title="New York map"
+            title="Photographer in Charlotte, North Carolina"
+            aria-label="Photographer in Charlotte, North Carolina"
           >
-            New York, NY.
+            Charlotte, NC (and surrounding areas)
           </a>
         </li>
+
         <li className="myContacts__item-container">
           <span className="myContacts__icon myContacts__icon_email" />
           <a
             className={`myContacts__link myContacts__email ${myContactsEdit}`}
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=lobachevaphotography@gmail.com"
+            href="mailto:lobachevaphotography@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
-            title="email"
-          > lobachevaphotography@gmail.com
+            title="Email Alena Lobacheva"
+            aria-label="Email Alena Lobacheva"
+          >
+            lobachevaphotography@gmail.com
           </a>
         </li>
+
         <li className="myContacts__item-container">
           <span className="myContacts__icon myContacts__icon_phone" />
           <a
             className={`myContacts__link myContacts__phone ${myContactsEdit}`}
-            href="tel:+1-516-468-4837"
-            title="phone"
+            href="tel:+15164684837"
+            title="Call Alena Lobacheva"
+            aria-label="Call Alena Lobacheva"
           >
-            +1-516-468-4837
+            +1 (516) 468-4837
           </a>
         </li>
+
         <li className="myContacts__item-container">
           <span className="myContacts__icon myContacts__icon_instagram" />
           <a
@@ -49,12 +57,22 @@ const MyContacts: React.FC = () => {
             href="https://www.instagram.com/lobachevaphotography/"
             target="_blank"
             rel="noopener noreferrer"
-            title="profile of Alena Lobacheva in Instagram"
+            title="Alena Lobacheva Photography on Instagram"
+            aria-label="Alena Lobacheva Photography on Instagram"
           >
             @lobachevaphotography
           </a>
         </li>
       </ul>
+      {isContactPage && (
+        <div className="myContacts__seo-text">
+          <p style={{ maxWidth: "1000px", margin: "auto" }}>
+            Based in Charlotte, North Carolina, I offer lifestyle, family, maternity, and portrait photography sessions
+            across the Charlotte metro area including Ballantyne, Matthews, Indian Land, and Huntersville. Let’s capture
+            your story.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

@@ -29,6 +29,16 @@ const PhotoGallery: React.FC = () => {
   );
   const { user } = useAppSelector((state) => state.user);
 
+  const categoryHeadings: Record<string, string> = {
+    newborn: "Precious Newborn Photography Moments You’ll Always Treasure",
+    maternity: "Beautiful Maternity Photography to Celebrate Motherhood",
+    baby: "Adorable Baby Photography That Captures Every Sweet Detail",
+    family: "Heartwarming Family Photo Sessions Filled with Joy and Love",
+    woman: "Empowering and Elegant Woman Photography Gallery",
+    discharge: "Emotional Discharge Photography for Your Baby’s First Days",
+    christening: "Christening Photography That Captures Sacred and Joyful Moments",
+  };
+
   useEffect(() => {
     photosCategoryInGallery.some((item: string) => {
       if (pathname.includes(item)) {
@@ -75,9 +85,9 @@ const PhotoGallery: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-gallery`,
-    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NC | Alena Lobacheva - ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
-    } Photographer in NYC`,
+    } Photographer in Charlotte`,
     description: `Magic of ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
     } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
@@ -94,9 +104,9 @@ const PhotoGallery: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-gallery`,
-    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+    name: `${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NC | Alena Lobacheva - ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
-    } Photographer in NYC`,
+    } Photographer in Charlotte`,
     description: `Magic of ${
       typePhoto[0].toUpperCase() + typePhoto.slice(1)
     } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
@@ -107,23 +117,23 @@ const PhotoGallery: React.FC = () => {
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
-      addressCountry: "US", // Страна
+      addressLocality: "Charlotte",
+      addressRegion: "NC",
+      addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-516-468-4837", // Ваш номер телефона
-      contactType: "customer support", // Тип контактной информации
+      telephone: "+1-516-468-4837",
+      contactType: "customer support",
     },
     geo: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "35.2271", // Charlotte, NC
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0", // Радиус области в километрах (примерно)
+      geoRadius: "200.0",
     },
     sameAs: [
       "https://www.instagram.com/lobachevaphotography/",
@@ -137,30 +147,33 @@ const PhotoGallery: React.FC = () => {
       <JsonLd data={webPageDataGallery} />
       <JsonLd data={localBusinessDataGallery} />
       <MetaData
-        title={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography | Alena Lobacheva Photographer NYC`}
+        title={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography | Alena Lobacheva Photographer Charlotte`}
         description={`Magic of ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
         } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
-        }  session today`}
+        } session today`}
         canonicalLink={`https://alenalobacheva.com${pathname}`}
         imageOG={`https://cdn.alenalobacheva.com/gallery/${typePhoto}/${typePhoto}-imageOG.webp`}
         imageAltOG={`${typePhoto} photography`}
-        titleOG={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NY | Alena Lobacheva - ${
+        titleOG={`${typePhoto[0].toUpperCase() + typePhoto.slice(1)} Photography NC | Alena Lobacheva - ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
-        } Photographer in NYC`}
+        } Photographer in Charlotte`}
         descriptionOG={`Magic of ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
         } in Photography Gallery. Ready to capture your own beautiful moments? Book a ${
           typePhoto[0].toUpperCase() + typePhoto.slice(1)
-        }  session today`}
+        } session today`}
       />
       <motion.section className="photoGallery" id="photoGallery" initial="hidden" animate="visible">
-        {photoCategories.map((item: ICategory, index: number) => {
+        {photoCategories.map((item: ICategory) => {
           return (
             pathname.includes(item.title) && (
-              <motion.h1 variants={animationTitleCategory} className="photoGallery__title" key={index}>
-                {item.nameEN}
+              <motion.h1
+                variants={animationTitleCategory}
+                className="photoGallery__title"
+                key={item.title}>
+                {categoryHeadings[typePhoto.toLowerCase()] || "Photography Gallery"}
               </motion.h1>
             )
           );

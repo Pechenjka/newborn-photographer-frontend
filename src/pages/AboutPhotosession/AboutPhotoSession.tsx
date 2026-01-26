@@ -39,8 +39,8 @@ export const AboutPhotoSession: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "WebPage",
     "@id": `https://alenalobacheva.com${pathname}#webpage-aboutSessions`,
-    name: "How to be ready for a session | Alena Lobacheva Photography, NY",
-    description: "This guide includes all necessary information regarding the preparation for the photo session",
+    name: "How to prepare for a photo session | Alena Lobacheva Photography",
+    description: "This guide provides tips and useful insights on preparing for a photo session, whether it's for a newborn, baby, family, or maternity shoot.",
     image: "https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp",
     url: `https://alenalobacheva.com${pathname}`,
     potentialAction: {
@@ -52,32 +52,30 @@ export const AboutPhotoSession: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "LocalBusiness",
     "@id": `https://alenalobacheva.com${pathname}#localbusiness-aboutSessions`,
-    name: "How to be ready for a session | Alena Lobacheva Photography",
-    description: "This guide includes all necessary information regarding the preparation for the photo session",
+    name: "Alena Lobacheva Photography",
+    description: "Photography services specializing in newborn, baby, maternity, and family sessions. Explore helpful information for preparing your photo shoot.",
     image: "https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp",
     url: `https://alenalobacheva.com${pathname}`,
     telephone: "+1-516-468-4837",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "New York", // Город
-      addressRegion: "NY", // Штат или регион
-      addressCountry: "US", // Страна
+      addressRegion: "NC",
+      addressCountry: "US",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+1-516-468-4837", // Ваш номер телефона
-      contactType: "customer support", // Тип контактной информации
+      telephone: "+1-516-468-4837",
+      contactType: "customer support",
     },
     geo: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251", // Широта вашего местоположения
-        longitude: "74.0021", // Долгота вашего местоположения
+        latitude: "35.2271", // Центр Charlotte, NC
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0", // Радиус области в километрах (примерно)
+      geoRadius: "150.0",
     },
-
     sameAs: [
       "https://www.instagram.com/lobachevaphotography/",
       "https://www.facebook.com/Alen4ikLobacheva?mibextid=9R9pXO",
@@ -90,17 +88,17 @@ export const AboutPhotoSession: React.FC = () => {
     "@context": "http://schema.org",
     "@type": "Service",
     "@id": `https://alenalobacheva.com${pathname}#service-aboutSessions`,
-    name: "How to be ready for a session | Alena Lobacheva Photography",
-    description: "This guide includes all necessary information regarding the preparation for the photo session",
+    name: "Photography session preparation guide",
+    description: "A detailed guide for clients to prepare for their upcoming photo shoot — including newborn, baby, family, and maternity sessions.",
     serviceType: "Photography",
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: "40.4251",
-        longitude: "74.0021",
+        latitude: "35.2271",
+        longitude: "-80.8431",
       },
-      geoRadius: "200.0",
+      geoRadius: "150.0",
     },
   };
 
@@ -110,16 +108,16 @@ export const AboutPhotoSession: React.FC = () => {
       <JsonLd data={localBusinessDataAboutSessions} />
       <JsonLd data={serviceDataAboutSessions} />
       <MetaData
-        title="How to be ready for a session | Alena Lobacheva Photography"
-        description="This guide includes all necessary information regarding the preparation for the photo session"
+        title="How to prepare for a photo session | Alena Lobacheva Photography"
+        description="Discover essential tips and expert advice to get ready for your upcoming photo session — from newborn and baby shoots to family and maternity photography."
         canonicalLink={`https://alenalobacheva.com${pathname}`}
-        imageAltOG="https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp"
+        imageAltOG="Preparation tips for your photo session"
         imageOG="https://cdn.alenalobacheva.com/gallery/newborn/newborn-imageOG.webp"
-        titleOG="How to be ready for a photo session | Alena Lobacheva Photography"
-        descriptionOG="This guide includes all necessary information regarding the preparation for the photo session"
+        titleOG="How to prepare for a photo session | Alena Lobacheva Photography"
+        descriptionOG="Discover essential tips and expert advice to get ready for your upcoming photo session — from newborn and baby shoots to family and maternity photography."
       />
       <div className={Styles.aboutPhotoSession__container}>
-        <h1 className={Styles.aboutPhotoSession__title}>Preparing a successful photo session</h1>
+        <h1 className={Styles.aboutPhotoSession__title}>How to successfully prepare for your upcoming photo session</h1>
         {article.map((article) => {
           return <SessionArticle article={article} key={article.nameLink} />;
         })}

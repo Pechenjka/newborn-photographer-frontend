@@ -12,7 +12,11 @@ export const PostComponent: React.FC<PropsPostComponent> = ({ post }) => {
 
   return (
     <div className={Style.instagramPost__container}>
-      <img className={Style.instagramPost__urlImage} src={post.media_url} alt="instagram post" />
+      {/*{post.media_type === "VIDEO" ? (*/}
+      {/*  <video className={Style.instagramPost__urlVideo} src={post.media_url} />*/}
+      {/*) : (*/}
+        <img className={Style.instagramPost__urlImage} src={post.media_url} />
+      {/*)}*/}
       <a
         className={Style.instagramPost__overlay}
         href={post.permalink}

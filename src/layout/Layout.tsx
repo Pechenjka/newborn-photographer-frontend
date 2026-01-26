@@ -5,7 +5,6 @@ import { useLocation, Outlet } from "react-router-dom";
 import { allRoutes } from "../router/config";
 import { IRoute } from "../types";
 import BackgroundImage from "../components/BackgroundImage/BackgroundImage";
-import { Instagram } from "../components/Instagram";
 
 export const Layout: React.FC = () => {
   const { pathname } = useLocation();
@@ -19,7 +18,9 @@ export const Layout: React.FC = () => {
       {!isAdminRoutes.includes(pathname) && <Header />}
       {!pathname.startsWith("/admin") && pathname !== "/" && <BackgroundImage />}
       <Outlet />
-      {!isAdminRoutes.includes(pathname) && <Instagram />}
+      {/* Instagram feed temporarily disabled due to Instagram API changes*/}
+      {/* TODO: restore after updating integration*/}
+      {/*{!isAdminRoutes.includes(pathname) && <Instagram />}*/}
       {!isAdminRoutes.includes(pathname) && <Footer />}
     </section>
   );

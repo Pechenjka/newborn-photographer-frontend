@@ -8,108 +8,129 @@
 
 
   <url>
-    <loc>https://alenalobacheva.com</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
+    <loc>https://alenalobacheva.com/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.00</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/gallery/newborn</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/gallery/newborn/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/gallery/maternity</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/gallery/maternity/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/gallery/baby</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/gallery/baby/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/gallery/family</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/gallery/family/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/gallery/woman</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/gallery/woman/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/gallery/discharge</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/gallery/discharge/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/gallery/christening</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/gallery/christening/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/prices/newborn</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/prices/newborn/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/prices/baby</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/prices/baby/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
     <loc>https://alenalobacheva.com/prices/family</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/prices/christening</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/prices/christening/</loc>
+    <lastmod>2024-10-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/about</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/about/</loc>
+    <lastmod>2023-10-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/contact</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/contact/</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/session-information</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/session-information/</loc>
+    <lastmod>2023-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/newborn-session</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/newborn-session/</loc>
+    <lastmod>2023-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/family-session</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/family-session/</loc>
+    <lastmod>2023-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/blog</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/blog/</loc>
+    <lastmod>2023-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/fall-session-in-fort-tryon-park-nyc</loc>
-    <lastmod>2023-10-29T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/blog/fall-session-in-fort-tryon-park-nyc/</loc>
+    <lastmod>2023-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/blog/how-to-avoid-anxiety-and-worries-during-a-newborn-photoshoot</loc>
-    <lastmod>2024-02-22T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/blog/how-to-avoid-anxiety-and-worries-during-a-newborn-photoshoot/</loc>
+    <lastmod>2024-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://alenalobacheva.com/blog/what-to-do-if-the-baby-does-not-sleep</loc>
-    <lastmod>2024-03-22T03:38:31+00:00</lastmod>
-    <priority>0.80</priority>
+    <loc>https://alenalobacheva.com/blog/what-to-do-if-the-baby-does-not-sleep/</loc>
+    <lastmod>2024-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>
 </urlset>

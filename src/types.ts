@@ -89,6 +89,7 @@ export interface IRoute {
   isAuth?: boolean;
   protectRouteBasket?: boolean;
   withOutHeaderAndFooter?: boolean;
+  protectOrderSuccess?: boolean;
 }
 
 // export interface PropsProtectedRoute {
@@ -303,6 +304,7 @@ export interface PropsInitialStateOrderSlice {
   dataOrders: IOrderData[];
   meOrders: Array<IMeOrders>;
   confirmSendOrder: boolean;
+  orderSuccessfullySent: boolean,
   loading: {
     newOrder: boolean;
     getOrders: boolean;

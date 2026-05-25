@@ -24,6 +24,7 @@ import { PhotoSessionDetails } from "../pages/AboutPhotosession/components/Photo
 import { Blog } from "../pages/Blog";
 import { AddArticleInBlog } from "../pages/Admin/components/AddArticleInBlog";
 import { BlogArticleDetails } from "../pages/Blog/components/BlogArticleDetails";
+import OrderSuccess from "../pages/OrderSuccess/OrderSuccess";
 
 export const routes: IRoute[] = [
   { component: Main, path: "", name: "main", isAdmin: false, isAuth: false, index: true },
@@ -61,6 +62,14 @@ export const routes: IRoute[] = [
   },
   { component: Contacts, path: "contact", name: "contact", isAdmin: false, isAuth: false },
   { component: Basket, path: "basket", name: "basket", isAdmin: false, isAuth: false, protectRouteBasket: true },
+  {
+    component: OrderSuccess,
+    path: "order-success",
+    name: "order-success",
+    isAdmin: false,
+    isAuth: false,
+    protectOrderSuccess: true,
+  },
   // { component: PhotoProducts, path: "photo-products", name: "photo-products", isAdmin: false, isAuth: false },
 
   { component: Login, path: "signin", name: "signin", isAdmin: false, isAuth: false, withOutHeaderAndFooter: true },

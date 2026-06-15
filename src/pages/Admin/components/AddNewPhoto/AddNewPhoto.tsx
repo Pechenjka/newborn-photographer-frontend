@@ -26,7 +26,7 @@ export const AddNewPhoto = () => {
     { value: "christening", title: "christening" },
     { value: "woman", title: "woman" },
     { value: "discharge", title: "discharge" },
-    { value: "pregnancy", title: "pregnancy" },
+    { value: "maternity", title: "maternity" },
   ];
 
   useEffect(() => {

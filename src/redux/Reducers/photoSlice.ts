@@ -19,7 +19,7 @@ export const fetchPhotos = createAsyncThunk(
       const res = await apiApp().getArrPhotos(
         `${
           arg.type === null
-            ? "?type=newborn&type=baby&type=family&type=pregnancy&type=christening"
+            ? "?type=newborn&type=baby&type=family&type=maternity&type=christening"
             : `?type=${arg.type}`
         }`
       );

@@ -20,10 +20,10 @@ const initialState: PropsInitialStateAppSlice = {
   confirmationSendEmail: false,
   errorSendEmail: false,
   error: {
-    instagram: "",
+    // instagram: "",
   },
   language: "en",
-  instagramProfile: [],
+  // instagramProfile: [],
 };
 
 export const handleGetInstagramProfile = createAsyncThunk("app/getInstagramProfile", async (_, { rejectWithValue }) => {
@@ -89,18 +89,18 @@ const appSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(handleGetInstagramProfile.pending, (state) => {
-      state.loading.instagram = true;
-    });
-    builder.addCase(handleGetInstagramProfile.rejected, (state, action: { payload: any }) => {
-      state.loading.instagram = false;
-      state.error.instagram = action.payload;
-    });
-    builder.addCase(handleGetInstagramProfile.fulfilled, (state, action: { payload: any }) => {
-      state.loading.instagram = false;
-      // state.instagramProfile = action.payload.data;
-      state.instagramProfile = action.payload.data.filter((post: PostInstagramProfile) => post.media_type !== "VIDEO");
-    });
+    // builder.addCase(handleGetInstagramProfile.pending, (state) => {
+    //   state.loading.instagram = true;
+    // });
+    // builder.addCase(handleGetInstagramProfile.rejected, (state, action: { payload: any }) => {
+    //   state.loading.instagram = false;
+    //   state.error.instagram = action.payload;
+    // });
+    // builder.addCase(handleGetInstagramProfile.fulfilled, (state, action: { payload: any }) => {
+    //   state.loading.instagram = false;
+    //   // state.instagramProfile = action.payload.data;
+    //   state.instagramProfile = action.payload.data.filter((post: PostInstagramProfile) => post.media_type !== "VIDEO");
+    // });
     builder.addCase(sendMessageGetInTouch.pending, (state): void => {
       state.loading.sendMessageGetInTouch = true;
     });

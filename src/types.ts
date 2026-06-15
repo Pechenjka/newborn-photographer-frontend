@@ -403,9 +403,9 @@ export interface PropsInitialStateAppSlice {
   errorSendEmail: boolean;
   language: string;
   error: {
-    instagram: string;
+    // instagram: string;
   };
-  instagramProfile: PostInstagramProfile[];
+  // instagramProfile: PostInstagramProfile[];
 }
 
 export interface PostInstagramProfile {

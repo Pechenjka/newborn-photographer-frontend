@@ -1,8 +1,14 @@
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import Styles from "./style.module.scss";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 
 export const Map: React.FC = () => {
+  const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("Google Maps API key is missing");
+  }
+
   const containerStyle = {
     width: "100%",
     height: "400px",
@@ -63,7 +69,7 @@ export const Map: React.FC = () => {
     <div className={Styles.container}>
       <h3 className={Styles.container__mapTitle}>Location</h3>
       <LoadScript
-        googleMapsApiKey="AIzaSyAANSyYeHI4ZrwS5I4aiSyjnojCMKxap58"
+        googleMapsApiKey={apiKey}
         language="en"
         region="US"
       >

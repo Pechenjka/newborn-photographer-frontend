@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./NewsLetter.scss";
 import newsLetterButtonIcon from "../../../../../images/newsLetter-button-icon.svg";
 import useFormWithValidation from "../../../../../hooks/useForm";
@@ -11,27 +11,51 @@ const NewsLetter: React.FC = () => {
   const dispatch = useAppDispatch();
   const { errorSendEmail, confirmationSendEmail, loading } = useAppSelector((state) => state.app);
   const { values, isValid, resetForm, handleChange } = useFormWithValidation();
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   const handlerSubmit = (evt: React.FormEvent): void => {
     evt.preventDefault();
-    dispatch(sendEmail({ data: values }));
+    // dispatch(sendEmail({ data: values }));
+    //temporary
+    setShowComingSoon(true);
     resetForm();
   };
+
+//temporary
+  useEffect(() => {
+    if (showComingSoon) {
+      const timer = setTimeout(() => {
+        setShowComingSoon(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showComingSoon]);
 
   return (
     <div className="newsLetter">
       <form className="newsLetter__form" onSubmit={handlerSubmit}>
         <fieldset className="newsLetter__form-fieldset">
-          {errorSendEmail || confirmationSendEmail ? (
+          {showComingSoon ? (
             <ShowInfoToolTip
-              confirmation={confirmationSendEmail}
-              error={errorSendEmail}
-              textConfirmMessage='Subscribed'
-              textErrorMessage='An error has occurred on the server. Try again later'
+              confirmation={true}
+              error={false}
+              textConfirmMessage="Newsletter updates are coming soon. Follow us on Instagram for the latest sessions and announcements."
+              textErrorMessage=""
             />
           ) : (
             <label className="newsLetter__form-label">Have you interesting about promo actions or projects?</label>
           )}
+          {/*{errorSendEmail || confirmationSendEmail ? (*/}
+          {/*  <ShowInfoToolTip*/}
+          {/*    confirmation={confirmationSendEmail}*/}
+          {/*    error={errorSendEmail}*/}
+          {/*    textConfirmMessage='Subscribed'*/}
+          {/*    textErrorMessage='An error has occurred on the server. Try again later'*/}
+          {/*  />*/}
+          {/*) : (*/}
+          {/*  <label className="newsLetter__form-label">Have you interesting about promo actions or projects?</label>*/}
+          {/*)}*/}
           {loading.sendEmail && (
             <div style={{ margin: "20px auto" }}>
               <Spinner />

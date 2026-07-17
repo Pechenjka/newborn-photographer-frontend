@@ -1,14 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { PropsInitialStateOrderSlice, IMeOrders, INewOrder, IOrderData, PropsBoolean } from "../../types";
 import { apiOrder } from "../../utils/apiOrder";
-import { handlerDeletePacketFromBasket } from "./packetSlice";
 
 export const newOrder = createAsyncThunk("order/newOrder", async (data: INewOrder, { rejectWithValue, dispatch }) => {
   try {
     const res = await apiOrder().newOrder(data);
-    if (res.data) {
-      dispatch(handlerDeletePacketFromBasket(null));
-    }
     return res.data;
   } catch (e) {
     return rejectWithValue(
@@ -45,6 +41,7 @@ const initialState: PropsInitialStateOrderSlice = {
   dataOrders: [],
   meOrders: [],
   confirmSendOrder: false,
+  orderSuccessfullySent: false,
   loading: {
     newOrder: false,
     getOrders: false,
@@ -64,8 +61,8 @@ const orderSlice = createSlice({
     deleteMeOrders: (state) => {
       state.meOrders = [];
     },
-    handleConfirmSendOrder: (state, action: PropsBoolean) => {
-      state.confirmSendOrder = action.payload;
+    handleOrderSuccessfullySent: (state, action: PropsBoolean) => {
+      state.orderSuccessfullySent = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -95,5 +92,5 @@ const orderSlice = createSlice({
   },
 });
 
-export const { deleteMeOrders, handleConfirmSendOrder } = orderSlice.actions;
+export const { deleteMeOrders, handleOrderSuccessfullySent } = orderSlice.actions;
 export default orderSlice.reducer;

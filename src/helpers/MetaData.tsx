@@ -1,5 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
+import { normalizeCanonicalPath } from "../utils/seo";
 
 interface PropsMetaData {
   title: string;
@@ -22,16 +23,19 @@ export const MetaData: React.FC<PropsMetaData> = ({
   titleOG,
   descriptionOG,
 }) => {
+
+  const normalizedCanonicalLink = canonicalLink ? normalizeCanonicalPath(canonicalLink) : undefined;
+
   return (
     <Helmet>
       <title>{title}</title>
-      <link rel="canonical" href={canonicalLink} />
+      <link rel="canonical" href={normalizedCanonicalLink} />
       <meta name="description" content={description} />
       <meta property="og:image" content={imageOG} />
       <meta property="og:image:alt" content={imageAltOG} />
       <meta property="og:title" content={titleOG} />
       <meta property="og:description" content={descriptionOG} />
-      <meta property="og:url" content={canonicalLink} />
+      <meta property="og:url" content={normalizedCanonicalLink} />
       <meta property="og:type" content={type} />
     </Helmet>
   );

@@ -11,6 +11,7 @@ export const RouterComponent: React.FC = () => {
   const { pathname } = useLocation();
   const { auth } = useAppSelector((state) => state.user);
   const { basketIsNotEmpty } = useAppSelector((state) => state.packets);
+  const { orderSuccessfullySent } = useAppSelector((state) => state.order);
   //temporaryroute.path
   const staff = true;
 
@@ -28,10 +29,12 @@ export const RouterComponent: React.FC = () => {
             if (route.isAuth) return auth;
             if (route.isAdmin) return staff;
             if (route.protectRouteBasket) return basketIsNotEmpty;
+            if (route.protectOrderSuccess) return orderSuccessfullySent;
             return false;
           };
 
-          const protectedRoutes = route.isAdmin || route.isAuth || route.protectRouteBasket;
+          const protectedRoutes =
+            route.isAdmin || route.isAuth || route.protectRouteBasket || route.protectOrderSuccess;
 
           return protectedRoutes ? (
             <Route
